@@ -13,8 +13,8 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.DriverSpy" />
 		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE" />
-		<property name="username" value="icia" />
+			value="jdbc:log4jdbc:oracle:thin:@192.168.0.99:1521:XE" />
+		<property name="username" value="itcia" />
 		<property name="password" value="1111" />
 	</bean>
 <bean id="transactionManager"
@@ -26,14 +26,15 @@
 	
 	<!-- sqlSessionFactory::mybatis가 사용 -->
 
-	<bean id="sqlSessionFactory"
+	<!-- <bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:com/itcia/itgoo/dao/mybatis-conf.xml" />
 		<property name="mapperLocations"
 			value="classpath:com/itcia/itgoo/dao/mapper/*.xml" />
-	</bean>
+	</bean> -->
+	
 	<bean id="multipartResolver" 
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<property name="defaultEncoding" value="UTF-8" />
