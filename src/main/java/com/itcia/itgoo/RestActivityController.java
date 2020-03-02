@@ -11,11 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
-public class HomeController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class RestActivityController {
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	//민호
 	//병규
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/test4", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -28,5 +28,4 @@ public class HomeController {
 		
 		return "home";
 	}
-	
 }
