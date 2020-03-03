@@ -12,6 +12,7 @@
 		class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />  <!--엔코더 바꾸자  -->
 		
 		
+
 		
 	<sec:http auto-config="true">
 		<sec:form-login username-parameter="username"
@@ -23,22 +24,6 @@
 		<sec:logout logout-url="/logout"
 			logout-success-url="/" />
 	</sec:http>
-
-
-	<sec:authentication-manager>
-		<sec:authentication-provider>
-			<sec:user-service>
-				<sec:user name="admin" password="1234" authorities="ROLE_USER, ROLE_MANAGER, ROLE_ADMIN" />
-				<sec:user name="manager" password="1234" authorities="ROLE_USER, ROLE_MANAGER" />
-				<sec:user name="user" password="1234" authorities="ROLE_USER" />
-			</sec:user-service>
-			<sec:password-encoder ref="passwordEncoder" />
-		</sec:authentication-provider>
-	</sec:authentication-manager>
-
-
-
-
 
 
 	<!-- JDBC를 이용한 로그인 -->
