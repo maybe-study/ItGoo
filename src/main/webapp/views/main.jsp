@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
-<style>
-
-</style>
+<title>It Goo! 메인페이지</title>
 </head>
-
 <body>
-<form name="jinFrm" action="memberjoin" method="post"></form>
+<button>회원가입</button>
+<button>로그인</button>
+
+
 
 </body>
 </html>

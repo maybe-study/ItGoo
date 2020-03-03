@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/park_client/css/main.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="/park_client/script/main.js"></script>
+<script>
+   //일반적으론 동기인데 에이작스만 비동기?
+   
+   
+   
+      function loadImage(){
+         console.log($('#profile'));
+         var file=$("#profile")[0].files[0]; //한개의 프사만 등록
+         var maxSize=1024*1024;   //1MB
+         if(file.size>maxSize){
+            toastr.warning("사진은 1M이하여야 합니다.","경고");
+            $("#profile").val("");
+            return false;//작업 실패
+         }
+         var reader=new FileReader();
+         reader.onload=function(e){
+            console.log("e=",e);
+            $('#show_profile').attr('src',e.target.result);
+         }
+         reader.readAsDataURL(file);   //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
+         return true;
+      }
+   
+      //1. 아이디 사용여부 확인
+      function checkUsername(){
+         var username=$("#username").val();
+         //정규식:영숫자8-10자
+         //^:시작함
+         var patt=/^[A-Za-z0-9]{8,10}$/;
+         if(username.length==0)
+            return printErrorMessage($("#helper_id"),"필수입력입니다.");
+         else if(!patt.test(username))
+            return printErrorMessage($("#helper_id"),"아이디는 영숫자 8-10입니다.");
+         return true;
+      }
+      function ajaxUsername(){
+         var username=$("#username").val();
+         $.ajax({
+            url:"http://192.168.0.99:80/cha_board/api/users/user/username",
+            data:"username="+username,
+            method:"get",
+            //콜백지옥을 해결하기 위해서 ES6의 promise를 사용한다.
+            //jQuery Defferd 객체 사용
+         }).done(()=>printMessage($('#helper_id'),"사용가능합니다."))
+           .fail(()=>printErrorMessage($('#helper_id'),"사용중인 아이디입니다."))
+      }
+      //2.이름을 정규식으로 확인
+      function checkIrum(){
+         var irum=$("#irum").val();
+         //이름은 한글 2~10자
+         var patt=/^[가-힣]{2,10}$/
+            if(irum.length==0)
+               return printErrorMessage($("#helper_irum"),"필수입력입니다.");
+            else if(!patt.test(irum))
+               return printErrorMessage($("#helper_irum"),"이름은 한글 2~10자입니다");
+         $("#helper_irum").text("");
+         return true;
+      }
+      //3.비밀번호 정규식 확인
+      function checkPassword(){
+         var password=$('#password').val();
+         //특수문자 하나이상 포함하는 8~10자(전방탐색)
+         //특수문자는 비밀번호 중 어느 위치에 있어도 된다.
+         //오라클로 치면 like '*a'라고하면 a가 어느 위치에 있어도 된다.(즉 앞에 임이의 글자가 있어도 되고 없어도 된다.)
+         //?= 앞에서부터 검색, .은 임의의 문자, *는 0 이상
+         // ?=.*[!@#$%^&*]  -->앞에서부터 임의의 문자 다음에 특수문자 !@#$%^&*이 온다.
+         //는 독립된 하나의 조건=>(?=.*[!@#$%^&*])는 특수문자가 하나 있다라는 조건
+         var patt=/(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$/;
+         //이름은 한글 2~10자
+            if(password.length==0)
+               return printErrorMessage($("#helper_password"),"필수입력입니다.");
+            else if(!patt.test(password))
+               return printErrorMessage($("#helper_password"),"비밀번호는 특수문자를 포함한 8~10자입니다.");
+         $("#helper_password").text("");
+         return true;
+      }
+      //4.비밀번호 재확인
+      function checkPassword2(){
+         var password=$('#password').val();
+         var password2=$('#password2').val();
+         if(password2.length==0)
+            return printErrorMessage($("#helper_password2"),"필수입력입니다.");
+         else if(password!=password2){
+            $("#helper_password2").text("");
+            return printErrorMessage($("#helper_password2"),"비밀번호가 일치하지 않습니다.");
+         }
+         $("#helper_password2").text("");
+         return true;
+      }
+      //5. 전화번호 확인
+      let tel;
+      function checkTel(){
+         //ES6 변수 선언법(let, const)
+         const originalTel=$("#tel").val();
+         const telPatten=/^[0-9]{10,11}$/;
+         //전화번호의 -문자를 찾아 제거한다.
+         // /g global의미 => 모두 찾아 바꾼다.
+         tel=originalTel.replace(/\-/g,'');
+         if(tel.length==0)
+            return printErrorMessage($("#helper_tel"),"필수입력입니다.");
+         else if(!telPatten.test(tel)){
+            $("#helper_tel").text("");
+            return printErrorMessage($("#helper_tel"),"정확한 전화번호를 입력해주세요");
+         }
+         $("#helper_tel").text("");
+         return true;
+      }
+      //6.이베일 사용여부 확인
+      function checkEmail(){
+         let email=$("#email").val();
+         //영문자로 시작, 그다음 영숫자 또는 .이 하나이상 온다. 그다음 @, 그다음에 영문자 또는 .이 하나이상 온다.
+         //.은 정규식에서 임의의 문자라는 뜻을 가지므로, \.으로 사용한다.(escape)
+         let patt=/^[A-Za-z][A-Za-z0-9\.]+@[A-Za-z\.]+$/;
+         if(email.length==0)
+            return printErrorMessage($("#helper_email"),"필수입력입니다.");
+         else if(!patt.test(email)){
+            $("#helper_email").text("");
+            return printErrorMessage($("#helper_email"),"정확한 이메일을 입력해주세요");
+         }
+         $("#helper_email").text("");
+         return true;
+      }
+      
+      //8.회원가입 버튼
+      function join(){
+    	  //프사가 포함될수 있기 떄문에 FormData로 전송해야됨
+    	  //폼을 formdata객체에 입력해야함.
+    	  //name 속성을가진 <input>요소만 formData에입력됨.
+    	  //생년월일은 태어난 날짜가 1~9일때 01~09로 변환하기 name주지않았다.
+    	  //생년월일의 년,월,일 결합해서 formdata에 입력 해야되서 name주지않았다.
+    	  //전화번호도 혹시 입력된 -문자를 제외해서 formData에 입력해야되서 name주지않았다.
+    	  //name속성을 키값으로 FormData객체에 입력함.
+    	  var formData=new FormData(document.getElementById('joinForm'));
+    	  //-문자가 삭제된 전화번호
+    	  formData.append("tel",tel);
+    	  //년,월,일 결합
+    	  formData.append("birthDate",$("#birthYear").val()+"-"
+    	  							+$("#birthMonth").val()+"-" 
+    	  							+$("#birthDay").val())
+    	  printFormData(formData);
+    	  							
+    	  $.ajax({
+    		  url:"http://192.168.0.99:80/cha_board/api/users",
+    	  method:"post",
+    	  processData:false,
+    	  contentType:false,
+    	  data:formData
+    	  }).done((result)=>toastr.success(result,"서버메세지"))
+          .fail((xhr)=>printError(xhr,"회원가입에 실패햇습니다."));
+      }
+      
+      function ajaxEmail(){
+         var email=$("#email").val();
+         $.ajax({
+            url:"http://192.168.0.99:80/cha_board/api/users/user/email",
+            data:"email="+email,
+            method:"get",
+            //콜백지옥을 해결하기 위해서 ES6의 promise를 사용한다.
+            //jQuery Defferd 객체 사용
+         }).done(()=>printMessage($('#helper_email'),"사용가능합니다."))
+           .fail(()=>printErrorMessage($('#helper_email'),"사용중인 이메일입니다."))
+      }
+      function checkBirthDate(){
+         if($("#birthYear").val().length==0) return printErrorMessage($("#helper_birthDate"),"년도를 4자리 입력하세요.")
+         else if(/^[0-9]{4}$/.test($("#birthYear").val())==false) return printErrorMessage($("#helper_birthDate"),"년도는 숫자 4자리 입니다.")
+         else if($("#birthMonth").val()==null) return printErrorMessage($("#helper_birthDate"),"월을 선택하세요")
+         else if($("#birthDay").val().length==0) return printErrorMessage($("#helper_birthDate"),"일을 입력해주세요")
+         $("#helper_birthDate").text("")
+         return true;
+      }
+      
+      //이벤트를 설정 하는부분
+      $(function(){
+         $("#profile").on("change",loadImage)
+         $("#username").on("blur",function(){
+            if(checkUsername()==true)
+               ajaxUsername();//서버에서 아이디 적합여부 검사
+         })
+         $("#irum").on("blur",checkIrum)
+         $("#password").on("blur",checkPassword)
+         $("#password2").on("blur",checkPassword2)
+         $("#tel").on("blur",checkTel)
+         $("#email").on("blur",function(){
+            if(checkEmail()==true)
+               ajaxEmail();   //서버와 비동기
+         });
+         $("#birthYear,#birthMonth,#birthDay").on("blur",checkBirthDate)
+         $("#join").on('click',function(){
+         //,개발도구로 변경할 수잇으므로 2차 체크 진행
+         if(!checkUsername() || !checkIrum() || !checkPassword() || !checkPassword2() ||
+        	!checkTel() || !checkEmail() || !checkBirthDate())
+        	return flase;
+     
+         
+         
+      $.when($.ajax("http://192.168.0.99:80/cha_board/api/users/user/username?username="+$("#username").val())
+              ,$.ajax("http://192.168.0.99:80/cha_board/api/users/user/email?email="+$("#email").val()))
+              .done(()=>join());
+      });
+    });
+   </script>
+</head>
+<body>
+	<div id="page">
+		<header id="header"> </header>
+		<nav id="nav"></nav>
+		<div id="main">
+			<aside id="aside"></aside>
+			<section id="section">
+				<img id="show_profile" height="240" />
+				<form id="joinForm">
+					<div class="form-group">
+						<label for="profile">프로필사진</label> <span class="help-block"
+							id="helper_profile">1M이하만 가능</span> <input type="file"
+							id="profile" class="form-control" name="profile"
+							accept=".jpg,.jpeg,.png,.gif,.bmp" />
+					</div>
+					<div class="form-group">
+						<label for="username">아이디</label> <span class="help-block"
+							id="helper_id">아이디는 영숫자 8~10자입니다.</span> <input type="text"
+							class="form-control" id="username" name="username">
+					</div>
+					<div class="form-group">
+						<label for="irum">이름</label> <span class="help-block"
+							id="helper_irum">이름은 한글만 입력</span> <input type="text"
+							class="form-control" id="irum" name="irum">
+					</div>
+					<div class="form-group">
+						<label for="password">비밀번호</label> <span class="help-block"
+							id="helper_password"></span> <input type="password"
+							class="form-control" id="password" name="password">
+					</div>
+					<div class="form-group">
+						<label for="password2">비밀번호 확인</label> <span class="help-block"
+							id="helper_password2"></span> <input type="password"
+							class="form-control" id="password2">
+					</div>
+					<div class="form-group">
+						<label for="tel">전화번호</label> <span class="help-block"
+							id="helper_tel"></span> <input type="text" class="form-control"
+							id="tel">
+					</div>
+					<div class="form-group">
+						<label for="email">이메일</label> <span class="help-block"
+							id="helper_email"></span> <input type="text" class="form-control"
+							id="email" name="email">
+					</div>
+					<div class="form-group">
+						<label for="birthDate">생년월일</label> <span class="help-block"
+							id="helper_birthDate"></span>
+					</div>
+					<!-- BS 그리드는 1행이 12컬럼으로 구성됨 -->
+					<!-- row class: 이렇게 한 행이라고 -->
+					<div class="form-group row">
+						<div class="col-xs-4">
+							<!-- 4열(컬럼) -->
+							<input id="birthYear" type="text" class="form-control"
+								placeholder="년(4자)">
+						</div>
+						<div class="col-xs-3">
+							<!-- 4열(컬럼) -->
+							<select id="birthMonth" class="form-control">
+								<option selected="selected" disabled="disabled">월</option>
+								<option>01</option>
+								<option>02</option>
+								<option>03</option>
+								<option>04</option>
+								<option>05</option>
+								<option>06</option>
+								<option>07</option>
+								<option>08</option>
+								<option>09</option>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
+							</select>
+						</div>
+						<div class="col-xs-3">
+							<input id="birthDay" type="text" class="form-control"
+								placeholder="일">
+						</div>
+					</div>
+					<div class="form-group" style="text-align: center;">
+						<button type="button" id="join" class="btn btn-info custom">가입</button>
+						&nbsp&nbsp&nbsp&nbsp
+						<button type="button" id="home" class="btn btn-info custom"
+							onClick="location.href='/park_client/index.html'">HOME</button>
+
+					</div>
+				</form>
+			</section>
+
+		</div>
+		<footer id="footer"> </footer>
+	</div>
+</body>
+</html>
