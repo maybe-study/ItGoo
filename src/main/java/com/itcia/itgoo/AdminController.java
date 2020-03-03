@@ -1,4 +1,4 @@
-package com.itcia.itgoo;
+﻿package com.itcia.itgoo;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,6 +15,6 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	//민호
 	//병규
-	
+
 	
 }
