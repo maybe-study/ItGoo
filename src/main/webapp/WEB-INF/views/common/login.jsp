@@ -112,12 +112,12 @@ body, html {
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
 						<img
-							src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png"
+							src="img/portfolio/itgoo2.PNG"
 							class="brand_logo" alt="Logo">
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form>
+					<form action="login" method="post">
 
 						<input type="hidden" name="_csrf" value="${_csrf.token}"><br>
 						<div class="input-group mb-3">
@@ -142,7 +142,7 @@ body, html {
 							</div>
 						</div>
 						<div class="d-flex justify-content-center mt-3 login_container">
-							<button type="button" name="button" class="btn login_btn">Login</button>
+							<button type="submit" name="button" class="btn login_btn">Login</button>
 						</div>
 					</form>
 				</div>

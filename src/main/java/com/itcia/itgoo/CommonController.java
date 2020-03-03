@@ -10,7 +10,7 @@ public class CommonController {
 
 	@GetMapping("/")
 	public String home() {
-		return "home";
+		return "index";
 	}
 
 	@PreAuthorize("isAnonymous()")
