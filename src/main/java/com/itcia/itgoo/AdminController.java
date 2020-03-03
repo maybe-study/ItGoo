@@ -1,7 +1,5 @@
 ﻿package com.itcia.itgoo;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -15,6 +13,25 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	//민호
 	//병규
-
+	@RequestMapping(value = "/adminactivity", method = RequestMethod.GET)
+	public String adminActivity(Locale locale, Model model) {
+		return "admin/AdminActivityCompany";
+	}
+	@RequestMapping(value = "/adminactivitydetail", method = RequestMethod.GET)
+	public String adminActivityDetail(Locale locale, Model model) {
+		return "admin/AdminActivityCompanyDetail";
+	}
+	@RequestMapping(value = "/adminshelter", method = RequestMethod.GET)
+	public String adminShelter(Locale locale, Model model) {
+		return "admin/AdminShelter";
+	}
+	@RequestMapping(value = "/adminshelterdetail", method = RequestMethod.GET)
+	public String adminShelterDetail(Locale locale, Model model) {
+		return "admin/AdminShelterDetail";
+	}
+	@RequestMapping(value = "/admintest", method = RequestMethod.GET)
+	public String adminTest(Locale locale, Model model) {
+		return "admin/AdminTest";
+	}
 	
 }
