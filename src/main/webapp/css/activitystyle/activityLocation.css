@@ -1,0 +1,68 @@
+#exp {
+	text-align: center;
+}
+
+table, tr, td {
+	border: 1px solid #ccc;
+	margin: auto;
+	padding: 30px;
+	text-align: center;
+}
+
+form {
+	border: 1px solid #ccc;
+	margin: auto;
+	height: 50%;
+	width: 900px;
+	padding: 30px;
+}
+
+#sample4_postcode {
+	width: 400px;
+	height: 35px;
+	margin-left: 22px;
+	margin-bottom: 10px;
+	
+}
+
+#sample4_roadAddress {
+	width: 320px;
+	height: 35px;
+	margin-left: 149px;
+	margin-bottom: 10px;
+}
+
+#sample4_jibunAddress {
+	width: 320px;
+	height: 35px;
+	margin-bottom: 10px;
+}
+
+#sample4_detailAddress {
+	width: 320px;
+	height: 35px;
+	margin-left: 149px;
+	margin-bottom: 10px;
+}
+
+#sample4_extraAddress {
+	height: 35px;
+	width: 320px;
+	margin-bottom: 10px;
+}
+
+#btn {
+	margin-left: 380px;
+}
+
+#adr {
+	font-size: 30px;
+	text-align: center;
+	margin: 360px;
+}
+
+#ad {
+	font-size: 30px;
+	text-align: center;
+	margin: 390px;
+}

@@ -15,17 +15,17 @@ public class RestActivityController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	//민호
 	//병규
-	@RequestMapping(value = "/test4", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	@RequestMapping(value = "/activityMyInfo", method = RequestMethod.GET)
+	public  String activityMyInfo (Locale locale, Model model) {
+		return "activitycompany/activityMyInfo";
 	}
+	@RequestMapping(value = "/activityLocationInfo", method = RequestMethod.GET)
+	public String acitivityLocationInfo(Locale locale, Model model) {
+		return "activitycompany/activityLocationInfo";
+	}
+	@RequestMapping(value = "/activityPicInfo", method = RequestMethod.GET)
+	public String acitivityPicInfo(Locale locale, Model model) {
+		return "activitycompany/activityPicInfo";
+	}
+	
 }
