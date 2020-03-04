@@ -113,55 +113,20 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 액티비티 신규 등록 </h4>
+            <h4><i class="fa fa-angle-right"></i> 액티비티 업체 신규 등록 </h4>
                 <hr>
+              <table class="table table-hover">
+                
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>사진</th>
                     <th>name</th>
-                    <th>비고</th>
+                    <th>id</th>
+                    <th>대표자</th>
+                    <th>대표자 전화번호</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  
+                <tbody id="wait_enroll">
                 </tbody>
               </table>
             </div>
@@ -169,54 +134,21 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 등록된 업체 </h4>
+            <h4><i class="fa fa-angle-right"></i> 등록된 업체 </h4>
                 <hr>
+              <table class="table table-hover">
+                
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>name</th>
+                    <th>id</th>
+                    <th>대표자</th>
                     <th>주소</th>
-                    <th>종목</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    <td>@twitter</td>
-                  </tr>
+                <tbody id="enrolled">
+                  
                 </tbody>
               </table>
             </div>
@@ -266,7 +198,27 @@
   <script src="lib/sparkline-chart.js"></script>
   <script src="lib/zabuto_calendar.js"></script>
   
-  
+  <script>
+  	$.each(${companyWaitList},function(idx,data){
+  		var $wait=$("#wait_enroll");
+  		var $tr=$("<tr>").appendTo($wait);
+  		$("<td>").text(idx).appendTo($tr);
+  		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
+  		$("<td>").text(data.companyid).appendTo($tr);
+  		$("<td>").text(data.companyboss).appendTo($tr);
+  		$("<td>").text(data.companylocation).appendTo($tr);
+  	})
+  	$.each(${companyEnrolledList},function(idx,data){
+  		var $wait=$("#enrolled");
+  		var $tr=$("<tr>").appendTo($wait);
+  		$("<td>").text(idx).appendTo($tr);
+  		$("<td>").text(data.companyname).appendTo($tr);
+  		$("<td>").text(data.companyid).appendTo($tr);
+  		$("<td>").text(data.companyboss).appendTo($tr);
+  		$("<td>").text(data.companylocation).appendTo($tr);
+  		
+  	})
+  </script>
 </body>
 
 </html>

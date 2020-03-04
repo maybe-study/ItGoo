@@ -4,26 +4,33 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.itcia.itgoo.service.AdminCompany;
 @Controller
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	//민호
-	//병규
+	@Autowired
+	AdminCompany Ac;
 	@RequestMapping(value = "/adminactivity", method = RequestMethod.GET)
-	public String adminActivity(Locale locale, Model model) {
-		return "admin/AdminActivityCompany";
+	public ModelAndView adminActivity(Locale locale, Model model) {// 액티비티 업체 정보 읽기
+		ModelAndView mav=Ac.adminActivity();
+		return mav;
 	}
 	@RequestMapping(value = "/adminactivitydetail", method = RequestMethod.GET)
-	public String adminActivityDetail(Locale locale, Model model) {
-		return "admin/AdminActivityCompanyDetail";
+	public ModelAndView adminActivityDetail(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminActivityDetail(companyid);
+		return mav;
 	}
 	@RequestMapping(value = "/adminshelter", method = RequestMethod.GET)
-	public String adminShelter(Locale locale, Model model) {
-		return "admin/AdminShelter";
+	public ModelAndView adminShelter(Locale locale, Model model) {
+		ModelAndView mav=Ac.adminShelter();
+		return mav;
 	}
 	@RequestMapping(value = "/adminshelterdetail", method = RequestMethod.GET)
 	public String adminShelterDetail(Locale locale, Model model) {
