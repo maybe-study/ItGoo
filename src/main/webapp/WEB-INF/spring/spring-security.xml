@@ -16,10 +16,8 @@
 
 	<sec:http auto-config="true">
 		<sec:form-login username-parameter="username"
-			password-parameter="password"
-			login-page="/login"
-			login-processing-url="/login" 
-			default-target-url="/"
+			password-parameter="password" login-page="/login"
+			login-processing-url="/login" default-target-url="/"
 			authentication-failure-url="/login" />
 		<sec:logout logout-url="/logout" logout-success-url="/" />
 	</sec:http>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,18 +16,38 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<style>
+	#logout{ 
+		border: 0;
+		outline: 0;
+		color: blue;
+	}
+</style>
 </head>
 <body>
 	<!-- header -->
-	
+
 	<div class="jumbotron text-center">
 		<h1>Itgoo Homepage</h1>
 		<p>(주)Itgoo 소속 유기견 보호 관리 사이트</p>
 		<div style="text-align: right;">
-		<a href="./login" >로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./logout" >회원가입</a>
+		<sec:authorize access="isAnonymous()">
+			
+				<a href="login" id="login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="joinfrm">회원가입</a>
+		</sec:authorize>
+
+		<sec:authorize access="isAuthenticated()">
+			<form method="post" action="logout">
+				<input type="submit" value="로그아웃" id="logout">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
+		</sec:authorize>
 		</div>
-	</div>
+		</div>
 	
+
+
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<a href="#" class="navbar-brand">Itgoo</a>
 		<!-- Toggle Button -->
@@ -51,13 +73,15 @@
 			<div class="col-md-6">
 				<h2>About itgoo</h2>
 				<p>경매와 소모임 커뮤니티가 모여 있는 잇구</p>
-				<a href="itgoo.jsp"></a><img src="img/portfolio/itgoo1.png" class="img-fluid">
+				<a href="/itgoo1"><img id="itgoo1"
+					src="img/portfolio/itgoo1.png" class="img-fluid"></a>
 			</div>
 			<!-- right content -->
 			<div class="col-md-6">
 				<h2>About ItGoo</h2>
 				<p>유기견 입양 It Goo</p>
-				<a href="ibyang.jsp"></a><img src="img/portfolio/ibyang.png" class="img-fluid">
+				<a href="/ibyang"><img id="ibyang"
+					src="img/portfolio/ibyang.png" class="img-fluid"></a>
 			</div>
 		</div>
 	</div>
@@ -72,5 +96,9 @@
 	</div>
 
 </body>
+<script>
+	
+</script>
+
 </html>
 
