@@ -11,11 +11,26 @@ import lombok.experimental.Accessors;
 //@Getter@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("member")
+@Alias("membssser")
 @Data
 @Accessors(chain=true)
 public class Member {
-	private String username;
-	private String password;
-	private int enabled;
+	private String companyid;
+	private String companyname;
+	private String companyboss;
+	private String companyphone;
+	private String companymail; 
+	private String companylocation;
+	private int companycard;
+	private int enroll;
+	
+	
+
+	/*
+	 * private String password; private String id; private int enabled;
+	 */
+
+	
+
+	
 }

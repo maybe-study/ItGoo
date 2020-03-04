@@ -1,13 +1,23 @@
 package com.itcia.itgoo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+
+import com.itcia.itgoo.dto.Member;
+
+
 
 @Controller
 public class CommonController {
-
+	@Autowired
+	private MemberManagement mm;
+	ModelAndView mav=new ModelAndView();
+	
 	@GetMapping("/")
 	public String home() {
 		return "index";
@@ -18,6 +28,21 @@ public class CommonController {
 	public String loginForm() {
 		return "common/login";
 	}
+	
+	//회원가입
+	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
+	public ModelAndView memberjoin(Member mb) {
+		
+		mav=mm.memberjoin(mb);
+		
+		
+		return mav;
+	}
+	
+	
+	
+	
+	
 
 //	@PreAuthorize("isAnonymous()")
 //	@GetMapping("/list")
