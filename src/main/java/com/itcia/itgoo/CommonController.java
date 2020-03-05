@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,16 +35,8 @@ public class CommonController {
 	public String findaccount(Member mb) {
 		return "findid";
 	}
-	
-	/*
-	 * @PreAuthorize("isAnonymous()")
-	 * 
-	 * @GetMapping("/findid") public ModelAndView findaccount(Member mb) { mav =
-	 * findid(mb);
-	 * 
-	 * return mav; }
-	 */
 
+	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/itgoo1")
 	public String itgoo1() {
@@ -61,7 +54,7 @@ public class CommonController {
 	public String joinform(Member mb) {
 		return "joinform";
 	}
-	
+
 	// 회원가입
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
 	public ModelAndView memberjoin(Member mb) {
