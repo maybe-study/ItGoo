@@ -15,24 +15,12 @@ import com.itcia.itgoo.dto.Company;
 public class AdminCompany {
 	@Autowired
 	private IAdminDao aDao;
-<<<<<<< HEAD
 	ModelAndView mav=new ModelAndView();
-
-=======
-	ModelAndView mav;
->>>>>>> parent of cdc9277... 거절수락 수정중
 	public ModelAndView adminActivity() {
 		
 		List<Company> companyWaitList = aDao.adminWaitActivity();
 		List<Company> companyEnrolledList = aDao.adminEnrolledActivity();
 		System.out.println("companyList[0]:"+companyWaitList.get(0).getCompanyboss());
-<<<<<<< HEAD
-
-=======
-		
-		mav=new ModelAndView();
-		
->>>>>>> parent of cdc9277... 거절수락 수정중
 		mav.setViewName("admin/AdminActivityCompany");
 		mav.addObject("companyWaitList",new Gson().toJson(companyWaitList));
 		mav.addObject("companyEnrolledList",new Gson().toJson(companyEnrolledList));
@@ -50,14 +38,8 @@ public class AdminCompany {
 		return mav;
 	}
 	public ModelAndView adminActivityDetail(String companyid) {
-<<<<<<< HEAD
-
-		mav=new ModelAndView();
-		mav.addObject("company",new Gson().toJson(aDao.adminActivityDetail(companyid)));
-=======
 		mav=new ModelAndView();
 		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
->>>>>>> parent of cdc9277... 거절수락 수정중
 		mav.addObject("activities",new Gson().toJson(aDao.adminActivities(companyid)));
 		mav.setViewName("admin/AdminActivityCompanyDetail");
 		
@@ -72,7 +54,6 @@ public class AdminCompany {
 		
 		return mav;
 	}
-<<<<<<< HEAD
 	public ModelAndView adminOkNo(String companyid) {
 		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
 		mav.setViewName("admin/companyOkNo");
@@ -89,7 +70,4 @@ public class AdminCompany {
 		return mav;
 	}
 
-
-=======
->>>>>>> parent of cdc9277... 거절수락 수정중
 }

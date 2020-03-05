@@ -41,7 +41,6 @@ public class AdminController {
 	public String adminTest(Locale locale, Model model) {
 		return "admin/AdminTest";
 	}
-<<<<<<< HEAD
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {
@@ -58,6 +57,4 @@ public class AdminController {
 		return mav;
 	}
 
-=======
->>>>>>> parent of cdc9277... 거절수락 수정중
 }
