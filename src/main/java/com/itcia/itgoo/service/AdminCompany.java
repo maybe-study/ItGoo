@@ -43,7 +43,7 @@ public class AdminCompany {
 	public ModelAndView adminActivityDetail(String companyid) {
 		mav=new ModelAndView();
 		mav.addObject("company",new Gson().toJson(aDao.adminActivityDetail(companyid)));
-		mav.addObject("activitys",new Gson().toJson(aDao.adminActivitys(companyid)));
+		mav.addObject("activities",new Gson().toJson(aDao.adminActivities(companyid)));
 		mav.setViewName("admin/AdminActivityCompanyDetail");
 		
 		return mav;

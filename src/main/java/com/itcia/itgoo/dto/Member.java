@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 //@Getter@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("membssser")
+@Alias("member")
 @Data
 @Accessors(chain=true)
 public class Member {
