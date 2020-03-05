@@ -284,7 +284,7 @@
   	  		$("<td>").text(data.companyid).appendTo($tr);
   	  		$("<td>").text(data.companyboss).appendTo($tr);
   	  		$("<td>").text(data.companylocation).appendTo($tr);
-  	  	})
+  	  	});
 	
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div

@@ -1,4 +1,4 @@
-package com.itcia.itgoo;
+package com.itcia.itgoo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,7 +9,7 @@ import com.itcia.itgoo.dao.IAdminDao;
 import com.itcia.itgoo.dto.Member;
 
 @Service
-public class MemberManagement {
+public class ShelterManagement {
 	@Autowired
 	private IAdminDao mDao;
 

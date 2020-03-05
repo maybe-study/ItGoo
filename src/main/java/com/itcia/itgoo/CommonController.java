@@ -14,13 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.service.ShelterManagement;
 
 
 
 @Controller
 public class CommonController {
 	@Autowired
-	private MemberManagement mm;
+	private ShelterManagement mm;
+	
 	ModelAndView mav=new ModelAndView();
 
 	@GetMapping("/")
