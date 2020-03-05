@@ -47,7 +47,7 @@
       <!--logo start-->
       <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
       <!--logo end-->
-      
+
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="login.html">Logout</a></li>
@@ -60,7 +60,7 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-      
+
     </aside>
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
@@ -71,24 +71,23 @@
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> 보호소 관리 </h3>
         <div class="row">
-          
+
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i> 보호소 신규 등록 </h4>
-                <hr>
               <table class="table table-hover">
+                <h4><i class="fa fa-angle-right"></i> 보호소 신규 등록 </h4>
+                <hr>
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>name</th>
                     <th>id</th>
                     <th>대표자</th>
-                    <th>보호소 전화번호</th>
-                    <th>보호소 주소</th>
+                    <th>주소</th>
                   </tr>
                 </thead>
-                <tbody id="wait_enroll">  
+                <tbody id="wait_enroll">
                 </tbody>
               </table>
             </div>
@@ -99,19 +98,18 @@
             <h4><i class="fa fa-angle-right"></i> 등록된 보호소 </h4>
                 <hr>
               <table class="table table-hover">
-                
+
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>name</th>
                     <th>id</th>
                     <th>대표자</th>
-                    <th>보호소 전화번호</th>
-                    <th>보호소 주소</th>
+                    <th>주소</th>
                   </tr>
                 </thead>
                 <tbody id="enrolled">
-                 
+
                 </tbody>
               </table>
             </div>
@@ -120,7 +118,7 @@
         <!-- row -->
         </section>
       </section>
-       
+
         <!-- /row -->
     <!--main content end-->
     <!--footer start-->
@@ -162,6 +160,7 @@
   <script src="lib/zabuto_calendar.js"></script>
   <script src="common/main.js?ver"></script>
   <script>
+
   $.each(${companyWaitList},function(idx,data){
 		var $wait=$("#wait_enroll");
 		var $tr=$("<tr>").appendTo($wait);
@@ -181,10 +180,11 @@
 		$("<td>").text(data.companyboss).appendTo($tr);
 		$("<td>").text(data.companyphone).appendTo($tr);
 		$("<td>").text(data.companylocation).appendTo($tr);
-		
+
 	})
+
   </script>
-  
+
 </body>
 
 </html>

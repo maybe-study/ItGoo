@@ -79,6 +79,7 @@
             <h4><i class="fa fa-angle-right"></i> 액티비티 업체 신규 등록 </h4>
                 <hr>
               <table class="table table-hover">
+                
                 <thead>
                   <tr>
                     <th>#</th>

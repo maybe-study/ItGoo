@@ -172,11 +172,11 @@
               <span>업체</span>
               </a>
             <ul class="sub">
-              <li><a href="activityMyInfo">업체정보</a></li>
-              <li><a href="activityLocationInfo">업체 위치</a></li>
-              <li class="active"><a href="#">업체 시설 첨부</a></li>
-              <li><a href="#">액티비티 등록</a></li>
-              <li><a href="#">액티비티 삭제</a></li>
+              <li><a href="activitymyinfo">업체정보</a></li>
+              <li><a href="activitylocationinfo">업체 위치</a></li>
+              <li class="active"><a href="activitypicinfo">업체 시설 첨부</a></li>
+              <li><a href="activityregiste">액티비티 등록</a></li>
+              <li><a href="activitydelete">액티비티 삭제</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -243,10 +243,9 @@
           <section class="panel">
             <h3 class="title">첨부할 파일들을 선택해주세요</h3>
             <div id="message"></div>
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
 
               <div class="form-group" id="main-file-tag">
-              <div class="main-p-tag">
+              <div class="main-file-tag">
              <form action="boardwrite" id="frm" method="post"
 		enctype="multipart/form-data">
 		<table class="file-table" >
@@ -265,7 +264,6 @@
 	</form>
                </div>
               </div>
-            </form>
             </section>
           </div>
         <!-- /row -->

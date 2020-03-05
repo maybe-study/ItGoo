@@ -63,7 +63,7 @@
         *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
-            
+
         </aside>
         <!--sidebar end-->
         <!-- **********************************************************************************************************************************************************
@@ -79,7 +79,7 @@
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked labels-info ">
                                     <li>
-                                        <h4>보호소 사진</h4>
+                                        <h4>업체 사진</h4>
                                     </li>
                                     <li>
                                         <img src="img/test.png" style="max-width: 100%">
@@ -92,7 +92,7 @@
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked labels-info ">
                                     <li>
-                                        <h4>보호소 위치</h4>
+                                        <h4>업체 위치</h4>
                                     </li>
                                     <li>
                                         <span id="guide" style="color: #999; display: none"></span>
@@ -110,29 +110,33 @@
                                     <!-- /col-md-12 -->
                                     <div class="col-md-12 mt">
                                         <div class="content-panel">
-                                        <h4><i class="fa fa-angle-right"></i> 보호소 이름 </h4>
-                                                <hr>
                                             <table class="table table-hover">
+                                                <h4><i class="fa fa-angle-right"></i> 업체명 </h4>
+                                                <hr>
                                                 <tbody>
                                                     <tr>
-                                                        <td>보호소 아이디</td>
-                                                        <td id="companyid"></td>
+                                                        <td>업체 아이디</td>
+                                                        <td>Jacob</td>
                                                     </tr>
                                                     <tr>
                                                         <td>대표자</td>
-                                                        <td id="companyboss"></td>
+                                                        <td>Simon</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>보호소 전화번호</td>
-                                                        <td id="companyphone"></td>
+                                                        <td>휴대폰</td>
+                                                        <td>Simon</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>보호소 이메일</td>
-                                                        <td id="companyemail"></td>
+                                                        <td>이메일</td>
+                                                        <td>Simon</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>보호소 주소</td>
-                                                        <td id="companylocation"></td>
+                                                        <td>주소</td>
+                                                        <td>Simon</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>사진</td>
+                                                        <td>Simon</td>
                                                     </tr>
                                                     <tr>
                                                         <td>업체 등록증</td>
@@ -151,7 +155,7 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </section>
                     </div>
                     <div class="col-sm-9">
@@ -161,23 +165,55 @@
                                     <!-- /col-md-12 -->
                                     <div class="col-md-12 mt">
                                         <div class="content-panel">
-                                        <h4><i class="fa fa-angle-right"></i> 등록된 강아지 </h4>
-                                                <hr>
                                             <table class="table table-hover">
-                                                
+                                                <h4><i class="fa fa-angle-right"></i> 등록된 액티비티 </h4>
+                                                <hr>
                                                 <thead>
                                                   <tr>
                                                     <th>#</th>
                                                     <th>Name</th>
-                                                    <th>나이</th>
-                                                    <th>특이사항</th>
-                                                    <th>중성화</th>
-                                                    <th>성별</th>
+                                                    <th>설명</th>
+                                                    <th>종목</th>
+                                                    <th>참여가능 마리수</th>
                                                   </tr>
                                                 </thead>
-                                                <tbody id="dogs">
-                                                    
-                                                    
+                                                <tbody>
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>Name</td>
+                                                        <td>설명</td>
+                                                        <td>종목</td>
+                                                        <td>참여가능 마리수</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>Name</td>
+                                                        <td>설명</td>
+                                                        <td>종목</td>
+                                                        <td>참여가능 마리수</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>Name</td>
+                                                        <td>설명</td>
+                                                        <td>종목</td>
+                                                        <td>참여가능 마리수</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>Name</td>
+                                                        <td>설명</td>
+                                                        <td>종목</td>
+                                                        <td>참여가능 마리수</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>Name</td>
+                                                        <td>설명</td>
+                                                        <td>종목</td>
+                                                        <td>참여가능 마리수</td>
+                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -185,10 +221,13 @@
                                 </div>
                                 <div class="compose-mail">
                                     <form role="form-horizontal" method="post">
+                                        <div class="compose-btn">
+                                            <button class="btn btn-theme btn-sm"><i class="fa fa-check"></i> 삭제</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </section>
                     </div>
                 </div>
@@ -254,7 +293,7 @@
   	  		$("<td>").text(data.dogjungsung).appendTo($tr);
   	  		$("<td>").text(data.sex).appendTo($tr);
   	  	});
-	
+
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
@@ -284,7 +323,8 @@
 	        map.setCenter(coords);
 	    }
 	});
-	
+
 	</script>
+
 
 </body></html>

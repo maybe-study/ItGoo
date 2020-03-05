@@ -16,7 +16,7 @@ public class ShelterManagement {
 
 	private ModelAndView mav = new ModelAndView();
 
-	public ModelAndView sheltermemberjoin(Member mb) {
+	public ModelAndView memberjoin(Member mb) {
 		mav = new ModelAndView();
 		String view = null;
 

@@ -41,6 +41,8 @@
 	<property name="maxUploadSize" value="10000000" /> <!-- 10MB -->
 	<property name="maxInMemorySize" value="10000000" /> <!-- 10MB -->
 	</bean>
+	
+	
 	<!-- 클래스로 하는 방법 -->
 	<!-- <bean id="tpl" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>

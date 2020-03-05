@@ -249,7 +249,7 @@
   	  		var $wait=$("#activities");
   	  		var $tr=$("<tr>").appendTo($wait);
   	  		$("<td>").text(idx).appendTo($tr);
-  	  		$("<td>").append($("<a>").attr("href","./adminactivitydetaildetail?activitynum="+data.activitynum).text(data.activityname)).appendTo($tr);
+  	  		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.activitynum).text(data.activityname)).appendTo($tr);
   	  		$("<td>").text(data.activityexplanation).appendTo($tr);
   	  		$("<td>").text(data.activitydate).appendTo($tr);
   	  		$("<td>").text(data.activitytime).appendTo($tr);
