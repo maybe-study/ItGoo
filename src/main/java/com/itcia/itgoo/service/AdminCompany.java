@@ -15,15 +15,12 @@ import com.itcia.itgoo.dto.Company;
 public class AdminCompany {
 	@Autowired
 	private IAdminDao aDao;
-	ModelAndView mav;
+	ModelAndView mav=new ModelAndView();
 	public ModelAndView adminActivity() {
 		
 		List<Company> companyWaitList = aDao.adminWaitActivity();
 		List<Company> companyEnrolledList = aDao.adminEnrolledActivity();
 		System.out.println("companyList[0]:"+companyWaitList.get(0).getCompanyboss());
-		
-		mav=new ModelAndView();
-		
 		mav.setViewName("admin/AdminActivityCompany");
 		mav.addObject("companyWaitList",new Gson().toJson(companyWaitList));
 		mav.addObject("companyEnrolledList",new Gson().toJson(companyEnrolledList));
@@ -42,10 +39,35 @@ public class AdminCompany {
 	}
 	public ModelAndView adminActivityDetail(String companyid) {
 		mav=new ModelAndView();
-		mav.addObject("company",new Gson().toJson(aDao.adminActivityDetail(companyid)));
+		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
 		mav.addObject("activities",new Gson().toJson(aDao.adminActivities(companyid)));
 		mav.setViewName("admin/AdminActivityCompanyDetail");
 		
 		return mav;
 	}
+
+	public ModelAndView adminShelterDetail(String companyid) {
+		mav=new ModelAndView();
+		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
+		mav.addObject("dogs",new Gson().toJson(aDao.adminDogs(companyid)));
+		mav.setViewName("admin/AdminShelterDetail");
+		
+		return mav;
+	}
+	public ModelAndView adminOkNo(String companyid) {
+		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
+		mav.setViewName("admin/companyOkNo");
+		return mav;
+	}
+	public ModelAndView adminNo(String companyid) {
+		mav.addObject("company",new Gson().toJson(aDao.adminNo(companyid)));
+		mav.setViewName("admin/companyNo");
+		return mav;
+	}
+	public ModelAndView adminOk(String companyid) {
+		mav.addObject("company",new Gson().toJson(aDao.adminNo(companyid)));
+		mav.setViewName("admin/companyOk");
+		return mav;
+	}
+
 }

@@ -60,6 +60,9 @@
         *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
+<<<<<<< HEAD
+
+=======
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
@@ -72,7 +75,7 @@
               </a>
           </li>-->
                     <li class="sub-menu">
-                        <a class="active" href="./adminactivity">
+                        <a href="./adminactivity">
                             <i class="fa fa-desktop"></i>
                             <span>액티비티 업체 관리</span>
                         </a>
@@ -90,7 +93,7 @@
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="./adminshelter">
+                        <a class="active" href="./adminshelter">
                             <i class="fa fa-tasks"></i>
                             <span>보호소 관리</span>
                         </a>
@@ -99,6 +102,7 @@
                 </ul>
                 <!-- sidebar menu end-->
             </div>
+>>>>>>> parent of cdc9277... 거절수락 수정중
         </aside>
         <!--sidebar end-->
         <!-- **********************************************************************************************************************************************************
@@ -185,7 +189,7 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </section>
                     </div>
                     <div class="col-sm-9">
@@ -243,7 +247,7 @@
                                                         <td>종목</td>
                                                         <td>참여가능 마리수</td>
                                                     </tr>
-                                                    
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -257,7 +261,7 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </section>
                     </div>
                 </div>
@@ -304,6 +308,56 @@
     <!--script for this page-->
     <script src="lib/sparkline-chart.js"></script>
     <script src="lib/zabuto_calendar.js"></script>
+	<script>
+		var data=${company}
+  		$("#companyid").text(data.companyid);
+  		$("#companyboss").text(data.companyboss);
+  		$("#companyphone").text(data.companyphone);
+  		$("#companyemail").text(data.companyemail);
+  		$("#companylocation").text(data.companylocation);
+  		
+  		$.each(${activities},function(idx,data){
+  	  		var $wait=$("#dogs");
+  	  		var $tr=$("<tr>").appendTo($wait);
+  	  		$("<td>").text(idx).appendTo($tr);
+  	  		$("<td>").append($("<a>").attr("href","./adminDogdetail?dogid="+data.dogid).text(data.dogname)).appendTo($tr);
+  	  		$("<td>").text(data.dogage).appendTo($tr);
+  	  		$("<td>").text(data.dogspecial).appendTo($tr);
+  	  		$("<td>").text(data.dogjungsung).appendTo($tr);
+  	  		$("<td>").text(data.sex).appendTo($tr);
+  	  	});
+
+	roadAddr="인천광역시 미추홀구 용정공원로 33";
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+	// 지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(roadAddr, function(result, status) {
+	    // 정상적으로 검색이 완료됐으면
+	     if (status === kakao.maps.services.Status.OK) {
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+roadAddr+'</div>'
+	        });
+	        infowindow.open(map, marker);
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    }
+	});
+
+	</script>
 
 
 </body></html>
