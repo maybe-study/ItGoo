@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
+
 
 <head>
 <meta charset="utf-8">
@@ -20,15 +21,22 @@
 <link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
 <!--external css-->
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-datetimepicker/datertimepicker.css" />
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="css/activitystyle/activityLocation.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 
 <!-- =======================================================
     Template Name: Dashio
@@ -119,7 +127,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="general.html">General</a></li>
-							<li class="active"><a href="buttons.html">Buttons</a></li>
+							<li><a href="buttons.html">Buttons</a></li>
 							<li><a href="panels.html">Panels</a></li>
 							<li><a href="font_awesome.html">Font Awesome</a></li>
 						</ul></li>
@@ -154,9 +162,9 @@
 					</a>
 						<ul class="sub">
 							<li><a href="activitymyinfo">업체정보</a></li>
-							<li class="active"><a href="activitylocationinfo">업체 위치</a></li>
+							<li><a href="activitylocationinfo">업체 위치</a></li>
 							<li><a href="activitypicinfo">업체 시설 첨부</a></li>
-							<li><a href="activityregiste">액티비티 등록</a></li>
+							<li class="active"><a href="activityregiste">액티비티 등록</a></li>
 							<li><a href="activitydelete">액티비티 삭제</a></li>
 						</ul></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -199,34 +207,136 @@
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
 		<section id="main-content">
-			<section class="wrapper site-min-height">
+			<section class="wrapper">
+				<h3>
+					<i class="fa fa-angle-right"></i> 액티비티 등록
+				</h3>
+				<!-- BASIC FORM ELELEMNTS -->
 				<div class="row mt">
-					<div class="col-sm-12">
+					<div class="col-lg-6 col-md-6 col-sm-6">
 						<section class="panel">
-							<header class="panel-heading"> 액티비티 업체 위치 검색 및 변경 </header>
-							
-							<div class="panel-body">
-								<input type="text" id="sample4_postcode" placeholder="우편번호" disabled>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button"  onclick="sample4_execDaumPostcode()"
-									value="우편번호 찾기" > <br> <input type="text"
-									id="sample4_roadAddress" placeholder="도로명주소"
-									name="branchaddress" disabled> <input type="text"
-									id="sample4_jibunAddress" placeholder="지번주소" disabled> <br>
-								<span id="guide" style="color: #999; display: none"></span> <input
-									type="text" id="sample4_detailAddress" placeholder="상세주소">
-								<input type="text" id="sample4_extraAddress" placeholder="참고항목" disabled>
-								<br>
-								<div id="map" style="width: 100%; height: 350px;"></div>
-								<script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script> 
-							</div>
-							<div class="button-div"><input type="button" class="location-button" value="위치 등록"/></div>
+							<h4 class="title"></h4>
+							<div id="message"></div>
+							<form class="contact-form php-mail-form" role="form"
+								action="contactform/contactform.php" method="POST">
+
+								<div class="form-group">
+									<div class="main-p-tag">
+										<table>
+											<tr>
+												<td>업체명:</td>
+												<td><input type="text" id="companyname"
+													class="companyname" /></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="main-p-tag">
+										<table>
+											<tr>
+												<td>액티비티 이름:</td>
+												<td><input type="text" id="activityname"
+													class="activityname" /></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="main-p-tag">
+										<table>
+											<tr>
+												<td>액티비티 날찌 및 시간 :</td>
+												<td><input type="text" id="activityday"
+													class="activityday" /></td>
+												<td>-<input type="text" id="activitytime"
+													class="activitytime" /></td>
+												<td><button type="button" class="btn btn-info btn-lg"
+														data-toggle="modal" data-target="#myModal">날짜 및
+														시간 선택</button></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+
+								<div id="myModal" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">x</button>
+												<h4 class="modal-title">날짜 및 시간 선택</h4>
+											</div>
+											<div class="modal-body">
+												날짜:<input type="text" id="datepicker" class="datepicker" />&nbsp; &nbsp; &nbsp; &nbsp; 
+												시간:<input type="text" id="timepicker" class="timepicker" />
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<div class="main-p-tag">
+										<table>
+											<tr>
+												<td>최대 참여가능 마릿수:</td>
+												<td><select name="activity-dog-cnt"
+													id="activity-dog-cnt" class="activity-dog-cnt">
+														<option value="마릿수 선택">마릿수 선택</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+												</select></td>
+											</tr>
+										</table>
+									</div>
+
+								</div>
+
+								<div class="form-group">
+									<div class="main-p-tag">
+										<table>
+											<tr>
+												<td>사진 첨부:</td>
+												<td><input type="file" name="files" id="files" multiple />
+													<input type="hidden" id="fileCheck" name="fileCheck"
+													value="0" /></td>
+
+											</tr>
+										</table>
+									</div>
+								</div>
+							</form>
 						</section>
+						<div class="btn-div">
+							<input type="button" id="insertactivitybtn"
+								class="insertactivitybtn" value="액티비티 등록" /> <input
+								type="button" id="cancelactivitybtn" class="cancelactivitybtn"
+								value="취소" />
+						</div>
 					</div>
-				</div>
-				<!-- page end-->
-				<footer class="site-footer">
+					<!-- /row -->
+					<div id="articleView_layer">
+						<div id="bg_layer"></div>
+						<div id="contents_layer"></div>
+					</div>
+
+
+					<!-- /row -->
+			</section>
+			<!-- /wrapper -->
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
 			<div class="text-center">
 				<p>
 					<a href="index.html"><img class="footerimg"
@@ -246,13 +356,6 @@
 				</a>
 			</div>
 		</footer>
-			</section>
-			<!-- /wrapper -->
-		</section>
-		<!-- /MAIN CONTENT -->
-		<!--main content end-->
-		<!--footer start-->
-		
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
@@ -265,219 +368,63 @@
 	<!--common script for all pages-->
 	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
-	<!--Google Map-->
+	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/date.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+	<script src="lib/advanced-form-components.js"></script>
+	 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="lib/time-select/timepicker-addon.js"></script>
 	<script>
-	function showmap(roadAddr) {
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
 
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
+		$(function() {
+			//모든 datepicker에 대한 공통 옵션 설정
+			$.datepicker.setDefaults({
+				dateFormat: 'yy-mm-dd' //Input Display Format 변경
+			    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+			    ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+			    ,changeYear: true //콤보박스에서 년 선택 가능
+			    ,changeMonth: true //콤보박스에서 월 선택 가능                
+			    ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+			    ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+			    ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+			    ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+			    ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+			    ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+			    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+			    ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+			    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+			    ,minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+			    ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
+				
+			});
+			$.timepicker.setDefaults({
+				   // timepicker 설정
+			    timeFormat:'HH:mm:ss',
+			    controlType:'select',
+			    oneLine:true,      
+			});
+			$("#timepicker").timepicker();
+			$("#timepicker").timepicker('setTime', new Date());
 
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
+			//input을 datepicker로 선언
+			$("#datepicker").datepicker();                    
 
-		// 주소로 좌표를 검색합니다
-		geocoder
-				.addressSearch(
-						roadAddr,
-						function(result, status) {
-
-							// 정상적으로 검색이 완료됐으면 
-							if (status === kakao.maps.services.Status.OK) {
-
-								var coords = new kakao.maps.LatLng(result[0].y,
-										result[0].x);
-
-								// 결과값으로 받은 위치를 마커로 표시합니다
-								var marker = new kakao.maps.Marker({
-									map : map,
-									position : coords
-								});
-
-								// 인포윈도우로 장소에 대한 설명을 표시합니다
-								var infowindow = new kakao.maps.InfoWindow(
-										{
-											content : '<div style="width:150px;text-align:center;padding:6px 0;">'
-													+ roadAddr + '</div>'
-										});
-								infowindow.open(map, marker);
-
-								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-								map.setCenter(coords);
-							}
-						});
-
-	}
-	function myMarkers(map){
-		console.log("getAdresses");
-		$.ajax({ 
-			type: "GET", 
-			url: 'getadds',
-			success: function(json){
-				var listData=[];
-				var geocoder = new kakao.maps.services.Geocoder();
-				$.each(json, function(index, item){
-					console.log(item);
-					var data= { 
-							title : item.branchname, 
-							groupAddress : item.branchaddress
-					};
-					listData.push(data);
-					
-				})
-				console.log(listData);
-				var imageSrc = "./img/marker.png"; 
-				var imageSize = new kakao.maps.Size(50, 50); 
-				// 마커 이미지를 생성합니다    
-				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-				for (var i=0; i < listData.length ; i++) {
-					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch(listData[i].groupAddress, function(result, status) {
-					    // 정상적으로 검색이 완료됐으면 
-					     if (status === kakao.maps.services.Status.OK) {
-	
-					        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
-					        // 결과값으로 받은 위치를 마커로 표시합니다
-					        var marker = new kakao.maps.Marker({
-					            map: map,
-					            position: coords,
-					            image:markerImage,
-					        });
-					    } 
-					});
-				}   
-			}, 
-			error:function(error){
-				console.log(error);
-			},
-			dataType: 'json' });
-
-		
-	}
-
-	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	function sample4_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						var roadAddr = data.roadAddress; // 도로명 주소 변수
-						var extraRoadAddr = ''; // 참고 항목 변수
-						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-							extraRoadAddr += data.bname;
-						}
-						if (data.buildingName !== '' && data.apartment === 'Y') {
-							extraRoadAddr += (extraRoadAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						if (extraRoadAddr !== '') {
-							extraRoadAddr = ' (' + extraRoadAddr + ')';
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample4_postcode').value = data.zonecode;
-						document.getElementById("sample4_roadAddress").value = roadAddr;
-						document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-
-						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-						if (roadAddr !== '') {
-							document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-						} else {
-							document.getElementById("sample4_extraAddress").value = '';
-						}
-
-						var guideTextBox = document.getElementById("guide");
-						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-						if (data.autoRoadAddress) {
-							var expRoadAddr = data.autoRoadAddress
-									+ extraRoadAddr;
-							guideTextBox.innerHTML = '(예상 도로명 주소 : '
-									+ expRoadAddr + ')';
-							guideTextBox.style.display = 'block';
-
-						} else if (data.autoJibunAddress) {
-							var expJibunAddr = data.autoJibunAddress;
-							guideTextBox.innerHTML = '(예상 지번 주소 : '
-									+ expJibunAddr + ')';
-							guideTextBox.style.display = 'block';
-						} else {
-							guideTextBox.innerHTML = '';
-							guideTextBox.style.display = 'none';
-						}
-						
-						
-						
-						
-						
-						
-						
-						
-//======================================================================================================================================================
-	
-						
-						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-						mapOption = {
-							center : new kakao.maps.LatLng(33.450701,
-									126.570667), // 지도의 중심좌표
-							level : 3
-						// 지도의 확대 레벨
-						};
-						// 지도를 생성합니다    
-						var map = new kakao.maps.Map(mapContainer, mapOption);
-						// 주소-좌표 변환 객체를 생성합니다
-						var coords = new kakao.maps.LatLng(0,0);						
-						var geocoder = new kakao.maps.services.Geocoder();	
-						
-						
-						
-						//ajax를 통해 지점들의 주소를 가져오고 맵에 표시하는 함수
-						myMarkers(map);	//맵을 같이 써야함
-						
-						
-						
-						// 검색한 주소로 좌표를 검색하고 마커로 표시하는 부분
-						geocoder.addressSearch(roadAddr,function(result, status) {
-							// 정상적으로 검색이 완료됐으면 
-							if (status === kakao.maps.services.Status.OK) {
-
-								var coords = new kakao.maps.LatLng(
-										result[0].y,
-										result[0].x);
-
-								// 결과값으로 받은 위치를 마커로 표시합니다
-								var marker = new kakao.maps.Marker(
-										{
-											map : map,
-											position : coords
-										});
-
-								// 인포윈도우로 장소에 대한 설명을 표시합니다
-								var infowindow = new kakao.maps.InfoWindow(
-										{
-											content : '<div style="width:150px;text-align:center;padding:6px 0;">'
-													+ roadAddr
-													+ '</div>'
-										});
-								infowindow.open(map, marker);
-								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-								map.setCenter(coords);
-							}
-						});
-
-					}
-
-				}).open();
-	}
-	$("#cancel1").on('click', function() {
-		location.href = "index.jsp"
-	});
-</script>
-
+			//From의 초기값을 오늘 날짜로 설정
+			$('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+			});
+	</script>
 </body>
 
 </html>
