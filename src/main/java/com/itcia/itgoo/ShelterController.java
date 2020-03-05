@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.service.ShelterManagement;
 
 @Controller
 public class ShelterController {
 
 	@Autowired
-	private MemberManagement mm;
+	private ShelterManagement mm;
 	ModelAndView mav = new ModelAndView();
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 

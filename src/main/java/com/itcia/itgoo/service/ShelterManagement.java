@@ -6,16 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dao.IAdminDao;
+import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Member;
 
 @Service
 public class ShelterManagement {
 	@Autowired
-	private IAdminDao mDao;
+	private IShelterDao sDao;
 
 	private ModelAndView mav = new ModelAndView();
 
-	public ModelAndView memberjoin(Member mb) {
+	public ModelAndView sheltermemberjoin(Member mb) {
 		mav = new ModelAndView();
 		String view = null;
 
@@ -25,7 +26,7 @@ public class ShelterManagement {
 		// 비번만 암호화해서 DB에 저장
 		mb.setPassword(pwdEncoder.encode(mb.getPassword()));
 
-		if (mDao.memberJoin(mb)) {
+		if (sDao.sheltermemberJoin(mb)) {
 			System.out.println("true");
 			view = "home"; // 회원가입 성공시
 			mav.addObject("check", 1); // 회원가입 성공
@@ -35,5 +36,6 @@ public class ShelterManagement {
 		mav.setViewName(view);
 		return mav;
 	}
+
 
 }
