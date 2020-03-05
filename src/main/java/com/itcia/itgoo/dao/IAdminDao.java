@@ -2,9 +2,10 @@ package com.itcia.itgoo.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
-import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
@@ -25,6 +26,10 @@ public interface IAdminDao {
 	List<Dog> adminDogs(String companyid);
 	@Select("select * from activity where companyid=#{companyid}")
 	List<Activity> adminActivities(String companyid);
+	@Update("update company set enroll=1  where companyid=#{companyid}")
+	int adminOk(String companyid);
+	@Delete("delete company where companyid=#{companyid}")
+	int adminNo(String companyid);
 	
 	
 }

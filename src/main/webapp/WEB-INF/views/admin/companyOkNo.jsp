@@ -10,7 +10,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <title>Dashio - Admin Detail</title>
-
+	
     <!-- Favicons -->
     <link href="img/favicon.png" rel="icon">
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -24,6 +24,7 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c9422a165f.js" crossorigin="anonymous"></script>
     <script src="lib/chart-master/Chart.js"></script>
     <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services">
@@ -79,7 +80,7 @@
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked labels-info ">
                                     <li>
-                                        <h4>업체 사진</h4>
+                                        <h4>보호소 사진</h4>
                                     </li>
                                     <li>
                                         <img src="img/test.png" style="max-width: 100%">
@@ -92,7 +93,7 @@
                             <div class="panel-body">
                                 <ul class="nav nav-pills nav-stacked labels-info ">
                                     <li>
-                                        <h4>업체 위치</h4>
+                                        <h4>보호소 위치</h4>
                                     </li>
                                     <li>
                                         <span id="guide" style="color: #999; display: none"></span>
@@ -110,12 +111,12 @@
                                     <!-- /col-md-12 -->
                                     <div class="col-md-12 mt">
                                         <div class="content-panel">
-                                        <h4><i class="fa fa-angle-right"></i> 업체명 </h4>
-                                            <hr>
+                                        <h4><i class="fa fa-angle-right"></i> 보호소 이름 </h4>
+                                                <hr>
                                             <table class="table table-hover">
                                                 <tbody>
                                                     <tr>
-                                                        <td>업체 아이디</td>
+                                                        <td>보호소 아이디</td>
                                                         <td id="companyid"></td>
                                                     </tr>
                                                     <tr>
@@ -123,15 +124,15 @@
                                                         <td id="companyboss"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>휴대폰</td>
+                                                        <td>보호소 전화번호</td>
                                                         <td id="companyphone"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>이메일</td>
+                                                        <td>보호소 이메일</td>
                                                         <td id="companyemail"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>업체위치</td>
+                                                        <td>보호소 주소</td>
                                                         <td id="companylocation"></td>
                                                     </tr>
                                                     <tr>
@@ -146,7 +147,8 @@
                                 <div class="compose-mail">
                                     <form role="form-horizontal" method="post">
                                         <div class="compose-btn">
-                                            <button class="btn btn-theme btn-sm"><i class="fa fa-check"></i> 삭제</button>
+                                            <button class="btn btn-theme btn-sm" onclick="ok"><i class="fa fa-check"></i> 등록</button>
+                                            <button class="btn btn-theme04 btn-sm" onclick="reject"><i class="fas fa-hand-paper"></i> 거절</button>
                                         </div>
                                     </form>
                                 </div>
@@ -154,43 +156,7 @@
                             
                         </section>
                     </div>
-                    <div class="col-sm-9">
-                        <section class="panel">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <!-- /col-md-12 -->
-                                    <div class="col-md-12 mt">
-                                        <div class="content-panel">
-                                        <h4><i class="fa fa-angle-right"></i> 등록된 액티비티 </h4>
-                                                <hr>
-                                            <table class="table table-hover">
-                                                
-                                                <thead>
-                                                  <tr>
-                                                    <th>#</th>
-                                                    <th>Name</th>
-                                                    <th>설명</th>
-                                                    <th>날짜</th>
-                                                    <th>시간</th>
-                                                    <th>참여가능 마리수</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody id="activities">
-                                                    
-                                                    
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="compose-mail">
-                                    <form role="form-horizontal" method="post">
-                                    </form>
-                                </div>
-                            </div>
-                            
-                        </section>
-                    </div>
+                    
                 </div>
             </section>
             <!-- /wrapper -->
@@ -245,16 +211,6 @@
   		$("#companylocation").text(data.companylocation);
   		$("#companycard").text("등록증 다운로드 링크였으면 참 좋을듯 data.companycard");
   		
-  		$.each(${activities},function(idx,data){
-  	  		var $wait=$("#activities");
-  	  		var $tr=$("<tr>").appendTo($wait);
-  	  		$("<td>").text(idx).appendTo($tr);
-  	  		$("<td>").append($("<a>").attr("href","./adminactivitydetaildetail?activitynum="+data.activitynum).text(data.activityname)).appendTo($tr);
-  	  		$("<td>").text(data.activityexplanation).appendTo($tr);
-  	  		$("<td>").text(data.activitydate).appendTo($tr);
-  	  		$("<td>").text(data.activitytime).appendTo($tr);
-  	  		$("<td>").text(data.activitydogcnt).appendTo($tr);
-  	  	});
 	
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -285,6 +241,18 @@
 	        map.setCenter(coords);
 	    }
 	});
+	
+	
+	
+	
+	function reject(){
+		var data=${company}
+		location.href="adminno?companyid="+data.companyid;
+	}
+	function ok(){
+		var data=${company}
+		location.href="adminok?companyid="+data.companyid;
+	}
 	
 	</script>
 

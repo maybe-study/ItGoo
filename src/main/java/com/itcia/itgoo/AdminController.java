@@ -37,8 +37,27 @@ public class AdminController {
 		ModelAndView mav=Ac.adminShelterDetail(companyid);
 		return mav;
 	}
+	@RequestMapping(value = "/adminokno", method = RequestMethod.GET)
+	public ModelAndView adminOkNo(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminOkNo(companyid);
+		return mav;
+	}
 	@RequestMapping(value = "/admintest", method = RequestMethod.GET)
 	public String adminTest(Locale locale, Model model) {
 		return "admin/AdminTest";
+	}
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Locale locale, Model model) {
+		return "admin/test";
+	}
+	@RequestMapping(value = "/adminno", method = RequestMethod.GET)
+	public ModelAndView adminNo(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminNo(companyid);
+		return mav;
+	}
+	@RequestMapping(value = "/adminok", method = RequestMethod.GET)
+	public ModelAndView adminOk(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminOk(companyid);
+		return mav;
 	}
 }
