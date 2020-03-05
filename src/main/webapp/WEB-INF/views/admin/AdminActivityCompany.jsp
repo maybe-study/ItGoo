@@ -25,7 +25,6 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
   <script src="lib/chart-master/Chart.js"></script>
-  
 
   <!-- =======================================================
     Template Name: Dashio
@@ -61,7 +60,45 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-      
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered"><a href="profile.html"><img src="img/mung.png" class="img-circle" width="80"></a></p>
+          <h5 class="centered">ItGoo</h5>
+          <!--<li class="mt">
+            <a class="active" href="index.html">
+              <i class="fa fa-dashboard"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>-->
+          <li class="sub-menu">
+            <a class="active" href="./adminactivity">
+              <i class="fa fa-desktop"></i>
+              <span>액티비티 업체 관리</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="./admintest">
+              <i class="fa fa-cogs"></i>
+              <span>적격성 평가</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>입양신청</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="./adminshelter">
+              <i class="fa fa-tasks"></i>
+              <span>보호소 관리</span>
+              </a>
+          </li>
+          
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
     </aside>
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
@@ -162,18 +199,17 @@
   <!--script for this page-->
   <script src="lib/sparkline-chart.js"></script>
   <script src="lib/zabuto_calendar.js"></script>
-  <script src="common/main.js?ver"></script>
+  
   <script>
   	$.each(${companyWaitList},function(idx,data){
   		var $wait=$("#wait_enroll");
   		var $tr=$("<tr>").appendTo($wait);
   		$("<td>").text(idx).appendTo($tr);
-  		$("<td>").append($("<a>").attr("href","./adminokno?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
+  		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
   		$("<td>").text(data.companyid).appendTo($tr);
   		$("<td>").text(data.companyboss).appendTo($tr);
   		$("<td>").text(data.companyphone).appendTo($tr);
   		$("<td>").text(data.companylocation).appendTo($tr);
-  		
   	})
   	$.each(${companyEnrolledList},function(idx,data){
   		var $wait=$("#enrolled");

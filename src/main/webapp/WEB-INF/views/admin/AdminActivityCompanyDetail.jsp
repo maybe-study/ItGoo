@@ -63,7 +63,45 @@
         *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
-            
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <p class="centered"><a href="profile.html"><img src="img/mung.png" class="img-circle" width="80"></a></p>
+                    <h5 class="centered">ItGoo</h5>
+                    <!--<li class="mt">
+            <a class="active" href="index.html">
+              <i class="fa fa-dashboard"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>-->
+                    <li class="sub-menu">
+                        <a class="active" href="./adminactivity">
+                            <i class="fa fa-desktop"></i>
+                            <span>액티비티 업체 관리</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="./admintest">
+                            <i class="fa fa-cogs"></i>
+                            <span>적격성 평가</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-book"></i>
+                            <span>입양신청</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="./adminshelter">
+                            <i class="fa fa-tasks"></i>
+                            <span>보호소 관리</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
         </aside>
         <!--sidebar end-->
         <!-- **********************************************************************************************************************************************************
@@ -131,12 +169,8 @@
                                                         <td id="companyemail"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>업체위치</td>
+                                                        <td>주소</td>
                                                         <td id="companylocation"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>업체 등록증</td>
-                                                        <td id="companycard"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -235,7 +269,6 @@
     <!--script for this page-->
     <script src="lib/sparkline-chart.js"></script>
     <script src="lib/zabuto_calendar.js"></script>
-    <script src="common/main.js?ver"></script>
 	<script>
 		var data=${company}
   		$("#companyid").text(data.companyid);
@@ -243,7 +276,6 @@
   		$("#companyphone").text(data.companyphone);
   		$("#companyemail").text(data.companyemail);
   		$("#companylocation").text(data.companylocation);
-  		$("#companycard").text("등록증 다운로드 링크였으면 참 좋을듯 data.companycard");
   		
   		$.each(${activities},function(idx,data){
   	  		var $wait=$("#activities");
