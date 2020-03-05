@@ -123,7 +123,8 @@
                     <th>name</th>
                     <th>id</th>
                     <th>대표자</th>
-                    <th>대표자 전화번호</th>
+                    <th>업체 전화번호</th>
+                    <th>업체 주소</th>
                   </tr>
                 </thead>
                 <tbody id="wait_enroll">
@@ -144,7 +145,8 @@
                     <th>name</th>
                     <th>id</th>
                     <th>대표자</th>
-                    <th>주소</th>
+                    <th>업체 전화번호</th>
+                    <th>업체 주소</th>
                   </tr>
                 </thead>
                 <tbody id="enrolled">
@@ -206,6 +208,7 @@
   		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
   		$("<td>").text(data.companyid).appendTo($tr);
   		$("<td>").text(data.companyboss).appendTo($tr);
+  		$("<td>").text(data.companyphone).appendTo($tr);
   		$("<td>").text(data.companylocation).appendTo($tr);
   	})
   	$.each(${companyEnrolledList},function(idx,data){
@@ -215,6 +218,7 @@
   		$("<td>").text(data.companyname).appendTo($tr);
   		$("<td>").text(data.companyid).appendTo($tr);
   		$("<td>").text(data.companyboss).appendTo($tr);
+  		$("<td>").text(data.companyphone).appendTo($tr);
   		$("<td>").text(data.companylocation).appendTo($tr);
   		
   	})

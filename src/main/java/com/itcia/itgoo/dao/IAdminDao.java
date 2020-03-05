@@ -20,6 +20,6 @@ public interface IAdminDao {
 	@Select("select * from company where companyid=#{companyid}")
 	Company adminActivityDetail(String companyid);
 	@Select("select * from activity where companyid=#{companyid}")
-	List<Activity> adminActivitys(String companyid);
+	List<Activity> adminActivities(String companyid);
 }
 
