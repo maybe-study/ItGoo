@@ -17,8 +17,11 @@ import lombok.experimental.Accessors;
 public class Activity {
 	private int activitynum;
 	private String activityname;
+	private String activitydate;
 	private String activitystart;
-	private String acitivityend;
+	private int activitytime;
 	private int activitydogcnt;
+	private String activityexplanation;
 	private String companyid;
+	
 }

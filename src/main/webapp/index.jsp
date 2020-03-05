@@ -34,7 +34,7 @@
 		<sec:authorize access="isAnonymous()">
 			
 				<a href="login" id="login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="joinfrm">회원가입</a>
+				<a href="joinform">회원가입</a>
 		</sec:authorize>
 
 		<sec:authorize access="isAuthenticated()">
@@ -76,6 +76,7 @@
 				<a href="/itgoo1"><img id="itgoo1"
 					src="img/portfolio/itgoo1.png" class="img-fluid"></a>
 			</div>
+			
 			<!-- right content -->
 			<div class="col-md-6">
 				<h2>About ItGoo</h2>

@@ -10,6 +10,49 @@
 
 
 <script>
+var idck = 0;//아이디 중복확인
+$("#id").focus(function(){
+	console.log("변경전 idck="+idck);
+	idck=0;
+	console.log("변경후 idck="+idck);
+});
+$("#id_check").click(function() {
+
+	var $id = $("#id").val();
+	console.log($id);
+
+	$.ajax({
+		type : 'post',
+		data : {$id:$id},
+		url : 'idcheck',
+		datatype : 'json',
+		success : function(data) {
+			console.log("data="+data);
+			console.log("data.cnt="+data.cnt);
+			
+			if (data==1) {
+				alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+				idck = 0;
+				$("#id").focus();
+			} else if(data== 0) {
+				alert("사용가능한 아이디입니다.");
+				$("#pw").focus();
+				idck = 1;
+			}
+			else if(data==-1){
+				alert("아이디를 입력해주세요.");
+				idck = 0;
+				$("#id").focus();
+			}
+
+		}, 
+		error : function(error) {
+			console.log(error);
+		}
+
+	}); 
+});
+
 	$(function() {
 		// 회원 가입 처리
 		$('#hag').click(
@@ -29,7 +72,7 @@
 
 							if ($("#id").val() == '') {
 								alert('아이디 입력하세요');
-								$("#name").focus();
+								$("#id").focus();
 								return false;
 							}
 
@@ -80,13 +123,14 @@
 										url : 'register.php',
 										type : 'POST',
 										data : {
-											name : $("#inputName").val(),
-											userID : $('#InputEmail').val(),
-											email : $('#InputEmail').val(),
-											password : $('#inputPassword')
+											companyname:$("#companyname").val(),
+											name : $("#name").val(),
+											ID : $('#id').val(),
+											email : $('#email').val(),
+											password : $('#password')
 													.val(),
-											telNO : $("#inputtelNO").val(),
-											mobileNO : $("#inputMobile").val(),
+											tel : $("#tel").val(),
+											mobileNO : $("#").val(),
 											address:$("#adress").val()
 										},
 										dataType : "json",
@@ -168,12 +212,14 @@ input {
 }
 
 #id_check {
-	all: unset;
-	background-color: white;
-	color: #00c8b7;
+	width: 80px;
+	height: 50px;
+	border-radius: 0.5em;
+	background: #77CBE3;
+	color: white;
 	border: solid 1px #77CBE3;
 	cursor: pointer;
-	padding: 5px;
+	padding: 10px;
 }
 
 #profile {
@@ -190,6 +236,14 @@ input {
 	display: block;
 	margin: 0px auto;
 	margin-left: 42%;
+}
+
+#userbirth {
+	font-size: 20px;
+}
+
+.box {
+	padding-left: 90px;
 }
 </style>
 </head>
@@ -271,7 +325,7 @@ input {
 					</tr>
 
 					<tr>
-						<td>업체 이메일&nbsp;</td>
+						<td>업체 Email&nbsp;</td>
 						<td><input type="text" name="mail1" id="mail" maxlength="30"></td>
 
 					</tr>
@@ -282,34 +336,9 @@ input {
 					</tr>
 					<tr>
 						<td>업체 주소</td>
-						<td><input type="text" name="address" id="address"
+						<td><input type="text" name="address" size="45" id="address"
 							maxlength="30"></td>
 					</tr>
-
-
-
-					<tr>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>사용자 전화번호</td>
-						<td><input type="text" name="address" id="address"
-							maxlength="30"></td>
-					</tr>
-
-
-
-					<tr>
-						<td>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>사용자 이메일</td>
-						<td><input type="text" name="address" id="address"
-							maxlength="30"></td>
-					</tr>
-
-
 
 					<tr>
 						<td>&nbsp;</td>
@@ -318,7 +347,7 @@ input {
 
 					<tr>
 						<td>사업자등록사진</td>
-						<td><input type="file" id="profile1" class="form-control2"
+						<td><input type="file" id="profile1" class="box"
 							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
@@ -328,25 +357,126 @@ input {
 
 					<tr>
 						<td>사업체사진&nbsp;</td>
-						<td><input type="file" id="profile2" class="form-control2"
+						<td><input type="file" id="profile2" class="box"
 							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
 					<tr>
 						<td></td>
-						<td><input type="file" id="profile3" class="form-control3"
+						<td><input type="file" id="profile3" class="box"
 							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
 					<tr>
 						<td></td>
-						<td><input type="file" id="profile4" class="form-control4"
+						<td><input type="file" id="profile4" class="box"
 							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
+					</tr>
+
+
+					<!-- /////사용자///// -->
+
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>사용자 이름</td>
+						<td><input type="text" name="username" maxlength="30"
+							id="username"></td>
 					</tr>
 
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
+
+					<tr>
+						<td>사용자 전화번호</td>
+						<td><input type="text" name="usertel" maxlength="11"
+							id="usertel"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+
+					<tr>
+						<td>사용자 Email</td>
+						<td><input type="text" name="usermail1" id="usermail"
+							maxlength="30"></td>
+					</tr>
+
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+
+					<tr>
+						<td>사용자 주소</td>
+						<td><input type="text" name="useraddress" size="45"
+							id="useraddress" maxlength="30"></td>
+
+					</tr>
+
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+
+					<tr>
+						<td>사용자 생년월일</td>
+						<td><input type="text" name="inyear" size="1"
+							style="font-size: 20px;" id="inBorder" class="inBorder"
+							maxlength="4" />년 <select name="birthselect"
+							style="font-size: 20px;">
+								<option value="1">1
+								<option value="2">2
+								<option value="3">3
+								<option value="4">4
+								<option value="5">5
+								<option value="6">6
+								<option value="7">7
+								<option value="8">8
+								<option value="9">9
+								<option value="10">10
+								<option value="11">11
+								<option value="12">12
+						</select> 월 <select name="birthselect" style="font-size: 20px;">
+								<option value="1">1
+								<option value="2">2
+								<option value="3">3
+								<option value="4">4
+								<option value="5">5
+								<option value="6">6
+								<option value="7">7
+								<option value="8">8
+								<option value="9">9
+								<option value="10">10
+								<option value="11">11
+								<option value="12">12
+								<option value="13">13
+								<option value="14">14
+								<option value="15">15
+								<option value="16">16
+								<option value="17">17
+								<option value="18">18
+								<option value="19">19
+								<option value="20">20
+								<option value="21">21
+								<option value="22">22
+								<option value="23">23
+								<option value="24">24
+								<option value="25">25
+								<option value="26">26
+								<option value="27">27
+								<option value="28">28
+								<option value="29">29
+								<option value="30">30
+								<option value="31">31
+						</select> 일 &nbsp;
+					</tr>
+
+
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+
 
 
 				</table>

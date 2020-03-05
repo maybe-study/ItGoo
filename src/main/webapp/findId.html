@@ -131,6 +131,9 @@ body, html {
 							<input type="text" name="email" class="form-control input_pass"
 								placeholder="email">
 						</div>
+
+						<input type="hidden" path="random" id="random" value="${random }" />
+
 						<div class="d-flex justify-content-center mt-3 login_container">
 							<button type="submit" name="button" class="btn login_btn">아이디
 								찾기</button>
@@ -154,6 +157,6 @@ function check() {
 		}
 	}
 	return true; //성공시 서버로 전송
+	
 </script>
-
 </html>

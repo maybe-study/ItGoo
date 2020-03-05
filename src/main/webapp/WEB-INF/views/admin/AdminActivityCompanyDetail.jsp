@@ -204,7 +204,8 @@
                                                     <th>#</th>
                                                     <th>Name</th>
                                                     <th>설명</th>
-                                                    <th>종목</th>
+                                                    <th>날짜</th>
+                                                    <th>시간</th>
                                                     <th>참여가능 마리수</th>
                                                   </tr>
                                                 </thead>
@@ -276,15 +277,16 @@
   		$("#companyemail").text(data.companyemail);
   		$("#companylocation").text(data.companylocation);
   		
-  		$.each(${companyWaitList},function(idx,data){
+  		$.each(${activities},function(idx,data){
   	  		var $wait=$("#activities");
   	  		var $tr=$("<tr>").appendTo($wait);
   	  		$("<td>").text(idx).appendTo($tr);
-  	  		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
-  	  		$("<td>").text(data.companyid).appendTo($tr);
-  	  		$("<td>").text(data.companyboss).appendTo($tr);
-  	  		$("<td>").text(data.companylocation).appendTo($tr);
-  	  	})
+  	  		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.activitynum).text(data.activityname)).appendTo($tr);
+  	  		$("<td>").text(data.activityexplanation).appendTo($tr);
+  	  		$("<td>").text(data.activitydate).appendTo($tr);
+  	  		$("<td>").text(data.activitytime).appendTo($tr);
+  	  		$("<td>").text(data.activitydogcnt).appendTo($tr);
+  	  	});
 	
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
