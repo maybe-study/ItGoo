@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="">
-
+<html lang="UTF-8">
 
 <head>
   <meta charset="utf-8">
@@ -17,18 +16,18 @@
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
   <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker/css/datepicker.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-daterangepicker/daterangepicker.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-timepicker/compiled/timepicker.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-datetimepicker/datertimepicker.css" />
   <!-- Custom styles for this template -->
   <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
-
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+  
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -43,7 +42,7 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <header class="header black-bg">
+     <header class="header black-bg">
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
@@ -172,11 +171,11 @@
               <span>업체</span>
               </a>
             <ul class="sub">
-              <li class="active"><a href="activitymyinfo">업체정보</a></li>
+              <li ><a href="activitymyinfo">업체정보</a></li>
               <li><a href="activitylocationinfo">업체 위치</a></li>
               <li><a href="activitypicinfo">업체 시설 첨부</a></li>
               <li><a href="activityregiste">액티비티 등록</a></li>
-              <li><a href="activitydelete">액티비티 삭제</a></li>
+              <li class="active"><a href="activitydelete">액티비티 삭제</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -233,72 +232,55 @@
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-   <!--main content start-->
+    <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 업체 정보</h3>
-        <!-- BASIC FORM ELELEMNTS -->
-        <div class="row mt">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-           
-            <h4 class="title">업체의 정보보호를 위해 최선을 다하겠습니다.</h4>
-            <div id="message"></div>
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
-
-              <div class="form-group">
-              <div class="main-p-tag">
-              <table >
-               <tr >
-               <td>업체명:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
-               </tr>
-               </table>
-               </div>
-              </div>
-              <div class="form-group">
-                <div class="main-p-tag">
-              <table >
-               <tr >
-               <td>대표자:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
-               </tr>
-               </table>
-               </div>
-              </div>
-              <div class="form-group">
-                <div class="main-p-tag">
-              <table >
-               <tr >
-               <td>휴대폰:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
-               </tr>
-               </table>
-               </div>
-              </div>
-
-              <div class="form-group">
-                 <div class="main-p-tag">
-              <table >
-               <tr >
-               <td>이메일:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
-               </tr>
-               </table>
-               </div>
-              </div>
-            </form>
-            
+        <h3><i class="fa fa-angle-right"></i> Basic Table Examples</h3>
+        <div class="row">
+          
+          <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
+            <div class="content-panel">
+              <table class="table table-hover">
+                <h4><i class="fa fa-angle-right"></i> 현제 등록되어있는 액티비티 목록</h4>
+                <hr>
+                <thead>
+                  <tr>
+                    <th>업체 명</th>
+                    <th>액티비티 활동</th>
+                    <th>액티비티 날짜 및 시간</th>
+                    <th>참여가능한 최대 마릿 수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>휴식이 필요하개</td>
+                    <td><a href="#">오일 테라피</a></td>
+                    <td>2020/03/20</td>
+                    <td>1마리</td>
+                  </tr>
+                  <tr>
+                    <td>보듬 액티비티 센터</td>
+                    <td><a href="#">장해물 달리기</a></td>
+                    <td>2020/03/21</td>
+                    <td>3마리</td>
+                  </tr>
+                  <tr>
+                    <td>우리 믿음 액티비티 센터</td>
+                    <td><a href="#">프리즈비</a></td>
+                    <td>2020/04/15</td>
+                    <td>2마리</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        <!-- /row -->
-
-
+          <!-- /col-md-12 -->
+        </div>
+        <!-- row -->
+        
         <!-- /row -->
       </section>
-      <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
@@ -325,6 +307,8 @@
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="lib/time-select/timepicker-addon.js"></script>
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -333,16 +317,7 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-  <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-daterangepicker/date.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-daterangepicker/moment.min.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-  <script src="lib/advanced-form-components.js"></script>
-
+  
 </body>
 
 </html>

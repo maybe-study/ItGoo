@@ -4,22 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.MemberManagement;
 
-
-
-
 @Controller
 public class CommonController {
 	@Autowired
 	private MemberManagement mm;
-	
-	ModelAndView mav=new ModelAndView();	
+
+	ModelAndView mav = new ModelAndView();
 
 	@GetMapping("/")
 	public String home() {
@@ -32,20 +31,12 @@ public class CommonController {
 		return "/login";
 	}
 
-	@PreAuthorize("isAnonymous()")
-	@GetMapping("/findaccount")
-	public ModelAndView findaccount(Member mb) {
-		mav = findid(mb);
-
-		return mav;
+	@RequestMapping(value = "/findid", method = RequestMethod.GET)
+	public String findaccount(Member mb) {
+		return "findid";
 	}
 
-	private ModelAndView findid(Member mb) {
-		mav = new ModelAndView();
-		// mb= mDao.findId(mb.get)
-		return mav;
-	}
-
+	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/itgoo1")
 	public String itgoo1() {
@@ -57,23 +48,18 @@ public class CommonController {
 	public String ibyang() {
 		return "index";
 	}
-	
-	//회원가입
-		@RequestMapping(value = "/joinform", method = RequestMethod.GET)
-		public String joinform(Member mb) {
-			return "joinform";
-		}
-	
-	
-	//회원가입
+
+	// 회원가입
+	@RequestMapping(value = "/joinform", method = RequestMethod.GET)
+	public String joinform(Member mb) {
+		return "joinform";
+	}
+
+	// 회원가입
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
 	public ModelAndView memberjoin(Member mb) {
-
-		System.out.println(mb.getUsername());
-		mav=mm.memberJoin(mb);
-
-
+		mav = mm.memberJoin(mb);
 		return mav;
 	}
-	
+
 }

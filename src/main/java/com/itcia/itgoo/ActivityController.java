@@ -15,17 +15,30 @@ public class ActivityController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	//민호
 	//병규
-	@RequestMapping(value = "/test6", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	@RequestMapping(value = "/activitymyinfo", method = RequestMethod.GET)
+	public  String activityMyInfo (Locale locale, Model model) {
+		return "activitycompany/activityMyInfo";
 	}
+	@RequestMapping(value = "/activitylocationinfo", method = RequestMethod.GET)
+	public String acitivityLocationInfo(Locale locale, Model model) {
+		return "activitycompany/activityLocationInfo";
+	}
+	@RequestMapping(value = "/activitypicinfo", method = RequestMethod.GET)
+	public String acitivityPicInfo(Locale locale, Model model) {
+		return "activitycompany/activityPicInfo";
+	}
+	@RequestMapping(value = "/activityregiste", method = RequestMethod.GET)
+	public String activityRegiste(Locale locale, Model model) {
+		return "activitycompany/activityRegiste";
+	}
+	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
+	public String acitivityDelete(Locale locale, Model model) {
+		return "activitycompany/activityDelete";
+	}
+	@RequestMapping(value = "/timeselect", method = RequestMethod.GET)
+	public String timeselect(Locale locale, Model model) {
+		return "activitycompany/timeselect";
+	}
+	
+	
 }

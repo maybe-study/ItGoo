@@ -17,6 +17,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	@Autowired
 	AdminCompany Ac;
+
 	@RequestMapping(value = "/adminactivity", method = RequestMethod.GET)
 	public ModelAndView adminActivity(Locale locale, Model model) {// 액티비티 업체 정보 읽기
 		ModelAndView mav=Ac.adminActivity();
@@ -40,5 +41,20 @@ public class AdminController {
 	public String adminTest(Locale locale, Model model) {
 		return "admin/AdminTest";
 	}
-	
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Locale locale, Model model) {
+		return "admin/test";
+	}
+	@RequestMapping(value = "/adminno", method = RequestMethod.GET)
+	public ModelAndView adminNo(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminNo(companyid);
+		return mav;
+	}
+	@RequestMapping(value = "/adminok", method = RequestMethod.GET)
+	public ModelAndView adminOk(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminOk(companyid);
+		return mav;
+	}
+
 }

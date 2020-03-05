@@ -15,17 +15,6 @@ public class RestActivityController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	//민호
 	//병규
-	@RequestMapping(value = "/activityMyInfo", method = RequestMethod.GET)
-	public  String activityMyInfo (Locale locale, Model model) {
-		return "activitycompany/activityMyInfo";
-	}
-	@RequestMapping(value = "/activityLocationInfo", method = RequestMethod.GET)
-	public String acitivityLocationInfo(Locale locale, Model model) {
-		return "activitycompany/activityLocationInfo";
-	}
-	@RequestMapping(value = "/activityPicInfo", method = RequestMethod.GET)
-	public String acitivityPicInfo(Locale locale, Model model) {
-		return "activitycompany/activityPicInfo";
-	}
+	
 	
 }

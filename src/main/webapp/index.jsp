@@ -34,7 +34,7 @@
 		<sec:authorize access="isAnonymous()">
 			
 				<a href="login" id="login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="joinfrm">회원가입</a>
+				<a href="joinform">회원가입</a>
 		</sec:authorize>
 
 		<sec:authorize access="isAuthenticated()">
