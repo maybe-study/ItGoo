@@ -5,6 +5,8 @@
 <configuration>
 	<typeAliases>
 		<!-- <typeAlias type="com.board.icia.dto.Member" alias="member"/> -->
-		<package name="com.itcia.itgoo.dto"/>
+		<package name="com.itcia.itgoo.dto" />
+
 	</typeAliases>
+	
 </configuration>

@@ -76,6 +76,7 @@
 				<a href="/itgoo1"><img id="itgoo1"
 					src="img/portfolio/itgoo1.png" class="img-fluid"></a>
 			</div>
+			
 			<!-- right content -->
 			<div class="col-md-6">
 				<h2>About ItGoo</h2>

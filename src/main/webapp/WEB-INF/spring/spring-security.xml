@@ -9,7 +9,7 @@
 
 
 	<bean id="passwordEncoder"
-		class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />  <!--엔코더 바꾸자 -->
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />  
 
 
 
