@@ -62,11 +62,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4</version>
-		</dependency>
 
 		<!--slf4j-log4j12대신 logback을 사용하기위해 삭제 -->
 		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
@@ -106,6 +101,21 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+
+
+		<!-- mail 인증을 위한 설정 -->
+		<!-- mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 
 		<!-- 출력할 정보를 logger에게 넘긴다. log4jdbc-remix -->
 		<!-- net.sf.log4jdbc.DriverSpy 드라이법 클래스를 제공한다. ojdbc6을 활용한다. -->

@@ -30,19 +30,19 @@ public class CommonController {
 		return "/login";
 	}
 
-	@PreAuthorize("isAnonymous()")
-	@GetMapping("/findaccount")
-	public ModelAndView findaccount(Member mb) {
-		mav = findid(mb);
-
-		return mav;
+	@RequestMapping(value = "/findid", method = RequestMethod.GET)
+	public String findaccount(Member mb) {
+		return "findid";
 	}
-
-	private ModelAndView findid(Member mb) {
-		mav = new ModelAndView();
-		// mb= mDao.findId(mb.get)
-		return mav;
-	}
+	
+	/*
+	 * @PreAuthorize("isAnonymous()")
+	 * 
+	 * @GetMapping("/findid") public ModelAndView findaccount(Member mb) { mav =
+	 * findid(mb);
+	 * 
+	 * return mav; }
+	 */
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/itgoo1")
@@ -61,7 +61,7 @@ public class CommonController {
 	public String joinform(Member mb) {
 		return "joinform";
 	}
-
+	
 	// 회원가입
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
 	public ModelAndView memberjoin(Member mb) {

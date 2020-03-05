@@ -150,7 +150,7 @@ body, html {
 						계정이 없으신가요? <a href="joinform" class="ml-2">회원가입</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#">계정찾기</a>
+						<a href="findid">계정찾기</a>
 					</div>
 				</div>
 			</div>
