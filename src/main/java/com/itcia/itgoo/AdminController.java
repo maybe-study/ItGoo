@@ -33,12 +33,12 @@ public class AdminController {
 		return mav;
 	}
 	@RequestMapping(value = "/adminshelterdetail", method = RequestMethod.GET)
-	public String adminShelterDetail(Locale locale, Model model) {
-		return "admin/AdminShelterDetail";
+	public ModelAndView adminShelterDetail(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminShelterDetail(companyid);
+		return mav;
 	}
 	@RequestMapping(value = "/admintest", method = RequestMethod.GET)
 	public String adminTest(Locale locale, Model model) {
 		return "admin/AdminTest";
 	}
-	
 }

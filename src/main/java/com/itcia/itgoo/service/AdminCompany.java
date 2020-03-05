@@ -42,9 +42,17 @@ public class AdminCompany {
 	}
 	public ModelAndView adminActivityDetail(String companyid) {
 		mav=new ModelAndView();
-		mav.addObject("company",new Gson().toJson(aDao.adminActivityDetail(companyid)));
+		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
 		mav.addObject("activities",new Gson().toJson(aDao.adminActivities(companyid)));
 		mav.setViewName("admin/AdminActivityCompanyDetail");
+		
+		return mav;
+	}
+	public ModelAndView adminShelterDetail(String companyid) {
+		mav=new ModelAndView();
+		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
+		mav.addObject("dogs",new Gson().toJson(aDao.adminDogs(companyid)));
+		mav.setViewName("admin/AdminShelterDetail");
 		
 		return mav;
 	}

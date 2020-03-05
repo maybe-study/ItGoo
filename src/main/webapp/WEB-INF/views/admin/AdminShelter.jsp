@@ -113,16 +113,17 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 보호소 신규 등록 </h4>
+            <h4><i class="fa fa-angle-right"></i> 보호소 신규 등록 </h4>
                 <hr>
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>name</th>
                     <th>id</th>
                     <th>대표자</th>
-                    <th>주소</th>
+                    <th>보호소 전화번호</th>
+                    <th>보호소 주소</th>
                   </tr>
                 </thead>
                 <tbody id="wait_enroll">  
@@ -143,7 +144,8 @@
                     <th>name</th>
                     <th>id</th>
                     <th>대표자</th>
-                    <th>주소</th>
+                    <th>보호소 전화번호</th>
+                    <th>보호소 주소</th>
                   </tr>
                 </thead>
                 <tbody id="enrolled">
@@ -197,26 +199,27 @@
   <script src="lib/sparkline-chart.js"></script>
   <script src="lib/zabuto_calendar.js"></script>
   <script>
-  	$.each(${companyWaitList},function(idx,data){
-  		var $wait=$("#wait_enroll");
-  		var $tr=$("<tr>").appendTo($wait);
-  		$("<td>").text(idx).appendTo($tr);
-  		$("<td>").text(data.companyname).appendTo($tr);
-  		$("<td>").text(data.companyid).appendTo($tr);
-  		$("<td>").text(data.companyboss).appendTo($tr);
-  		$("<td>").text(data.companylocation).appendTo($tr);
-  		
-  	})
-  	$.each(${companyEnrolledList},function(idx,data){
-  		var $wait=$("#enrolled");
-  		var $tr=$("<tr>").appendTo($wait);
-  		$("<td>").text(idx).appendTo($tr);
-  		$("<td>").text(data.companyname).appendTo($tr);
-  		$("<td>").text(data.companyid).appendTo($tr);
-  		$("<td>").text(data.companyboss).appendTo($tr);
-  		$("<td>").text(data.companylocation).appendTo($tr);
-  		
-  	})
+  $.each(${companyWaitList},function(idx,data){
+		var $wait=$("#wait_enroll");
+		var $tr=$("<tr>").appendTo($wait);
+		$("<td>").text(idx).appendTo($tr);
+		$("<td>").append($("<a>").attr("href","./adminshelterdetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
+		$("<td>").text(data.companyid).appendTo($tr);
+		$("<td>").text(data.companyboss).appendTo($tr);
+		$("<td>").text(data.companyphone).appendTo($tr);
+		$("<td>").text(data.companylocation).appendTo($tr);
+	})
+	$.each(${companyEnrolledList},function(idx,data){
+		var $wait=$("#enrolled");
+		var $tr=$("<tr>").appendTo($wait);
+		$("<td>").text(idx).appendTo($tr);
+		$("<td>").text(data.companyname).appendTo($tr);
+		$("<td>").text(data.companyid).appendTo($tr);
+		$("<td>").text(data.companyboss).appendTo($tr);
+		$("<td>").text(data.companyphone).appendTo($tr);
+		$("<td>").text(data.companylocation).appendTo($tr);
+		
+	})
   </script>
   
 </body>
