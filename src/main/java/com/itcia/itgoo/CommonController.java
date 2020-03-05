@@ -13,14 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.itcia.itgoo.dto.Member;
-import com.itcia.itgoo.service.ShelterManagement;
+import com.itcia.itgoo.service.MemberManagement;
+
 
 
 
 @Controller
 public class CommonController {
 	@Autowired
-	private ShelterManagement mm;
+	private MemberManagement mm;
 	
 	ModelAndView mav=new ModelAndView();
 
@@ -64,8 +65,8 @@ public class CommonController {
 	//회원가입
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
 	public ModelAndView memberjoin(Member mb) {
-		
-		mav=mm.sheltermemberjoin(mb);
+		System.out.println(mb.getUsername());
+		mav=mm.memberJoin(mb);
 		
 		
 		return mav;
