@@ -1,14 +1,25 @@
 package com.itcia.itgoo.dao;
 
-import org.apache.ibatis.annotations.Insert;
+import java.util.List;
 
-import com.itcia.itgoo.dto.Member;
+import org.apache.ibatis.annotations.Select;
+
+import com.itcia.itgoo.dto.Activity;
+import com.itcia.itgoo.dto.Company;
 
 public interface IAdminDao {
 	int getContents();
-
-	@Insert("INSERT INTO COMPANY VALES(#{COMPANYID},#{COMPANYNAME},#{COMPANYBOSS},#{COMPANYPHONE},#{COMPANYEMAIL},#{COMPANYLOCTION},#{COMPANYCARD},#{COMPANYKIND},#{ENROLL})")
-	boolean memberJoin(Member mb);
-	
+	@Select("select * from company where companykind=1 and enroll=0")
+	List<Company> adminWaitActivity();
+	@Select("select * from company where companykind=1 and enroll=1")
+	List<Company> adminEnrolledActivity();
+	@Select("select * from company where companykind=2 and enroll=0")
+	List<Company> adminWaitShelter();
+	@Select("select * from company where companykind=2 and enroll=1")
+	List<Company> adminEnrolledShelter();
+	@Select("select * from company where companyid=#{companyid}")
+	Company adminActivityDetail(String companyid);
+	@Select("select * from activity where companyid=#{companyid}")
+	List<Activity> adminActivitys(String companyid);
 }
 

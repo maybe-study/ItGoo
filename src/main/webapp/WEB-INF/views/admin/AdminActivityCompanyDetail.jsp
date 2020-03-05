@@ -25,6 +25,9 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
     <script src="lib/chart-master/Chart.js"></script>
+    <script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services">
+</script>
 
     <!-- =======================================================
     Template Name: Dashio
@@ -130,7 +133,8 @@
                                         <h4>업체 위치</h4>
                                     </li>
                                     <li>
-                                        <img src="img/test.png" style="max-width: 100%">
+                                        <span id="guide" style="color: #999; display: none"></span>
+										<div id="map" style="width:100%;height:350px;"></div>
                                     </li>
                                 </ul>
 
@@ -144,33 +148,29 @@
                                     <!-- /col-md-12 -->
                                     <div class="col-md-12 mt">
                                         <div class="content-panel">
+                                        <h4><i class="fa fa-angle-right"></i> 업체명 </h4>
+                                            <hr>
                                             <table class="table table-hover">
-                                                <h4><i class="fa fa-angle-right"></i> 업체명 </h4>
-                                                <hr>
                                                 <tbody>
                                                     <tr>
                                                         <td>업체 아이디</td>
-                                                        <td>Jacob</td>
+                                                        <td id="companyid"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>대표자</td>
-                                                        <td>Simon</td>
+                                                        <td id="companyboss"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>휴대폰</td>
-                                                        <td>Simon</td>
+                                                        <td id="companyphone"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>이메일</td>
-                                                        <td>Simon</td>
+                                                        <td id="companyemail"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>주소</td>
-                                                        <td>Simon</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>사진</td>
-                                                        <td>Simon</td>
+                                                        <td id="companylocation"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -195,9 +195,10 @@
                                     <!-- /col-md-12 -->
                                     <div class="col-md-12 mt">
                                         <div class="content-panel">
-                                            <table class="table table-hover">
-                                                <h4><i class="fa fa-angle-right"></i> 등록된 액티비티 </h4>
+                                        <h4><i class="fa fa-angle-right"></i> 등록된 액티비티 </h4>
                                                 <hr>
+                                            <table class="table table-hover">
+                                                
                                                 <thead>
                                                   <tr>
                                                     <th>#</th>
@@ -207,42 +208,8 @@
                                                     <th>참여가능 마리수</th>
                                                   </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
+                                                <tbody id="activities">
+                                                    
                                                     
                                                 </tbody>
                                             </table>
@@ -251,9 +218,6 @@
                                 </div>
                                 <div class="compose-mail">
                                     <form role="form-horizontal" method="post">
-                                        <div class="compose-btn">
-                                            <button class="btn btn-theme btn-sm"><i class="fa fa-check"></i> 삭제</button>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -304,6 +268,54 @@
     <!--script for this page-->
     <script src="lib/sparkline-chart.js"></script>
     <script src="lib/zabuto_calendar.js"></script>
-
+	<script>
+		var data=${company}
+  		$("#companyid").text(data.companyid);
+  		$("#companyboss").text(data.companyboss);
+  		$("#companyphone").text(data.companyphone);
+  		$("#companyemail").text(data.companyemail);
+  		$("#companylocation").text(data.companylocation);
+  		
+  		$.each(${companyWaitList},function(idx,data){
+  	  		var $wait=$("#activities");
+  	  		var $tr=$("<tr>").appendTo($wait);
+  	  		$("<td>").text(idx).appendTo($tr);
+  	  		$("<td>").append($("<a>").attr("href","./adminactivitydetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
+  	  		$("<td>").text(data.companyid).appendTo($tr);
+  	  		$("<td>").text(data.companyboss).appendTo($tr);
+  	  		$("<td>").text(data.companylocation).appendTo($tr);
+  	  	})
+	
+	roadAddr="인천광역시 미추홀구 용정공원로 33";
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+	// 지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(roadAddr, function(result, status) {
+	    // 정상적으로 검색이 완료됐으면
+	     if (status === kakao.maps.services.Status.OK) {
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+roadAddr+'</div>'
+	        });
+	        infowindow.open(map, marker);
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    }
+	});
+	
+	</script>
 
 </body></html>
