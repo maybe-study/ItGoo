@@ -1,4 +1,4 @@
-package com.itcia.itgoo;
+﻿package com.itcia.itgoo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,16 +11,18 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.itcia.itgoo.dto.Member;
-import com.itcia.itgoo.service.MemberManagement;
+import com.itcia.itgoo.service.ShelterManagement;
+
+
 
 @Controller
 public class CommonController {
-
 	@Autowired
-	private MemberManagement mm;
+	private ShelterManagement mm;
 	
-	private ModelAndView mav=new ModelAndView();
+	ModelAndView mav=new ModelAndView();
 
 	@GetMapping("/")
 	public String home() {
@@ -58,57 +60,15 @@ public class CommonController {
 	public String ibyang() {
 		return "index";
 	}
-
 	
-	
-	@PreAuthorize("isAnonymous()")
-	@GetMapping("/joinform")
-	public ModelAndView joinfrm() {
-		mav.setViewName("joinform");
+	//회원가입
+	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
+	public ModelAndView memberjoin(Member mb) {
+		
+		mav=mm.sheltermemberjoin(mb);
+		
+		
 		return mav;
 	}
 	
-	@PostMapping(value = "/memberjoin",produces ="text/html;charset=UTF-8" )
-	public ModelAndView memberJoin(Member mb) {
-		System.out.println("아이디:"+mb.getId());
-		System.out.println("아이디:"+mb.getPassword());
-		System.out.println("아이디:"+mb.getEnabled());
-		System.out.println("아이디:"+mb.getBirthday());
-		System.out.println("아이디:"+mb.getPhone());
-		System.out.println("주소:"+mb.getUseraddress());
-		System.out.println("이메일:"+mb.getUseremail());
-		System.out.println("enabled:"+mb.getUsername());
-		mav = mm.memberJoin(mb);
-
-		return mav;
-	}
-//	@PreAuthorize("isAnonymous()")
-//	@GetMapping("/list")
-//	public String guest() {
-//		return "guest";
-//	}
-//
-//	@PreAuthorize("isAuthenticated()")
-//	@GetMapping("/list")
-//	public String user() {
-//		return "user";
-//	}
-//
-//	@Secured({ "ROLE_USER", "ROLE_MANAGER", "ROLE_ADMIN" })
-//	@GetMapping("/list")
-//	public String member() {
-//		return "member";
-//	}
-//
-//	@Secured({ "ROLE_MANAGER", "ROLE_ADMIN" })
-//	@GetMapping("/list")
-//	public String manager() {
-//		return "manager";
-//	}
-//
-//	@Secured("ROLE_ADMIN")
-//	@GetMapping("/list")
-//	public String admin() {
-//		return "admin";
-//	}
 }

@@ -11,17 +11,14 @@ import lombok.experimental.Accessors;
 //@Getter@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("membssser")
+@Alias("activity")
 @Data
 @Accessors(chain=true)
-public class Member {
-	private String id;
-	private String password;
-	private String useraddress;
-	private String useremail;
-	private String username;
-	private String phone;
-	private String birthday;
-	private int enabled;
-	
+public class Activity {
+	private int activitynum;
+	private String activityname;
+	private String activitystart;
+	private String acitivityend;
+	private int activitydogcnt;
+	private String companyid;
 }
