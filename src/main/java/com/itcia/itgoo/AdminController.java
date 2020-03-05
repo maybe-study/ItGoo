@@ -17,6 +17,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	@Autowired
 	AdminCompany Ac;
+	
 	@RequestMapping(value = "/adminactivity", method = RequestMethod.GET)
 	public ModelAndView adminActivity(Locale locale, Model model) {// 액티비티 업체 정보 읽기
 		ModelAndView mav=Ac.adminActivity();
