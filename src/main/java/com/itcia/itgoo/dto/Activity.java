@@ -23,5 +23,13 @@ public class Activity {
 	private int activitydogcnt;
 	private String activityexplanation;
 	private String companyid;
-	
+	private String activitypic;
+	private String companyname;
+	private String companyboss;
+	private String companyemail;
+	private String companylocation;
+	private String companycard;
+	private String companyphone;
+	private int companykind;
+	private int enroll;
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcia.itgoo.dao.IActivityDao">
+	
+<insert id="regiActivity" parameterType="Activity">
+	insert into activity values(#{activitynum.nextval}, #{activityname},#{activityexplanation},#{activitydate},#{activitystart},#{activitytime},#{activitydogcnt},#{companyid})
+	</insert>
+	<insert id="regiActivityPic" parameterType="Activity">
+	insert into activitypics values(#{activitypic},#{activitynum})
+	 
+	</insert>
+	<select id="activityMyInfo1" parameterType="Company">
+	select * from company where companyid=#{companyid} and companykind=1
+	</select>
+</mapper>
