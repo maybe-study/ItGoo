@@ -5,21 +5,18 @@
 <title>회원가입</title>
 
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
-   src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <script>
-	
-
-	$(function() {
+	 //$(function() {
 		// 회원 가입 처리
-		$('#hag')
-				.click(
-						function(e) {
+	/* 	$('#hag').click(function(e) {
 							e.preventDefault();
 							if ($("#companyname").val() == '') {
 								alert('업체이름을 입력하세요');
@@ -107,8 +104,13 @@
 								return false;
 
 							}
-							
 
+							if ($("#select").val() == '') {
+								alert('');
+								$("#select").focus();
+								return false;
+
+							}
 							if ($("#username").val() == '') {
 								alert('사용자이름을 입력해주세요');
 								$("#username").focus();
@@ -122,7 +124,7 @@
 								return false;
 							} else {
 								var regNumber = /^[0-9]*$/;
-								if (!regNumber.test(usertell)) {
+							if (!regNumber.test(usertell)) {
 									alert('업체전화번호에 문자열이 들어갔는지 확인부탁드립니다.')
 									$("#usertel").focus();
 									return false;
@@ -154,11 +156,9 @@
 								$("#inBorder").focus();
 								return false;
 							}
-						}
-						)
-	});
-						
-	
+							return true;
+						});
+	});  */
 </script>
 <style>
 table {
@@ -243,9 +243,33 @@ input {
 	padding-left: 90px;
 }
 
+#select {
+	width: 200px; /* 원하는 너비설정 */
+	padding: .3em .2em; /* 여백으로 높이 설정 */
+	font-family: inherit; /* 폰트 상속 */
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 95% 50%; /* 네이티브 화살표 대체 */
+	border: 1px solid #999;
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
 
-
-
+#inBorder {
+	width: 40px;
+	padding: .2em .05em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 80% 40%;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 </style>
 </head>
 <body>
@@ -259,18 +283,19 @@ input {
 
 
 	<div id="div">
-		<h3 id="h3text">보호소회원가입</h3>
+		<h3 id="h3text">회원가입</h3>
 		<div id="join_background">
 
 
 
-			<form name="joinFrm" action="memberjoin" method="post">
+			<form name="joinFrm" action="shelterjoin" method="post">
 				<table>
 
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
+					<td><input type="hidden" name="_csrf" value="${_csrf.token}"></td>
 						<td>업체명</td>
 						<td><input type="text" name="companyname" maxlength="30"
 							id="companyname"></td>
@@ -281,14 +306,16 @@ input {
 
 					<tr>
 						<td>대표자명</td>
-						<td><input type="text" name="name" maxlength="30" id="name"></td>
+						<td><input type="text" name="companyboss" maxlength="30"
+							id="name"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
 						<td>ID</td>
-						<td><input type="text" name="id" maxlength="20" id="id"></td>
+						<td><input type="text" name="companyid" maxlength="20"
+							id="id"></td>
 						<td><input id="id_check" type="button" value="중복확인"></td>
 					</tr>
 
@@ -298,7 +325,8 @@ input {
 
 					<tr>
 						<td>PW</td>
-						<td><input type="password" name="pw" maxlength="30" id="pw"></td>
+						<td><input type="password" name="password" maxlength="30"
+							id="pw"></td>
 					</tr>
 
 					<tr>
@@ -318,7 +346,8 @@ input {
 
 					<tr>
 						<td>업체 전화번호</td>
-						<td><input type="text" name="tel" maxlength="11" id="tel"></td>
+						<td><input type="text" name="companyphone" maxlength="11"
+							id="tel"></td>
 					</tr>
 
 					<tr>
@@ -326,8 +355,10 @@ input {
 					</tr>
 
 					<tr>
+					
 						<td>업체 Email&nbsp;</td>
-						<td><input type="text" name="mail1" id="mail" maxlength="30"></td>
+						<td><input type="text" name="companyemail" id="mail"
+							maxlength="30"></td>
 
 					</tr>
 
@@ -337,12 +368,10 @@ input {
 					</tr>
 					<tr>
 						<td>업체 주소</td>
-						<td>
-							
-							<input id="map" type="button" onclick="sample4_execDaumPostcode('companylocation')" value="우편번호 찾기">
-							<input type="text" id="companylocation" placeholder="도로명주소" name="companylocation">
-
-						</td>
+						<td><input id="map1" type="button"
+							onclick="sample4_execDaumPostcode('companylocation')"
+							value="우편번호 찾기"> <input type="text" id="companylocation"
+							placeholder="도로명주소" name="companylocation"></td>
 					</tr>
 
 					<tr>
@@ -350,10 +379,10 @@ input {
 					</tr>
 
 
-					<tr>
+				 	<tr>
 						<td>사업자등록사진</td>
 						<td><input type="file" id="profile1" class="box"
-							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
+							name="companycard" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
 					<tr>
@@ -377,8 +406,20 @@ input {
 						<td><input type="file" id="profile4" class="box"
 							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr> 
 
+						<td>선택사항</td>
+						<td><select class="select" id="select" name="companykind"
+							style="font-size: 20px;">
+								<option value="0">선택</option>
+								<option value="1">보호소</option>
+								<option value="2">업체</option>
 
+						</select></td>
+					</tr>
 					<!-- /////사용자///// -->
 
 					<tr>
@@ -396,7 +437,7 @@ input {
 
 					<tr>
 						<td>사용자 전화번호</td>
-						<td><input type="text" name="usertel" maxlength="11"
+						<td><input type="text" name="phone" maxlength="11"
 							id="usertel"></td>
 					</tr>
 					<tr>
@@ -405,7 +446,7 @@ input {
 
 					<tr>
 						<td>사용자 Email</td>
-						<td><input type="text" name="usermail1" id="usermail1"
+						<td><input type="text" name="useremail" id="usermail1"
 							maxlength="30"></td>
 					</tr>
 
@@ -415,15 +456,13 @@ input {
 
 					<tr>
 						<td>사용자 주소</td>
-						
-						<td>
-							
-							<input id="map" type="button" onclick="sample4_execDaumPostcode('useraddress')" value="우편번호 찾기">
-							<input type="text" id="useraddress" placeholder="도로명주소" name="useraddress">
 
-						</td>
-						
-					
+						<td><input id="map2" type="button"
+							onclick="sample4_execDaumPostcode('useraddress')" value="우편번호 찾기">
+							<input type="text" id="useraddress" placeholder="도로명주소"
+							name="useradderess"></td>
+
+
 
 					</tr>
 
@@ -434,31 +473,32 @@ input {
 					<tr>
 						<td>사용자 생년월일</td>
 						<td><input type="text" name="inyear" size="1"
-							style="font-size: 20px;" id="inBorder" class="inBorder"
-							maxlength="4" />년 <select name="birthselect"
+							style="font-size: 20px;" maxlength="4" />년 <select
+							name="birthday" id="inBorder1" class="inBorder"
 							style="font-size: 20px;">
-								<option value="1">1
-								<option value="2">2
-								<option value="3">3
-								<option value="4">4
-								<option value="5">5
-								<option value="6">6
-								<option value="7">7
-								<option value="8">8
-								<option value="9">9
+								<option value="1">01
+								<option value="2">02
+								<option value="3">03
+								<option value="4">04
+								<option value="5">05
+								<option value="6">06
+								<option value="7">07
+								<option value="8">08
+								<option value="9">09
 								<option value="10">10
 								<option value="11">11
 								<option value="12">12
-						</select> 월 <select name="birthselect" style="font-size: 20px;">
-								<option value="1">1
-								<option value="2">2
-								<option value="3">3
-								<option value="4">4
-								<option value="5">5
-								<option value="6">6
-								<option value="7">7
-								<option value="8">8
-								<option value="9">9
+						</select> 월 <select name="birthselect" id="inBorder2" class="inBorder"
+							style="font-size: 20px;">
+								<option value="1">01
+								<option value="2">02
+								<option value="3">03
+								<option value="4">04
+								<option value="5">05
+								<option value="6">06
+								<option value="7">07
+								<option value="8">08
+								<option value="9">09
 								<option value="10">10
 								<option value="11">11
 								<option value="12">12
@@ -483,20 +523,22 @@ input {
 								<option value="31">31
 						</select> 일 &nbsp;
 					</tr>
-
-
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 
+					<tr>
+						<td colspan="2"><button id="hag" class="btn" type="submit">회원가입</button></td>
+					</tr>
 
+					<tr>
+						<td><input class="btn" type="button" value="취소"
+							formaction="home"></td>
+					</tr>
 
 				</table>
 			</form>
-			<input class="btn" type="button" value="확인" formaction="memberjoin"
-				id="hag">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input class="btn" type="submit" value="취소" formaction="home">
+
 
 
 		</div>
@@ -505,22 +547,24 @@ input {
 
 
 
+
+
+	<script>
+	$("#hag").on("click", function name() {
+		console.log("나오니");
+	});
 	
-      
-      <script>
-      //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-      function sample4_execDaumPostcode(addrid) {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-               
-                document.getElementById(addrid).value = roadAddr;
-                
-            }
-        }).open();
-    }
-  
-      
-   </script>
+		//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+		function sample4_execDaumPostcode(addrid) {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var roadAddr = data.roadAddress; // 도로명 주소 변수
+
+					document.getElementById(addrid).value = roadAddr;
+
+				}
+			}).open();
+		}
+	</script>
 </body>
 </html>

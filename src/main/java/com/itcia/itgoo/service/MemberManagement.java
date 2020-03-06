@@ -26,7 +26,7 @@ public class MemberManagement {
          view = "index";// 회원가입 성공
          mav.addObject("check", 1);
       } else {
-         view = "joinform";
+         view = "joinfrm";
          mav.addObject("check", 0);
       }
       mav.setViewName(view);

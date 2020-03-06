@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itcia.itgoo.dao.IAdminDao;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.commonmember;
 
 @Service
 public class ShelterManagement {
@@ -16,23 +17,22 @@ public class ShelterManagement {
 
 	private ModelAndView mav = new ModelAndView();
 
-	public ModelAndView memberjoin(Member mb) {
+	public ModelAndView shelterjoin(commonmember cmb) {
 		mav = new ModelAndView();
 		String view = null;
 
 		// 인코더 암호화 --디코더 복호화
 		// 스프링시큐리티는 암호화는 가능하지만 복호화는 불가능하다.
-		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
 		// 비번만 암호화해서 DB에 저장
-		mb.setPassword(pwdEncoder.encode(mb.getPassword()));
+		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
+		cmb.setPassword(pwdEncoder.encode(cmb.getPassword()));
 
-		if (sDao.sheltermemberJoin(mb)) {
-			System.out.println("true");
-			view = "home"; // 회원가입 성공시
-			mav.addObject("check", 1); // 회원가입 성공
-		} else {
-			view = "joinFrm"; // 회원가입실패시
-		}
+		sDao.insertShelter(cmb);
+		sDao.insertClient(cmb);
+		//파일 첨부 메소드 만들기
+		
+		
+		
 		mav.setViewName(view);
 		return mav;
 	}
