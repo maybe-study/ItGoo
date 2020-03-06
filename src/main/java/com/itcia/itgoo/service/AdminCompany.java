@@ -56,17 +56,29 @@ public class AdminCompany {
 	}
 	public ModelAndView adminOkNo(String companyid) {
 		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
-		mav.setViewName("admin/companyOkNo");
+		mav.setViewName("admin/AdminOkNo");
 		return mav;
 	}
-	public ModelAndView adminNo(String companyid) {
-		mav.addObject("company",new Gson().toJson(aDao.adminNo(companyid)));
-		mav.setViewName("admin/companyNo");
+	public ModelAndView adminNo(String companyid,int companykind) {
+		
 		return mav;
 	}
 	public ModelAndView adminOk(String companyid) {
-		mav.addObject("company",new Gson().toJson(aDao.adminNo(companyid)));
+		mav.addObject("company",new Gson().toJson(aDao.adminOk(companyid)));
 		mav.setViewName("admin/companyOk");
+		return mav;
+	}
+	public ModelAndView adminUpdateComPany(String companyid, int companykind) {
+		//수락
+		if()
+		
+		aDao.adminNo(companyid);	//삭제
+		if(companykind==1) {	//액티비티업체라면
+			
+			mav.setViewName("/adminactivity");
+		}else if(companykind==2) {	//보호소라면
+			mav.setViewName("/adminshelter");
+		}
 		return mav;
 	}
 
