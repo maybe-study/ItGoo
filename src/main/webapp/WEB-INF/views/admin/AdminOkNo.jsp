@@ -11,7 +11,7 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <title>Dashio - Admin Detail</title>
 
-   <!-- Favicons -->
+    <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
   <!-- Bootstrap core CSS -->
@@ -28,6 +28,9 @@
 
   
   <script src="main.js?ver"></script>
+    <script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+	<script src="https://kit.fontawesome.com/c9422a165f.js" crossorigin="anonymous"></script>
 
     <!-- =======================================================
     Template Name: Dashio
@@ -35,6 +38,8 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 
 <body>
@@ -63,7 +68,7 @@
         *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
-
+           
         </aside>
         <!--sidebar end-->
         <!-- **********************************************************************************************************************************************************
@@ -95,7 +100,8 @@
                                         <h4>업체 위치</h4>
                                     </li>
                                     <li>
-                                        <img src="img/test.png" style="max-width: 100%">
+                                        <span id="guide" style="color: #999; display: none"></span>
+										<div id="map" style="width:100%;height:350px;"></div>
                                     </li>
                                 </ul>
 
@@ -109,33 +115,33 @@
                                     <!-- /col-md-12 -->
                                     <div class="col-md-12 mt">
                                         <div class="content-panel">
+                                        <h4><i class="fa fa-angle-right"></i> 업체명 </h4>
+                                            <hr>
                                             <table class="table table-hover">
-                                                <h4><i class="fa fa-angle-right"></i> 업체명 </h4>
-                                                <hr>
                                                 <tbody>
                                                     <tr>
                                                         <td>업체 아이디</td>
-                                                        <td>Jacob</td>
+                                                        <td id="companyid"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>대표자</td>
-                                                        <td>Simon</td>
+                                                        <td id="companyboss"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>휴대폰</td>
-                                                        <td>Simon</td>
+                                                        <td id="companyphone"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>이메일</td>
-                                                        <td>Simon</td>
+                                                        <td id="companyemail"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>주소</td>
-                                                        <td>Simon</td>
+                                                        <td id="companylocation"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>사진</td>
-                                                        <td>Simon</td>
+                                                        <td>등록증</td>
+                                                        <td id="companylocation"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -143,88 +149,18 @@
                                     </div>
                                 </div>
                                 <div class="compose-mail">
-                                    <form role="form-horizontal" method="post">
+                                    <form action="adminupdatecompany" role="form-horizontal" method="get" name="frm" id="frm">
                                         <div class="compose-btn">
-                                            <button class="btn btn-theme btn-sm"><i class="fa fa-check"></i> 삭제</button>
+                                            <button name="select" class="btn btn-theme btn-sm" value="ok"><i class="fa fa-check"></i> 등록</button>
+                                            <button name="select" class="btn btn-theme btn-sm" value="no"><i class="fa fa-check"></i> 거절</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-
+                            
                         </section>
                     </div>
-                    <div class="col-sm-9">
-                        <section class="panel">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <!-- /col-md-12 -->
-                                    <div class="col-md-12 mt">
-                                        <div class="content-panel">
-                                            <table class="table table-hover">
-                                                <h4><i class="fa fa-angle-right"></i> 등록된 액티비티 </h4>
-                                                <hr>
-                                                <thead>
-                                                  <tr>
-                                                    <th>#</th>
-                                                    <th>Name</th>
-                                                    <th>설명</th>
-                                                    <th>종목</th>
-                                                    <th>참여가능 마리수</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#</td>
-                                                        <td>Name</td>
-                                                        <td>설명</td>
-                                                        <td>종목</td>
-                                                        <td>참여가능 마리수</td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="compose-mail">
-                                    <form role="form-horizontal" method="post">
-                                        <div class="compose-btn">
-                                            <button class="btn btn-theme btn-sm"><i class="fa fa-check"></i> 삭제</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </section>
-                    </div>
+                    
                 </div>
             </section>
             <!-- /wrapper -->
@@ -270,24 +206,21 @@
     <script src="lib/sparkline-chart.js"></script>
     <script src="lib/zabuto_calendar.js"></script>
 	<script>
-		var data=${company}
-  		$("#companyid").text(data.companyid);
-  		$("#companyboss").text(data.companyboss);
-  		$("#companyphone").text(data.companyphone);
-  		$("#companyemail").text(data.companyemail);
-  		$("#companylocation").text(data.companylocation);
-  		
-  		$.each(${activities},function(idx,data){
-  	  		var $wait=$("#dogs");
-  	  		var $tr=$("<tr>").appendTo($wait);
-  	  		$("<td>").text(idx).appendTo($tr);
-  	  		$("<td>").append($("<a>").attr("href","./adminDogdetail?dogid="+data.dogid).text(data.dogname)).appendTo($tr);
-  	  		$("<td>").text(data.dogage).appendTo($tr);
-  	  		$("<td>").text(data.dogspecial).appendTo($tr);
-  	  		$("<td>").text(data.dogjungsung).appendTo($tr);
-  	  		$("<td>").text(data.sex).appendTo($tr);
-  	  	});
-
+	//회사 정보 출력
+	var data=${company}
+	$("#companyid").text(data.companyid);
+	$("#companyboss").text(data.companyboss);
+	$("#companyphone").text(data.companyphone);
+	$("#companyemail").text(data.companyemail);
+	$("#companylocation").text(data.companylocation);
+	$("#companycard").text("등록증 다운로드 링크였으면 참 좋을듯 data.companycard");
+	console.log("companykind",data.companykind);
+  	$("<input>").attr("type",'hidden').attr("name","companyid").attr("value",data.companyid).appendTo("#frm");
+  	$("<input>").attr("type",'hidden').attr("name","companykind").attr("value",data.companykind).appendTo("#frm");
+  	
+  	
+  	console.log("폼 companykind",document.frm.companykind);
+	//지도 표시
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
@@ -317,8 +250,7 @@
 	        map.setCenter(coords);
 	    }
 	});
-
+	
 	</script>
-
 
 </body></html>

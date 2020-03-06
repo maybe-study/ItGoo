@@ -1,9 +1,11 @@
 package com.itcia.itgoo;
 
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import java.text.DateFormat;
 import java.util.Date;
+
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +31,7 @@ public class ActivityController {
 	//병규
 	@Autowired
 	private ActivityManagement am;
-	
+
 	private ModelAndView mav;
 	@RequestMapping(value = "/activitymyinfo", method = RequestMethod.GET)
 	public  String activityMyInfo (Locale locale, Model model) {
@@ -38,7 +40,7 @@ public class ActivityController {
 	@RequestMapping(value = "/activitymyinfo1", method = RequestMethod.GET)
 	public  ModelAndView activityMyInfo1 (Company cp) {
 		mav= am.activityMyInfo1(cp);
-		
+
 		return mav;
 	}
 	@RequestMapping(value = "/activitylocationinfo", method = RequestMethod.GET)
@@ -60,9 +62,9 @@ public class ActivityController {
 	@RequestMapping(value = "/regiactivity", method = RequestMethod.GET)
 	public ModelAndView regiactivity (Activity ac) {
 		mav=am.regiActivity(ac);
-		
+
 		return mav;
 	}
-	
-	
+
+
 }
