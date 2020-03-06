@@ -1,24 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<title>Find MyAccount</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+	integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+	crossorigin="anonymous">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <head>
-<title>Find MyAccount</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-	integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
-	crossorigin="anonymous">
 <style type="text/css">
 body, html {
 	margin: 0;
@@ -118,8 +124,7 @@ body, html {
 						<input type="hidden" name="_csrf" value="${_csrf.token}"><br>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user">이
-										름</i></span>
+								<span class="input-group-text"><i class="fas fa-user">이름</i></span>
 							</div>
 							<input id="inputId" type="text" name="username"
 								class="form-control input_user" placeholder="username">
@@ -128,15 +133,18 @@ body, html {
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key">이메일</i></span>
 							</div>
-							<input type="text" name="email" class="form-control input_pass"
-								placeholder="email">
+							<input id="inputEmail" type="text" name="email"
+								class="form-control input_pass" placeholder="email">
 						</div>
 
 						<input type="hidden" path="random" id="random" value="${random }" />
 
 						<div class="d-flex justify-content-center mt-3 login_container">
-							<button type="submit" name="button" class="btn login_btn">아이디
-								찾기</button>
+							<button type="button" name="button" id="open"
+								class="btn login_btn">아이디 찾기</button>
+							<button id="button" name="button" type=button
+								onClick="history.back();" class="btn login_btn">뒤로가기</button>
+							<div id="findid"></div>
 						</div>
 					</form>
 				</div>
@@ -146,17 +154,21 @@ body, html {
 	</div>
 </body>
 <script type="text/javascript">
-function check() {
-	var frm = document.findId;
-	var length = frm.length - 1;
-	for (var i = 0; i < length; i++) {
-		if (frm[i].value == "") {
-			alert(frm[i].name + "을 입력하세요!!!");
-			frm[i].focus();
-			return false; //실패시
-		}
-	}
-	return true; //성공시 서버로 전송
-	
+	var formData = new FormData(document.getElementById('findid'));
+	formData.append("inputId", inputId);
+	formData.append("email", email);
+
+	$.ajax({
+		url : "/searchId",
+		method : "post",
+		processData : false,
+		contentType : false,
+		data : formData
+	}).done((a)=>{
+		toastr.success("아이디를 검색합니다", "서버 메시지");
+		console.log(a);
+	})
+	.fail((xhr)=> printError(xhr, "정보 검색에 실패했습니다"));
+});
 </script>
 </html>

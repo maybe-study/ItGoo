@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,20 +31,12 @@ public class CommonController {
 		return "/login";
 	}
 
-	@PreAuthorize("isAnonymous()")
-	@GetMapping("/findaccount")
-	public ModelAndView findaccount(Member mb) {
-		mav = findid(mb);
-
-		return mav;
+	@RequestMapping(value = "/findid", method = RequestMethod.GET)
+	public String findaccount(Member mb) {
+		return "findid";
 	}
 
-	private ModelAndView findid(Member mb) {
-		mav = new ModelAndView();
-		// mb= mDao.findId(mb.get)
-		return mav;
-	}
-
+	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/itgoo1")
 	public String itgoo1() {

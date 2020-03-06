@@ -47,7 +47,7 @@
       <!--logo start-->
       <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
       <!--logo end-->
-      
+
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="login.html">Logout</a></li>
@@ -60,6 +60,9 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
+<<<<<<< HEAD
+
+=======
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
@@ -99,6 +102,7 @@
         </ul>
         <!-- sidebar menu end-->
       </div>
+>>>>>>> parent of cdc9277... 거절수락 수정중
     </aside>
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
@@ -109,7 +113,7 @@
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> 보호소 관리 </h3>
         <div class="row">
-          
+
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
@@ -125,7 +129,7 @@
                     <th>주소</th>
                   </tr>
                 </thead>
-                <tbody id="wait_enroll">  
+                <tbody id="wait_enroll">
                 </tbody>
               </table>
             </div>
@@ -136,7 +140,7 @@
             <h4><i class="fa fa-angle-right"></i> 등록된 보호소 </h4>
                 <hr>
               <table class="table table-hover">
-                
+
                 <thead>
                   <tr>
                     <th>#</th>
@@ -147,7 +151,7 @@
                   </tr>
                 </thead>
                 <tbody id="enrolled">
-                 
+
                 </tbody>
               </table>
             </div>
@@ -156,7 +160,7 @@
         <!-- row -->
         </section>
       </section>
-       
+
         <!-- /row -->
     <!--main content end-->
     <!--footer start-->
@@ -197,28 +201,31 @@
   <script src="lib/sparkline-chart.js"></script>
   <script src="lib/zabuto_calendar.js"></script>
   <script>
-  	$.each(${companyWaitList},function(idx,data){
-  		var $wait=$("#wait_enroll");
-  		var $tr=$("<tr>").appendTo($wait);
-  		$("<td>").text(idx).appendTo($tr);
-  		$("<td>").text(data.companyname).appendTo($tr);
-  		$("<td>").text(data.companyid).appendTo($tr);
-  		$("<td>").text(data.companyboss).appendTo($tr);
-  		$("<td>").text(data.companylocation).appendTo($tr);
-  		
-  	})
-  	$.each(${companyEnrolledList},function(idx,data){
-  		var $wait=$("#enrolled");
-  		var $tr=$("<tr>").appendTo($wait);
-  		$("<td>").text(idx).appendTo($tr);
-  		$("<td>").text(data.companyname).appendTo($tr);
-  		$("<td>").text(data.companyid).appendTo($tr);
-  		$("<td>").text(data.companyboss).appendTo($tr);
-  		$("<td>").text(data.companylocation).appendTo($tr);
-  		
-  	})
+
+  $.each(${companyWaitList},function(idx,data){
+		var $wait=$("#wait_enroll");
+		var $tr=$("<tr>").appendTo($wait);
+		$("<td>").text(idx).appendTo($tr);
+		$("<td>").append($("<a>").attr("href","./adminshelterdetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
+		$("<td>").text(data.companyid).appendTo($tr);
+		$("<td>").text(data.companyboss).appendTo($tr);
+		$("<td>").text(data.companyphone).appendTo($tr);
+		$("<td>").text(data.companylocation).appendTo($tr);
+	})
+	$.each(${companyEnrolledList},function(idx,data){
+		var $wait=$("#enrolled");
+		var $tr=$("<tr>").appendTo($wait);
+		$("<td>").text(idx).appendTo($tr);
+		$("<td>").text(data.companyname).appendTo($tr);
+		$("<td>").text(data.companyid).appendTo($tr);
+		$("<td>").text(data.companyboss).appendTo($tr);
+		$("<td>").text(data.companyphone).appendTo($tr);
+		$("<td>").text(data.companylocation).appendTo($tr);
+
+	})
+
   </script>
-  
+
 </body>
 
 </html>
