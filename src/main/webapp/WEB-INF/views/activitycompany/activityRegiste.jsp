@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="">
+<html lang="UTF-8">
 
 
 <head>
@@ -213,20 +213,21 @@
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
 				<div class="row mt">
+				<form action="regiactivity" name="regiactivity" method="post" onsubmit="return check()">
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<section class="panel">
 							<h4 class="title"></h4>
 							<div id="message"></div>
 							<form class="contact-form php-mail-form" role="form"
 								action="contactform/contactform.php" method="POST">
-
+							
 								<div class="form-group">
 									<div class="main-p-tag">
 										<table>
 											<tr>
-												<td>업체명:</td>
-												<td><input type="text" id="companyname"
-													class="companyname" /></td>
+												<td>액티비티 이름:</td>
+												<td><input type="text" id="activityname"
+													class="activityname" name="a_name" /></td>
 											</tr>
 										</table>
 									</div>
@@ -235,9 +236,9 @@
 									<div class="main-p-tag">
 										<table>
 											<tr>
-												<td>액티비티 이름:</td>
-												<td><input type="text" id="activityname"
-													class="activityname" /></td>
+												<td>액티비티 설명:</td>
+												<td><input type="text" id="activity"
+													class="activity" name="a_explain" /></td>
 											</tr>
 										</table>
 									</div>
@@ -247,45 +248,36 @@
 										<table>
 											<tr>
 												<td>액티비티 날찌 및 시간 :</td>
-												<td><input type="text" id="activityday"
-													class="activityday" /></td>
-												<td>-<input type="text" id="activitytime"
-													class="activitytime" /></td>
-												<td><button type="button" class="btn btn-info btn-lg"
-														data-toggle="modal" data-target="#myModal">날짜 및
-														시간 선택</button></td>
+												<td>날짜:<input type="text" id="datepicker" class="datepicker" name="a_date"/></td>
+												<td>-시간:<input type="text" id="timepicker" class="timepicker" name="a_start" /></td>
 											</tr>
 										</table>
 									</div>
 								</div>
-
-								<div id="myModal" class="modal fade" role="dialog">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">x</button>
-												<h4 class="modal-title">날짜 및 시간 선택</h4>
-											</div>
-											<div class="modal-body">
-												날짜:<input type="text" id="datepicker" class="datepicker" />&nbsp; &nbsp; &nbsp; &nbsp; 
-												시간:<input type="text" id="timepicker" class="timepicker" />
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										</div>
-
+								<div class="form-group">
+									<div class="main-p-tag">
+										<table>
+											<tr>
+												<td>액티비티 </td>
+												<td><select name="activitytime"
+													id="activitytime" class="activitytime" name="a_time">
+														<option value="시간 선택">시간 선택</option>
+														<option value="30">30</option>
+														<option value="60">60</option>
+														<option value="90">90</option>
+												</select></td>
+											</tr>
+										</table>
 									</div>
+
 								</div>
-
-
 								<div class="form-group">
 									<div class="main-p-tag">
 										<table>
 											<tr>
 												<td>최대 참여가능 마릿수:</td>
 												<td><select name="activity-dog-cnt"
-													id="activity-dog-cnt" class="activity-dog-cnt">
+													id="activity-dog-cnt" class="activity-dog-cnt" name="a_cnt">
 														<option value="마릿수 선택">마릿수 선택</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
@@ -305,14 +297,15 @@
 										<table>
 											<tr>
 												<td>사진 첨부:</td>
-												<td><input type="file" name="files" id="files" multiple />
-													<input type="hidden" id="fileCheck" name="fileCheck"
+												<td><input type="file" name="files" id="files" multiple name="a_pic" />
+													<input type="hidden" id="fileCheck" name="a_fileCheck"
 													value="0" /></td>
 
 											</tr>
 										</table>
 									</div>
 								</div>
+								
 							</form>
 						</section>
 						<div class="btn-div">
@@ -321,7 +314,9 @@
 								type="button" id="cancelactivitybtn" class="cancelactivitybtn"
 								value="취소" />
 						</div>
+						</form>
 					</div>
+					
 					<!-- /row -->
 					<div id="articleView_layer">
 						<div id="bg_layer"></div>
@@ -407,7 +402,7 @@
 			    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
 			    ,minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 			    ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
-				
+				,defualtDate:"String"
 			});
 			$.timepicker.setDefaults({
 				   // timepicker 설정
@@ -424,9 +419,19 @@
 			//From의 초기값을 오늘 날짜로 설정
 			$('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 			});
-		function moveval () {
-			document.getElementById("datepicker").value = opener.document.getElementById("activityday").val;
-		}
+		function check(){
+			var frm = document.insert_activity;
+			var length = frm.length -1;
+			for(var i=0; i<length; i++){
+				if(frm[i].value == ""){
+					alert(frm[i].name+"을 입력하세요")
+					frm[i].focus();
+					return false; //실패시
+				}
+			}
+			return true;
+	}
+		
 	</script>
 </body>
 
