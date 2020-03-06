@@ -81,6 +81,12 @@ body, html {
 	color: white !important;
 }
 
+.login_btn1 {
+	width: 100%;
+	background: #c0392b !important;
+	color: white !important;
+}
+
 .login_btn:focus {
 	box-shadow: none !important;
 	outline: 0px !important;
@@ -106,6 +112,14 @@ body, html {
 #inputId {
 	width: 800px;
 }
+
+#p1{
+font-weight: 900;
+font-family: "Font Awesome 5 Free";
+color:white !important;
+display:table-cell;
+-webkit-font-smoothing: antialiased;
+}
 </style>
 </head>
 <!--Coded with love by Mutiullah Samim-->
@@ -120,20 +134,20 @@ body, html {
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form action="findaccount" method="post" onsubmit="return check()">
-
+						<p id="p1">이메일을 통한 아이디 찾기</p>
 						<input type="hidden" name="_csrf" value="${_csrf.token}"><br>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user">이름</i></span>
 							</div>
-							<input id="inputId" type="text" name="username"
+							<input id="username" type="text" name="username"
 								class="form-control input_user" placeholder="username">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key">이메일</i></span>
 							</div>
-							<input id="inputEmail" type="text" name="email"
+							<input id="useremail" type="text" name="useremail"
 								class="form-control input_pass" placeholder="email">
 						</div>
 
@@ -144,8 +158,10 @@ body, html {
 								class="btn login_btn">아이디 찾기</button>
 							<button id="button" name="button" type=button
 								onClick="history.back();" class="btn login_btn">뒤로가기</button>
-							<div id="findid"></div>
 						</div>
+
+						<div id="findid" class="btn login_btn1"></div>
+
 					</form>
 				</div>
 
@@ -154,21 +170,58 @@ body, html {
 	</div>
 </body>
 <script type="text/javascript">
-	var formData = new FormData(document.getElementById('findid'));
-	formData.append("inputId", inputId);
-	formData.append("email", email);
 
-	$.ajax({
-		url : "/searchId",
-		method : "post",
-		processData : false,
-		contentType : false,
-		data : formData
-	}).done((a)=>{
-		toastr.success("아이디를 검색합니다", "서버 메시지");
-		console.log(a);
-	})
-	.fail((xhr)=> printError(xhr, "정보 검색에 실패했습니다"));
-});
+	$("#open").on("click", function() {
+		let formData = new FormData();
+		// join.jsp에서는 <form>을 바로 FormData로 변경했다
+		// 하지만 이부분에서는 비밀번호나 프사가 있을 수도 없을 수도 있으므로 바로 변경할 수 없다
+		// <input>의 값을 하나씩 append할 경우 한글이 깨진다
+		// 이 문제를 해결하려면 자바스크립트에서 UTF-8로 인코딩해서 보내고 스프링에서 디코딩해야 한다
+		// formData.append("irum", encodeURIComponent($("#irum").val()));
+		formData.append("username", $("#username").val());
+		formData.append("useremail", $("#useremail").val());
+		$.ajaxSetup({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			}
+		});//먼저 보냄
+		$.ajax({ // 에이작스 열고
+			type : 'post', //타입은 get 
+			url : "searchid", // restFul 방식
+			data : formData,
+			processData : false,
+			contentType : false,
+
+			//서블릿이 성공하면 다시 돌아오는것
+			success : function(data) {
+				console.log(data);
+				var result = JSON.parse(data);
+				if (result.id === null) {
+					console.log(data);
+					$("#findid") + "는 존재하지 않는 아이디 입니다."
+
+				} else {
+					console.log(typeof data)
+					console.dir(data);
+					
+
+					$("#findid").html("찾는 아이디는 : " + result.id);
+
+				}
+			}
+
+			,
+			error : function(error) {
+				console.log(error);
+			}
+
+		});
+
+	});
+	
+	$("#findid").hide();
+	$("#open").on("click", function divshow() {
+		$("#findid").show();
+	});
 </script>
 </html>

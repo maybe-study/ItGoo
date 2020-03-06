@@ -8,4 +8,8 @@
 	insert into client values(#{id},#{password},#{useraddress},#{useremail},#{username},#{phone},#{birthday},#{enabled})
 </insert>
 
+<select id="searchid" parameterType="member" resultType="member">
+	select * from client where username=#{username} and useremail=#{useremail}
+</select>
+
 </mapper>
