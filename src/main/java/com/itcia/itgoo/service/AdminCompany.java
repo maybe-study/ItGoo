@@ -20,7 +20,7 @@ public class AdminCompany {
 		
 		List<Company> companyWaitList = aDao.adminWaitActivity();
 		List<Company> companyEnrolledList = aDao.adminEnrolledActivity();
-		System.out.println("companyList[0]:"+companyWaitList.get(0).getCompanyboss());
+		
 		mav.setViewName("admin/AdminActivityCompany");
 		mav.addObject("companyWaitList",new Gson().toJson(companyWaitList));
 		mav.addObject("companyEnrolledList",new Gson().toJson(companyEnrolledList));
@@ -29,7 +29,6 @@ public class AdminCompany {
 	public ModelAndView adminShelter() {
 		List<Company> companyWaitList = aDao.adminWaitShelter();
 		List<Company> companyEnrolledList = aDao.adminEnrolledShelter();
-		System.out.println("companyList[0]:"+companyWaitList.get(0).getCompanyboss());
 		
 		mav=new ModelAndView();
 		mav.setViewName("admin/AdminShelter");
@@ -59,25 +58,21 @@ public class AdminCompany {
 		mav.setViewName("admin/AdminOkNo");
 		return mav;
 	}
-	public ModelAndView adminNo(String companyid,int companykind) {
-		
-		return mav;
-	}
-	public ModelAndView adminOk(String companyid) {
-		mav.addObject("company",new Gson().toJson(aDao.adminOk(companyid)));
-		mav.setViewName("admin/companyOk");
-		return mav;
-	}
-	public ModelAndView adminUpdateComPany(String companyid, int companykind) {
+	
+	
+	public ModelAndView adminUpdateComPany(String select, String companyid, int companykind) {
+		System.out.println("========================================여부 : "+ select);
 		//수락
-		if()
-		
-		aDao.adminNo(companyid);	//삭제
+		String url="";
+		if(select=="ok") {
+			aDao.adminOk(companyid);	//업데이트하기
+		}else {//거절
+			aDao.adminNo(companyid);	//삭제
+		}
 		if(companykind==1) {	//액티비티업체라면
-			
-			mav.setViewName("/adminactivity");
+			mav=adminActivity();
 		}else if(companykind==2) {	//보호소라면
-			mav.setViewName("/adminshelter");
+			mav=adminShelter();
 		}
 		return mav;
 	}

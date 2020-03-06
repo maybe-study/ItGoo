@@ -149,10 +149,10 @@
                                     </div>
                                 </div>
                                 <div class="compose-mail">
-                                    <form action="adminupdatecompany" role="form-horizontal" method="get">
+                                    <form action="adminupdatecompany" role="form-horizontal" method="get" name="frm" id="frm">
                                         <div class="compose-btn">
-                                            <button name="ok" class="btn btn-theme btn-sm" value="c"><i class="fa fa-check"></i> 등록</button>
-                                            <button name="no" class="btn btn-theme btn-sm" value="c"><i class="fa fa-check"></i> 거절</button>
+                                            <button name="select" class="btn btn-theme btn-sm" value="ok"><i class="fa fa-check"></i> 등록</button>
+                                            <button name="select" class="btn btn-theme btn-sm" value="no"><i class="fa fa-check"></i> 거절</button>
                                         </div>
                                     </form>
                                 </div>
@@ -214,9 +214,12 @@
 	$("#companyemail").text(data.companyemail);
 	$("#companylocation").text(data.companylocation);
 	$("#companycard").text("등록증 다운로드 링크였으면 참 좋을듯 data.companycard");
-  		
-  		
-  		
+	console.log("companykind",data.companykind);
+  	$("<input>").attr("type",'hidden').attr("name","companyid").attr("value",data.companyid).appendTo("#frm");
+  	$("<input>").attr("type",'hidden').attr("name","companykind").attr("value",data.companykind).appendTo("#frm");
+  	
+  	
+  	console.log("폼 companykind",document.frm.companykind);
 	//지도 표시
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div

@@ -47,14 +47,9 @@ public class AdminController {
 		return "admin/test";
 	}
 	@RequestMapping(value = "/adminupdatecompany", method = RequestMethod.GET)
-	public ModelAndView adminUpdateCompany(String companyid,int companykind,Locale locale, Model model) {
+	public ModelAndView adminUpdateCompany(String select,String companyid,int companykind,Locale locale, Model model) {
 		
-		ModelAndView mav=Ac.adminUpdateComPany(companyid,companykind);
-		return mav;
-	}
-	@RequestMapping(value = "/adminok", method = RequestMethod.GET)
-	public ModelAndView adminOk(String companyid,Locale locale, Model model) {
-		ModelAndView mav=Ac.adminOk(companyid);
+		ModelAndView mav=Ac.adminUpdateComPany(select,companyid,companykind);
 		return mav;
 	}
 	@RequestMapping(value = "/adminokno", method = RequestMethod.GET)
