@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;

@@ -46,14 +46,15 @@ public class AdminController {
 	public String test(Locale locale, Model model) {
 		return "admin/test";
 	}
-	@RequestMapping(value = "/adminno", method = RequestMethod.GET)
-	public ModelAndView adminNo(String companyid,Locale locale, Model model) {
-		ModelAndView mav=Ac.adminNo(companyid);
+	@RequestMapping(value = "/adminupdatecompany", method = RequestMethod.GET)
+	public ModelAndView adminUpdateCompany(String select,String companyid,int companykind,Locale locale, Model model) {
+		
+		ModelAndView mav=Ac.adminUpdateComPany(select,companyid,companykind);
 		return mav;
 	}
-	@RequestMapping(value = "/adminok", method = RequestMethod.GET)
-	public ModelAndView adminOk(String companyid,Locale locale, Model model) {
-		ModelAndView mav=Ac.adminOk(companyid);
+	@RequestMapping(value = "/adminokno", method = RequestMethod.GET)
+	public ModelAndView adminOkNo(String companyid,Locale locale, Model model) {
+		ModelAndView mav=Ac.adminOkNo(companyid);
 		return mav;
 	}
 

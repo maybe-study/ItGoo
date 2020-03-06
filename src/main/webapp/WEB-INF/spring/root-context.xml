@@ -23,7 +23,6 @@
 	</bean>
 
 
-
 	<!-- sqlSessionFactory::mybatis가 사용 -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -44,9 +43,12 @@
 
 
 	
+<<<<<<< HEAD
 
 
 	
+=======
+>>>>>>> 68847156dde45b5e773238188b6f2edbf86f65a5
 	<!-- 클래스로 하는 방법 -->
 	<!-- <bean id="tpl" class="org.mybatis.spring.SqlSessionTemplate"> <constructor-arg 
 		ref="sqlSessionFactory"></constructor-arg> </bean> -->

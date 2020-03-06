@@ -11,10 +11,9 @@
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>Dashio - Bootstrap Admin Template</title>
 
-  <!-- Favicons -->
+ <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <!-- Bootstrap core CSS -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
@@ -25,6 +24,10 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
   <script src="lib/chart-master/Chart.js"></script>
+  <script src="lib/jquery/jquery.min.js"></script>
+
+  
+  <script src="main.js?ver"></script>
 
   <!-- =======================================================
     Template Name: Dashio
@@ -60,49 +63,7 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-<<<<<<< HEAD
 
-=======
-      <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/mung.png" class="img-circle" width="80"></a></p>
-          <h5 class="centered">ItGoo</h5>
-          <!--<li class="mt">
-            <a class="active" href="index.html">
-              <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
-              </a>
-          </li>-->
-          <li class="sub-menu">
-            <a href="./adminactivity">
-              <i class="fa fa-desktop"></i>
-              <span>액티비티 업체 관리</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="./admintest">
-              <i class="fa fa-cogs"></i>
-              <span>적격성 평가</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>입양신청</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a class="active" href="./adminshelter">
-              <i class="fa fa-tasks"></i>
-              <span>보호소 관리</span>
-              </a>
-          </li>
-          
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
->>>>>>> parent of cdc9277... 거절수락 수정중
     </aside>
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
@@ -206,7 +167,7 @@
 		var $wait=$("#wait_enroll");
 		var $tr=$("<tr>").appendTo($wait);
 		$("<td>").text(idx).appendTo($tr);
-		$("<td>").append($("<a>").attr("href","./adminshelterdetail?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
+		$("<td>").append($("<a>").attr("href","./adminokno?companyid="+data.companyid).text(data.companyname)).appendTo($tr);
 		$("<td>").text(data.companyid).appendTo($tr);
 		$("<td>").text(data.companyboss).appendTo($tr);
 		$("<td>").text(data.companyphone).appendTo($tr);

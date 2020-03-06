@@ -62,7 +62,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
+          
 		<!--slf4j-log4j12대신 logback을 사용하기위해 삭제 -->
 		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
 			<version>${org.slf4j-version}</version> <scope>runtime</scope> </dependency> -->
@@ -102,14 +102,6 @@
 			<version>1</version>
 		</dependency>
 
-
-		<!-- mail 인증을 위한 설정 -->
-		<!-- mail -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>

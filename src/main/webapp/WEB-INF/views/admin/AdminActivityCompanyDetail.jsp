@@ -11,20 +11,23 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <title>Dashio - Admin Detail</title>
 
-    <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
+  <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+  <script src="lib/chart-master/Chart.js"></script>
+  <script src="lib/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--external css-->
-    <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet">
-    <script src="lib/chart-master/Chart.js"></script>
+  
+  <script src="main.js?ver"></script>
     <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services">
 </script>
@@ -63,45 +66,7 @@
         *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
-            <div id="sidebar" class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu" id="nav-accordion">
-                    <p class="centered"><a href="profile.html"><img src="img/mung.png" class="img-circle" width="80"></a></p>
-                    <h5 class="centered">ItGoo</h5>
-                    <!--<li class="mt">
-            <a class="active" href="index.html">
-              <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
-              </a>
-          </li>-->
-                    <li class="sub-menu">
-                        <a class="active" href="./adminactivity">
-                            <i class="fa fa-desktop"></i>
-                            <span>액티비티 업체 관리</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="./admintest">
-                            <i class="fa fa-cogs"></i>
-                            <span>적격성 평가</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-book"></i>
-                            <span>입양신청</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="./adminshelter">
-                            <i class="fa fa-tasks"></i>
-                            <span>보호소 관리</span>
-                        </a>
-                    </li>
-
-                </ul>
-                <!-- sidebar menu end-->
-            </div>
+            
         </aside>
         <!--sidebar end-->
         <!-- **********************************************************************************************************************************************************
