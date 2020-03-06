@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.service.AdminCompany;
+import com.itcia.itgoo.share.UploadFile;
 @Controller
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -44,6 +45,10 @@ public class AdminController {
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Locale locale, Model model) {
+		return "admin/test";
+	}
+	@RequestMapping(value = "/uploadtest", method = RequestMethod.POST)
+	public String uploadTest(Locale locale, Model model) {
 		return "admin/test";
 	}
 	@RequestMapping(value = "/adminupdatecompany", method = RequestMethod.GET)
