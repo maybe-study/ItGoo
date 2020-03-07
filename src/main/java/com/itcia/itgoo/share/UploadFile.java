@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,66 +17,83 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itcia.itgoo.dao.IFileDao;
 
-@Service
 public class UploadFile {
-	// 파일 업로드 메소드
-	// String
-	// fullPath="J:/springwork/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMVCBoard/upload/";
-	private static final String ROOT_PATH = "D:/ItGoo/fileupload/";
-	@Autowired
-	private IFileDao fDao;
-
-	// public boolean fileUp(MultipartHttpServletRequest multi){
-	public boolean fileUp(List<MultipartFile> fList) {
+	private static final String ROOT_PATH = "C:/ItGoo/fileupload/";
+	/*
+	 * 단일 파일 업로드
+	 * 파일을 아래의 경로에 업로드
+	 * parameter 구분 - 시설등록증:companycard, 신분증:identification
+	 * return - 실제 저장된 경로,이름 ==> DB에 실제로 저장될 값
+	 */
+	public String fileUp(MultipartFile file, String kind) {
 		System.out.println("fileUp");
-		//파일리스트 사이즈가 0이면 리턴
-		if(fList.size()<1) {
-			return false;
+		//원래 파일 이름
+		String oriFileName = file.getOriginalFilename(); // a.txt
+		//객체의 이름이 공백이면 아무것도 저장 되지 않았으므로 return null
+		if(oriFileName=="") {
+			System.out.println("빈 파일 넘어옴");
+			return null;
 		}
-		// 1.이클립스의 물리적 저장경로 찾기
-//		String root=multi.getSession().getServletContext().getRealPath("/");
-//		System.out.println("root="+root);
-		// 여기서 경로 지정
-		String path = ROOT_PATH + "dog";
-		// 2.폴더 생성을 꼭 할것...
+		//경로지정, 폴더생성
+		String path = ROOT_PATH + kind+"/";
 		File dir = new File(path);
 		if (!dir.isDirectory()) { // upload폴더 없다면
-			dir.mkdir(); // upload폴더 생성
+			dir.mkdirs(); // upload폴더 생성
 		}
-		//파일을 업로드하고 업로드 된 이름을 리턴한다.
-		// 3.파일을 가져오기-파일태그가 1개 일때
-		//Map<String, String> fMap = new HashMap<String, String>();
-		//fMap.put("bnum", String.valueOf(bnum));
-		// List<MultipartFile> fList=multi.getFiles("files");
-		boolean f = false;
+		//저장될 파일 이름 생성 a.txt ==>112323242424.txt
+		String sysFileName = System.currentTimeMillis() + "."
+				+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);	//확장자 붙임
+		//메모리->실제 파일 업로드
+		try {
+			file.transferTo(new File(path, sysFileName)); // 서버에 파일 저장
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return path+sysFileName;
+	}
+	/*
+	 * 여러 파일 업로드
+	 * 파일 리스트를 아래의 경로에 여러개 업로드
+	 * parameter 구분 - 강아지 사진:dog, 시설사진:company, 액티비티 사진:activity
+	 * return - 실제 저장된 경로,이름이 담긴 List ==> DB에 실제로 저장될 값
+	 */
+	public List<String> fileUp(List<MultipartFile> fList ,String kind ) {
+		System.out.println("fileUp");
+		//첫번째 객체의 이름이 공백이면 아무것도 저장 되지 않았으므로 return null
+		List<String> filePathList= new ArrayList<String>();
+		if(fList.get(0).getOriginalFilename()=="") {
+			System.out.println("빈 파일 넘어옴");
+			return null;
+		}
+		//경로지정, 폴더생성
+		String path = ROOT_PATH + kind+"/";
+		File dir = new File(path);
+		if (!dir.isDirectory()) { // upload폴더 없다면
+			dir.mkdirs(); // upload폴더 생성
+		}
 		for (int i = 0; i < fList.size(); i++) {
-			// 파일 메모리에 저장
 			MultipartFile mf = fList.get(i); // 실제파일
 			String oriFileName = mf.getOriginalFilename(); // a.txt
-			// 4.시스템파일이름 생성 a.txt ==>112323242424.txt
+			//저장될 파일 이름 생성 a.txt ==>112323242424.txt
 			String sysFileName = System.currentTimeMillis() + "."
 					+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);	//확장자 붙임
-			//fMap.put("sysFileName", sysFileName);
-			// 5.메모리->실제 파일 업로드
-
+			filePathList.add(path+sysFileName);
+			//메모리->실제 파일 업로드
 			try {
 				mf.transferTo(new File(path, sysFileName)); // 서버에 파일 저장
-				// f=bDao.fileInsert(fMap);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} // while or For end
-		if (f)
-			return true;
-		return false;
+		}
+		
+		return filePathList;
 	}
 
 	// 파일 다운로드
-	public void download(String fullPath, String oriFileName, HttpServletResponse resp) throws Exception {
+	public void download(String fullPath, String picName, HttpServletResponse resp) throws Exception {
 
 		// 한글파일 깨짐 방지
-		String downFile = URLEncoder.encode(oriFileName, "UTF-8");
+		String downFile = URLEncoder.encode(picName, "UTF-8");
 		/* 파일명 뒤에 이상한 문자가 붙는 경우 아래코드를 해결 */
 		// downFile = downFile.replaceAll("\\+", "");
 		// 파일 객체 생성

@@ -287,7 +287,7 @@ input {
 	<div id="div">
 		<h3 id="h3text">회원가입</h3>
 		<div id="join_background">
-			<form action="uploadtest?${_csrf.parameterName}=${_csrf.token}" name= frm id="frm" method="post" enctype="multipart/form-data">
+			<form action="companyjoin?${_csrf.parameterName}=${_csrf.token}" name= frm id="frm" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td>&nbsp;</td>
@@ -379,7 +379,7 @@ input {
 				 	<tr>
 						<td>사업자등록사진</td>
 						<td><input type="file" id="profile" class="box"
-							name="companycard" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
+							name="companycardfile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
 					<tr>
