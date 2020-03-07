@@ -71,7 +71,11 @@ public class ShelterController {
 		//파일 업로드 (시설 등록증)
 		String path=up.fileUp(multi.getFile("companycardfile"),"companycard");
 		
-		
+		System.out.println("path:"+path);
+		System.out.println("paths:");
+		for(String obj:paths) {
+			System.out.println(obj);
+		}
 		cMember.setCompanycard(path);	//시설 등록증 설정
 		
 		

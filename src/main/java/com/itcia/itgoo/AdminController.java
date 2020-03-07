@@ -52,9 +52,8 @@ public class AdminController {
 	@RequestMapping(value = "/uploadtest", method = RequestMethod.POST)
 	public String uploadTest(MultipartHttpServletRequest multi, Commonmember cMember) {
 		UploadFile up= new UploadFile();
-		System.out.println("파일리스트 사이즈: " +multi.getFiles("files").size());
-		System.out.println("cMember 출력:"+cMember.toString());
-		up.fileUp(multi.getFiles("files"));
+		
+		
 		return null;
 	}
 	@RequestMapping(value = "/adminupdatecompany", method = RequestMethod.GET)

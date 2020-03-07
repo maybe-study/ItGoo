@@ -49,7 +49,7 @@ public class UploadFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return path+sysFileName;
+		return "fileupload/"+kind+"/"+sysFileName;
 	}
 	/*
 	 * 여러 파일 업로드
@@ -77,7 +77,7 @@ public class UploadFile {
 			//저장될 파일 이름 생성 a.txt ==>112323242424.txt
 			String sysFileName = System.currentTimeMillis() + "."
 					+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);	//확장자 붙임
-			filePathList.add(path+sysFileName);
+			filePathList.add("/fileupload/"+kind+"/"+sysFileName);
 			//메모리->실제 파일 업로드
 			try {
 				mf.transferTo(new File(path, sysFileName)); // 서버에 파일 저장
