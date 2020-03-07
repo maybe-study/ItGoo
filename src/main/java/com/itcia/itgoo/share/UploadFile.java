@@ -28,6 +28,10 @@ public class UploadFile {
 	// public boolean fileUp(MultipartHttpServletRequest multi){
 	public boolean fileUp(List<MultipartFile> fList) {
 		System.out.println("fileUp");
+		//파일리스트 사이즈가 0이면 리턴
+		if(fList.size()<1) {
+			return false;
+		}
 		// 1.이클립스의 물리적 저장경로 찾기
 //		String root=multi.getSession().getServletContext().getRealPath("/");
 //		System.out.println("root="+root);

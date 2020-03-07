@@ -5,10 +5,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itcia.itgoo.dao.IAdminDao;
 import com.itcia.itgoo.dao.IShelterDao;
-import com.itcia.itgoo.dto.Member;
-import com.itcia.itgoo.dto.commonmember;
+import com.itcia.itgoo.dto.Commonmember;
 
 @Service
 public class ShelterManagement {
@@ -17,7 +15,7 @@ public class ShelterManagement {
 
 	private ModelAndView mav = new ModelAndView();
 
-	public ModelAndView shelterjoin(commonmember cmb) {
+	public ModelAndView shelterjoin(Commonmember cmb) {
 		mav = new ModelAndView();
 		String view = null;
 

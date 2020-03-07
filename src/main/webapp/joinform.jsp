@@ -378,7 +378,7 @@ input {
 
 				 	<tr>
 						<td>사업자등록사진</td>
-						<td><input type="file" id="profile1" class="box"
+						<td><input type="file" id="profile" class="box"
 							name="companycard" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
@@ -389,7 +389,7 @@ input {
 					<tr>
 						<td>사업체사진&nbsp;</td>
 					<td>
-						<input type="file" name="files" multiple id="files" />
+						<input type="file" name="files" multiple id="files" accept=".jpg,.jpeg,.png,.gif,.bmp">
 						<input type="hidden" id="fileCheck" name="file_Check" value="0" />
 					</td>
 					</tr>

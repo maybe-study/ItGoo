@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @Data
 @Alias("commonmember")
 @Accessors(chain=true)
-public class commonmember {
+public class Commonmember {
 //보호소
 	private String companyid;
 	private String companyname;
