@@ -12,4 +12,14 @@
 	select * from client where username=#{username} and useremail=#{useremail}
 </select>
 
+<select id="searchidphone" parameterType="member" resultType="member">
+	select * from client where username=#{username} and phone=#{phone}
+</select>
+
+
+<select id="duplicateid" parameterType="member" resultType="member">
+	select * from client where id=#{id}
+</select>
+
+
 </mapper>

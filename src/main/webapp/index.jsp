@@ -57,7 +57,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="#" class="nav-link">itgoo소개</a></li>
+				<li class="nav-item"><a href="introduce.jsp" class="nav-link">itgoo소개</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
@@ -73,7 +73,7 @@
 			<div class="col-md-6">
 				<h2>About itgoo</h2>
 				<p>경매와 소모임 커뮤니티가 모여 있는 잇구</p>
-				<a href="/itgoo1"><img id="itgoo1"
+				<a href="itgoo1main.jsp"><img id="itgoo1"
 					src="img/portfolio/itgoo1.png" class="img-fluid"></a>
 			</div>
 			
@@ -82,7 +82,7 @@
 				<h2>About ItGoo</h2>
 				<p>유기견 입양 It Goo</p>
 				<a href="/ibyang"><img id="ibyang"
-					src="img/portfolio/ibyang.png" class="img-fluid"></a>
+					src="img/portfolio/balba.png" class="img-fluid"></a>
 			</div>
 		</div>
 	</div>

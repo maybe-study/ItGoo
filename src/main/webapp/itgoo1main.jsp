@@ -35,6 +35,15 @@
 	outline: 0;
 	color: blue;
 }
+
+#logo {
+	width: 350px;
+	height: 200px;
+}
+
+.bg-dark {
+	background-color: #0f9ce3;
+}
 </style>
 </head>
 
@@ -47,8 +56,8 @@
 	<!-- header -->
 
 	<div class="jumbotron text-center">
-		<h1>Itgoo Introduce</h1>
-		<p>(주)Itgoo 소속 유기견 보호 관리 사이트</p>
+		<img alt="잇구로고" src="img/portfolio/itgoo1.png" id="logo">
+		<p>(주)ITGOO corporation</p>
 		<div style="text-align: right;">
 			<sec:authorize access="isAnonymous()">
 
@@ -68,7 +77,7 @@
 
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<a href="index.jsp" class="navbar-brand">Itgoo</a>
+		<a href="#" class="navbar-brand">Itgoo</a>
 		<!-- Toggle Button -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
@@ -76,75 +85,60 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="#" class="nav-link">itgoo소개</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">가상입양</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">강아지소모임</a></li>
 			</ul>
 		</div>
 	</nav>
 	<!-- content -->
 	<div class="container pt-3">
-		<div class="row">
-			<!-- left content -->
-			<div class="col-md-6">
-				<h2>About itgoo</h2>
-				<p>itgoo 프로젝트는 2020년 시작된 프로젝트</p>
-				<p>
-					현재 itgoo는 사회적 프로젝트로 유기견 문제에 초점을 맞추고 있으며 <br> 100% 유기견 입양 시스템과
-					액티비티,가상입양<br> 유기견 근절에 힘쓰고 있다.
-				</p>
-
-				<p>
-					itgoo는 두개의 테마로 되어있으며,<br> itgoo는 경매,소모임,커뮤니티 기능이있다<br>
-					ITGOO는 입양을 지원
-				</p>
-
-			</div>
-
-
+		<div class="row" id="row">
 			<!-- right content -->
 			<div class="wrapper style2">
 				<section class="container3">
 					<div class="row no-collapse-1">
 						<section class="4u">
-							<h2 class='text'>Itgoo company</h2>
+							<h2 class='text'>ITGOO를 빛내준 스타</h2>
 
 							<div id="demo" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 									<!-- 슬라이드 쇼 -->
+
 									<div class="carousel-item active">
-										<!--가로-->
-										<img class="recoimg" src="img/portfolio/ibyang.png"
+										<p>가수 박진영님</p>
+										<img class="recoimg" src="img/slidepic/jinyoung.PNG"
 											alt="First slide">
 
 									</div>
+
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/itgoo1.png"
+										<p>배우 남주혁님</p>
+										<img class="recoimg" src="img/slidepic/namju.PNG"
 											alt="Second slide">
 
 									</div>
+
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/itgoo2.png"
+										<p>배우 김새론님</p>
+										<img class="recoimg" src="img/slidepic/saerone.PNG"
 											alt="Third slide">
 
 									</div>
 
 									<div class="carousel-item">
-										<img class="recoimg" src="img/friends/fr-01.jpg"
+										<p>스타강아지 철수</p>
+										<img class="recoimg" src="img/slidepic/chulsoo.PNG"
 											alt="Forth slide">
 
 									</div>
 
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/ibyang.png"
+										<p>배우 박서준님</p>
+										<img class="recoimg" src="img/slidepic/seojun.PNG"
 											alt="Fifth slide">
 
 									</div>
-
-
 									<!-- / 슬라이드 쇼 끝 -->
 
 									<!-- 왼쪽 오른쪽 화살표 버튼 -->
@@ -177,6 +171,7 @@
 		</div>
 	</div>
 
+
 	<!-- footer -->
 	<div class="jumbotron text-center mt-5 mb-0">
 		<h3 class="text-secondary">IT GOO corporation</h3>
@@ -189,4 +184,3 @@
 
 
 </html>
-

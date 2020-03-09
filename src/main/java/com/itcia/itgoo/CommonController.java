@@ -30,12 +30,13 @@ public class CommonController {
 		return "/login";
 	}
 
+	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
 	public String findaccount(Member mb) {
 		return "findid";
 	}
 
-	
+
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/itgoo1")
 	public String itgoo1() {

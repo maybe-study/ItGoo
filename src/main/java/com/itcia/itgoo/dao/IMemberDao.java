@@ -8,4 +8,8 @@ public interface IMemberDao {
 	
 	Member searchid(Member mb);
 
+	Member searchidphone(Member mb);
+
+	Member duplicateid(Member mb);
+
 }
