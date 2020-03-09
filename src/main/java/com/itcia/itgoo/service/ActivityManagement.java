@@ -2,8 +2,9 @@ package com.itcia.itgoo.service;
 
 import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,13 +43,62 @@ public class ActivityManagement {
 	}
 	
 	
-	public ModelAndView activityMyInfo1(Company cp) {
-		List<Company> activityCompanyList = aDao.activityMyInfo();
-		System.out.println("companyList[0]=" + activityCompanyList.get(0).getCompanyboss());
+	public ModelAndView activityMyInfo1(Company cp,HttpServletRequest req) {
+		HttpSession session = req.getSession();
 		mav= new ModelAndView();
-		mav.setViewName("activity/activityMyInfo");
-		mav.addObject("activityCompanyList",new Gson().toJson(activityCompanyList));
+		String view = null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		List<Company> aList = aDao.activityMyInfo1(cp);
+		mav.addObject("aList",new Gson().toJson(aList));
+		mav.setViewName("activitycompany/activityMyInfo");
+		
+		System.out.println("companyList[0]=" + aList);
 		return mav; 
+	}
+
+
+	public ModelAndView updatecompanyname(Company cp, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		mav = new ModelAndView();
+		String view=null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		aDao.updatecompanyname(cp);
+		
+		
+		return mav;
+	}
+
+
+	public ModelAndView updatecompanyboss(Company cp, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		mav = new ModelAndView();
+		String view=null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		aDao.updatecompanyboss(cp);
+		
+		return mav;
+	}
+
+
+	public ModelAndView updatecompanyphone(Company cp, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		mav = new ModelAndView();
+		String view=null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		aDao.updatecompanyphone(cp);
+		
+		return mav;
+	}
+
+
+	public ModelAndView updatecompanyemail(Company cp, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		mav = new ModelAndView();
+		String view=null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		aDao.updatecompanyemail(cp);
+		
+		return mav;
 	}
 
 }

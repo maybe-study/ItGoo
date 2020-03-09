@@ -3,12 +3,15 @@ package com.itcia.itgoo.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
+import com.itcia.itgoo.dto.Ex;
+import com.itcia.itgoo.dto.Question;
 
 public interface IAdminDao {
 	int getContents();
@@ -31,6 +34,9 @@ public interface IAdminDao {
 	int adminNo(String companyid);
 	@Select("select * from activity where companyid=#{companyid}")
 	List<Dog> adminDogs(String companyid);
+	@Insert("insert into question values(test_seq.nextval,#{question},#{correct},#{point},#{toggle})")
+	void addTest(Question question);
+	void addEx(Ex ex);
 
 
 }

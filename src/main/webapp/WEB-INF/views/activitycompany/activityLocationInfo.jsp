@@ -203,6 +203,7 @@
 				<div class="row mt">
 					<div class="col-sm-12">
 						<section class="panel">
+						<form action="">
 							<header class="panel-heading"> 액티비티 업체 위치 검색 및 변경 </header>
 							
 							<div class="panel-body">
@@ -222,6 +223,7 @@
 								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script> 
 							</div>
 							<div class="button-div"><input type="button" class="location-button" value="위치 등록"/></div>
+						</form>
 						</section>
 					</div>
 				</div>
@@ -473,9 +475,7 @@
 
 				}).open();
 	}
-	$("#cancel1").on('click', function() {
-		location.href = "index.jsp"
-	});
+
 </script>
 
 </body>

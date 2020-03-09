@@ -10,7 +10,19 @@
 	insert into activitypics values(#{activitypic},#{activitynum})
 	 
 	</insert>
-	<select id="activityMyInfo1" parameterType="Company">
+	<select id="activityMyInfo1" parameterType="Company" resultType="Company">
 	select * from company where companyid=#{companyid} and companykind=1
 	</select>
+	<update id="updatecompanyname"  parameterType="Company" >
+	update company set companyname=#{companyname} where companyid=#{companyid} and companykind=1
+	</update>
+	<update id="updatecompanyboss" parameterType="Company">
+	update company set companyboss=#{companyboss} where companyid=#{companyid} and companykind=1
+	</update>
+	<update id="updatecompanyphone" parameterType="Company">
+	update company set companyphone=#{companyphone} where companyid=#{companyid} and companykind=1
+	</update>
+	<update id="updatecompanyemail" parameterType="Company">
+	update company set companyemail=#{companyemail} where companyid=#{companyid} and companykind=1
+	</update>
 </mapper>
