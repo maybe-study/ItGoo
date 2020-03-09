@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IAdminDao;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Ex;
+import com.itcia.itgoo.dto.Question;
 
 @Service
 public class AdminCompany {
@@ -75,6 +77,16 @@ public class AdminCompany {
 			mav=adminShelter();
 		}
 		return mav;
+	}
+	public void addTest(Question question, List<String> exList) {
+		question.setToggle(1);
+		aDao.addTest(question);
+		for(int i=0;i<exList.size();i++) {
+			Ex ex= new Ex();
+			ex.setEx(i+1);
+			ex.setExcontent(exList.get(i));
+			aDao.addEx(ex);
+		}
 	}
 
 }

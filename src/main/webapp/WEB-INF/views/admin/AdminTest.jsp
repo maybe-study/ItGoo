@@ -193,6 +193,14 @@
           </div>
         </div>
         <!-- row -->
+        <div class="row mt">
+               <div class="col-lg-12">
+               <br>
+               <div class="form-group" style="text-align: center">
+                       <button class="btn btn-theme" type="submit" onclick="location.href='./addtestfrm'">문제 추가</button>
+                   </div>
+               </div>
+        </div>
         </section>
       </section>
        
