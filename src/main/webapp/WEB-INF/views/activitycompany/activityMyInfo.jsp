@@ -28,7 +28,7 @@
   <!-- Custom styles for this template -->
   <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -247,11 +247,12 @@
 
               <div class="form-group">
               <div class="main-p-tag">
-              <table >
-               <tr >
+              <table>
+              
+               <tr id="companynamevalue">
                <td>업체명:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
+               <%-- <td>${aList.companyname}</td>
+               <td><a href="#" class="myButton">변경</a></td> --%>
                </tr>
                </table>
                </div>
@@ -259,10 +260,11 @@
               <div class="form-group">
                 <div class="main-p-tag">
               <table >
-               <tr >
+               <tr id="companybossvalue">
                <td>대표자:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
+               
+              <%--  <td>${aList.companyboss }</td>
+               <td><a href="#" class="myButton">변경</a></td> --%>
                </tr>
                </table>
                </div>
@@ -270,10 +272,10 @@
               <div class="form-group">
                 <div class="main-p-tag">
               <table >
-               <tr >
+               <tr id="companyphonevalue">
                <td>휴대폰:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
+               <%-- <td>${aList.companyphone }</td>
+               <td><a href="#" class="myButton">변경</a></td> --%>
                </tr>
                </table>
                </div>
@@ -282,10 +284,10 @@
               <div class="form-group">
                  <div class="main-p-tag">
               <table >
-               <tr >
+               <tr id="companyemailvalue">
                <td>이메일:</td>
-               <td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
-               <td><a href="#" class="myButton">변경</a></td>
+              <%--  <td>${aList.companyemail }</td>
+               <td><a href="#" class="myButton">변경</a></td> --%>
                </tr>
                </table>
                </div>
@@ -342,7 +344,124 @@
   <script type="text/javascript" src="lib/bootstrap-daterangepicker/moment.min.js"></script>
   <script type="text/javascript" src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
   <script src="lib/advanced-form-components.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+		let data= undefined;
+	$.each(${aList},function(idx,data){
+	var $trcn=$("#companynamevalue");
+	var $trcb=$("#companybossvalue");
+	var $trcp=$("#companyphonevalue");
+	var $trem=$("#companyemailvalue");
+	$("<input id='companynameval1' class='companynameval' >").val(data.companyname).appendTo($trcn);
+	$("<td><input type='button' class='myButton' id='changename' value='업체명 번경'>").appendTo($trcn);
+	$("<input id='companybossval1' class='companybossval' >").val(data.companyboss).appendTo($trcb);
+	$("<td><input type='button' class='myButton' id='changeboss' value='대표자 번경'>").appendTo($trcb);
+	$("<input id='companyphoneval1' class='companyphoneval' > ").val(data.companyphone).appendTo($trcp);
+	$("<td><input type='button' class='myButton' id='changephone' value='휴대폰번호 번경'>").appendTo($trcp);
+	$("<input id='companyemailval1' class='companyemailval' > ").val(data.companyemail).appendTo($trem);
+	$("<td><input type='button' class='myButton' id='changeemail' value='이메일 번경'>").appendTo($trem);
+	
+	});
+	var company123 = $("#companynameval1").val();
+	$("#changename").on("click", function(data){
+		var param={
+				_method:"patch",
+				companyname:$("#companynameval1").val(),
+				
+		}
+		console.log("companyname=" ,company123);
+		$.ajax({
+			url: "updatecompanyname",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("회사명을 변경하였습니다", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	$("#changeboss").on("click", function(data){
+		var param={
+				_method:"patch",
+				companyboss:$("#companybossval1").val(),
+				
+		}
+		$.ajax({
+			url: "updatecompanyboss",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("대표자를 변경하였습니다", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "대표자이름 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	$("#changephone").on("click", function(data){
+		var param={
+				_method:"patch",
+				companyphone:$("#companyphoneval1").val(),
+				
+		}
+		$.ajax({
+			url: "updatecompanyphone",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("휴대폰 번호를 변경하였습니다", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "휴대폰 번호 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	$("#changeemail").on("click", function(data){
+		var param={
+				_method:"patch",
+				companyemail:$("#companyemailval1").val(),
+				
+		}
+		$.ajax({
+			url: "updatecompanyemail",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("이메일 정보를 변경하였습니다", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	
+</script>
 </body>
 
 </html>

@@ -3669,3 +3669,27 @@ ul.chat-available-user li a:hover {
 .modal-dialog{
 	width: 1200px; height: 700px;
 }
+.companynameval{
+	width: 300px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: bolder;
+}
+.companybossval{
+	width: 300px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: bolder;
+}
+.companyphoneval{
+	width: 300px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: bolder;
+}
+.companyemailval{
+	width: 300px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: bolder;
+}
