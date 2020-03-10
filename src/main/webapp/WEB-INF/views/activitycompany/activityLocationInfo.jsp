@@ -202,29 +202,30 @@
 			<section class="wrapper site-min-height">
 				<div class="row mt">
 					<div class="col-sm-12">
+					<form action="updatecompanylocation?${_csrf.parameterName}=${_csrf.token}" id="updateloc" name="updateloc" method="post" enctype="multipart/form-data">
 						<section class="panel">
-						<form action="">
+						
 							<header class="panel-heading"> 액티비티 업체 위치 검색 및 변경 </header>
 							
 							<div class="panel-body">
-								<input type="text" id="sample4_postcode" placeholder="우편번호" disabled>
+								<input type="text" id="sample4_postcode" placeholder="우편번호" >
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="button"  onclick="sample4_execDaumPostcode()"
 									value="우편번호 찾기" > <br> <input type="text"
 									id="sample4_roadAddress" placeholder="도로명주소"
-									name="branchaddress" disabled> <input type="text"
-									id="sample4_jibunAddress" placeholder="지번주소" disabled> <br>
+									name="companylocation"  > <input type="text"
+									id="sample4_jibunAddress" placeholder="지번주소" > <br>
 								<span id="guide" style="color: #999; display: none"></span> <input
 									type="text" id="sample4_detailAddress" placeholder="상세주소">
-								<input type="text" id="sample4_extraAddress" placeholder="참고항목" disabled>
+								<input type="text" id="sample4_extraAddress" placeholder="참고항목" >
 								<br>
 								<div id="map" style="width: 100%; height: 350px;"></div>
 								<script type="text/javascript"
 								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script> 
 							</div>
-							<div class="button-div"><input type="button" class="location-button" value="위치 등록"/></div>
-						</form>
+							<div class="button-div"><input type="submit" class="location-button" value="위치 등록"/></div>
 						</section>
+						</form>
 					</div>
 				</div>
 				<!-- page end-->
@@ -327,7 +328,7 @@
 					console.log(item);
 					var data= { 
 							title : item.branchname, 
-							groupAddress : item.branchaddress
+							groupAddress : item.companylocation
 					};
 					listData.push(data);
 					

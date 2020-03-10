@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,4 +68,15 @@ public class RestActivityController {
 
 		return "{\"a\":\"1\"}";
 	}
+	@PreAuthorize("isAnonymous()")
+	@PostMapping(value = "/updatecompanylocation")
+	public  ModelAndView updatecompanylocation (Company cp,HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		session.setAttribute("companyid","123");
+		
+		mav= am.updatecompanylocation(cp, req);
+
+		return mav;
+	}
+	
 }

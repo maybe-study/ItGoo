@@ -21,5 +21,11 @@ public interface IActivityDao {
 
 	public int updatecompanyphone(Company cp);
 
-	public int updatecompanyemail(Company cp); 
+	public int updatecompanyemail(Company cp);
+
+	public int updatecompanylocation(Company cp);
+
+	public List<Company> activityDelete(Company cp);
+
+	public List<Activity> deleteDetail(Integer activitynum); 
 }
