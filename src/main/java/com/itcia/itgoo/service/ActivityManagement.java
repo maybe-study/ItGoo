@@ -101,4 +101,47 @@ public class ActivityManagement {
 		return mav;
 	}
 
+
+	public ModelAndView updatecompanylocation(Company cp, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		mav= new ModelAndView();
+		String view = null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		
+		aDao.updatecompanylocation(cp);
+		view="activitycompany/activityMyInfo";
+		mav.setViewName(view);
+		return mav;
+	}
+
+
+	public ModelAndView activityDelete1(Company cp, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		mav= new ModelAndView();
+		String view = null;
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		List<Company> adList = aDao.activityDelete(cp);
+		mav.addObject("adList",new Gson().toJson(adList));
+		mav.setViewName("activitycompany/activityDelete");
+		
+		System.out.println("companyList[0]=" + adList);
+		return mav; 
+	}
+
+
+	public ModelAndView deleteDetail(Integer activitynum) {
+		mav = new ModelAndView();
+		String view=null;
+		List<Activity> adtList = aDao.deleteDetail(activitynum);
+		System.out.println("ac=--------------------------------------------------------");
+		for(Activity ac:adtList) {
+			System.out.println("ac="+ac);
+		}
+		mav.addObject("adtList",new Gson().toJson(adtList));
+		
+		view = "activitycompany/activityDeleteDetail";
+		mav.setViewName(view);
+		return mav;
+	}
+
 }

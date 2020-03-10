@@ -308,6 +308,7 @@
 								
 							</form>
 						</section>
+						</div>
 						<div class="btn-div">
 							<input type="button" id="insertactivitybtn"
 								class="insertactivitybtn" value="액티비티 등록" /> <input
