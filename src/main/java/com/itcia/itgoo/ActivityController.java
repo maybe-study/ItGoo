@@ -2,6 +2,7 @@ package com.itcia.itgoo;
 
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -9,12 +10,15 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -34,12 +38,11 @@ public class ActivityController {
 
 	private ModelAndView mav;
 	@RequestMapping(value = "/activitymyinfo", method = RequestMethod.GET)
-	public  String activityMyInfo (Locale locale, Model model) {
-		return "activitycompany/activityMyInfo";
-	}
-	@RequestMapping(value = "/activitymyinfo1", method = RequestMethod.GET)
-	public  ModelAndView activityMyInfo1 (Company cp) {
-		mav= am.activityMyInfo1(cp);
+	public  ModelAndView activityMyInfo1 (Company cp,HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		session.setAttribute("companyid","123");
+		System.out.println("session="+session.getAttribute("companyid"));
+		mav= am.activityMyInfo1(cp, req);
 
 		return mav;
 	}
@@ -55,16 +58,32 @@ public class ActivityController {
 	public String activityRegiste(Locale locale, Model model) {
 		return "activitycompany/activityRegiste";
 	}
-	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
-	public String acitivityDelete(Locale locale, Model model) {
-		return "activitycompany/activityDelete";
-	}
+	
 	@RequestMapping(value = "/regiactivity", method = RequestMethod.GET)
 	public ModelAndView regiactivity (Activity ac) {
 		mav=am.regiActivity(ac);
 
 		return mav;
 	}
+	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
+	public  ModelAndView activityDelete (Company cp,HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		session.setAttribute("companyid","123");
+		System.out.println("session="+session.getAttribute("companyid"));
+		mav= am.activityDelete1(cp, req);
+
+		return mav;
+	}
+	@RequestMapping(value = "/activitydeletedetail", method = RequestMethod.GET)
+	public String acitivityDeleteDetail(Locale locale, Model model) {
+		return "activitycompany/activityDeleteDetail";
+	}
+	@RequestMapping(value = "/deletedetail" , method = RequestMethod.GET)
+	public ModelAndView deleteDetail(Integer activitynum) {	//null 값도 받으려고
+		mav= am.deleteDetail(activitynum);
+		return mav;
+	}
+
 
 
 }

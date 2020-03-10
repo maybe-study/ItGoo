@@ -24,5 +24,20 @@ public class RestCommonController {
 		
 		return new Gson().toJson(m);
 	}
+	
+	@PostMapping(value = "/searchidphone", produces="plain/text;charset=utf-8")
+	public String searchidphone(Member mb) {
+		System.out.println("=====**********+++++++username 제발나와주세요:" + mb.getUsername());
+		Member m = mm.searchidphone(mb);
+		
+		return new Gson().toJson(m);
+	}
 
+	@PostMapping(value = "/duplicateid", produces="plain/text;charset=utf-8")
+	public String duplicateid(Member mb) {
+		System.out.println("=====**********+++++++username 제발나와주세요:" + mb.getUsername());
+		Member m = mm.duplicateid(mb);
+		
+		return new Gson().toJson(m);
+	}
 }

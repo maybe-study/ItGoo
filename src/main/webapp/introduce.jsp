@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Itgoo :: Home</title>
+<title>ITGOO :: Home</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
@@ -35,6 +35,10 @@
 	outline: 0;
 	color: blue;
 }
+#logo {
+	width: 350px;
+	height: 200px;
+}
 </style>
 </head>
 
@@ -45,10 +49,10 @@
 </script>
 <body>
 	<!-- header -->
-
+	
 	<div class="jumbotron text-center">
-		<h1>Itgoo Introduce</h1>
-		<p>(주)Itgoo 소속 유기견 보호 관리 사이트</p>
+		<img alt="잇구로고" src="img/portfolio/itgoo1004.png" id="logo">
+		<p>(주)ITGOO 소속 유기견 보호 관리 사이트</p>
 		<div style="text-align: right;">
 			<sec:authorize access="isAnonymous()">
 
@@ -68,7 +72,7 @@
 
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<a href="#" class="navbar-brand">Itgoo</a>
+		<a href="index.jsp" class="navbar-brand">ITGOO</a>
 		<!-- Toggle Button -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
@@ -76,12 +80,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="#" class="nav-link">itgoo소개</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">ITGOO소개</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">가상입양</a></li>
+				<li class="nav-item"><a href="itgoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -110,7 +114,7 @@
 				<section class="container3">
 					<div class="row no-collapse-1">
 						<section class="4u">
-							<h2 class='text'>추천도서</h2>
+							<h2 class='text'>Itgoo company</h2>
 
 							<div id="demo" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
