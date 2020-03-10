@@ -21,5 +21,7 @@
 	select * from client where id=#{id}
 </select>
 
-
+<insert id="memberRoleJoin"  parameterType="Role">
+	insert into role values(#{id},#{role})
+</insert>
 </mapper>

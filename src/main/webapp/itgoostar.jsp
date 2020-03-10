@@ -56,7 +56,7 @@
 	<!-- header -->
 
 	<div class="jumbotron text-center">
-		<img alt="잇구로고" src="img/portfolio/itgoo1.png" id="logo">
+		<img alt="잇구로고" src="img/portfolio/itgoo1004.png" id="logo">
 		<p>(주)ITGOO corporation</p>
 		<div style="text-align: right;">
 			<sec:authorize access="isAnonymous()">
@@ -77,7 +77,7 @@
 
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<a href="#" class="navbar-brand">Itgoo</a>
+		<a href="index.jsp" class="navbar-brand">ITGOO</a>
 		<!-- Toggle Button -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
@@ -85,9 +85,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
+				<li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">강아지소모임</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">ITGOO_STAR</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -105,13 +108,6 @@
 								<div class="carousel-inner">
 									<!-- 슬라이드 쇼 -->
 
-									<div class="carousel-item active">
-										<p>가수 박진영님</p>
-										<img class="recoimg" src="img/slidepic/jinyoung.PNG"
-											alt="First slide">
-
-									</div>
-
 									<div class="carousel-item">
 										<p>배우 남주혁님</p>
 										<img class="recoimg" src="img/slidepic/namju.PNG"
@@ -119,6 +115,12 @@
 
 									</div>
 
+									<div class="carousel-item active">
+										<p>가수 박진영님</p>
+										<img class="recoimg" src="img/slidepic/jinyoung.PNG"
+											alt="First slide">
+
+									</div>
 									<div class="carousel-item">
 										<p>배우 김새론님</p>
 										<img class="recoimg" src="img/slidepic/saerone.PNG"

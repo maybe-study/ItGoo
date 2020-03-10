@@ -75,14 +75,18 @@ hr {
 	height: 150px;
 }
 </style>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
 	<div id="middle">
-		<form action="memberjoin?${_csrf.parameterName}=${_csrf.token}" method="post">
+		<form action="memberjoin?${_csrf.parameterName}=${_csrf.token}"
+			method="post">
 			<div>
 				<a href="main"><img id="rogo" alt="로고"
 					src="img/portfolio/itgoo1004.png"></a>
@@ -104,27 +108,27 @@ hr {
 					placeholder="비밀번호 재입력" required= /> <span id="alert-danger"
 					style="display: none; color: #d92742;">비밀번호가 일치하지 않습니다.</span>
 				<hr>
-				* 이메일 <br> <br> <input type="text" name="useremail"
-					placeholder="이메일 입력" required= />
+				* 이메일 <br> <br> <input type="text" id="useremail"
+					name="useremail" placeholder="이메일 입력" required= />
 				<hr>
 				* 이름 <br> <br> <input type="text" name="username"
 					placeholder="이름 입력" required= />
 				<hr>
-				*전화번호 <br> <br> <input type="text" name="phone"
+				*전화번호 <br> <br> <input type="text" name="phone" id="tel"
 					placeholder="전화번호 입력" required= />
 				<hr>
 				* 생년월일 <br> <br> <input type="text" name="birthday"
-					placeholder="생년월일" required= />
+					placeholder="YYMMDD" maxlength="6" required= />
 				<hr>
-				* enabled <select name="enabled">
-					<option value="1">1</option>
-					<option value="2">2</option>
-				</select>
+				* 사용자 주소 <br> <br> <input id="map2" type="button"
+					onclick="sample4_execDaumPostcode('useraddress')" value="우편번호 찾기">
+				<input type="text" id="useraddress" placeholder="도로명주소"
+					name="useraddress" required= />
 
 				<DIV ID="boot">
 					<hr>
 					<button type="submit" id="join" class="btn">회원가입</button>
-					<button id="cancel" type="button" href="main화면으로 보내자" class="btn">취소</button>
+					<button id="cancel" type="button" onClick="history.back();" class="btn">취소</button>
 				</DIV>
 			</div>
 		</form>
@@ -135,11 +139,35 @@ hr {
 
 </body>
 <script type="text/javascript">
+	 $('#join').on(
+					"click",
+					function() {
+						var email1 = $('#useremail').val();
+						var emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+						var regNumber = /^[0-9]*$/
+						var telphone = $('#tel').val();
+
+						if (!emailRegex.test(email1)) {
+							alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
+							$("#useremail").focus();
+							$("#useremail").val("");
+							return false;
+						}
+
+						if (!regNumber.test(telphone)) {
+							alert('업체전화번호에 문자열이 들어갔는지 확인부탁드립니다.')
+							$("#tel").focus();
+							$("#tel").val("");
+							return false;
+						}
+
+					});//function 끝 
+
 	$("#same").on("click", function() {
 		let formData = new FormData();
 		formData.append("id", $("#id").val());
-	
-		if($("#id").val()==""){
+
+		if ($("#id").val() == "") {
 			$("#checkid").html("아이디를 입력해주세요");
 			$("#id").focus();
 			return false;
@@ -159,18 +187,18 @@ hr {
 			//서블릿이 성공하면 다시 돌아오는것
 			success : function(data) {
 				console.log(data);
-				if (data == "null" ) {
-					
+				if (data == "null") {
+
 					console.log(data);
-					$("#checkid").html($("#id").val()+ "는 사용가능한 아이디입니다.");
+					$("#checkid").html($("#id").val() + "는 사용가능한 아이디입니다.");
 
 				} else {
-					
-				var result = JSON.parse(data);
+
+					var result = JSON.parse(data);
 					console.log("엘스로 빠지는중")
 					console.log(typeof data)
 					console.log(data);
-					$("#checkid").html(result.id+"는 사용할수 없는 아이디입니다.");
+					$("#checkid").html(result.id + "는 사용할수 없는 아이디입니다.");
 					$("#id").val("")
 				}
 
@@ -214,5 +242,16 @@ hr {
 		}
 
 	});
+
+	function sample4_execDaumPostcode(addrid) {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+
+				document.getElementById(addrid).value = roadAddr;
+
+			}
+		}).open();
+	}
 </script>
 </html>
