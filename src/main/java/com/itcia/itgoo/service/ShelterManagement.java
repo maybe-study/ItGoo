@@ -1,12 +1,17 @@
 package com.itcia.itgoo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.share.UploadFile;
 
 @Service
 public class ShelterManagement {
@@ -27,13 +32,43 @@ public class ShelterManagement {
 
 		sDao.insertShelter(cmb);
 		sDao.insertClient(cmb);
-		//파일 첨부 메소드 만들기
-		
-		
-		
+		// 파일 첨부 메소드 만들기
+
 		mav.setViewName(view);
 		return mav;
 	}
 
+	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
+		// TODO Auto-generated method stub
+		/*
+		 * 파일 업로드 사용법 1. UploadFile 클래스 선언 2. 단일 파일 업로드일
+		 * 경우:fileUp(multi.getFile("넘긴 이름"),"종류") 여러개 파일 업로드일
+		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"종류") return 값을 db에 저장
+		 */
+		UploadFile up = new UploadFile();
+		// 파일 업로드 (시설 등록증)
+		String path = up.fileUp(multi.getFile("companycardfile"), "companycard");
+		cMember.setCompanycard(path); // 시설 등록증 설정
+		// cMe
+
+		sDao.insertCompany(cMember);
+
+		// 시설 사진 여러개 디비에 넣기
+		// 파일 업로드(시설 사진 리스트)
+
+		// 이거는 for문 돌려서 companypic 테이블에 넣어야함
+		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
+		System.out.println("시설 사진 리스트의 크기:" + paths.size());
+		for (String picPath : paths) {
+			sDao.insertPic(picPath, cMember.getCompanyid());
+		}
+
+		return mav;
+	}
+
+	public Member xduplicateid(Member mb) {
+		   Member m = sDao.xduplicateid(mb);
+		      return m;
+	}
 
 }

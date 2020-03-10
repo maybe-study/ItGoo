@@ -2,7 +2,6 @@ package com.itcia.itgoo.service;
 
 import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;

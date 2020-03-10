@@ -24,12 +24,12 @@ public class Commonmember {
 	private String companylocation;
 	private String companycard;
 	private String companykind;
-	private String enroll;
+	private int enroll;
 
 //유저
 	
 	private String password;
-	private String useradderess;
+	private String useraddress;
 	private String useremail;
 	private String username;
 	private String phone;

@@ -1,3 +1,72 @@
+
+
+
+
+<tr>
+	<td>PW</td>
+	<td><input type="password" name="password" maxlength="30" id="pw"
+		required></td>
+</tr>
+<tr>
+	<td><span id="alert-success" style="display: none; color: blue;">비밀번호가
+			일치합니다.</span></td>
+</tr>
+
+
+<tr>
+	<td>&nbsp;</td>
+</tr>
+
+<tr>
+	<td>PW Check</td>
+	<td><input type="password" name="pwcheck" maxlength="30"
+		id="pwcheck" required></td>
+	<td id='check'></td>
+</tr>
+<tr>
+	<td><span id="alert-danger" style="display: none; color: #d92742;">비밀번호가
+			일치하지 않습니다.</span></td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,154 +81,8 @@
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+</head>
 
-<script>
-	 //$(function() {
-		// 회원 가입 처리
-	/* 	$('#hag').click(function(e) {
-							e.preventDefault();
-							if ($("#companyname").val() == '') {
-								alert('업체이름을 입력하세요');
-								$("#companyname").focus();
-								return false;
-							}
-							if ($("#name").val() == '') {
-								alert('대표명을 입력하세요');
-								$("#name").focus();
-								return false;
-							}
-							if ($("#id").val() == '') {
-								alert('아이디 입력하세요');
-								$("#id").focus();
-								return false;
-							}
-							if ($("#pw").val() == '') {
-								alert('비밀번호를 입력하세요');
-								$("#pw").focus();
-								return false;
-							}
-							if ($("#pwcheck").val() == '') {
-								alert('비밀번호를 다시 한번 더 입력하세요');
-								$("#pwcheck").focus();
-								return false;
-							}
-							if ($("#pw").val() !== $("#pwcheck").val()) {
-								alert('비밀번호를 둘다 동일하게 입력하세요');
-								return false;
-							}
-							var telphone = $('#tel').val()
-							if ($("#tel").val() == '') {
-								alert('휴대폰 번호를 입력하세요');
-								$("#tel").focus();
-								return false;
-							} else {
-								var regNumber = /^[0-9]*$/;
-								if (!regNumber.test(telphone)) {
-									alert('업체전화번호에 문자열이 들어갔는지 확인부탁드립니다.')
-									$("#tel").focus();
-									return false;
-								}
-							}
-
-							var email = $('#mail').val();
-							if (email == '') {
-								alert('이메일을 입력하세요');
-								$("#mail").focus();
-								return false;
-							} else {
-								var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-								if (!emailRegex.test(email)) {
-									alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
-									$("#mail").focus();
-									return false;
-								}
-							}
-							if ($("#companylocation").val() == '') {
-								alert('우편번호 찾기를 클릭후 정보를 입력해주세요');
-								$("#companylocation").focus();
-								return false;
-							}
-
-							if ($("#profile1").val() == '') {
-								alert('사업자등록사진을 첨부해주세요');
-								$("#profile1").focus();
-								return false;
-
-							}
-							if ($("#profile2").val() == '') {
-								alert('사업체을 첨부해주세요');
-								$("#profile2").focus();
-								return false;
-
-							}
-							if ($("#profile3").val() == '') {
-								alert('사업체을 첨부해주세요');
-								$("#profile3").focus();
-								return false;
-
-							}
-							if ($("#profile4").val() == '') {
-								alert('사업체을 첨부해주세요');
-								$("#profile4").focus();
-								return false;
-
-							}
-
-							if ($("#select").val() == '') {
-								alert('');
-								$("#select").focus();
-								return false;
-
-							}
-							if ($("#username").val() == '') {
-								alert('사용자이름을 입력해주세요');
-								$("#username").focus();
-								return false;
-							}
-
-							var usertell = $('#usertel').val()
-							if ($("#usertel").val() == '') {
-								alert('사용자 전화번호입력을 해주세요');
-								$("#usertel").focus();
-								return false;
-							} else {
-								var regNumber = /^[0-9]*$/;
-							if (!regNumber.test(usertell)) {
-									alert('업체전화번호에 문자열이 들어갔는지 확인부탁드립니다.')
-									$("#usertel").focus();
-									return false;
-								}
-							}
-
-							var email1 = $('#usermail1').val();
-							if (email1 == '') {
-								alert('이메일을 입력하세요');
-								$("#usermail1").focus();
-								return false;
-							} else {
-								var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-								if (!emailRegex.test(email1)) {
-									alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
-									$("#usermail1").focus();
-									return false;
-								}
-							}
-
-							if ($("#useraddress").val() == '') {
-								alert('우편번호 찾기를 클릭후 사용자주소를 입력해주세요');
-								$("#useraddress").focus();
-								return false;
-							}
-							var birth = $('#inBorder').val()
-							if ($("#inBorder").val() == '') {
-								alert('사용자 생년월일을 입력해주세요');
-								$("#inBorder").focus();
-								return false;
-							}
-							return true;
-						});
-	});  */
-</script>
 <style>
 table {
 	padding-left: 200px;
@@ -240,7 +163,7 @@ input {
 }
 
 .box {
-	padding-left: 90px;
+	padding-left: 40px;
 }
 
 #select {
@@ -271,13 +194,13 @@ input {
 	appearance: none;
 }
 </style>
-</head>
+
 <body>
 
 
 	<header>
 		<div id="header">
-			<a href="/"><img id="logo" src="../img/ItGoo!logo.png"></a>
+			<a href="index.jsp"><img id="logo" src="img/ItGoo!logo.png"></a>
 		</div>
 	</header>
 
@@ -285,17 +208,14 @@ input {
 	<div id="div">
 		<h3 id="h3text">회원가입</h3>
 		<div id="join_background">
-
-
-
-			<form name="joinFrm" action="shelterjoin" method="post">
+			<form action="index?${_csrf.parameterName}=${_csrf.token}"
+				onsubmit="return check()" name=frm id="frm" method="post"
+				enctype="multipart/form-data">
 				<table>
-
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-					<td><input type="hidden" name="_csrf" value="${_csrf.token}"></td>
 						<td>업체명</td>
 						<td><input type="text" name="companyname" maxlength="30"
 							id="companyname"></td>
@@ -317,6 +237,7 @@ input {
 						<td><input type="text" name="companyid" maxlength="20"
 							id="id"></td>
 						<td><input id="id_check" type="button" value="중복확인"></td>
+						<div id="idcheck"></div>
 					</tr>
 
 					<tr>
@@ -355,7 +276,7 @@ input {
 					</tr>
 
 					<tr>
-					
+
 						<td>업체 Email&nbsp;</td>
 						<td><input type="text" name="companyemail" id="mail"
 							maxlength="30"></td>
@@ -379,10 +300,10 @@ input {
 					</tr>
 
 
-				 	<tr>
+					<tr>
 						<td>사업자등록사진</td>
-						<td><input type="file" id="profile1" class="box"
-							name="companycard" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
+						<td><input type="file" id="profile" class="box"
+							name="companycardfile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
 					</tr>
 
 					<tr>
@@ -391,25 +312,16 @@ input {
 
 					<tr>
 						<td>사업체사진&nbsp;</td>
-						<td><input type="file" id="profile2" class="box"
-							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
+						<td><input class="box" type="file" name="files" multiple
+							id="files" accept=".jpg,.jpeg,.png,.gif,.bmp"> <input
+							type="hidden" id="fileCheck" name="file_Check" value="0" /></td>
 					</tr>
 
-					<tr>
-						<td></td>
-						<td><input type="file" id="profile3" class="box"
-							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
-					</tr>
 
-					<tr>
-						<td></td>
-						<td><input type="file" id="profile4" class="box"
-							name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
-					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
-					<tr> 
+					<tr>
 
 						<td>선택사항</td>
 						<td><select class="select" id="select" name="companykind"
@@ -528,12 +440,12 @@ input {
 					</tr>
 
 					<tr>
-						<td colspan="2"><button id="hag" class="btn" type="submit">회원가입</button></td>
-					</tr>
+						<td><button id="hag" class="btn" type="submit">회원가입</button></td>
 
+						<td><button class="btn" formaction="index">취소</button></td>
+					</tr>
 					<tr>
-						<td><input class="btn" type="button" value="취소"
-							formaction="home"></td>
+						<td>&nbsp;</td>
 					</tr>
 
 				</table>
@@ -542,6 +454,7 @@ input {
 
 
 		</div>
+
 	</div>
 
 
@@ -550,10 +463,6 @@ input {
 
 
 	<script>
-	$("#hag").on("click", function name() {
-		console.log("나오니");
-	});
-	
 		//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 		function sample4_execDaumPostcode(addrid) {
 			new daum.Postcode({
@@ -565,6 +474,147 @@ input {
 				}
 			}).open();
 		}
+
+		function check() {
+			var frm = document.joinform;
+			var length = frm.length - 1;
+			for (var i = 0; i < length; i++) {
+				if (frm[i].value == "") {
+					alert(frm[i].name + "을 입력하세요!!!");
+					frm[i].focus();
+					return false; //실패시
+				}
+			}
+			return true; //성공시 서버로 전송
+		}
+		
+		//중복확인
+		var idck = 0;
+		$("#id").focus(function(){
+			console.log("변경전 idck="+idck);
+			idck=0;
+			console.log("변경후 idck="+idck);
+		});
+		$("#id_check").click(function() {
+
+			var $id = $("#id").val();
+			console.log($id);
+
+			$.ajax({
+				type : 'post',
+				data : {$id:$id},
+				url : 'idcheck',
+				datatype : 'json',
+				success : function(data) {
+					console.log("data="+data);
+					console.log("data.cnt="+data.cnt);
+					
+					if (data==1) {
+						alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+						idck = 0;
+						$("#id").focus();
+					} else if(data== 0) {
+						alert("사용가능한 아이디입니다.");
+						$("#pw").focus();
+						idck = 1;
+					}
+					else if(data==-1){
+						alert("아이디를 입력해주세요.");
+						idck = 0;
+						$("#id").focus();
+					}
+
+				}, //success end
+				error : function(error) {
+					console.log(error);
+				}
+
+			}); //ajax end
+		});
+
+
+			
+				$("#hag").click(function() {
+			if(idck==0){
+				alert("아이디 중복검사해주세요.");
+				return;
+			}
+			else if($("#companyname").val()==""){
+				alert("업체명을 입력해주세요.");
+				$("#hag").prop("type","button");
+			}
+			
+			else if($("#companyboss").val()==""){
+				alert("대표자을 입력해주세요.");
+				$("#hag").prop("type","button");
+			}
+			
+			else if ($("#id").val() == "") {
+				alert("아이디를 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+
+			else if ($("#pw").val() == "") {
+				alert("비밀번호를 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+			
+			else if ($("#pwcheck").val() == "") {
+				alert("비밀번호확인를 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+
+			else if ($("#companyphone").val() == "") {
+				alert("업체번호를 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+
+			else if ($("#companyemail").val() == "") {
+				alert("업체email을 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+
+			else if ($("#companylocation").val() == "") {
+				alert("업체주소를 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+			
+			else if ($("#username").val() == "") {
+				alert("사용자이름을 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+			
+			else if ($("#usertel").val() == "") {
+				alert("사용자전화번호을 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+			
+			else if ($("#usermail1").val() == "") {
+				alert("사용자이메일을 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+			else if ($("#useraddress").val() == "") {
+				alert("사용자주소을 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+
+			
+			else if ($("#inBorder1").val() == "") {
+				alert("태어난일자을 입력해주세요.");
+				$("#hag").prop("type", "button");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	</script>
 </body>
 </html>
