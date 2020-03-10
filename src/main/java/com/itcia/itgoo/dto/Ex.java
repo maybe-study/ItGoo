@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain=true)
 public class Ex {
-	private int ex;
+	private int exnum;
 	private int questionnum;
 	private String excontent;
 }

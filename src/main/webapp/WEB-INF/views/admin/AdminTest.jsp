@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>적격성 평가 문항</title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -25,8 +25,6 @@
   <link href="css/style-responsive.css" rel="stylesheet">
   <script src="lib/chart-master/Chart.js"></script>
   <script src="lib/jquery/jquery.min.js"></script>
-
-  
   <script src="main.js?ver"></script>
 
   <!-- =======================================================
@@ -85,108 +83,13 @@
                   <tr>
                     <th>번호</th>
                     <th>문제</th>
-                    <th>수정</th>
-                    
+                    <th>정답</th>
+                    <th>점수</th>
+                    <th>관리</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td width="200px">1</td>
-                    <td width="1200px">ㅁㄴㄹㅇㅁㄴㅇㄹㄴㅁㅇㄹㄴㅁㅇㄻㄴㄹㄴㅁㄹㄴㄻㄴㄻㄴㄻㄴㄹㄴㅁㄻㄴㄹㄴㅁㄻㄴㄹㄴㅁㄻㄴㄹㅇㅁㄴㄹㅇㅁㄴㄻㄴㄻㄴㅇㄻㄴㄻㄴㄻㄴㄹㄴㅁㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄹㄴㅁㄹㄴㅁㄻㄴㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹㄴㅁㄹ</td>
-                    <td><button>수정</button><button>삭제</button></td>
-                    
-                    
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                   
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>Simon</td>
-                    <td>Mosa</td>
-                    
-                  </tr>
+                <tbody id="testList">
+                  
                 </tbody>
               </table>
             </div>
@@ -196,7 +99,7 @@
         <div class="row mt">
                <div class="col-lg-12">
                <br>
-               <div class="form-group" style="text-align: center">
+               		<div class="form-group" style="text-align: center">
                        <button class="btn btn-theme" type="submit" onclick="location.href='./addtestfrm'">문제 추가</button>
                    </div>
                </div>
@@ -207,29 +110,36 @@
         <!-- /row -->
     <!--main content end-->
     <!--footer start-->
-    <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          <!--
-            You are NOT allowed to delete the credit link to TemplateMag with free version.
-            You can delete the credit link only if you bought the pro version.
-            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-            Licensing information: https://templatemag.com/license/
-          -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="index.html#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
-    <!--footer end-->
+
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
+ <script>
+ 	
  
+ 
+ 	var tList=${testList};
+ 	//var cList=${correctList};
+ 	console.dir(tList);
+ 	$.each(tList, function(idx,test){
+ 		var $tr=$('<tr>');
+ 		
+ 		$('<td>').text(test.questionnum).appendTo($tr);
+ 		$('<td>').text(test.question).appendTo($tr);
+ 		$('<td>').text(test.correct).appendTo($tr);
+ 		$('<td>').text(test.point).appendTo($tr);
+ 		
+ 		var $btn1=$('<button>').attr('type','button').attr('class','btn btn-theme').text('수정');
+ 		var $btn2=$('<button>').attr('type','button').attr('class','btn btn-theme04').text('삭제');
+ 		$btn1.click(function(){location.href="modifyquestionfrm?questionnum="+test.questionnum});
+ 		$btn2.click(function(){location.href="deletequestion?questionnum="+test.questionnum});
+ 
+ 		
+ 		$('<td>').append($btn1).append($btn2).appendTo($tr)
+ 		
+ 	 	$('#testList').append($tr);
+ 	})
+ 	
+ </script>
   
   
 </body>

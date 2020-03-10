@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
@@ -27,7 +28,6 @@ public interface IAdminDao {
 	Company adminCompany(String companyid);
 	@Select("select * from activity where companyid=#{companyid}")
 	List<Activity> adminActivities(String companyid);
-
 	@Update("update company set enroll=1  where companyid=#{companyid}")
 	int adminOk(String companyid);
 	@Delete("delete company where companyid=#{companyid}")
@@ -37,6 +37,14 @@ public interface IAdminDao {
 	@Insert("insert into question values(test_seq.nextval,#{question},#{correct},#{point},#{toggle})")
 	void addTest(Question question);
 	void addEx(Ex ex);
+	@Select("select * from question where toggle=1")
+	List<Question> getTest();
+	@Select("select * from question where questionnum=#{questionnum}")
+	Question getQuestion(int questionnum);
+	@Select("select * from ex where questionnum=#{questionnum}")
+	List<Ex> getExList(int questionnum);
+	@Update("update question set toggle=0 where questionnum=#{questionnum}")
+	void deleteQuestion(int questionnum);
 
 
 }
