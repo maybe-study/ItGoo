@@ -19,6 +19,7 @@ public class Activity {
 	private String activityname;
 	private String activitydate;
 	private String activitystart;
+	private int activityprice;
 	private int activitytime;
 	private int activitydogcnt;
 	private String activityexplanation;

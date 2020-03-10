@@ -235,7 +235,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Basic Table Examples</h3>
+        <h3><i class="fa fa-angle-right"></i> 액티비티 삭제 페이지</h3>
         <div class="row">
           
           <!-- /col-md-12 -->
@@ -248,29 +248,14 @@
                   <tr>
                     <th>업체 명</th>
                     <th>액티비티 활동</th>
-                    <th>액티비티 날짜 및 시간</th>
+                    <th>액티비티 시작 날짜 </th>
+                    <th>액티비티 시작 시간</th>
+                    <th>액티비티 진행 및 활동 시간</th>
                     <th>참여가능한 최대 마릿 수</th>
                     </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>휴식이 필요하개</td>
-                    <td><a href="#">오일 테라피</a></td>
-                    <td>2020/03/20</td>
-                    <td>1마리</td>
-                  </tr>
-                  <tr>
-                    <td>보듬 액티비티 센터</td>
-                    <td><a href="#">장해물 달리기</a></td>
-                    <td>2020/03/21</td>
-                    <td>3마리</td>
-                  </tr>
-                  <tr>
-                    <td>우리 믿음 액티비티 센터</td>
-                    <td><a href="#">프리즈비</a></td>
-                    <td>2020/04/15</td>
-                    <td>2마리</td>
-                  </tr>
+                <tbody id="activitydelbody">
+                  
                 </tbody>
               </table>
             </div>
@@ -278,7 +263,7 @@
           <!-- /col-md-12 -->
         </div>
         <!-- row -->
-        
+      
         <!-- /row -->
       </section>
     </section>
@@ -291,6 +276,11 @@
          <a href="index.html"><img class="footerimg" src="img/mainlogo.png" alt="mainlogo" /></a>
         </p>
         <div class="credits">
+        
+          <div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
           <!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
@@ -317,7 +307,47 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-  
+	<script>
+	$.each(${adList},function(idx, data){
+	var $body = $("#activitydelbody");
+	var $tr = $("<tr>").appendTo($body);
+	$("<td>").text(data.companyname).appendTo($tr);
+	console.log(data);
+	$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.activitynum+')').text(data.activityname)).appendTo($tr);
+	$("<td>").text(data.activitydate).appendTo($tr);
+	$("<td>").text(data.activitystart).appendTo($tr);
+	$("<td>").text(data.activitytime).appendTo($tr);
+	$("<td>").text(data.activitydogcnt).appendTo($tr);
+	});
+	function articleView(activitynum){
+		$("#articleView_layer").addClass('open');
+		$.ajax({
+			type:'get',
+			url:"deletedetail",
+			data:{activitynum:activitynum},
+			dataType:'html',
+			success:function(data){
+				$("#contents_layer").html(data);
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
+	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	});
+	
+	</script>  
 </body>
 
 </html>
