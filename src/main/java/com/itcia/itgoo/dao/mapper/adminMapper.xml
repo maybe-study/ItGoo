@@ -7,6 +7,6 @@
 	<selectKey resultType="int" keyProperty="questionnum" order="BEFORE">
     	SELECT max(questionnum) from question
 	</selectKey>
-		insert into ex values(ex_seq.nextval,#{questionnum},#{excontent})
+		insert into ex values(#{exnum},#{questionnum},#{excontent})
 	</insert>
 </mapper>

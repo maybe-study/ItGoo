@@ -44,40 +44,12 @@ public class ShelterController {
 		return "main";
 	}
 
-	// 회원가입
-	@PreAuthorize("isAnonymous()")
-	@PostMapping(value = "/shelterjoin")
-	public ModelAndView memberjoin(Commonmember cmb) {
-		System.out.println("여기오니");
-		mav = smm.shelterjoin(cmb);
-
-		return mav;
-	}
+	
 	// 회원가입
 	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/companyjoin")
 	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
-		/*
-		 * 파일 업로드 사용법
-		 * 1. UploadFile 클래스 선언
-		 * 2. 단일 파일 업로드일 경우:fileUp(multi.getFile("넘긴 이름"),"종류")
-		 *    여러개 파일 업로드일 경우:fileUp(multi.getFiles("넘긴 이름"),"종류")
-		 *    return 값을 db에 저장
-		 */
-		UploadFile up=new UploadFile();
-		
-		//파일 업로드(시설 사진 리스트)
-		List<String> paths=up.fileUp(multi.getFiles("files"),"company");
-		//파일 업로드 (시설 등록증)
-		String path=up.fileUp(multi.getFile("companycardfile"),"companycard");
-		
-		System.out.println("path:"+path);
-		System.out.println("paths:");
-		for(String obj:paths) {
-			System.out.println(obj);
-		}
-		cMember.setCompanycard(path);	//시설 등록증 설정
-		
+		mav=smm.companyJoin(multi,cMember);
 		
 		return mav;
 	}

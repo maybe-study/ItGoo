@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.Role;
 import com.itcia.itgoo.service.MemberManagement;
 
 @Controller
@@ -35,19 +36,19 @@ public class CommonController {
 	public String findaccount(Member mb) {
 		return "findid";
 	}
-
-
+	
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/itgoo1")
-	public String itgoo1() {
-		return "index";
+	@RequestMapping(value = "/itgoo1main", method = RequestMethod.GET)
+	public String itgoo1main() {
+		return "itgoo1main";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/adoptMain", method = RequestMethod.GET)
+	public String adoptMain() {
+		return "adoptMain";
 	}
 
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/ibyang")
-	public String ibyang() {
-		return "index";
-	}
 
 	// 회원가입
 	@RequestMapping(value = "/joinform", method = RequestMethod.GET)
@@ -57,9 +58,9 @@ public class CommonController {
 
 	// 회원가입
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
-	public ModelAndView memberjoin(Member mb) {
-		mav = mm.memberJoin(mb);
-		return mav;
+	public String memberjoin(Member mb,Role rl) {
+		mav = mm.memberJoin(mb,rl);
+		return "login";
 	}
 
 }

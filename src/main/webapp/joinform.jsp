@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,157 +11,9 @@
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+</head>
 
-<script>
-	 //$(function() {
-		// 회원 가입 처리
-	/* 	$('#hag').click(function(e) {
-							e.preventDefault();
-							if ($("#companyname").val() == '') {
-								alert('업체이름을 입력하세요');
-								$("#companyname").focus();
-								return false;
-							}
-							if ($("#name").val() == '') {
-								alert('대표명을 입력하세요');
-								$("#name").focus();
-								return false;
-							}
-							if ($("#id").val() == '') {
-								alert('아이디 입력하세요');
-								$("#id").focus();
-								return false;
-							}
-							if ($("#pw").val() == '') {
-								alert('비밀번호를 입력하세요');
-								$("#pw").focus();
-								return false;
-							}
-							if ($("#pwcheck").val() == '') {
-								alert('비밀번호를 다시 한번 더 입력하세요');
-								$("#pwcheck").focus();
-								return false;
-							}
-							if ($("#pw").val() !== $("#pwcheck").val()) {
-								alert('비밀번호를 둘다 동일하게 입력하세요');
-								return false;
-							}
-							var telphone = $('#tel').val()
-							if ($("#tel").val() == '') {
-								alert('휴대폰 번호를 입력하세요');
-								$("#tel").focus();
-								return false;
-							} else {
-								var regNumber = /^[0-9]*$/;
-								if (!regNumber.test(telphone)) {
-									alert('업체전화번호에 문자열이 들어갔는지 확인부탁드립니다.')
-									$("#tel").focus();
-									return false;
-								}
-							}
-
-							var email = $('#mail').val();
-							if (email == '') {
-								alert('이메일을 입력하세요');
-								$("#mail").focus();
-								return false;
-							} else {
-								var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-								if (!emailRegex.test(email)) {
-									alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
-									$("#mail").focus();
-									return false;
-								}
-							}
-							if ($("#companylocation").val() == '') {
-								alert('우편번호 찾기를 클릭후 정보를 입력해주세요');
-								$("#companylocation").focus();
-								return false;
-							}
-
-							if ($("#profile1").val() == '') {
-								alert('사업자등록사진을 첨부해주세요');
-								$("#profile1").focus();
-								return false;
-
-							}
-							if ($("#profile2").val() == '') {
-								alert('사업체을 첨부해주세요');
-								$("#profile2").focus();
-								return false;
-
-							}
-							if ($("#profile3").val() == '') {
-								alert('사업체을 첨부해주세요');
-								$("#profile3").focus();
-								return false;
-
-							}
-							if ($("#profile4").val() == '') {
-								alert('사업체을 첨부해주세요');
-								$("#profile4").focus();
-								return false;
-
-							}
-
-							if ($("#select").val() == '') {
-								alert('');
-								$("#select").focus();
-								return false;
-
-							}
-							if ($("#username").val() == '') {
-								alert('사용자이름을 입력해주세요');
-								$("#username").focus();
-								return false;
-							}
-
-							var usertell = $('#usertel').val()
-							if ($("#usertel").val() == '') {
-								alert('사용자 전화번호입력을 해주세요');
-								$("#usertel").focus();
-								return false;
-							} else {
-								var regNumber = /^[0-9]*$/;
-							if (!regNumber.test(usertell)) {
-									alert('업체전화번호에 문자열이 들어갔는지 확인부탁드립니다.')
-									$("#usertel").focus();
-									return false;
-								}
-							}
-
-							var email1 = $('#usermail1').val();
-							if (email1 == '') {
-								alert('이메일을 입력하세요');
-								$("#usermail1").focus();
-								return false;
-							} else {
-								var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-								if (!emailRegex.test(email1)) {
-									alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
-									$("#usermail1").focus();
-									return false;
-								}
-							}
-
-							if ($("#useraddress").val() == '') {
-								alert('우편번호 찾기를 클릭후 사용자주소를 입력해주세요');
-								$("#useraddress").focus();
-								return false;
-							}
-							var birth = $('#inBorder').val()
-							if ($("#inBorder").val() == '') {
-								alert('사용자 생년월일을 입력해주세요');
-								$("#inBorder").focus();
-								return false;
-							}
-							return true;
-						});
-	});  */
-</script>
 <style>
 table {
 	padding-left: 200px;
@@ -242,7 +94,7 @@ input {
 }
 
 .box {
-	padding-left: 90px;
+	padding-left: 40px;
 }
 
 #select {
@@ -273,13 +125,13 @@ input {
 	appearance: none;
 }
 </style>
-</head>
+
 <body>
 
 
 	<header>
 		<div id="header">
-			<a href="/"><img id="logo" src="img/ItGoo!logo.png"></a>
+			<a href="index.jsp"><img id="logo" src="img/ItGoo!logo.png"></a>
 		</div>
 	</header>
 
@@ -287,7 +139,9 @@ input {
 	<div id="div">
 		<h3 id="h3text">회원가입</h3>
 		<div id="join_background">
-			<form action="companyjoin?${_csrf.parameterName}=${_csrf.token}" name= frm id="frm" method="post" enctype="multipart/form-data">
+			<form action="companyjoin?${_csrf.parameterName}=${_csrf.token}"
+				 name=frm id="frm" method="post"
+				enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td>&nbsp;</td>
@@ -295,7 +149,7 @@ input {
 					<tr>
 						<td>업체명</td>
 						<td><input type="text" name="companyname" maxlength="30"
-							id="companyname"></td>
+							id="companyname" required></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -304,7 +158,7 @@ input {
 					<tr>
 						<td>대표자명</td>
 						<td><input type="text" name="companyboss" maxlength="30"
-							id="name"></td>
+							id="name" required></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -312,10 +166,14 @@ input {
 					<tr>
 						<td>ID</td>
 						<td><input type="text" name="companyid" maxlength="20"
-							id="id"></td>
+							id="id" required></td>
 						<td><input id="id_check" type="button" value="중복확인"></td>
+						
 					</tr>
 
+					<tr>
+						<td><div id="idcheck"></div></td>
+					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
@@ -323,8 +181,13 @@ input {
 					<tr>
 						<td>PW</td>
 						<td><input type="password" name="password" maxlength="30"
-							id="pw"></td>
+							id="pw" required></td>
 					</tr>
+					<tr>
+						<td><span id="alert-success"
+							style="display: none; color: blue;">비밀번호가 일치합니다.</span></td>
+					</tr>
+
 
 					<tr>
 						<td>&nbsp;</td>
@@ -333,10 +196,13 @@ input {
 					<tr>
 						<td>PW Check</td>
 						<td><input type="password" name="pwcheck" maxlength="30"
-							id="pwcheck"></td>
+							id="pwcheck" required></td>
 						<td id='check'></td>
 					</tr>
-
+					<tr>
+						<td><span id="alert-danger"
+							style="display: none; color: #d92742;">비밀번호가 일치하지 않습니다.</span></td>
+					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
@@ -344,7 +210,7 @@ input {
 					<tr>
 						<td>업체 전화번호</td>
 						<td><input type="text" name="companyphone" maxlength="11"
-							id="tel"></td>
+							id="tel" required></td>
 					</tr>
 
 					<tr>
@@ -352,10 +218,10 @@ input {
 					</tr>
 
 					<tr>
-					
+
 						<td>업체 Email&nbsp;</td>
 						<td><input type="text" name="companyemail" id="mail"
-							maxlength="30"></td>
+							maxlength="30" required></td>
 
 					</tr>
 
@@ -368,7 +234,7 @@ input {
 						<td><input id="map1" type="button"
 							onclick="sample4_execDaumPostcode('companylocation')"
 							value="우편번호 찾기"> <input type="text" id="companylocation"
-							placeholder="도로명주소" name="companylocation"></td>
+							placeholder="도로명주소" name="companylocation" required></td>
 					</tr>
 
 					<tr>
@@ -376,7 +242,7 @@ input {
 					</tr>
 
 
-				 	<tr>
+					<tr>
 						<td>사업자등록사진</td>
 						<td><input type="file" id="profile" class="box"
 							name="companycardfile" accept=".jpg,.jpeg,.png,.gif,.bmp"></td>
@@ -388,17 +254,16 @@ input {
 
 					<tr>
 						<td>사업체사진&nbsp;</td>
-					<td>
-						<input type="file" name="files" multiple id="files" accept=".jpg,.jpeg,.png,.gif,.bmp">
-						<input type="hidden" id="fileCheck" name="file_Check" value="0" />
-					</td>
+						<td><input class="box" type="file" name="files" multiple
+							id="files" accept=".jpg,.jpeg,.png,.gif,.bmp"> <input
+							type="hidden" id="fileCheck" name="file_Check" value="0" /></td>
 					</tr>
-					
-					
+
+
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
-					<tr> 
+					<tr>
 
 						<td>선택사항</td>
 						<td><select class="select" id="select" name="companykind"
@@ -417,7 +282,7 @@ input {
 					<tr>
 						<td>사용자 이름</td>
 						<td><input type="text" name="username" maxlength="30"
-							id="username"></td>
+							id="username" required></td>
 					</tr>
 
 					<tr>
@@ -427,7 +292,7 @@ input {
 					<tr>
 						<td>사용자 전화번호</td>
 						<td><input type="text" name="phone" maxlength="11"
-							id="usertel"></td>
+							id="usertel" required></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -436,7 +301,7 @@ input {
 					<tr>
 						<td>사용자 Email</td>
 						<td><input type="text" name="useremail" id="usermail1"
-							maxlength="30"></td>
+							maxlength="30" required></td>
 					</tr>
 
 					<tr>
@@ -449,7 +314,7 @@ input {
 						<td><input id="map2" type="button"
 							onclick="sample4_execDaumPostcode('useraddress')" value="우편번호 찾기">
 							<input type="text" id="useraddress" placeholder="도로명주소"
-							name="useradderess"></td>
+							name="useraddress" required></td>
 
 
 
@@ -461,97 +326,123 @@ input {
 
 					<tr>
 						<td>사용자 생년월일</td>
-						<td><input type="text" name="inyear" size="1"
-							style="font-size: 20px;" maxlength="4" />년 <select
-							name="birthday" id="inBorder1" class="inBorder"
-							style="font-size: 20px;">
-								<option value="1">01
-								<option value="2">02
-								<option value="3">03
-								<option value="4">04
-								<option value="5">05
-								<option value="6">06
-								<option value="7">07
-								<option value="8">08
-								<option value="9">09
-								<option value="10">10
-								<option value="11">11
-								<option value="12">12
-						</select> 월 <select name="birthselect" id="inBorder2" class="inBorder"
-							style="font-size: 20px;">
-								<option value="1">01
-								<option value="2">02
-								<option value="3">03
-								<option value="4">04
-								<option value="5">05
-								<option value="6">06
-								<option value="7">07
-								<option value="8">08
-								<option value="9">09
-								<option value="10">10
-								<option value="11">11
-								<option value="12">12
-								<option value="13">13
-								<option value="14">14
-								<option value="15">15
-								<option value="16">16
-								<option value="17">17
-								<option value="18">18
-								<option value="19">19
-								<option value="20">20
-								<option value="21">21
-								<option value="22">22
-								<option value="23">23
-								<option value="24">24
-								<option value="25">25
-								<option value="26">26
-								<option value="27">27
-								<option value="28">28
-								<option value="29">29
-								<option value="30">30
-								<option value="31">31
-						</select> 일 &nbsp;
+						<td><input type="text" name="birthday"
+               placeholder="YYMMDD" maxlength="6" required/>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 
 					<tr>
-						<td colspan="2"><button id="hag" class="btn" type="submit">회원가입</button></td>
-					</tr>
+						<td><button id="hag" class="btn" type="submit">회원가입</button></td>
 
+						<td><button class="btn" formaction="index">취소</button></td>
+					</tr>
 					<tr>
-						<td><input class="btn" type="button" value="취소"
-							formaction="home"></td>
+						<td>&nbsp;</td>
 					</tr>
 
 				</table>
 			</form>
 
-
-
 		</div>
-		
+
 	</div>
 
-
-
-
-
-
-	<script>
-	
-		//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-		function sample4_execDaumPostcode(addrid) {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					var roadAddr = data.roadAddress; // 도로명 주소 변수
-
-					document.getElementById(addrid).value = roadAddr;
-
-				}
-			}).open();
-		}
-	</script>
 </body>
+<script>
+	
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function sample4_execDaumPostcode(addrid) {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+
+				document.getElementById(addrid).value = roadAddr;
+
+			}
+		}).open();
+	}
+
+	$("#id_check").on("click", function() {
+	      let formData = new FormData();
+	      formData.append("id", $("#id").val());
+
+	      if ($("#id").val() == "") {
+	         $("#idcheck").html("아이디를 입력해주세요");
+	         $("#id").focus();
+	         return false;
+	      }
+	      $.ajaxSetup({
+	         beforeSend : function(xhr) {
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	         }
+	      });//먼저 보냄
+	      
+	      $.ajax({ // 에이작스 열고
+	         type : 'post', //타입은 get 
+	         url : "xduplicateid", // restFul 방식
+	         data : formData,
+	         processData : false,
+	         contentType : false,
+
+	         //서블릿이 성공하면 다시 돌아오는것
+	         success : function(data) {
+	            console.log(data);
+	            if (data == "null") {
+
+	               console.log(data);
+	               $("#idcheck").html($("#id").val() + "는 사용가능한 아이디입니다.");
+
+	            } else {
+
+	               var result = JSON.parse(data);
+	               console.log("엘스로 빠지는중")
+	               console.log(typeof data)
+	               console.log(data);
+	               $("#idcheck").html(result.id + "는 사용할수 없는 아이디입니다.");
+	               $("#id").val("")
+	            }
+
+	         }
+
+	         ,
+	         error : function(error) {
+	            console.log(error);
+	         }
+
+	      });
+
+	   });
+	
+	$("#pw").keyup(function() {
+	      var pwd1 = $("#pw").val();
+	      var pwd2 = $("#pwcheck").val();
+	      if (pwd1 !== "" || pwd2 !== "") {
+	         if (pwd1 === pwd2) {
+	            $("#alert-success").css('display', 'inline-block');
+	            $("#alert-danger").css('display', 'none');
+	         } else {
+	            $("#alert-success").css('display', 'none');
+	            $("#alert-danger").css('display', 'inline-block');
+	         }
+	      }
+
+	   });
+
+	   $("#pwcheck").keyup(function() {
+	      var pwd1 = $("#pw").val();
+	      var pwd2 = $("#pwcheck").val();
+	      if (pwd1 != "" || pwd2 != "") {
+	         if (pwd1 === pwd2) {
+	            $("#alert-success").css('display', 'inline-block');
+	            $("#alert-danger").css('display', 'none');
+	         } else {
+	            $("#alert-success").css('display', 'none');
+	            $("#alert-danger").css('display', 'inline-block');
+	         }
+	      }
+	   });
+</script>
+
 </html>

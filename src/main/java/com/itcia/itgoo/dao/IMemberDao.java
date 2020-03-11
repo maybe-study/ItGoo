@@ -1,6 +1,7 @@
 package com.itcia.itgoo.dao;
 
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.Role;
 
 public interface IMemberDao {
 
@@ -11,5 +12,7 @@ public interface IMemberDao {
 	Member searchidphone(Member mb);
 
 	Member duplicateid(Member mb);
+
+	void memberRoleJoin(Role rl);
 
 }
