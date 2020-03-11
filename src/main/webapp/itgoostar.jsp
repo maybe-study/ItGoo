@@ -86,11 +86,11 @@
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">ITGOO_STAR</a></li>
+					<li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">업체 회원가입</a></li>
+					<li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">보호소 회원가입</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
+					<li class="nav-item"><a href="itgoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -108,14 +108,14 @@
 								<div class="carousel-inner">
 									<!-- 슬라이드 쇼 -->
 
-									<div class="carousel-item">
+									<div class="carousel-item active">
 										<p>배우 남주혁님</p>
 										<img class="recoimg" src="img/slidepic/namju.PNG"
 											alt="Second slide">
 
 									</div>
 
-									<div class="carousel-item active">
+									<div class="carousel-item">
 										<p>가수 박진영님</p>
 										<img class="recoimg" src="img/slidepic/jinyoung.PNG"
 											alt="First slide">
