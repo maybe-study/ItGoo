@@ -44,20 +44,12 @@ public class ShelterController {
 		return "main";
 	}
 
-	// 회원가입
-	@PreAuthorize("isAnonymous()")
-	@PostMapping(value = "/shelterjoin")
-	public ModelAndView memberjoin(Commonmember cmb) {
-		mav = smm.shelterjoin(cmb);
-
-		return mav;
-	}
+	
 	// 회원가입
 	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/companyjoin")
 	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
 		mav=smm.companyJoin(multi,cMember);
-		
 		
 		return mav;
 	}

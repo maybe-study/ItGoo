@@ -20,7 +20,28 @@ public class ShelterManagement {
 
 	private ModelAndView mav = new ModelAndView();
 
-	public ModelAndView shelterjoin(Commonmember cmb) {
+	/*
+	 * public ModelAndView shelterjoin(Commonmember cmb) { mav = new ModelAndView();
+	 * String view = null;
+	 * 
+	 * // 인코더 암호화 --디코더 복호화 // 스프링시큐리티는 암호화는 가능하지만 복호화는 불가능하다. // 비번만 암호화해서 DB에 저장
+	 * BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
+	 * cmb.setPassword(pwdEncoder.encode(cmb.getPassword()));
+	 * 
+	 * sDao.insertCompany(cmb); sDao.insertClient(cmb); // 파일 첨부 메소드 만들기
+	 * 
+	 * mav.setViewName(view); return mav; }
+	 */
+
+	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
+		cMember.setEnabled(1);
+		cMember.setId(cMember.getCompanyid());
+		/*
+		 * 파일 업로드 사용법 1. UploadFile 클래스 선언 2. 단일 파일 업로드일
+		 * 경우:fileUp(multi.getFile("넘긴 이름"),"종류") 여러개 파일 업로드일
+		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"종류") return 값을 db에 저장
+		 */
+		
 		mav = new ModelAndView();
 		String view = null;
 
@@ -28,23 +49,8 @@ public class ShelterManagement {
 		// 스프링시큐리티는 암호화는 가능하지만 복호화는 불가능하다.
 		// 비번만 암호화해서 DB에 저장
 		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
-		cmb.setPassword(pwdEncoder.encode(cmb.getPassword()));
+		cMember.setPassword(pwdEncoder.encode(cMember.getPassword()));
 
-		sDao.insertShelter(cmb);
-		sDao.insertClient(cmb);
-		// 파일 첨부 메소드 만들기
-
-		mav.setViewName(view);
-		return mav;
-	}
-
-	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
-		// TODO Auto-generated method stub
-		/*
-		 * 파일 업로드 사용법 1. UploadFile 클래스 선언 2. 단일 파일 업로드일
-		 * 경우:fileUp(multi.getFile("넘긴 이름"),"종류") 여러개 파일 업로드일
-		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"종류") return 값을 db에 저장
-		 */
 		UploadFile up = new UploadFile();
 		// 파일 업로드 (시설 등록증)
 		String path = up.fileUp(multi.getFile("companycardfile"), "companycard");
@@ -58,11 +64,11 @@ public class ShelterManagement {
 
 		// 이거는 for문 돌려서 companypic 테이블에 넣어야함
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
-		System.out.println("시설 사진 리스트의 크기:" + paths.size());
 		for (String picPath : paths) {
 			sDao.insertPic(picPath, cMember.getCompanyid());
 		}
-
+		sDao.insertClient(cMember);
+		//sDao.insertRole();
 		return mav;
 	}
 

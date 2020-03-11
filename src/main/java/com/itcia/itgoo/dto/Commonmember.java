@@ -23,17 +23,17 @@ public class Commonmember {
 	private String companyemail;
 	private String companylocation;
 	private String companycard;
-	private String companykind;
+	private int companykind;
 	private int enroll;
 
 //유저
-	
+	private String id;
 	private String password;
 	private String useraddress;
 	private String useremail;
 	private String username;
 	private String phone;
 	private String birthday;
-	private String enabled;
+	private int enabled;
 	
 }

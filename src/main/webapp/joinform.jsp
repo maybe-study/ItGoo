@@ -139,8 +139,8 @@ input {
 	<div id="div">
 		<h3 id="h3text">회원가입</h3>
 		<div id="join_background">
-			<form action="index?${_csrf.parameterName}=${_csrf.token}"
-				onsubmit="return check()" name=frm id="frm" method="post"
+			<form action="companyjoin?${_csrf.parameterName}=${_csrf.token}"
+				 name=frm id="frm" method="post"
 				enctype="multipart/form-data">
 				<table>
 					<tr>
@@ -314,7 +314,7 @@ input {
 						<td><input id="map2" type="button"
 							onclick="sample4_execDaumPostcode('useraddress')" value="우편번호 찾기">
 							<input type="text" id="useraddress" placeholder="도로명주소"
-							name="useradderess" required></td>
+							name="useraddress" required></td>
 
 
 
@@ -326,56 +326,8 @@ input {
 
 					<tr>
 						<td>사용자 생년월일</td>
-						<td><input type="text" name="inyear" size="1"
-							style="font-size: 20px;" maxlength="4" required />년 <select
-							name="birthday" id="inBorder1" class="inBorder"
-							style="font-size: 20px;">
-								<option value="1">01
-								<option value="2">02
-								<option value="3">03
-								<option value="4">04
-								<option value="5">05
-								<option value="6">06
-								<option value="7">07
-								<option value="8">08
-								<option value="9">09
-								<option value="10">10
-								<option value="11">11
-								<option value="12">12
-						</select> 월 <select name="birthselect" id="inBorder2" class="inBorder"
-							style="font-size: 20px;">
-								<option value="1">01
-								<option value="2">02
-								<option value="3">03
-								<option value="4">04
-								<option value="5">05
-								<option value="6">06
-								<option value="7">07
-								<option value="8">08
-								<option value="9">09
-								<option value="10">10
-								<option value="11">11
-								<option value="12">12
-								<option value="13">13
-								<option value="14">14
-								<option value="15">15
-								<option value="16">16
-								<option value="17">17
-								<option value="18">18
-								<option value="19">19
-								<option value="20">20
-								<option value="21">21
-								<option value="22">22
-								<option value="23">23
-								<option value="24">24
-								<option value="25">25
-								<option value="26">26
-								<option value="27">27
-								<option value="28">28
-								<option value="29">29
-								<option value="30">30
-								<option value="31">31
-						</select> 일 &nbsp;
+						<td><input type="text" name="birthday"
+               placeholder="YYMMDD" maxlength="6" required/>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -399,6 +351,7 @@ input {
 
 </body>
 <script>
+	
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function sample4_execDaumPostcode(addrid) {
 		new daum.Postcode({

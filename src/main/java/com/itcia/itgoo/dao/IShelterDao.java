@@ -13,7 +13,7 @@ public interface IShelterDao {
 			+ "#{companylocation},#{companycard},#{companykind},#{enroll})")
 	void insertShelter(Commonmember cmb);
 
-	@Insert("INSERT INTO CLIENT VALUES(#{companyid},#{password},#{useradderess},#{useremail},#{username},"
+	@Insert("INSERT INTO CLIENT VALUES(#{id},#{password},#{useraddress},#{useremail},#{username},"
 			+ "#{phone},#{birthday},#{enabled})")
 	void insertClient(Commonmember cmb);
 
