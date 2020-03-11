@@ -84,8 +84,8 @@ margin-top: 800px;
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
+					<li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">업체 회원가입</a></li>
+					<li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">보호소 회원가입</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
 					<li class="nav-item"><a href="itgoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
