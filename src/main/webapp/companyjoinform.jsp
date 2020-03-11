@@ -269,8 +269,8 @@ input {
 						<td><select class="select" id="select" name="companykind"
 							style="font-size: 20px;">
 								<option value="0">선택</option>
-								<option value="1">보호소</option>
-								<option value="2">업체</option>
+								<option value="2">보호소</option>
+								<option value="1">업체</option>
 
 						</select></td>
 					</tr>
