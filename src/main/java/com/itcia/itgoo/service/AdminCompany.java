@@ -2,10 +2,12 @@ package com.itcia.itgoo.service;
 
 import java.util.List;
 
+import org.eclipse.jdt.internal.compiler.lookup.ReductionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -63,16 +65,19 @@ public class AdminCompany {
 	public ModelAndView adminUpdateComPany(String select, String companyid, int companykind) {
 		System.out.println("========================================여부 : "+ select);
 		//수락
-		String url="";
-		if(select=="ok") {
-			aDao.adminOk(companyid);	//업데이트하기
+		if(select.equals("ok")) {
+			aDao.adminOk(companyid);	//등록
 		}else {//거절
 			aDao.adminNo(companyid);	//삭제
 		}
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
 		if(companykind==1) {	//액티비티업체라면
-			mav=adminActivity();
+			redirectView.setUrl("adminactivity");
+			mav.setView(redirectView);
 		}else if(companykind==2) {	//보호소라면
-			mav=adminShelter();
+			redirectView.setUrl("adminshelter");
+			mav.setView(redirectView);
 		}
 		return mav;
 	}
@@ -88,7 +93,10 @@ public class AdminCompany {
 		for(int i=0;i<exList.size();i++) {
 			aDao.addEx(exList.get(i));
 		}
-		mav.setViewName("redirect:/admintest");
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("admintest");
+		mav.setView(redirectView);
 		return mav;
 	}
 	public ModelAndView adminTest() {
