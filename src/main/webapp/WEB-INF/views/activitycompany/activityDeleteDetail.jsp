@@ -25,6 +25,7 @@ background-color: yellow;
 	<div class="maindiv">
 		<div class="div1" id="activitypics"></div>
 		<div class="div2">
+		<form action="activitydeletebtn?${_csrf.parameterName}=${_csrf.token}" name="activitydeletebtn" method="post">
 		<table>
 			<tr id="activitynametr">
 				<td>액티비티명</td>
@@ -41,9 +42,12 @@ background-color: yellow;
 				<td>시작 시간</td>
 				
 			</tr>
-
-
-		</table>
+			<tr>
+			<td><input type="submit" id="deletebtn" class="deletebtn" value="액티비티 삭제" />
+		</td>
+		</tr>
+		</table> 
+		</form>
 		</div>
 
 	</div>
@@ -56,13 +60,14 @@ background-color: yellow;
 		var $trad = $("#activitydatetr");
 		var $tras = $("#activitystarttr");
 		console.log("activitypic="+data.activitypic);
-		$("<img>").attr("src",data.activitypic).attr("alt",data.activitypic).appendTo($picdiv);
-
-		$("<td>").text(data.activityname).appendTo($tran);
-		$("<td>").text(data.activityprice).appendTo($trap);
-		$("<td>").text(data.activitydate).appendTo($trad);
-		$("<td>").text(data.activitystart).appendTo($tras);
+		$("<div>").append($("<img>").attr("src","/img/activity1.PNG").attr("alt",data.activitypic)).appendTo($picdiv);
+		console.log("acitivityname="+data.activityname);
+		$("<td>").attr("name","data.activityname").text(data.activityname).appendTo($tran);
+		$("<td>").attr("name","data.activityprice").text(data.activityprice).appendTo($trap);
+		$("<td>").attr("name","data.activitydate").text(data.activitydate).appendTo($trad);
+		$("<td>").attr("name","data.activitystart").text(data.activitystart).appendTo($tras);
 	});
+	
 	</script>
 </body>
 </html>

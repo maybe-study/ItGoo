@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IActivityDao;
@@ -140,6 +141,21 @@ public class ActivityManagement {
 		
 		view = "activitycompany/activityDeleteDetail";
 		mav.setViewName(view);
+		return mav;
+	}
+
+
+	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {
+		mav= new ModelAndView();
+		System.out.println("activityname="+ac.getActivityname());
+		boolean d = aDao.activityDeleteBtn(ac);
+		if(d) {
+			System.out.println("글 존재시 삭제 트랜잭션 성공");
+			attr.addFlashAttribute("ac",ac);
+		}else {
+			System.out.println("삭제 트랜잭션 실패");
+		}
+		mav.setViewName("redirect:activitydelete");
 		return mav;
 	}
 
