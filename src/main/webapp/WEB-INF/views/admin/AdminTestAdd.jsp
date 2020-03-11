@@ -71,12 +71,12 @@
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 적격성 평가 문제 추가
+					<i class="fa fa-angle-right"></i> 적격성 평가 문제
 				</h3>
 				<!-- BASIC FORM VALIDATION -->
 				<!-- FORM VALIDATION -->
-				<form class="cmxform form-horizontal style-form" id="addTestFrm"
-					method="get" action="addtest">
+				<form class="cmxform form-horizontal style-form" id="addTestFrm" name="addTestFrm"
+					method="get" action="addtest" onsubmit="testSubmit()">
 					<div class="row mt">
 						<div class="col-lg-12">
 							<h4>
@@ -85,13 +85,14 @@
 							<div class="form-panel">
 								<div class=" form">
 									<div class="form-group ">
+									<input type="hidden" name="questionnum" value=0>
 										<div class="col-lg-2">
-											점수 : <input class=" form-control" id="cname" name="point"
+											점수 : <input class=" form-control" id="point" name="point"
 												minlength="2" type="text" required />
 										</div>
 										<div class="col-lg-10">
 
-											문제 : <input class=" form-control" id="cname" name="question"
+											문제 : <input class=" form-control" id="question" name="question"
 												minlength="2" type="text" required />
 
 										</div>
@@ -115,8 +116,18 @@
 											type="radio" name="correct" value="1" required>&nbsp;1)
 										</label>
 										<div class="col-lg-10">
-											<input class=" form-control" name="ex" type="text" />
+											<input class=" form-control" name="exs" type="text" data-exnum="1"/>
 										</div>
+										
+									</div>
+									<div class="form-group ">
+										<label for="ex" class="control-label col-lg-2"> <input
+											type="radio" name="correct" value="2" required>&nbsp;2)
+										</label>
+										<div class="col-lg-10">
+											<input class=" form-control" name="exs" type="text" data-exnum="2"/>
+										</div>
+										
 									</div>
 
 								</div>
@@ -131,11 +142,12 @@
 								</div>
 							</div>
 							<script>
-                                var cnt=1;
+                                
                                 document.getElementById("addBtn").onclick=function(){
                                     let $radio=$('<input>').attr('type','radio').attr('name','correct').attr('value',++cnt);
                                     let $label=$('<label>').attr('for','ex').attr('class','control-label col-lg-2').append($radio).append(' '+cnt+') ');
-                                    let $input =$('<input>').attr('class',' form-control').attr('name','ex').attr('type','text');
+                                    let $input =$('<input>').attr('class',' form-control').attr('name','exs').attr('type','text');
+                                    $input[0].dataset.exnum=cnt;
                                     let $div=$('<div>').attr('class','col-lg-10').append($input);
                                     $('<div>').attr('class','form-group ').append($label).append($div).appendTo($('#exList'));
                                 }
@@ -150,7 +162,7 @@
 						<div class="col-lg-12">
 							<br>
 							<div class="form-group" style="text-align: center">
-								<button class="btn btn-theme" type="submit">Save</button>
+								<button class="btn btn-theme" type="submit" id="submitBtn">Save</button>
 								<button class="btn btn-theme04" type="button" id="cBtn">Cancel</button>
 							</div>
 						</div>
@@ -184,7 +196,68 @@
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
 
-
+	<script>
+	//전역 변수
+	cnt=2;
+	//addtest인 경우 question=0
+	var question=${question};
+	//modify인 경우
+ 	if(question!=0){
+ 		//폼태그 액션 바꿈
+ 		document.addTestFrm.questionnum.value=question.questionnum;
+ 		document.addTestFrm.action="modifyquestion";
+ 		document.querySelector("#point").value=question.point;
+ 		document.querySelector("#question").value=question.question;
+ 		//보기가 두개 이상이면 보기 추가
+ 		var ex=${exList};
+ 		if(ex.length>2){
+ 			for(var i=2;i<ex.length;i++){
+	 			let $radio=$('<input>').attr('type','radio').attr('name','correct').attr('value',++cnt);
+	 	        let $label=$('<label>').attr('for','ex').attr('class','control-label col-lg-2').append($radio).append(' '+cnt+') ');
+	 	        let $input =$('<input>').attr('class',' form-control').attr('name','exs').attr('type','text');
+	 	        $input[0].dataset.exnum=cnt;
+	 	        let $div=$('<div>').attr('class','col-lg-10').append($input);
+	 	        $('<div>').attr('class','form-group ').append($label).append($div).appendTo($('#exList'));
+ 			}
+ 		}
+        //폼에 데이터 채워넣음
+ 		$.each(document.addTestFrm.exs,function(idx, e){
+			console.log(e);
+			e.value=ex[idx].excontent;
+			console.log(e.dataset.exnum);
+		})
+        
+ 		$("input:radio[name='correct']:radio[value='"+question.correct+"']").prop('checked', true); // 선택하기
+ 		$('#submitBtn').text('수정');
+ 		
+ 	}
+	function testSubmit(){
+		var exArr= new Array();
+		$.each(document.addTestFrm.exs,function(idx, e){
+			console.log(e);
+			console.log(e.value);
+			console.log(e.dataset.exnum);
+			
+			var ex=new Object();
+			ex.exnum=e.dataset.exnum;
+			ex.excontent=e.value;
+			ex.questionnum=0;
+			exArr.push(ex);
+		})
+		//폼에 히든 영역 추가
+		var exJson=JSON.stringify(exArr);
+		
+		var h_input=document.createElement("input");
+		h_input.type = "hidden";
+		h_input.name = "exJson";
+		h_input.value= exJson;
+		document.addTestFrm.appendChild(h_input);
+		console.dir(document.addTestFrm);
+		return true;
+	}
+		
+		
+	</script>
 
 </body>
 

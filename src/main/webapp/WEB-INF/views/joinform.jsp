@@ -88,7 +88,7 @@ hr {
 		<form action="memberjoin?${_csrf.parameterName}=${_csrf.token}"
 			method="post">
 			<div>
-				<a href="main"><img id="rogo" alt="로고"
+				<a href="index.jsp"><img id="rogo" alt="로고"
 					src="img/portfolio/itgoo1004.png"></a>
 			</div>
 			<br>
