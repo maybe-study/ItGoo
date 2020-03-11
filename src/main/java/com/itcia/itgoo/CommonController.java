@@ -50,18 +50,6 @@ public class CommonController {
 	}
 
 
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/itgoo1")
-	public String itgoo1() {
-		return "index";
-	}
-
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/ibyang")
-	public String ibyang() {
-		return "index";
-	}
-
 	// 회원가입
 	@RequestMapping(value = "/joinform", method = RequestMethod.GET)
 	public String joinform(Member mb) {

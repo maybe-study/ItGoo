@@ -36,11 +36,10 @@
 #logout {
 	border: 0px transparent solid;
 	outline: 0;
-	color: rgba(255,255,255,.7);
-	background-color:transparent;
-	font-weight:700;
-	font-size: .9rem; 
-	
+	color: rgba(255, 255, 255, .7);
+	background-color: transparent;
+	font-weight: 700;
+	font-size: .9rem;
 }
 </style>
 <body id="page-top">
@@ -67,11 +66,11 @@
 						href="#portfolio">소모임</a></li>
 					<li>
 						<form method="post" action="logout">
-							<input type="submit"
-								value="로그아웃" id="logout"> <input type="hidden"
-								name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input type="submit" value="로그아웃" id="logout"> <input
+								type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
 					</li>
-					</form>
 				</ul>
 			</div>
 		</div>
