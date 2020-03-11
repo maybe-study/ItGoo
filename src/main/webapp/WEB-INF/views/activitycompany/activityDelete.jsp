@@ -312,7 +312,6 @@
 	var $body = $("#activitydelbody");
 	var $tr = $("<tr>").appendTo($body);
 	$("<td>").text(data.companyname).appendTo($tr);
-	console.log(data);
 	$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.activitynum+')').text(data.activityname)).appendTo($tr);
 	$("<td>").text(data.activitydate).appendTo($tr);
 	$("<td>").text(data.activitystart).appendTo($tr);
@@ -320,7 +319,9 @@
 	$("<td>").text(data.activitydogcnt).appendTo($tr);
 	});
 	function articleView(activitynum){
+		
 		$("#articleView_layer").addClass('open');
+		
 		$.ajax({
 			type:'get',
 			url:"deletedetail",
