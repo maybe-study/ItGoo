@@ -49,7 +49,7 @@ public class UploadFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "fileupload/"+kind+"/"+sysFileName;
+		return "/fileupload/"+kind+"/"+sysFileName;
 	}
 	/*
 	 * 여러 파일 업로드

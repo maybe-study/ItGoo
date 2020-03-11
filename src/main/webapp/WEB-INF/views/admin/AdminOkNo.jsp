@@ -87,7 +87,7 @@
                                         <h4>업체 사진</h4>
                                     </li>
                                     <li>
-                                        <img src="img/test.png" style="max-width: 100%">
+                                        <img id="companypics" src="img/test.png" style="max-width: 100%">
                                     </li>
                                 </ul>
 
@@ -141,7 +141,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>등록증</td>
-                                                        <td id="companylocation"></td>
+                                                        <td id="companycard"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -208,12 +208,15 @@
 	<script>
 	//회사 정보 출력
 	var data=${company}
+	console.log("company:",${company});
 	$("#companyid").text(data.companyid);
 	$("#companyboss").text(data.companyboss);
 	$("#companyphone").text(data.companyphone);
 	$("#companyemail").text(data.companyemail);
 	$("#companylocation").text(data.companylocation);
-	$("#companycard").text("등록증 다운로드 링크였으면 참 좋을듯 data.companycard");
+	var $img=$('<img>').attr('src',+data.companycard);
+	$("#companycard").text(data.companycard).append($img);
+	
 	console.log("companykind",data.companykind);
   	$("<input>").attr("type",'hidden').attr("name","companyid").attr("value",data.companyid).appendTo("#frm");
   	$("<input>").attr("type",'hidden').attr("name","companykind").attr("value",data.companykind).appendTo("#frm");
@@ -221,7 +224,7 @@
   	
   	console.log("폼 companykind",document.frm.companykind);
 	//지도 표시
-	roadAddr="인천광역시 미추홀구 용정공원로 33";
+	roadAddr=data.companylocation;
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
