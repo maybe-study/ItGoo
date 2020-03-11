@@ -23,12 +23,11 @@ background-color: yellow;
 </head>
 <body>
 	<div class="maindiv">
-		<div class="div1" id="activitypics">사진</div>
+		<div class="div1" id="activitypics"></div>
 		<div class="div2">
 		<table>
 			<tr id="activitynametr">
 				<td>액티비티명</td>
-				
 			</tr>
 			<tr id="activitypricetr">
 				<td>가격</td>
@@ -51,12 +50,14 @@ background-color: yellow;
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 	$.each(${adtList},function(idx,data){
+		var $picdiv= $("#acitvitypics");
 		var $tran = $("#activitynametr");
 		var $trap = $("#activitypricetr");
 		var $trad = $("#activitydatetr");
 		var $tras = $("#activitystarttr");
 		console.log("activitypic="+data.activitypic);
-		$("#activitypics").append($("<img src="+data.activitypic+"alt='activitypics'/>"));
+		$("<img>").attr("src",data.activitypic).attr("alt",data.activitypic).appendTo($picdiv);
+
 		$("<td>").text(data.activityname).appendTo($tran);
 		$("<td>").text(data.activityprice).appendTo($trap);
 		$("<td>").text(data.activitydate).appendTo($trad);
