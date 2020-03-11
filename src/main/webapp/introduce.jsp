@@ -35,6 +35,7 @@
 	outline: 0;
 	color: blue;
 }
+
 #logo {
 	width: 350px;
 	height: 200px;
@@ -49,13 +50,12 @@
 </script>
 <body>
 	<!-- header -->
-	
+
 	<div class="jumbotron text-center">
 		<img alt="잇구로고" src="img/portfolio/itgoo1004.png" id="logo">
 		<p>(주)ITGOO 소속 유기견 보호 관리 사이트</p>
 		<div style="text-align: right;">
 			<sec:authorize access="isAnonymous()">
-
 				<a href="login" id="login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="joinform">회원가입</a>
 			</sec:authorize>
@@ -80,9 +80,11 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="#" class="nav-link">ITGOO소개</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">경매</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">소모임</a></li>
+				<li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
+				<li class="nav-item"><a href="companyjoinform.jsp"
+					class="nav-link">업체 회원가입</a></li>
+				<li class="nav-item"><a href="companyjoinform.jsp"
+					class="nav-link">보호소 회원가입</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
 				<li class="nav-item"><a href="itgoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
