@@ -28,4 +28,7 @@ public interface IShelterDao {
 
 	//@Select("SELECT * FROM CLIENT WHERE id=#{id}")
 	Member xduplicateid(Member mb);
+	
+	@Insert("insert into role values(#{param1},#{param2})")
+	void insertRole(String id, String string);
 }

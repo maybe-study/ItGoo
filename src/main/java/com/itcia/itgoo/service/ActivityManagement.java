@@ -8,13 +8,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IActivityDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.share.UploadFile;
 
 
 @Service
@@ -24,22 +27,42 @@ public class ActivityManagement {
 	
 	private ModelAndView mav ;
 	
-	public ModelAndView regiActivity(Activity ac) {
+	public ModelAndView regiActivity(MultipartHttpServletRequest multi,Activity ac,HttpServletRequest req) {
 		mav= new ModelAndView();
-		String view=null;
-		boolean regiactivity = aDao.regiActivity(ac); 
-		boolean regiactivitypic = aDao.regiActivityPic(ac);
+		RedirectView redirectView = new RedirectView();
+		HttpSession session = req.getSession();
+		ac.setCompanyid((String) session.getAttribute("companyid"));
+		UploadFile up = new UploadFile();
+		aDao.regiActivity(ac); 
 		
-		if(regiactivity) {
-			view="activitymyinfo";
-			mav.addObject("check",1);
-		}else {
-			view="activityregiste";
-			mav.addObject("check",0);
-			
-		}
-		mav.setViewName(view);
+		List<String> paths = up.fileUp(multi.getFiles("files"), "activity");
+		
+		for (String picPath : paths) {
+			System.out.println("ac="+ac);
+			System.out.println("num="+ac.getActivitynum());
+			aDao.insertPic(picPath, ac.getActivitynum());
+		}redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitydelete");
+		mav.setView(redirectView);
+		
 		return mav;
+	}
+	public ModelAndView uploadactivitycompic(MultipartHttpServletRequest multi, Company cp, HttpServletRequest req) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+		HttpSession session = req.getSession();
+		cp.setCompanyid((String) session.getAttribute("companyid"));
+		UploadFile up = new UploadFile();
+		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
+		for (String picPath : paths) {
+			System.out.println("cp="+cp);
+			System.out.println("num="+cp.getCompanyid());
+			aDao.insertCompanyPic(picPath, cp.getCompanyid());
+		}redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitymyinfo");
+		mav.setView(redirectView);
+		return mav;
+		
 	}
 	
 	
@@ -60,7 +83,7 @@ public class ActivityManagement {
 	public ModelAndView updatecompanyname(Company cp, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		mav = new ModelAndView();
-		String view=null;
+		
 		cp.setCompanyid((String) session.getAttribute("companyid"));
 		aDao.updatecompanyname(cp);
 		
@@ -105,12 +128,14 @@ public class ActivityManagement {
 	public ModelAndView updatecompanylocation(Company cp, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
 		String view = null;
 		cp.setCompanyid((String) session.getAttribute("companyid"));
 		
 		aDao.updatecompanylocation(cp);
-		view="activitycompany/activityMyInfo";
-		mav.setViewName(view);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitymyinfo");
+		mav.setView(redirectView);
 		return mav;
 	}
 
@@ -132,12 +157,14 @@ public class ActivityManagement {
 	public ModelAndView deleteDetail(Integer activitynum) {
 		mav = new ModelAndView();
 		String view=null;
-		List<Activity> adtList = aDao.deleteDetail(activitynum);
+		aDao.activitypics(activitynum);
+		Activity detail = aDao.deleteDetail(activitynum);
+		detail.setActivitynum(activitynum);
+		detail.setActivitypics(aDao.activitypics(activitynum));
+		
 		System.out.println("ac=--------------------------------------------------------");
-		for(Activity ac:adtList) {
-			System.out.println("ac="+ac);
-		}
-		mav.addObject("adtList",new Gson().toJson(adtList));
+		
+		mav.addObject("detail",new Gson().toJson(detail));
 		
 		view = "activitycompany/activityDeleteDetail";
 		mav.setViewName(view);
@@ -158,5 +185,8 @@ public class ActivityManagement {
 		mav.setViewName("redirect:activitydelete");
 		return mav;
 	}
+
+
+	
 
 }

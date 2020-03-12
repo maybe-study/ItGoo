@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itcia.itgoo.dao.IActivityDao">
-	
+
 <insert id="regiActivity" parameterType="Activity">
-	insert into activity values(#{activitynum.nextval}, #{activityname},#{activityexplanation},#{activitydate},#{activitystart},#{activitytime},#{activitydogcnt},#{companyid})
+	insert into activity values(activity_seq.nextval, #{activityname},#{activityexplanation},#{activitydate},#{activitystart},#{activitytime},#{activitydogcnt},#{companyid},#{activityprice})
 	</insert>
-	<insert id="regiActivityPic" parameterType="Activity">
-	insert into activitypics values(#{activitypic},#{activitynum})
-	 
+
+	<insert id="insertPic">
+	<selectKey resultType="int" keyProperty="activitynum" order="BEFORE">
+	select max(activitynum) from activity
+	</selectKey>
+		insert into activitypics values(#{param1},#{activitynum})
 	</insert>
+	<insert id="insertCompanyPic">
+	insert into companypic values(#{param1},#{param2})
+	</insert>
+
 	<select id="activityMyInfo1" parameterType="Company" resultType="Company">
 	select * from company where companyid=#{companyid} and companykind=1
 	</select>
@@ -32,7 +39,7 @@
 	select c.companyname,a.activitynum,a.activityname, a.activitydate, a.activitystart,a.activitytime, a.activitydogcnt from company c, activity a  where c.companyid=a.companyid
 	</select>
 	<select id="deleteDetail" parameterType="int" resultType="Activity">
-	select at.activitynum,ap.activitypic,at.activityname,at.activityprice, at.activitydate, at.activitystart from activity at, activitypics ap where at.activitynum=ap.activitynum and ap.activitynum=#{activitynum}
+	select activitynum,activityname,activityprice, activitydate, activitystart from activity where activitynum=#{activitynum}
 	</select>
 	<delete id="activityDeleteBtn" parameterType="String">
 	delete from activity at where exists(select * from activitypics ap where at.activitynum=ap.activitynum and at.activityname=#{activityname} )

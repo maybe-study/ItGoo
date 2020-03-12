@@ -3736,3 +3736,6 @@ ul.chat-available-user li a:hover {
 	white-space: normal;
 	overflow: scroll
 }
+.activitytextarea{
+	margin-left: 20px;
+}

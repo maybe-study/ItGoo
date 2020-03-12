@@ -92,10 +92,22 @@
                                         <img id="companypics" src="img/test.png" style="max-width: 100%">
                                     </li>
                                 </ul>
-
-
 							</div>
 						</section>
+						<section class="panel">
+                            <div class="panel-body">
+                                <ul class="nav nav-pills nav-stacked labels-info ">
+                                    <li>
+                                        <h4>업체 위치</h4>
+                                    </li>
+                                    <li>
+                                        <span id="guide" style="color: #999; display: none"></span>
+										<div id="map" style="width:100%;height:350px;"></div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </section>
 					</div>
 					<div class="col-sm-9">
 						<section class="panel">
@@ -132,7 +144,7 @@
 													</tr>
 													<tr>
 														<td>등록증</td>
-														<td id="companylocation"></td>
+														<td id="companycard"></td>
 													</tr>
 												</tbody>
 											</table>
@@ -205,21 +217,18 @@
 	<script>
 	//회사 정보 출력
 	var data=${company}
-	console.log("company:",${company});
+	console.log("data:",data);
 	$("#companyid").text(data.companyid);
 	$("#companyboss").text(data.companyboss);
 	$("#companyphone").text(data.companyphone);
 	$("#companyemail").text(data.companyemail);
 	$("#companylocation").text(data.companylocation);
-	var $img=$('<img>').attr('src',+data.companycard);
+	var $img=$('<img>').attr('src',data.companycard);
+	console.log("companycard:",data.companycard)
 	$("#companycard").text(data.companycard).append($img);
-
-	console.log("companykind",data.companykind);
+	//히든으로 companyid companykind 저장
   	$("<input>").attr("type",'hidden').attr("name","companyid").attr("value",data.companyid).appendTo("#frm");
   	$("<input>").attr("type",'hidden').attr("name","companykind").attr("value",data.companykind).appendTo("#frm");
-
-
-  	console.log("폼 companykind",document.frm.companykind);
 	//지도 표시
 	roadAddr=data.companylocation;
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div

@@ -25,6 +25,15 @@ public class CommonController {
 	public String home() {
 		return "index";
 	}
+	@GetMapping("/loginto")
+	public String loginTo() {
+		//사용자면 /
+		//업체 : /activitymyinfo
+		//보호소 : /sheltermyinfo
+		//관리자 : /adminactivity
+		
+		return mm.loginTo();
+	}
 
 	@PreAuthorize("isAnonymous()")
 	@GetMapping("/login")

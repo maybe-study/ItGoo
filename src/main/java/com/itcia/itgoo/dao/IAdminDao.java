@@ -45,6 +45,12 @@ public interface IAdminDao {
 	List<Ex> getExList(int questionnum);
 	@Update("update question set toggle=0 where questionnum=#{questionnum}")
 	void deleteQuestion(int questionnum);
+	@Delete("delete role where id=#{param1} and role='ROLE_UNCOMPANY'")
+	void deleteCompanyRole(String companyid);
+	@Insert("insert into role values(#{param},'ROLE_ACTIVITY')")
+	void activityRole(String companyid);
+	@Insert("insert into role values(#{param},'ROLE_SHELTER')")
+	void shelterRole(String companyid);
 
 
 }

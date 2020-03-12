@@ -40,10 +40,10 @@ public class ShelterManagement {
 		 * 파일 업로드 사용법 1. UploadFile 클래스 선언 2. 단일 파일 업로드일
 		 * 경우:fileUp(multi.getFile("넘긴 이름"),"종류") 여러개 파일 업로드일
 		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"종류") return 값을 db에 저장
+		 * parameter 구분 - 강아지 사진:dog, 시설사진:company, 액티비티 사진:activity
 		 */
 		
 		mav = new ModelAndView();
-		String view = null;
 
 		// 인코더 암호화 --디코더 복호화
 		// 스프링시큐리티는 암호화는 가능하지만 복호화는 불가능하다.
@@ -68,7 +68,8 @@ public class ShelterManagement {
 			sDao.insertPic(picPath, cMember.getCompanyid());
 		}
 		sDao.insertClient(cMember);
-		//sDao.insertRole();
+		sDao.insertRole(cMember.getId(),"ROLE_UNCOMPANY");
+		sDao.insertRole(cMember.getId(),"ROLE_USER");
 		return mav;
 	}
 

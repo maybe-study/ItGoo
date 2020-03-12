@@ -1,5 +1,7 @@
 package com.itcia.itgoo.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.AllArgsConstructor;
@@ -33,4 +35,5 @@ public class Activity {
 	private String companyphone;
 	private int companykind;
 	private int enroll;
+	private List<String> activitypics;
 }
