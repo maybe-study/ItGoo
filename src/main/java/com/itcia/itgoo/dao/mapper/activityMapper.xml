@@ -32,6 +32,6 @@
 	select c.companyname,a.activitynum,a.activityname, a.activitydate, a.activitystart,a.activitytime, a.activitydogcnt from company c, activity a  where c.companyid=a.companyid
 	</select>
 	<select id="deleteDetail" parameterType="int" resultType="Activity">
-	select at.activitynum,ap.activitypic,at.activityname,at.activityprice, at.activitydate, at.activitystart from activity at, activitypics ap where at.activitynum=ap.activitynum and ap.activitynum=#{activitynum}
+	select at.activitynum,ap.activitypic,at.activityname,at.activityprice, at.activitydate, at.activitystart from activity at, activitypics ap where at.activitynum=ap.activitynum
 	</select>
 </mapper>
