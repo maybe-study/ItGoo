@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itcia.itgoo.dao.IActivityDao">
-	
+
 <insert id="regiActivity" parameterType="Activity">
 	insert into activity values(activity_seq.nextval, #{activityname},#{activityexplanation},#{activitydate},#{activitystart},#{activitytime},#{activitydogcnt},#{companyid},#{activityprice})
 	</insert>
-	
+
 	<insert id="insertPic">
 	<selectKey resultType="int" keyProperty="activitynum" order="BEFORE">
 	select max(activitynum) from activity
@@ -16,7 +16,7 @@
 	<insert id="insertCompanyPic">
 	insert into companypic values(#{param1},#{param2})
 	</insert>
-	
+
 	<select id="activityMyInfo1" parameterType="Company" resultType="Company">
 	select * from company where companyid=#{companyid} and companykind=1
 	</select>
