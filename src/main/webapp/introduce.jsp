@@ -96,16 +96,19 @@
 		<div class="row">
 			<!-- left content -->
 			<div class="col-md-6">
-				<h2>About itgoo</h2>
-				<p>itgoo 프로젝트는 2020년 시작된 프로젝트</p>
+				<h2>About ITGOO</h2>
+				<p>ITGOO 프로젝트는 2020년 시작된 프로젝트</p>
+				<p>
+					ITGOO는 동물보호 200년 역사를 가진 독일의 선진사례 분석을 통해 기획된 시스템.
+				</p>
 				<p>
 					현재 itgoo는 사회적 프로젝트로 유기견 문제에 초점을 맞추고 있으며 <br> 100% 유기견 입양 시스템과
 					액티비티,가상입양<br> 유기견 근절에 힘쓰고 있다.
 				</p>
 
 				<p>
-					itgoo는 두개의 테마로 되어있으며,<br> itgoo는 경매,소모임,커뮤니티 기능이있다<br>
-					ITGOO는 입양을 지원
+					ITGOO는 두개의 테마로 되어있으며,<br> itgoo는 경매,소모임,커뮤니티 기능이있다<br>
+					ITGOO는 입양을 지원하는 시스템입니다.
 				</p>
 
 			</div>
@@ -123,7 +126,7 @@
 									<!-- 슬라이드 쇼 -->
 									<div class="carousel-item active">
 										<!--가로-->
-										<img class="recoimg" src="img/portfolio/ibyang.png"
+										<img class="recoimg" src="img/portfolio/balba.png"
 											alt="First slide">
 
 									</div>
@@ -133,19 +136,19 @@
 
 									</div>
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/itgoo2.png"
+										<img class="recoimg" src="img/portfolio/itgoo1004.png"
 											alt="Third slide">
 
 									</div>
 
 									<div class="carousel-item">
-										<img class="recoimg" src="img/friends/fr-01.jpg"
+										<img class="recoimg" src="img/portfolio/itgoo2.PNG"
 											alt="Forth slide">
 
 									</div>
 
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/ibyang.png"
+										<img class="recoimg" src="img/portfolio/balba.png"
 											alt="Fifth slide">
 
 									</div>

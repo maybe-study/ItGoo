@@ -2,7 +2,6 @@ package com.itcia.itgoo.service;
 
 import java.util.List;
 
-import org.eclipse.jdt.internal.compiler.lookup.ReductionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

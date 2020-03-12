@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -60,18 +61,32 @@ public class ActivityController {
 		return "activitycompany/activityRegiste";
 	}
 	
-	@RequestMapping(value = "/regiactivity", method = RequestMethod.GET)
-	public ModelAndView regiactivity (Activity ac) {
-		mav=am.regiActivity(ac);
+	@PreAuthorize("isAnonymous()")
+	@PostMapping(value = "/regiactivity")
+	public ModelAndView regiactivity (MultipartHttpServletRequest multi,Activity ac,HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		session.setAttribute("companyid","123");
+		mav=am.regiActivity(multi,ac,req);
 
 		return mav;
 	}
+	@PreAuthorize("isAnonymous()")
+	@PostMapping(value = "/uploadactivitycompic")
+	public ModelAndView uploadactivitycompic (MultipartHttpServletRequest multi,Company cp,HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		session.setAttribute("companyid","123");
+		mav=am.uploadactivitycompic(multi,cp,req);
+
+		return mav;
+	}
+	
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
 	public  ModelAndView activityDelete (Company cp,HttpServletRequest req) {
 		HttpSession session=req.getSession();
 		session.setAttribute("companyid","123");
 		System.out.println("session="+session.getAttribute("companyid"));
 		mav= am.activityDelete1(cp, req);
+		
 
 		return mav;
 	}
@@ -79,11 +94,7 @@ public class ActivityController {
 	public String acitivityDeleteDetail(Locale locale, Model model) {
 		return "activitycompany/activityDeleteDetail";
 	}
-	@RequestMapping(value = "/deletedetail" , method = RequestMethod.GET)
-	public ModelAndView deleteDetail(Integer activitynum) {	//null 값도 받으려고
-		mav= am.deleteDetail(activitynum);
-		return mav;
-	}
+	
 	@RequestMapping(value = "/activitydeletebtn" )
 	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
 		mav= am.activityDeleteBtn(ac,attr);

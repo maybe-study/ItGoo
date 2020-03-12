@@ -42,6 +42,7 @@ public class ShelterManagement {
 		 * 파일 업로드 사용법 1. UploadFile 클래스 선언 2. 단일 파일 업로드일
 		 * 경우:fileUp(multi.getFile("넘긴 이름"),"종류") 여러개 파일 업로드일
 		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"종류") return 값을 db에 저장
+		 * parameter 구분 - 강아지 사진:dog, 시설사진:company, 액티비티 사진:activity
 		 */
 		
 		mav = new ModelAndView();

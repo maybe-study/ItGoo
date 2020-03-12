@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IMemberDao;
+import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Role;
 
@@ -20,7 +21,7 @@ public class MemberManagement {
 	private IMemberDao mDao;
 	private ModelAndView mav;
 
-	public ModelAndView memberJoin(Member mb,Role rl) {
+	public ModelAndView memberJoin(Member mb, Role rl) {
 		mav = new ModelAndView();
 		String view = null;
 		mb.setEnabled(1);
@@ -31,11 +32,11 @@ public class MemberManagement {
 		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
 		// 비밀번호만 암호화해서 DB에 저장
 		mb.setPassword(pwdEncoder.encode(mb.getPassword()));
-		
+
 		if (mDao.memberJoin(mb)) {
 			view = "index";// 회원가입 성공
 			mav.addObject("check", 1);
-			
+
 		} else {
 			view = "joinfrm";
 			mav.addObject("check", 0);

@@ -36,6 +36,7 @@ public class UploadFile {
 		}
 		//경로지정, 폴더생성
 		String path = ROOT_PATH + kind+"/";
+		System.out.println("path="+path);
 		File dir = new File(path);
 		if (!dir.isDirectory()) { // upload폴더 없다면
 			dir.mkdirs(); // upload폴더 생성

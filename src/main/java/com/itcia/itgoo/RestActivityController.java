@@ -78,5 +78,13 @@ public class RestActivityController {
 
 		return mav;
 	}
+	@RequestMapping(value = "/deletedetail" , method = RequestMethod.GET)
+	public ModelAndView deleteDetail(Integer activitynum) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+		
+		mav= am.deleteDetail(activitynum);
+		
+		return mav;
+	}
 	
 }

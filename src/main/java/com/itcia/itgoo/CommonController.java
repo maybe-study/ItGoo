@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Role;
 import com.itcia.itgoo.service.MemberManagement;
@@ -39,7 +40,6 @@ public class CommonController {
 	public String login() {
 		return "/login";
 	}
-
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
 	public String findaccount(Member mb) {
