@@ -57,7 +57,7 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" />
 </beans:beans>
 

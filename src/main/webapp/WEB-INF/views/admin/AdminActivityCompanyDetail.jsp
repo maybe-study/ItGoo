@@ -234,6 +234,7 @@
     <script src="lib/sparkline-chart.js"></script>
     <script src="lib/zabuto_calendar.js"></script>
 	<script>
+	
 		var data=${company}
   		$("#companyid").text(data.companyid);
   		$("#companyboss").text(data.companyboss);
@@ -251,7 +252,6 @@
   	  		$("<td>").text(data.activitytime).appendTo($tr);
   	  		$("<td>").text(data.activitydogcnt).appendTo($tr);
   	  	});
-	
 	roadAddr="인천광역시 미추홀구 용정공원로 33";
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,6 +15,7 @@ import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.share.UploadFile;
 
 @Service
+@Transactional
 public class ShelterManagement {
 	@Autowired
 	private IShelterDao sDao;
@@ -32,7 +34,7 @@ public class ShelterManagement {
 	 * 
 	 * mav.setViewName(view); return mav; }
 	 */
-
+	 @Transactional
 	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
 		cMember.setEnabled(1);
 		cMember.setId(cMember.getCompanyid());

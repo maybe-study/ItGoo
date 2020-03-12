@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.jdt.internal.compiler.lookup.ReductionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -12,11 +13,13 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IAdminDao;
+import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Ex;
 import com.itcia.itgoo.dto.Question;
 
 @Service
+@Transactional
 public class AdminCompany {
 	@Autowired
 	private IAdminDao aDao;
@@ -127,6 +130,12 @@ public class AdminCompany {
 	public ModelAndView questionDelete(int questionnum) {
 		aDao.deleteQuestion(questionnum);
 		return adminTest();
+	}
+	public ModelAndView adminAdoptList() {
+		List<Adopt> adoptList=aDao.adminAdoptList();
+		mav.addObject("adoptList",new Gson().toJson(adoptList));
+		mav.setViewName("/admin/AdminAdopt");
+		return mav;
 	}
 
 }

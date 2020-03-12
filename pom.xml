@@ -61,6 +61,15 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- 웹소켓 -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${org.springframework-version}</version>
+		</dependency>
+
+
 
           
 		<!--slf4j-log4j12대신 logback을 사용하기위해 삭제 -->

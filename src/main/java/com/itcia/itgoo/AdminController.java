@@ -103,5 +103,10 @@ public class AdminController {
 		ModelAndView mav=Ac.modifyQuestion(question,  exJson);
 		return mav;
 	}
+	@RequestMapping(value = "/adminadopt", method = RequestMethod.GET)
+	public ModelAndView adminAdopt() {
+		ModelAndView mav=Ac.adminAdoptList();
+		return mav;
+	}
 
 }

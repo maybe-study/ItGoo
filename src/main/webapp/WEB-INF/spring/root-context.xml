@@ -33,6 +33,7 @@
 			value="classpath:com/itcia/itgoo/dao/mapper/*.xml" />
 	</bean>
 
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
