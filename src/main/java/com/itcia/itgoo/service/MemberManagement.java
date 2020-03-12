@@ -1,6 +1,10 @@
 package com.itcia.itgoo.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,6 +60,30 @@ public class MemberManagement {
 	public Member duplicateid(Member mb) {
 		Member m = mDao.duplicateid(mb);
 		return m;
+	}
+
+	public String loginTo() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal;
+		System.out.println("==============================principal=======================================");
+		String url="";
+		switch(userDetails.getAuthorities().toString()) {
+		case "[ROLE_ACTIVITY , ROLE_ADMIN, ROLE_SHELTER, ROLE_USER]":	//관리자
+			url="redirect:/adminactivity";
+			break;
+		case "[ROLE_USER]":
+			url="redirect:/";
+			break;
+		case "[ROLE_SHELTER, ROLE_USER]":
+			url="redirect:/sheltermyinfo";
+			break;
+		case "[ROLE_ACTIVITY, ROLE_USER]":
+			url="redirect:/adminactivity.do";
+			break;
+		};
+		
+		
+		return url;
 	}
 
 }

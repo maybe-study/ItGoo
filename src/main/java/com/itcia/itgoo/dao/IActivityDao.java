@@ -27,5 +27,7 @@ public interface IActivityDao {
 
 	public List<Company> activityDelete(Company cp);
 
-	public List<Activity> deleteDetail(Integer activitynum); 
+	public List<Activity> deleteDetail(Integer activitynum);
+
+	public boolean activityDeleteBtn(Activity ac); 
 }

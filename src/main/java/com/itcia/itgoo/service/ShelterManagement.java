@@ -43,7 +43,6 @@ public class ShelterManagement {
 		 */
 		
 		mav = new ModelAndView();
-		String view = null;
 
 		// 인코더 암호화 --디코더 복호화
 		// 스프링시큐리티는 암호화는 가능하지만 복호화는 불가능하다.
@@ -68,7 +67,8 @@ public class ShelterManagement {
 			sDao.insertPic(picPath, cMember.getCompanyid());
 		}
 		sDao.insertClient(cMember);
-		//sDao.insertRole();
+		sDao.insertRole(cMember.getId(),"ROLE_UNCOMPANY");
+		sDao.insertRole(cMember.getId(),"ROLE_USER");
 		return mav;
 	}
 

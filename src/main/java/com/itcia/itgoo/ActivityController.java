@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
@@ -81,6 +82,12 @@ public class ActivityController {
 	@RequestMapping(value = "/deletedetail" , method = RequestMethod.GET)
 	public ModelAndView deleteDetail(Integer activitynum) {	//null 값도 받으려고
 		mav= am.deleteDetail(activitynum);
+		return mav;
+	}
+	@RequestMapping(value = "/activitydeletebtn" )
+	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
+		mav= am.activityDeleteBtn(ac,attr);
+		attr.addFlashAttribute("ac",ac);
 		return mav;
 	}
 

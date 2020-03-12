@@ -66,18 +66,23 @@ public class AdminCompany {
 		//수락
 		if(select.equals("ok")) {
 			aDao.adminOk(companyid);	//등록
+			aDao.deleteCompanyRole(companyid);
+			RedirectView redirectView = new RedirectView(); // redirect url 설정
+			redirectView.setExposeModelAttributes(false);
+			
+			if(companykind==1) {	//액티비티업체라면
+				aDao.activityRole(companyid);
+				redirectView.setUrl("adminactivity");
+				mav.setView(redirectView);
+			}else if(companykind==2) {	//보호소라면
+				aDao.shelterRole(companyid);
+				redirectView.setUrl("adminshelter");
+				mav.setView(redirectView);
+			}
 		}else {//거절
 			aDao.adminNo(companyid);	//삭제
 		}
-		RedirectView redirectView = new RedirectView(); // redirect url 설정
-		redirectView.setExposeModelAttributes(false);
-		if(companykind==1) {	//액티비티업체라면
-			redirectView.setUrl("adminactivity");
-			mav.setView(redirectView);
-		}else if(companykind==2) {	//보호소라면
-			redirectView.setUrl("adminshelter");
-			mav.setView(redirectView);
-		}
+		
 		return mav;
 	}
 	public ModelAndView addTest(Question question, String exJson) {

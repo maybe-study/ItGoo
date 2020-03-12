@@ -34,4 +34,7 @@
 	<select id="deleteDetail" parameterType="int" resultType="Activity">
 	select at.activitynum,ap.activitypic,at.activityname,at.activityprice, at.activitydate, at.activitystart from activity at, activitypics ap where at.activitynum=ap.activitynum
 	</select>
+	<delete id="activityDeleteBtn" parameterType="String">
+	delete from activity at where exists(select * from activitypics ap where at.activitynum=ap.activitynum and at.activityname=#{activityname} )
+	</delete>
 </mapper>
