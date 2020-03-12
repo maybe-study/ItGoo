@@ -329,6 +329,7 @@
 			dataType:'html',
 			success:function(data){
 				$("#contents_layer").html(data);
+				
 			},
 			error:function(error){
 				console.log(error);

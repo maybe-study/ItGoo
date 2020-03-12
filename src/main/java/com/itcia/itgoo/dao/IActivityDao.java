@@ -2,6 +2,8 @@ package com.itcia.itgoo.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Activity;
@@ -11,7 +13,7 @@ public interface IActivityDao {
 
 	public boolean regiActivity(Activity ac);
 
-	public boolean regiActivityPic(Activity ac);
+	public void insertPic(String param1, int param2); 
 
 	public List<Company> activityMyInfo1(Company cp);
 
@@ -27,7 +29,14 @@ public interface IActivityDao {
 
 	public List<Company> activityDelete(Company cp);
 
-	public List<Activity> deleteDetail(Integer activitynum);
+	public Activity deleteDetail(Integer activitynum);
 
-	public boolean activityDeleteBtn(Activity ac); 
+	public boolean activityDeleteBtn(Activity ac);
+	
+	@Select("select activitypic from activitypics where activitynum=#{activitynum}")
+	public List<String> activitypics(Integer activitynum);
+
+	public boolean uploadactivitycompic(Company cp);
+	
+	public void insertCompanyPic(String param1, String param2);
 }
