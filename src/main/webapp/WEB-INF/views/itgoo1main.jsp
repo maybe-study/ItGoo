@@ -41,6 +41,7 @@
 	font-weight: 700;
 	font-size: .9rem;
 }
+
 </style>
 <body id="page-top">
 
@@ -64,13 +65,12 @@
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#portfolio">소모임</a></li>
-					<li>
-						<form method="post" action="logout">
-							<input type="submit" value="로그아웃" id="logout"> <input
-								type="hidden" name="${_csrf.parameterName}"
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
+						<form id="logout" action="logout" method="POST">
+							<input name="${_csrf.parameterName}" type="hidden"
 								value="${_csrf.token}" />
-						</form>
-					</li>
+						</form></li>
 				</ul>
 			</div>
 		</div>
@@ -246,6 +246,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</section>
 
 	<!-- Footer -->

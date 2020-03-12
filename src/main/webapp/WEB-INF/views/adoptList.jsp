@@ -4,7 +4,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,7 +25,8 @@
 
 <!-- Custom styles for this template -->
 <link href="css/grayscale.min.css" rel="stylesheet">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <style>
 .masthead {
@@ -72,18 +72,13 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">ITGOO의 차별점</a></li>
+						href="#about">입양리스트</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#projects">입양리스트</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#signup">contact</a></li>
-					<li class="nav-item">
-						 <a class="nav-link js-scroll-trigger" href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
-						 <form id="logout" action="logout" method="POST">
-							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}" />
-						</form> 
-
-					</li>
+						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
+						<form id="logout" action="logout" method="POST">
+							<input name="${_csrf.parameterName}" type="hidden"
+								value="${_csrf.token}" />
+						</form></li>
 				</ul>
 			</div>
 		</div>
@@ -93,7 +88,7 @@
 	<header class="masthead">
 		<div class="container d-flex h-100 align-items-center">
 			<div class="mx-auto text-center">
-				<h1 class="mx-auto my-0 text-uppercase">ADOPT</h1>
+				<h1 class="mx-auto my-0 text-uppercase">ADOPT LIST</h1>
 				<h2 class="text-white-50 mx-auto mt-2 mb-5">Don't buy it. Adopt
 					it.</h2>
 				<a href="#about" class="btn btn-primary js-scroll-trigger">Get
@@ -107,7 +102,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h2 class="text-white mb-4">ITGOO의 차별성</h2>
+					<h2 class="text-white mb-4">ITGOO의 입양</h2>
 					<p class="text-white-50">
 						ITGOO는 100% 유기견 입양사이트로 가상입양,액티비티 시스템 도입으로 재파양,재유기를 예방하는 시스템입니다. <a
 							href="https://www.youtube.com/watch?v=lhC4T91BFNE">the
@@ -120,97 +115,12 @@
 	</section>
 
 	<!-- Projects Section -->
-	<section id="projects" class="projects-section bg-light">
-		<div class="container">
-
-			<!-- Featured Project Row -->
-			<div class="row align-items-center no-gutters mb-4 mb-lg-5">
-				<div class="col-xl-8 col-lg-7">
-					<a href="adoptlist"><img class="img-fluid mb-3 mb-lg-0"
-						src="img/dog1.jpg" alt="입양공고"></a>
-				</div>
-				<div class="col-xl-4 col-lg-5">
-					<div class="featured-text text-center text-lg-left">
-						<h4>Shoreline</h4>
-						<p class="text-black-50 mb-0">Grayscale is open source and MIT
-							licensed. This means you can use it for any project - even
-							commercial projects! Download it, customize it, and publish your
-							website!</p>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project One Row -->
-			<div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-				<div class="col-lg-6">
-					<a href="adoptList"><img class="img-fluid"
-						src="img/demo-image-01.jpg" alt="입양공고"></a>
-				</div>
-				<div class="col-lg-6">
-					<div class="bg-black text-center h-100 project">
-						<div class="d-flex h-100">
-							<div class="project-text w-100 my-auto text-center text-lg-left">
-								<h4 class="text-white">Misty</h4>
-								<p class="mb-0 text-white-50">An example of where you can
-									put an image of a project, or anything else, along with a
-									description.</p>
-								<hr class="d-none d-lg-block mb-0 ml-0">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Project Two Row -->
-			<div class="row justify-content-center no-gutters">
-				<div class="col-lg-6">
-					<a href="adoptList"><img class="img-fluid"
-						src="img/demo-image-02.jpg" alt="입양공고"></a>
-				</div>
-				<div class="col-lg-6 order-lg-first">
-					<div class="bg-black text-center h-100 project">
-						<div class="d-flex h-100">
-							<div class="project-text w-100 my-auto text-center text-lg-right">
-								<h4 class="text-white">Mountains</h4>
-								<p class="mb-0 text-white-50">Another example of a project
-									with its respective description. These sections work well
-									responsively as well, try this theme on a small screen!</p>
-								<hr class="d-none d-lg-block mb-0 mr-0">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</section>
-
-	<!-- Signup Section -->
-	<section id="signup" class="signup-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-lg-8 mx-auto text-center">
-
-					<i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-					<h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-
-					<form class="form-inline d-flex">
-						<input type="email"
-							class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
-							id="inputEmail" placeholder="Enter email address...">
-						<button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
-					</form>
-
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<!-- Contact Section -->
 	<section class="contact-section bg-black">
 		<div class="container">
 
-			<div class="row">
+			<div class="row" id="dogList">
 
 				<div class="col-md-4 mb-3 mb-md-0">
 					<div class="card py-4 h-100">
@@ -243,19 +153,43 @@
 							<i class="fas fa-mobile-alt text-primary mb-2"></i>
 							<h4 class="text-uppercase m-0">Phone</h4>
 							<hr class="my-4">
-							<div class="small text-black-50">+1 (555) 902-8832</div>
+							<div class="small text-black-50"></div>
+
+
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="social d-flex justify-content-center">
+			<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+						</div>
+						<div class="modal-body">내용</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary">확인</button>
+							<button type="button" class="btn btn-default" id="closeModalBtn">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- <div class="social d-flex justify-content-center">
 				<a href="#" class="mx-2"> <i class="fab fa-twitter"></i>
 				</a> <a href="#" class="mx-2"> <i class="fab fa-facebook-f"></i>
 				</a> <a href="#" class="mx-2"> <i class="fab fa-github"></i>
 				</a>
 			</div>
-
+ -->
 		</div>
 	</section>
 
@@ -263,6 +197,63 @@
 	<footer class="bg-black small text-center text-white-50">
 		<div class="container">Copyright &copy; ITGOO 2020</div>
 	</footer>
+	<script>
+		
+		 
+		 $.each(${dogList},function(idx,data){
+			 var $dogList = $("#dogList");
+			 var $img=$('<img id="openModalBtn" style="width:100%">').attr('src',data.dogpic);
+			 $img[0].dataset.dogid=data.dogid;
+			 //$img[0].dataset.
+				var $div3 = $('<div class="card-body text-center">')
+						.append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+						.append($('<h4 class="text-uppercase m-0">').text(data.dogname))
+						.append($('<hr class="my-4">')).append($img)
+						.append($('<div class="small text-black-50">').text(data.dogage+" 살"))
+						.append($('<div class="small text-black-50">').text("특이사항 : "+data.dogspecial))
+						.append($('<div class="small text-black-50">').text("중성화 여부 : "+data.dogjungsung));
+				console.log("인덱스는!!!"+idx);
+				console.log(idx);
+				var $div2 = $('<div class="card py-4 h-100">').append($div3);
+				var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
+				 $dogList.append($div1);
+				 
+		 });
+		 
+		 $('#openModalBtn').on('click', function(e){
+			 //console.log(e.target.dataset.dogid);
+			 var dogid=e.target.dataset.dogid;
+			 console.log("클릭한 사진번호"+$(this).attr("name"))
+			 $.ajaxSetup({
+					beforeSend : function(xhr) {
+						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+					}
+				});//먼저 보냄
+				$.ajax({ // 에이작스 열고
+					type : 'post', //타입은 get 
+					url : "adoptlistdetail", // restFul 방식
+					data : dogid,
+					dataType : "json",
+
+					//서블릿이 성공하면 다시 돌아오는것
+					success : function(data) {
+						console.log(data);
+					
+					}
+
+					,
+					error : function(error) {
+						console.log(error);
+					}
+
+				});
+				$('#modalBox').modal('show'); 
+			});
+				// 모달 안의 취소 버튼에 이벤트를 건다.
+				$('#closeModalBtn').on('click', function(){
+				$('#modalBox').modal('hide');
+		});
+	</script>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -273,6 +264,8 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="js/grayscale.min.js"></script>
+
+
 
 </body>
 

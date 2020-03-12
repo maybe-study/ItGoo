@@ -1,5 +1,7 @@
 package com.itcia.itgoo.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.AllArgsConstructor;
@@ -21,4 +23,7 @@ public class Dog {
 	private int dogjungsung;
 	private String shelterid;
 	private int sex;
+	private String dogpic;
+	private List<String> dogpics;
+	
 }

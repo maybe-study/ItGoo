@@ -33,9 +33,7 @@ margin-top: 800px;
 	top: 300px;
 	left: 0px;
 	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
+	min-height: 100%; 
 	z-index: -1000;
 	overflow: hidden;
 }
