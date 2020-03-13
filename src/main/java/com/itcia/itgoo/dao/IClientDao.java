@@ -10,7 +10,7 @@ public interface IClientDao {
 	@Select("SELECT * FROM dog inner join dogpics on dogpics.dogid = dog.dogid where ROWNUM=1")
 	List<Dog> adoplist();
 
-	@Select("SELECT * FROM dog inner join dogpics on dogpics.dogid = dog.dogid")
-	Dog adoptlistdetail(String dogid);
+	@Select("SELECT dogpic FROM dog inner join dogpics on dogpics.dogid = dog.dogid")
+	List<String> adoptlistdetail(String dogid);
 
 }

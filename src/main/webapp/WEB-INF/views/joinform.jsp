@@ -139,8 +139,7 @@ hr {
 
 </body>
 <script type="text/javascript">
-	 $('#join').on(
-					"click",
+	 $('#join').on("click",
 					function() {
 						var email1 = $('#useremail').val();
 						var emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
