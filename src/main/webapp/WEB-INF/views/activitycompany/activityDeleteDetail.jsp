@@ -5,62 +5,112 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/activitystyle/activitystyle.css">
 <style>
-.maindiv {
+/* .maindiv {
 	border: 3px solid black;
 	text-align: center;
-}
+} */
 
-.div1 {
-	float: left;
-	background-color: gray;
-}
+#modalform{
 
-.div2 {
-	display: inline-block;
-	background-color: yellow;
+font-weight: bolder;
+font-size: 20px;
+margin: auto;
 }
+.form-table{
+margin: auto;}
+.upper-form-div{
+text-align: center;
+}
+html, body {
+      position: relative;
+      height: 100%;
+    }
+    /* body {
+    border: 3px solid black;
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    } */
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
 </style>
 </head>
 <body>
 	<div class="maindiv">
-		<div class="div1" id="picdetail"></div>
-		<div class="div2">
-
+		<div class="swiper-container">
+		
+    	<div class="swiper-wrapper">
+      
+      
+    	</div>
+    	<!-- Add Arrows -->
+	    <div class="swiper-button-next"></div>
+	    <div class="swiper-button-prev"></div>
+  </div>
+	<div class="upper-form-div">
 			<form
 				action="activitydeletebtn?${_csrf.parameterName}=${_csrf.token}"
-				name="activitydeletebtn" method="post">
-				<table>
-					<tr id="activitynametr">
-						<td>액티비티명</td>
+				name="activitydeletebtn" method="post" id="modalform">
+				<table class= "form-table">
+					<tr  id="activitynametr">
+						<td>액티비티명:</td>
 					</tr>
-					<tr id="activitypricetr">
-						<td>가격</td>
+					<tr  id="activitypricetr">
+						<td>가격:</td>
 
 					</tr>
-					<tr id="activitydatetr">
-						<td>날짜</td>
+					<tr  id="activitydatetr">
+						<td>날짜:</td>
 
 					</tr>
 					<tr id="activitystarttr">
-						<td>시작 시간</td>
+						<td>시작 시간:</td>
 
-					</tr>
-					<tr>
-						<td><input type="submit" id="deletebtn" class="deletebtn"
-							value="액티비티 삭제" /></td>
 					</tr>
 				</table>
+				<div class="deletebtnclass">
+				<input type="submit" id="deletebtn" class="deletebtn"
+							value="액티비티 삭제" />
+			</div>
+			
 			</form>
-
+</div>
 		
 		</div>
 
-	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="js/swiper.min.js"></script>
 	<script>
+	 
 	var detail= ${detail}
 	console.log ("detail=",detail);
 		
@@ -74,11 +124,16 @@
 		$("<td>").text(detail.activitydate).appendTo($trad);
 		$("<td>").text(detail.activitystart).appendTo($tras);
 		$.each(detail.activitypics,function(idx,data){
-			var $picdiv= $("#picdetail");
-			console.log("aaaaaaa=",detail.activitypics);
-			$("<img src="+detail.activitypics[idx]+" alt='detailpics' />").appendTo($picdiv);
-			});
-
+			console.log(data);
+			var $picdiv= $('<div class="swiper-slide">').append($("<img src='"+data+"'/>"));
+			$(".swiper-wrapper").append($picdiv);
+		});
+		var swiper = new Swiper('.swiper-container', {
+		      navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		      },
+		    });
 	</script>
 </body>
 </html>

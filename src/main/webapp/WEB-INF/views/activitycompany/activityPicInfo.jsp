@@ -55,14 +55,14 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="/ItGoo" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->
 				<ul class="nav top-menu">
 					<!-- settings start -->
 					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="index.html#"> <i
+						class="dropdown-toggle" href="/ItGoo/#"> <i
 							class="fa fa-tasks"></i> <span class="badge bg-theme"></span>
 					</a>
 						<ul class="dropdown-menu extended tasks-bar">
@@ -73,19 +73,19 @@
 					<!-- settings end -->
 					<!-- inbox dropdown start-->
 					<li id="header_inbox_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+						data-toggle="dropdown" class="dropdown-toggle" href="/ItGoo/#">
 							<i class="fa fa-envelope-o"></i> <span class="badge bg-theme"></span>
 					</a>
 						<ul class="dropdown-menu extended inbox">
 							<div class="notify-arrow notify-arrow-green"></div>
 
 
-							<li><a href="index.html#">See all messages</a></li>
+							<li><a href="/ItGoo/#">See all messages</a></li>
 						</ul></li>
 					<!-- inbox dropdown end -->
 					<!-- notification dropdown start-->
 					<li id="header_notification_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+						data-toggle="dropdown" class="dropdown-toggle" href="/ItGoo/#">
 							<i class="fa fa-bell-o"></i> <span class="badge bg-warning"></span>
 					</a>
 						<ul class="dropdown-menu extended notification">
@@ -116,7 +116,7 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">ACTIVITY MANAGER</h5>
-					<li class="mt"><a href="index.html"> <i
+					<li class="mt"><a href="/ItGoo/"> <i
 							class="fa fa-dashboard"></i> <span>Dashboard</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -255,7 +255,7 @@
 		<footer class="site-footer">
 			<div class="text-center">
 				<p>
-					<a href="index.html"><img class="footerimg"
+					<a href="/ItGoo/"><img class="footerimg"
 						src="img/mainlogo.png" alt="mainlogo" /></a>
 				</p>
 				<div class="credits">
