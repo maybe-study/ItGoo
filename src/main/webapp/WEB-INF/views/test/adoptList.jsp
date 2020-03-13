@@ -9,8 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
 <title>ITGOO-Don't buy it. Adopt it.</title>
 
 <!-- Bootstrap core CSS -->
@@ -23,13 +22,16 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
+
 <!-- Custom styles for this template -->
 <link href="css/grayscale.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/swiper.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <style>
+.dog{
+	width:100%;
+}
 .masthead {
 	position: relative;
 	width: 100%;
@@ -54,44 +56,6 @@
 	font-weight: 700;
 	font-size: .9rem;
 	border: 0px transparent solid;
-}
-
-html, body {
-	position: relative;
-	height: 100%;
-}
-
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
-
-.swiper-container {
-	width: 100%;
-	height: 100%;
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
 }
 </style>
 <body id="page-top">
@@ -205,22 +169,54 @@ body {
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
+							<h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+						</div>
+						<div class="modal-body">
+							<div id="demo" class="carousel slide" data-ride="carousel">
+
+								  <!-- Indicators -->
+								  <ul class="carousel-indicators">
+								    <li data-target="#demo" data-slide-to="0" class="active"></li>
+								    <li data-target="#demo" data-slide-to="1"></li>
+								    <li data-target="#demo" data-slide-to="2"></li>
+								  </ul>
+								
+								  <!-- The slideshow -->
+								  <div class="carousel-inner">
+								    <div class="carousel-item active">
+								      <img src="/fileupload/dog/1.jpg" class="dog" alt="Los Angeles">
+								    </div>
+								    <div class="carousel-item">
+								      <img src="/fileupload/dog/2.jpg" class="dog" alt="Chicago">
+								    </div>
+								    <div class="carousel-item">
+								      <img src="/fileupload/dog/3.jpg" class="dog" alt="New York">
+								    </div>
+								  </div>
+								   <!-- Left and right controls -->
+							  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+							    <span class="carousel-control-prev-icon"></span>
+							  </a>
+							  <a class="carousel-control-next" href="#demo" data-slide="next">
+							    <span class="carousel-control-next-icon"></span>
+							  </a>
 
 						</div>
-						<div class="modal-body">사진</div>
-
+						
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">입양</button>
-							<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
+							<button type="button" class="btn btn-primary">확인</button>
+							<button type="button" class="btn btn-default" id="closeModalBtn">취소</button>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
+
 			<!-- <div class="social d-flex justify-content-center">
 				<a href="#" class="mx-2"> <i class="fab fa-twitter"></i>
 				</a> <a href="#" class="mx-2"> <i class="fab fa-facebook-f"></i>
@@ -229,14 +225,23 @@ body {
 			</div>
  -->
 		</div>
+		
+	
+	  <!-- Left and right controls -->
+	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+	    <span class="carousel-control-prev-icon"></span>
+	  </a>
+	  <a class="carousel-control-next" href="#demo" data-slide="next">
+	    <span class="carousel-control-next-icon"></span>
+	  </a>
+	
+	</div>
 	</section>
 
 	<!-- Footer -->
 	<footer class="bg-black small text-center text-white-50">
 		<div class="container">Copyright &copy; ITGOO 2020</div>
 	</footer>
-	<script src="js/swiper.min.js"></script>
-
 	<script>
 		
 		 
@@ -263,6 +268,7 @@ body {
 		 $('#openModalBtn').on('click', function(e){
 			 //console.log(e.target.dataset.dogid);
 			 var dogid=e.target.dataset.dogid;
+			 console.log("클릭한 사진번호"+$(this).attr("name"))
 			 $.ajaxSetup({
 					beforeSend : function(xhr) {
 						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -275,45 +281,11 @@ body {
 					dataType : "json",
 
 					//서블릿이 성공하면 다시 돌아오는것
-					success : function(list) {
-						
-						$.each(list,function(idx,data){
-							var $wrapper=$(".swiper-wrapper");
-							var $pic=$('<div class="swiper-slide">');
-							var $img = $('<img style="width:100%">').attr('src',data);
-							$pic.append($img);
-							$wrapper.append($pic);
-						/* console.log(data);
-						var $dogPic = $("#adoptdetailpics");
-						var $li = $('<li>')
-						var $img = $('<img style="width:100%">').attr('src',data);
-						$li.append($img);
-						$dogPic.append($li); */
-						});
-						
-						    setTimeout(function () {
-						    swiper.update();
-						    }, 500);
-						  
-						var swiper = new Swiper('#slide-event', {
-							effect: 'slide',
-							  keyboardControl: true,
-							  centeredSlides: true,
-							  observer: true,
-							  observeParents: true,
-							  loop: false,
-							  nextEl: '.swiper-button-next',
-							  prevEl: '.swiper-button-prev',
-							  speed: 0,
-							  
-							})
-					/* var swiper = new Swiper('.swiper-container', {
-					      navigation: {
-					        nextEl: '.swiper-button-next',
-					        prevEl: '.swiper-button-prev',
-					      },
-					    }); */
+					success : function(data) {
+						console.log(data);
+					
 					}
+
 					,
 					error : function(error) {
 						console.log(error);
@@ -329,7 +301,6 @@ body {
 	</script>
 
 	<!-- Bootstrap core JavaScript -->
-	<!--  -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

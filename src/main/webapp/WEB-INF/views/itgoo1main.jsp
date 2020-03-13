@@ -10,13 +10,13 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <title>ITGOO-Enjoy ITGOO</title>
 
 <!-- Font Awesome Icons -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
-
+<link rel="stylesheet" href="css/swiper.min.css">
 <!-- Google Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
@@ -41,7 +41,41 @@
 	font-weight: 700;
 	font-size: .9rem;
 }
+ html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
 
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
 </style>
 <body id="page-top">
 
