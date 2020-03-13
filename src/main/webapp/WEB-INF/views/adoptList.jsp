@@ -230,7 +230,7 @@ body {
 								   <tr>
 								   <td>특이사항</td><td id="special"></td>
 								   </tr>
-						</table>
+							</table>
 						<div id="demo" class="carousel slide" data-ride="carousel">
 								  <!-- Indicators -->
 								
@@ -331,9 +331,10 @@ body {
 
 					//서블릿이 성공하면 다시 돌아오는것
 					success : function(data) {
+						
 						console.log("data",data);
-						var $uls=$('.carousel-indicators');
-						var $items=$('.carousel-inner');
+						var $uls=$('.carousel-indicators').empty();
+						var $items=$('.carousel-inner').empty();
 						//사진 리스트
 						$.each(data.dogpics,function(idx,pic){
 							if(idx==0){
