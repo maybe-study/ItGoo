@@ -9,7 +9,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <title>ITGOO-Don't buy it. Adopt it.</title>
 
 <!-- Bootstrap core CSS -->
@@ -22,9 +23,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-
 <!-- Custom styles for this template -->
 <link href="css/grayscale.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/swiper.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -55,24 +56,43 @@
 	border: 0px transparent solid;
 }
 
-/* =========================================================== */
- *{margin:0;padding:0;}
-  ul,li{list-style:none;}
-  #slide{height:300px;position:relative;overflow:hidden;}
-  #slide ul{width:400%;height:100%;transition:1s;}
-  #slide ul:after{content:"";display:block;clear:both;}
-  #slide li{float:left;width:25%;height:100%;}
-  #slide li:nth-child(1){background:#2e2e2e;}
-  #slide li:nth-child(2){background:#2e2e2e;}
-  #slide li:nth-child(3){background:#2e2e2e;}
-  #slide li:nth-child(4){background:#2e2e2e;}
-  #slide input{display:none;}
-  #slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
-  #slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
-  #pos1:checked~ul{margin-left:0%;}
-  #pos2:checked~ul{margin-left:-100%;}
-  #pos3:checked~ul{margin-left:-200%;}
-  #pos4:checked~ul{margin-left:-300%;}
+html, body {
+	position: relative;
+	height: 100%;
+}
+
+body {
+	background: #eee;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding: 0;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
 </style>
 <body id="page-top">
 
@@ -193,18 +213,7 @@
 
 						</div>
 						<div class="modal-body">사진</div>
-						<div id="slide">
-							<input type="radio" name="pos" id="pos1" checked>
-							<input type="radio" name="pos" id="pos2"> 
-							<input type="radio"	name="pos" id="pos3"> 
-							<input type="radio" name="pos" id="pos4">
-							<ul id="adoptdetailpics">
-							</ul>
-							<p class="pos">
-								<label for="pos1"></label> <label for="pos2"></label> <label
-									for="pos3"></label> <label for="pos4"></label>
-							</p>
-						</div>
+
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary">입양</button>
 							<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
@@ -212,9 +221,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
 			<!-- <div class="social d-flex justify-content-center">
 				<a href="#" class="mx-2"> <i class="fab fa-twitter"></i>
 				</a> <a href="#" class="mx-2"> <i class="fab fa-facebook-f"></i>
@@ -229,6 +235,8 @@
 	<footer class="bg-black small text-center text-white-50">
 		<div class="container">Copyright &copy; ITGOO 2020</div>
 	</footer>
+	<script src="js/swiper.min.js"></script>
+
 	<script>
 		
 		 
@@ -268,14 +276,43 @@
 
 					//서블릿이 성공하면 다시 돌아오는것
 					success : function(list) {
+						
 						$.each(list,function(idx,data){
-						console.log(data);
+							var $wrapper=$(".swiper-wrapper");
+							var $pic=$('<div class="swiper-slide">');
+							var $img = $('<img style="width:100%">').attr('src',data);
+							$pic.append($img);
+							$wrapper.append($pic);
+						/* console.log(data);
 						var $dogPic = $("#adoptdetailpics");
 						var $li = $('<li>')
 						var $img = $('<img style="width:100%">').attr('src',data);
 						$li.append($img);
-						$dogPic.append($li);
-					})
+						$dogPic.append($li); */
+						});
+						
+						    setTimeout(function () {
+						    swiper.update();
+						    }, 500);
+						  
+						var swiper = new Swiper('#slide-event', {
+							effect: 'slide',
+							  keyboardControl: true,
+							  centeredSlides: true,
+							  observer: true,
+							  observeParents: true,
+							  loop: false,
+							  nextEl: '.swiper-button-next',
+							  prevEl: '.swiper-button-prev',
+							  speed: 0,
+							  
+							})
+					/* var swiper = new Swiper('.swiper-container', {
+					      navigation: {
+					        nextEl: '.swiper-button-next',
+					        prevEl: '.swiper-button-prev',
+					      },
+					    }); */
 					}
 					,
 					error : function(error) {
@@ -292,6 +329,7 @@
 	</script>
 
 	<!-- Bootstrap core JavaScript -->
+	<!--  -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
