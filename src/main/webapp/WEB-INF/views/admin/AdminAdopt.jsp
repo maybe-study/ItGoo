@@ -160,15 +160,34 @@
   	  		$("<td>").text(idx).appendTo($tr);
   	  		$("<td>").text(adopt.username).appendTo($tr);
   	  		$("<td>").text(adopt.phone).appendTo($tr);
-  	  		$("<td>").text(adopt.phase).appendTo($tr);
+  	  		$phaseTd=$("<td>").text(adopt.phase).appendTo($tr);
   	  		$("<td>").text(adopt.dogname).appendTo($tr);
   	  		$("<td>").text(adopt.why).appendTo($tr);
   	  		$("<td>").text(adopt.dogcareer).appendTo($tr);
   	  		$("<td>").append($('<img style="width:200px">').attr('src',adopt.idfile)).appendTo($tr);
-  	  		$("<td>").append($('<button type="button">').text("테스트 시작")).appendTo($tr);
-  	  		
+  	  		$("<td>").append($btn).appendTo($tr);
+  	  		var $btn=$('<button type="button" id="passBtn">').text("서류 합격");
+  	  		$btn.on("click",function(){
+  	  			PassAjax(adopt.id,adopt.dogid,$phaseTd);
+  	  		});
+  	  		//btn 추가
 		});
-	
+		
+		function PassAjax(id,dogid,$phaseTd){
+			$.ajaxSetup({
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				}
+			});//먼저 보냄
+			$.ajax({ // 에이작스 열고
+				type : 'post', //타입은 get 
+				url : "documentpass", // restFul 방식
+				data : {"id":id, "dogid":dogid},
+				dataType:"json"
+			}).done((status)=>{
+				$phaseTd.text(status);
+			});
+		}
 		
 	</script>
 
