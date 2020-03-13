@@ -15,27 +15,19 @@ import com.itcia.itgoo.dto.Member;
 public class ClientManagement {
 	@Autowired
 	private IClientDao cDao;
-	private ModelAndView mav=new ModelAndView();
-	
-	
-	
+	private ModelAndView mav = new ModelAndView();
 	public ModelAndView adoplist() {
-		List<Dog> d= cDao.adoplist();
-		
+		List<Dog> d = cDao.adoplist();
 
 		System.out.println(d);
-		mav.addObject("dogList",new Gson().toJson(d));
-		mav.addObject("dogPicList",new Gson().toJson(d));
+		mav.addObject("dogList", new Gson().toJson(d));
 		mav.setViewName("adoptList");
-		
-		
+
 		return mav;
 	}
 
-
-
-	public Dog adoptlistdetail(String dogid) {
-		Dog d=cDao.adoptlistdetail(dogid);
-		return d;
+	public String adoptlistdetail(String dogid) {
+		List<String> dogpics = cDao.adoptlistdetail(dogid);
+		return new Gson().toJson(dogpics);
 	}
 }

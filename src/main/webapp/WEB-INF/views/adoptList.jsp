@@ -54,6 +54,25 @@
 	font-size: .9rem;
 	border: 0px transparent solid;
 }
+
+/* =========================================================== */
+ *{margin:0;padding:0;}
+  ul,li{list-style:none;}
+  #slide{height:300px;position:relative;overflow:hidden;}
+  #slide ul{width:400%;height:100%;transition:1s;}
+  #slide ul:after{content:"";display:block;clear:both;}
+  #slide li{float:left;width:25%;height:100%;}
+  #slide li:nth-child(1){background:#2e2e2e;}
+  #slide li:nth-child(2){background:#2e2e2e;}
+  #slide li:nth-child(3){background:#2e2e2e;}
+  #slide li:nth-child(4){background:#2e2e2e;}
+  #slide input{display:none;}
+  #slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
+  #slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
+  #pos1:checked~ul{margin-left:0%;}
+  #pos2:checked~ul{margin-left:-100%;}
+  #pos3:checked~ul{margin-left:-200%;}
+  #pos4:checked~ul{margin-left:-300%;}
 </style>
 <body id="page-top">
 
@@ -166,16 +185,29 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+
 						</div>
-						<div class="modal-body">내용</div>
+						<div class="modal-body">사진</div>
+						<div id="slide">
+							<input type="radio" name="pos" id="pos1" checked>
+							<input type="radio" name="pos" id="pos2"> 
+							<input type="radio"	name="pos" id="pos3"> 
+							<input type="radio" name="pos" id="pos4">
+							<ul id="adoptdetailpics">
+							</ul>
+							<p class="pos">
+								<label for="pos1"></label> <label for="pos2"></label> <label
+									for="pos3"></label> <label for="pos4"></label>
+							</p>
+						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">확인</button>
-							<button type="button" class="btn btn-default" id="closeModalBtn">취소</button>
+							<button type="button" class="btn btn-primary">입양</button>
+							<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
 						</div>
 					</div>
 				</div>
@@ -223,7 +255,6 @@
 		 $('#openModalBtn').on('click', function(e){
 			 //console.log(e.target.dataset.dogid);
 			 var dogid=e.target.dataset.dogid;
-			 console.log("클릭한 사진번호"+$(this).attr("name"))
 			 $.ajaxSetup({
 					beforeSend : function(xhr) {
 						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -236,11 +267,16 @@
 					dataType : "json",
 
 					//서블릿이 성공하면 다시 돌아오는것
-					success : function(data) {
+					success : function(list) {
+						$.each(list,function(idx,data){
 						console.log(data);
-					
+						var $dogPic = $("#adoptdetailpics");
+						var $li = $('<li>')
+						var $img = $('<img style="width:100%">').attr('src',data);
+						$li.append($img);
+						$dogPic.append($li);
+					})
 					}
-
 					,
 					error : function(error) {
 						console.log(error);
