@@ -3739,3 +3739,10 @@ ul.chat-available-user li a:hover {
 .activitytextarea{
 	margin-left: 20px;
 }
+#contents_layer{
+	width: 60%;
+	height: 70%;
+	top: 30%;
+	left: 37%;
+	border: 2px solid black;
+}
