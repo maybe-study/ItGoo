@@ -55,10 +55,10 @@
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> 적격성 평가 </h3>
         <form action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
-						name=frm id="frm" method="post" >
+						onsubmit="return makeTestJson()" name=frm id="frm" method="post" >
+						<input type="hidden" name="test" value="0">
         <!-- /row -->
         <!-- INPUT MESSAGES -->
-        
         <div class="row mt">
           <div class="col-lg-10">
           <div class="row mt" id="questionList">
@@ -141,6 +141,7 @@
   <script type="text/javascript" src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script type="text/javascript" src="lib/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
   <script>
+  	var qs = getQueryStringObject();
   	var qList=${qList}
   	var $qList=$('#questionList');
   	$qList.empty();
@@ -153,7 +154,7 @@
   	  	
   	  	
   	  	$.each(question.exList,function(i,ex){
-	  	  	var $label=$('<label>').append('<input type="radio" name="'+question.questionnum+'" id="optionsRadios1" value="'+ex.exnum+'" required>').append(ex.exnum+". ");
+	  	  	var $label=$('<label>').append('<input type="radio" name="q'+question.questionnum+'" id="optionsRadios1" value="'+ex.exnum+'" required>').append(ex.exnum+". ");
 	  	  	$label.append(ex.excontent)
 	  	  	var $div3=$('<div class="radio">').append($label);
 	  	  	$div2.append($div3);
@@ -165,11 +166,37 @@
   	  	$qList.append($div1);
   	})
   	
+  	function makeTestJson(){
+		var qArr= new Array();
+  		$.each(qList,function(idx,question){
+  			var obj= new Object();
+  			obj.questionnum=question.questionnum;
+  			obj.answer=document.frm["q"+question.questionnum].value;
+  			obj.dogid=1;//qs.dogid;
+  			qArr.push(obj);
+  		})
+  		document.frm.test.value=JSON.stringify(qArr);
+  		
+  		return true;
+  	}
   	
   	
   	
-  	console.log("qList:",qList)
   	
+  	
+	function getQueryStringObject() {
+	    var a = window.location.search.substr(1).split('&');
+	    if (a == "") return {};
+	    var b = {};
+	    for (var i = 0; i < a.length; ++i) {
+	        var p = a[i].split('=', 2);
+	        if (p.length == 1)
+	            b[p[0]] = "";
+	        else
+	            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+	    }
+	    return b;
+    }
   	
   	
   </script>
