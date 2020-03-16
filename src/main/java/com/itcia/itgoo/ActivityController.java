@@ -62,8 +62,6 @@ public class ActivityController {
 	public String activityRegiste(Locale locale, Model model) {
 		return "activitycompany/activityRegiste";
 	}
-
-	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/regiactivity")
 	public ModelAndView regiactivity (Principal p ,MultipartHttpServletRequest multi,Activity ac) {
 		if(p!=null) {
@@ -74,7 +72,6 @@ public class ActivityController {
 
 		return mav;
 	}
-	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/uploadactivitycompic")
 	public ModelAndView uploadactivitycompic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
 		if(p!=null) {
