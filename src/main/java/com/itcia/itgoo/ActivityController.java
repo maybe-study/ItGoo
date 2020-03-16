@@ -62,7 +62,6 @@ public class ActivityController {
 	public String activityRegiste(Locale locale, Model model) {
 		return "activitycompany/activityRegiste";
 	}
-	
 	@PostMapping(value = "/regiactivity")
 	public ModelAndView regiactivity (Principal p ,MultipartHttpServletRequest multi,Activity ac) {
 		if(p!=null) {
@@ -83,7 +82,7 @@ public class ActivityController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
 	public  ModelAndView activityDelete (Principal p ,Company cp) {
 		if(p!=null) {
@@ -91,7 +90,7 @@ public class ActivityController {
 			System.out.println("p="+p.getName());
 		}
 		mav= am.activityDelete1(p,cp);
-		
+
 
 		return mav;
 	}
@@ -99,7 +98,7 @@ public class ActivityController {
 	public String acitivityDeleteDetail(Locale locale, Model model) {
 		return "activitycompany/activityDeleteDetail";
 	}
-	
+
 	@RequestMapping(value = "/activitydeletebtn" )
 	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
 		mav= am.activityDeleteBtn(ac,attr);

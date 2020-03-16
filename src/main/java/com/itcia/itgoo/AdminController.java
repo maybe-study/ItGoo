@@ -1,5 +1,6 @@
 ﻿package com.itcia.itgoo;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,6 +28,13 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	@Autowired
 	AdminCompany Ac;
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Principal p) {
+		if(p!=null) {
+			System.out.println("세션이름:"+p.getName());
+		}
+		return "admin/test";
+	}
 	@RequestMapping(value = "/addtestfrm", method = RequestMethod.GET)
 	public ModelAndView addTestFrm(Locale locale, Model model) {
 		ModelAndView mav = new ModelAndView();
@@ -67,10 +75,7 @@ public class AdminController {
 	}
 	
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(Locale locale, Model model) {
-		return "admin/test";
-	}
+	
 	@RequestMapping(value = "/uploadtest", method = RequestMethod.POST)
 	public String uploadTest(MultipartHttpServletRequest multi, Commonmember cMember) {
 		UploadFile up= new UploadFile();
