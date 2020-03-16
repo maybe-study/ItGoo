@@ -54,9 +54,11 @@
     <section id="main-content">
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> 적격성 평가 </h3>
-        
+        <form action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
+						name=frm id="frm" method="post" >
         <!-- /row -->
         <!-- INPUT MESSAGES -->
+        
         <div class="row mt">
           <div class="col-lg-10">
           <div class="row mt" id="questionList">
@@ -98,9 +100,18 @@
 				       </div>
 				          
           </div>
+          <div class="row mt">
+               <div class="col-lg-12">
+               <br>
+               		<div class="form-group" style="text-align: center">
+                       <button class="btn btn-theme" type="submit" >제출</button>
+                   </div>
+               </div>
+        </div>
         </div>
         </div>
         <!-- /row -->
+        </form>
       </section>
       <!-- /wrapper -->
     </section>
@@ -137,12 +148,12 @@
   		console.log(idx);
   		var $div1=$('<div class="col-lg-4">');
   	  	var $div2=$('<div class="form-panel">');
-  	  	var $h4=$('<h4 class="mb">').append('<i class="fa fa-angle-right">').append(" "+idx+". ").append(question.question);
+  	  	var $h4=$('<h4 class="mb">').append('<i class="fa fa-angle-right">').append(" "+question.question);
   	  	$div2.append($h4);
   	  	
   	  	
   	  	$.each(question.exList,function(i,ex){
-	  	  	var $label=$('<label>').append('<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">').append(ex.exnum);
+	  	  	var $label=$('<label>').append('<input type="radio" name="'+question.questionnum+'" id="optionsRadios1" value="'+ex.exnum+'" required>').append(ex.exnum+". ");
 	  	  	$label.append(ex.excontent)
 	  	  	var $div3=$('<div class="radio">').append($label);
 	  	  	$div2.append($div3);
