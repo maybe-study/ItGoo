@@ -72,25 +72,22 @@
 
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<a href="index.jsp" class="navbar-brand">ITGOO</a>
-		<!-- Toggle Button -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
-				<li class="nav-item"><a href="companyjoinform.jsp"
-					class="nav-link">업체 회원가입</a></li>
-				<li class="nav-item"><a href="companyjoinform.jsp"
-					class="nav-link">보호소 회원가입</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
-				<li class="nav-item"><a href="itgoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
-			</ul>
-		</div>
-	</nav>
+			<a href="#" class="navbar-brand">ITGOO</a>
+			<!-- Toggle Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
+					<li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">업체 회원가입</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
+					<li class="nav-item"><a href="itgoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
+				</ul>
+			</div>
+		</nav>
 	<!-- content -->
 	<div class="container pt-3">
 		<div class="row">

@@ -93,7 +93,10 @@ body {
 	-webkit-align-items: center;
 	align-items: center;
 }
-.dog{width:100%}
+
+.dog {
+	width: 100%
+}
 </style>
 <body id="page-top">
 
@@ -214,36 +217,41 @@ body {
 
 						</div>
 						<div class="modal-body">
-							<table  style= "margin:auto">
-								   <tr>
-								   <td>이름</td><td id="name"></td>
-								   </tr>
-								   <tr>
-								   <td>나이</td><td id="age"></td>
-								   </tr>
-								   <tr>
-								   <td>중성화 여부</td><td id="dogjungsung"></td>
-								   </tr>
-								   <tr>
-								   <td>성별</td><td id="sex"></td>
-								   </tr>
-								   <tr>
-								   <td>특이사항</td><td id="special"></td>
-								   </tr>
+							<table style="margin: auto">
+								<tr>
+									<td>이름</td>
+									<td id="name"></td>
+								</tr>
+								<tr>
+									<td>나이</td>
+									<td id="age"></td>
+								</tr>
+								<tr>
+									<td>중성화 여부</td>
+									<td id="dogjungsung"></td>
+								</tr>
+								<tr>
+									<td>성별</td>
+									<td id="sex"></td>
+								</tr>
+								<tr>
+									<td>특이사항</td>
+									<td id="special"></td>
+								</tr>
 							</table>
-						<div id="demo" class="carousel slide" data-ride="carousel">
-								  <!-- Indicators -->
-								
-							
-								  <ul class="carousel-indicators">
-								    <!-- <li data-target="#demo" data-slide-to="0" class="active"></li>
+							<div id="demo" class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+
+
+								<ul class="carousel-indicators">
+									<!-- <li data-target="#demo" data-slide-to="0" class="active"></li>
 								    <li data-target="#demo" data-slide-to="1"></li>
 								    <li data-target="#demo" data-slide-to="2"></li> -->
-								  </ul>
-								
-								  <!-- The slideshow -->
-								  <div class="carousel-inner">
-								    <!-- <div class="carousel-item active">
+								</ul>
+
+								<!-- The slideshow -->
+								<div class="carousel-inner">
+									<!-- <div class="carousel-item active">
 								      <img src="/fileupload/dog/1.jpg" class="dog" alt="Los Angeles">
 								    </div>
 								    <div class="carousel-item">
@@ -252,24 +260,23 @@ body {
 								    <div class="carousel-item">
 								      <img src="/fileupload/dog/3.jpg" class="dog" alt="New York">
 								    </div> -->
-								  </div>
-								   <!-- Left and right controls -->
-							  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-							    <span class="carousel-control-prev-icon"></span>
-							  </a>
-							  <a class="carousel-control-next" href="#demo" data-slide="next">
-							    <span class="carousel-control-next-icon"></span>
-							  </a>
-							  
-								
+								</div>
+								<!-- Left and right controls -->
+								<a class="carousel-control-prev" href="#demo" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+
+
+							</div>
+
+
 						</div>
-						
-						
-						</div>
-						
+
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">입양</button>
+							<button type="button" class="btn btn-primary" id="adoptBtn">입양</button>
 							<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
 						</div>
 					</div>
@@ -293,7 +300,6 @@ body {
 
 	<script>
 		
-		 
 		 $.each(${dogList},function(idx,data){
 			 var $dogList = $("#dogList");
 			 var $img=$('<img id="openModalBtn" style="width:100%">').attr('src',data.dogpic);
@@ -357,6 +363,11 @@ body {
 						$('#special').text(data.dogspecial);
 						
 						  
+						
+						$("#adoptBtn").on("click",function(){
+							location.href="applyAdopt.jsp?dogid="+data.dogid
+						})
+						 
 					/* var swiper = new Swiper('.swiper-container', {
 					      navigation: {
 					        nextEl: '.swiper-button-next',
@@ -376,6 +387,7 @@ body {
 				$('#closeModalBtn').on('click', function(){
 				$('#modalBox').modal('hide');
 		});
+				
 	</script>
 
 	<!-- Bootstrap core JavaScript -->

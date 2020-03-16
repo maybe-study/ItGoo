@@ -19,6 +19,7 @@ public class Adopt {
 	private String dogcareer;
 	private String job;
 	private String why;
+	private String teststart;
 	private String username;
 	private String dogname;
 	private String phone;
