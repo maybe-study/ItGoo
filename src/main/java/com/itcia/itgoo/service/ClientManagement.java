@@ -27,7 +27,9 @@ public class ClientManagement {
 	}
 
 	public String adoptlistdetail(String dogid) {
-		List<String> dogpics = cDao.adoptlistdetail(dogid);
-		return new Gson().toJson(dogpics);
+		System.out.println("======================================\ndogid:"+dogid);
+		Dog dog = cDao.dogDetail(dogid);
+		dog.setDogpics(cDao.adoptlistdetail(dogid));
+		return new Gson().toJson(dog);
 	}
 }

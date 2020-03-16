@@ -20,6 +20,7 @@ public class RestAdoptController {
 	
 	@PostMapping(value = "/adoptlistdetail", produces="plain/text;charset=utf-8")
 	public String adoptlistdetail(String dogid) {
+		System.out.println("==============================controller=============================\ndogid:"+dogid);
 		String dogpics = cm.adoptlistdetail(dogid);
 		
 		return dogpics;

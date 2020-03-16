@@ -12,5 +12,7 @@ public interface IClientDao {
 
 	@Select("SELECT dogpic FROM dog inner join dogpics on dogpics.dogid = dog.dogid")
 	List<String> adoptlistdetail(String dogid);
+	@Select("SELECT * FROM dog where dogid=#{param1}")
+	Dog dogDetail(String dogid);
 
 }

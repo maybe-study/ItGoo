@@ -93,6 +93,7 @@ body {
 	-webkit-align-items: center;
 	align-items: center;
 }
+.dog{width:100%}
 </style>
 <body id="page-top">
 
@@ -212,7 +213,60 @@ body {
 							</button>
 
 						</div>
-						<div class="modal-body">사진</div>
+						<div class="modal-body">
+							<table  style= "margin:auto">
+								   <tr>
+								   <td>이름</td><td id="name"></td>
+								   </tr>
+								   <tr>
+								   <td>나이</td><td id="age"></td>
+								   </tr>
+								   <tr>
+								   <td>중성화 여부</td><td id="dogjungsung"></td>
+								   </tr>
+								   <tr>
+								   <td>성별</td><td id="sex"></td>
+								   </tr>
+								   <tr>
+								   <td>특이사항</td><td id="special"></td>
+								   </tr>
+							</table>
+						<div id="demo" class="carousel slide" data-ride="carousel">
+								  <!-- Indicators -->
+								
+							
+								  <ul class="carousel-indicators">
+								    <!-- <li data-target="#demo" data-slide-to="0" class="active"></li>
+								    <li data-target="#demo" data-slide-to="1"></li>
+								    <li data-target="#demo" data-slide-to="2"></li> -->
+								  </ul>
+								
+								  <!-- The slideshow -->
+								  <div class="carousel-inner">
+								    <!-- <div class="carousel-item active">
+								      <img src="/fileupload/dog/1.jpg" class="dog" alt="Los Angeles">
+								    </div>
+								    <div class="carousel-item">
+								      <img src="/fileupload/dog/2.jpg" class="dog" alt="Chicago">
+								    </div>
+								    <div class="carousel-item">
+								      <img src="/fileupload/dog/3.jpg" class="dog" alt="New York">
+								    </div> -->
+								  </div>
+								   <!-- Left and right controls -->
+							  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+							    <span class="carousel-control-prev-icon"></span>
+							  </a>
+							  <a class="carousel-control-next" href="#demo" data-slide="next">
+							    <span class="carousel-control-next-icon"></span>
+							  </a>
+							  
+								
+						</div>
+						
+						
+						</div>
+						
 
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary">입양</button>
@@ -263,6 +317,7 @@ body {
 		 $('#openModalBtn').on('click', function(e){
 			 //console.log(e.target.dataset.dogid);
 			 var dogid=e.target.dataset.dogid;
+			 console.log("dogid:",dogid);
 			 $.ajaxSetup({
 					beforeSend : function(xhr) {
 						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -271,42 +326,37 @@ body {
 				$.ajax({ // 에이작스 열고
 					type : 'post', //타입은 get 
 					url : "adoptlistdetail", // restFul 방식
-					data : dogid,
+					data : {dogid:dogid},
 					dataType : "json",
 
 					//서블릿이 성공하면 다시 돌아오는것
-					success : function(list) {
+					success : function(data) {
 						
-						$.each(list,function(idx,data){
-							var $wrapper=$(".swiper-wrapper");
-							var $pic=$('<div class="swiper-slide">');
-							var $img = $('<img style="width:100%">').attr('src',data);
-							$pic.append($img);
-							$wrapper.append($pic);
-						/* console.log(data);
-						var $dogPic = $("#adoptdetailpics");
-						var $li = $('<li>')
-						var $img = $('<img style="width:100%">').attr('src',data);
-						$li.append($img);
-						$dogPic.append($li); */
+						console.log("data",data);
+						var $uls=$('.carousel-indicators').empty();
+						var $items=$('.carousel-inner').empty();
+						//사진 리스트
+						$.each(data.dogpics,function(idx,pic){
+							if(idx==0){
+								$('<li data-target="#demo" data-slide-to="0" class="active">').appendTo($uls);
+								var $div=$('<div class="carousel-item active">').appendTo($items);
+								$('<img class="dog">').attr('src',pic).appendTo($div);
+							}else{
+								var $li=$('<li data-target="#demo">').appendTo($uls);
+								$li[0].dataset.slideTo=idx;
+								var $div=$('<div class="carousel-item">').appendTo($items);
+								$('<img class="dog">').attr('src',pic).appendTo($div);
+							}
+							
 						});
+						//강아지 정보
+						$('#name').text(data.dogname);
+						$('#age').text(data.dogage+" 살");
+						$('#dogjungsung').text(data.dogjungsung==0?"O":"X");
+						$('#sex').text(data.sex==0?"남":"여");
+						$('#special').text(data.dogspecial);
 						
-						    setTimeout(function () {
-						    swiper.update();
-						    }, 500);
 						  
-						var swiper = new Swiper('#slide-event', {
-							effect: 'slide',
-							  keyboardControl: true,
-							  centeredSlides: true,
-							  observer: true,
-							  observeParents: true,
-							  loop: false,
-							  nextEl: '.swiper-button-next',
-							  prevEl: '.swiper-button-prev',
-							  speed: 0,
-							  
-							})
 					/* var swiper = new Swiper('.swiper-container', {
 					      navigation: {
 					        nextEl: '.swiper-button-next',
