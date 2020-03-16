@@ -1,5 +1,7 @@
 package com.itcia.itgoo.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.AllArgsConstructor;
@@ -18,4 +20,5 @@ public class Question {
 	private int correct;
 	private String point;
 	private int toggle;
+	private List<Ex> exList;
 }
