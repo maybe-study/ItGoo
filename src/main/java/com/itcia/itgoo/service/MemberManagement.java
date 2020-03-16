@@ -82,7 +82,7 @@ public class MemberManagement {
 			url="redirect:/sheltermyinfo";
 			break;
 		case "[ROLE_ACTIVITY, ROLE_USER]":
-			url="redirect:/adminactivity.do";
+			url="redirect:/activitymyinfo";
 			break;
 		case "":
 			break;

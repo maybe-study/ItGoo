@@ -4,6 +4,7 @@ package com.itcia.itgoo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -40,11 +41,12 @@ public class ActivityController {
 
 	private ModelAndView mav;
 	@RequestMapping(value = "/activitymyinfo", method = RequestMethod.GET)
-	public  ModelAndView activityMyInfo1 (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));		
-		mav= am.activityMyInfo1(cp, req);
+	public  ModelAndView activityMyInfo1 (Principal p,Company cp) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= am.activityMyInfo1(p,cp);
 
 		return mav;
 	}
@@ -60,33 +62,38 @@ public class ActivityController {
 	public String activityRegiste(Locale locale, Model model) {
 		return "activitycompany/activityRegiste";
 	}
-	
+
 	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/regiactivity")
-	public ModelAndView regiactivity (MultipartHttpServletRequest multi,Activity ac,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		mav=am.regiActivity(multi,ac,req);
+	public ModelAndView regiactivity (Principal p ,MultipartHttpServletRequest multi,Activity ac) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=am.regiActivity(p,multi,ac);
 
 		return mav;
 	}
 	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/uploadactivitycompic")
-	public ModelAndView uploadactivitycompic (MultipartHttpServletRequest multi,Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		mav=am.uploadactivitycompic(multi,cp,req);
+	public ModelAndView uploadactivitycompic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=am.uploadactivitycompic(p,multi,cp);
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
-	public  ModelAndView activityDelete (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));
-		mav= am.activityDelete1(cp, req);
-		
+	public  ModelAndView activityDelete (Principal p ,Company cp) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= am.activityDelete1(p,cp);
+
 
 		return mav;
 	}
@@ -94,7 +101,7 @@ public class ActivityController {
 	public String acitivityDeleteDetail(Locale locale, Model model) {
 		return "activitycompany/activityDeleteDetail";
 	}
-	
+
 	@RequestMapping(value = "/activitydeletebtn" )
 	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
 		mav= am.activityDeleteBtn(ac,attr);

@@ -1,5 +1,6 @@
 package com.itcia.itgoo;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -29,52 +30,37 @@ public class RestActivityController {
 
 	private ModelAndView mav;
 	@RequestMapping(value = "/updatecompanyname", method = RequestMethod.GET)
-	public  String updatecompanyname (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));
-		
-		mav= am.updatecompanyname(cp, req);
+	public  String updatecompanyname (Principal p,Company cp) {
+		mav= am.updatecompanyname(p,cp);
 
 		return "{\"a\":\"1\"}";
 	}
 	@RequestMapping(value = "/updatecompanyboss", method = RequestMethod.GET)
-	public  String updatecompanyboss (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));
+	public  String updatecompanyboss (Principal p,Company cp) {
 		
-		mav= am.updatecompanyboss(cp, req);
+		mav= am.updatecompanyboss(p,cp);
 
 		return "{\"a\":\"1\"}";
 	}
 	@RequestMapping(value = "/updatecompanyphone", method = RequestMethod.GET)
-	public  String updatecompanyphone (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));
+	public  String updatecompanyphone (Principal p, Company cp) {
 		
-		mav= am.updatecompanyphone(cp, req);
+		mav= am.updatecompanyphone(p, cp);
 
 		return "{\"a\":\"1\"}";
 	}
 	@RequestMapping(value = "/updatecompanyemail", method = RequestMethod.GET)
-	public  String updatecompanyemail (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));
+	public  String updatecompanyemail (Principal p,Company cp) {
 		
-		mav= am.updatecompanyemail(cp, req);
+		mav= am.updatecompanyemail(p,cp);
 
 		return "{\"a\":\"1\"}";
 	}
 	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/updatecompanylocation")
-	public  ModelAndView updatecompanylocation (Company cp,HttpServletRequest req) {
-		HttpSession session=req.getSession();
-		session.setAttribute("companyid","123");
+	public  ModelAndView updatecompanylocation (Principal p,Company cp) {
 		
-		mav= am.updatecompanylocation(cp, req);
+		mav= am.updatecompanylocation(p,cp);
 
 		return mav;
 	}
