@@ -1,5 +1,6 @@
 package com.itcia.itgoo.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Dfile;
+import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.share.UploadFile;
 
@@ -74,10 +77,36 @@ public class ShelterManagement {
 		sDao.insertRole(cMember.getId(),"ROLE_USER");
 		return mav;
 	}
-
+	 @Transactional
+		public ModelAndView shelterregiste(MultipartHttpServletRequest multi, Dog dog,Principal p) {
+			UploadFile up = new UploadFile();
+			
+			List<String> paths = up.fileUp(multi.getFiles("dogpicby"), "dogpics");
+			dog.setShelterid(p.getName());
+			sDao.insertDog(dog);
+			Dfile df= new Dfile();
+			for(String path: paths) {
+				df.setDogpic(path);
+				sDao.inserDogPics(df);
+			}
+			
+			
+			return null;  
+		}
+	 
+	 
+	 
+//아이디중복검사
+	 
 	public Member xduplicateid(Member mb) {
 		   Member m = sDao.xduplicateid(mb);
 		      return m;
 	}
+	
+	
+
+	
+	
+	
 
 }

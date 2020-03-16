@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="UTF-8">
+<html lang="">
 
 
 <head>
@@ -16,10 +16,13 @@
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap core CSS -->
 <link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
 <!--external css-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
@@ -35,24 +38,75 @@
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-
-
-<style>
-#show_profile {
-	width: 20%;
-	height: 20%;
-}
-</style>
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script>
+	$(function() {
+		$("#profile").on("change", loadImage)
+	});
+	function loadImage() {
+		console.log($('#profile'));
+		var file = $("#profile")[0].files[0]; //한개의 프사만 등록
+		var maxSize = 1024 * 1024; //1MB
+		if (file.size > maxSize) {
+			toastr.warning("사진은 1M이하여야 합니다.", "경고");
+			$("#profile").val("");
+			return false;//작업 실패
+		}
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			console.log("e=", e);
+			$('#show_profile').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(file); //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
+		return true;
+	}
+</script>
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+
+<style>
+
+#yes {
+	margin-left: 45%;
+}
+
+#reset {
+	margin-left: 5%;
+}
+
+#yes, #reset {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	user-select: none;
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+	margin-top: 10px;
+
+}
+
+#show_profile{
+width: 40%;
+height: 40%;
+
+
+}
+</style>
 </head>
 
 <body>
@@ -119,7 +173,6 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
-		<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
@@ -160,7 +213,7 @@
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterRegiste">등록</a></li>
+							<li><a href="">등록</a></li>
 							<li><a href="">삭제</a></li>
 						</ul></li>
 
@@ -185,131 +238,38 @@
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 반려견 등록
+					<i class="fa fa-angle-right"></i> 업체 시설 사진 첨부
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
+				<!-- 버튼 테이블  -->
 				<div class="row mt">
-					<form action="shelterdogregi?${_csrf.parameterName}=${_csrf.token}"
-						name="registe" method="post" id="registe" enctype="multipart/form-data">
-						<div class="col-lg-6 col-md-6 col-sm-6">
-							<section class="panel">
-								<h4 class="title"></h4>
-								<div id="message"></div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<section class="panel">
+							<h3 class="title">첨부할 파일들을 선택해주세요</h3>
+							<div class="form-group" id="main-file-tag">
+								<div class="main-file-tag">
 
+									<img id="show_profile" height="240" />
+									<form action="boardwrite" id="frm" method="post"
+										enctype="multipart/form-data">
 
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td><img id="show_profile" style="border-color: white;" /></td>
-											</tr>
-											<tr>
-												<td>사진 첨부:</td>
-												<td><input type="file" id="profile" class="profile"
-													name="dogpicby" accept=".jpg,.jpeg,.png,.gif,.bmp" /></td>
-											</tr>
-										</table>
-									</div>
+										<label for="profile">프로필사진</label> <span class="help-block"
+											id="helper_profile">1M이하만 가능</span> <input type="file"
+											id="profile" class="form-control" name="profile"
+											accept=".jpg,.jpeg,.png,.gif,.bmp" />
+										<!-- 버튼 -->
+										<input type="submit" value="사진 변경" id="yes" /> 
+										<input type="reset" id="reset" value="취소" />
+
+									</form>
+
 								</div>
-
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>강아지 이름:</td>
-												<td><input type="text" id="dogname" class="dogname"
-													name="dogname" /></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>강아지 나이:</td>
-												<td><input type="text" id="dogage" class="dogage"
-													name="dogage" /></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>성별:</td>
-												<td><select name="sex" id="sex" class="sex">
-														<option value="선택">선택</option>
-														<option value="0">수컷</option>
-														<option value="1">암컷</option>
-
-												</select></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>중성화 여부:</td>
-												<td><select name="dogjungsung"
-													id="activity-dog-cnt" class="activity-dog-cnt"
-													name="dogiungsung">
-														<option value="중성화여부">선택</option>
-														<option value="1">O</option>
-														<option value="2">X</option>
-
-												</select></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-
-												<td>특이사항</td>
-												<td><textarea id="dogspecial" class="dogspecial"
-														name="dogspecial"
-														style="word-break: normal; height: 200px; width: 500px;"></textarea>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
-
-
-
-							</section>
-						</div>
-						<div class="btn-div">
-						
-						<button id="but" class="but" type="submit">등록</button>
-						<button class="but">취소</button>
-						
-						</div>
-					</form>
+							</div>
+						</section>
+					</div>
 				</div>
 
 				<!-- /row -->
-				<div id="articleView_layer">
-					<div id="bg_layer"></div>
-					<div id="contents_layer"></div>
-				</div>
 
 
 				<!-- /row -->
@@ -367,31 +327,7 @@
 	<script type="text/javascript"
 		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 	<script src="lib/advanced-form-components.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="lib/time-select/timepicker-addon.js"></script>
 
-	<script>
-		$(function() {
-			$("#profile").on("change", loadImage)
-		});
-		function loadImage() {
-			console.log($('#profile'));
-			var file = $("#profile")[0].files[0]; //한개의 프사만 등록
-			var maxSize = 1024 * 1024; //1MB
-			if (file.size > maxSize) {
-				toastr.warning("사진은 1M이하여야 합니다.", "경고");
-				$("#profile").val("");
-				return false;//작업 실패
-			}
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				console.log("e=", e);
-				$('#show_profile').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(file); //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
-			return true;
-		}
-	</script>
 </body>
 
 </html>

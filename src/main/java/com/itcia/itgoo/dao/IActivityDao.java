@@ -39,4 +39,7 @@ public interface IActivityDao {
 	public boolean uploadactivitycompic(Company cp);
 	
 	public void insertCompanyPic(String param1, String param2);
+
+	@Select("select count(*) from activity where companyid=#{companyid}")
+	public int getActivityCnt(Company cp);
 }

@@ -2,8 +2,11 @@ package com.itcia.itgoo.dao;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Dfile;
+import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 
 public interface IShelterDao {
@@ -31,4 +34,16 @@ public interface IShelterDao {
 	
 	@Insert("insert into role values(#{param1},#{param2})")
 	void insertRole(String id, String string);
+
+	
+	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex})")
+	void insertDog(Dog dog);
+
+	
+	
+	
+	
+	void inserDogPics(Dfile df);
+	
+	
 }

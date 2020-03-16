@@ -25,5 +25,5 @@ public class Dog {
 	private int sex;
 	private String dogpic;
 	private List<String> dogpics;
-	
+
 }
