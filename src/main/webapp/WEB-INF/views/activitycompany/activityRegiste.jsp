@@ -11,6 +11,8 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
 <title>Dashio - Bootstrap Admin Template</title>
 
 <!-- Favicons -->
@@ -121,84 +123,25 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">ACTIVITY MANAGER</h5>
-					<li class="mt"><a href="/ItGoo/"> <i
-							class="fa fa-dashboard"></i> <span>Dashboard</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-desktop"></i> <span>UI Elements</span>
-					</a>
-						<ul class="sub">
-							<li><a href="general.html">General</a></li>
-							<li><a href="buttons.html">Buttons</a></li>
-							<li><a href="panels.html">Panels</a></li>
-							<li><a href="font_awesome.html">Font Awesome</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-cogs"></i> <span>Components</span>
-					</a>
-						<ul class="sub">
-							<li><a href="grids.html">Grids</a></li>
-							<li><a href="calendar.html">Calendar</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li><a href="todo_list.html">Todo List</a></li>
-							<li><a href="dropzone.html">Dropzone File Upload</a></li>
-							<li><a href="inline_editor.html">Inline Editor</a></li>
-							<li><a href="file_upload.html">Multiple File Upload</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-book"></i> <span>Extra Pages</span>
-					</a>
-						<ul class="sub">
-							<li><a href="blank.html">Blank Page</a></li>
-							<li><a href="login.html">Login</a></li>
-							<li><a href="lock_screen.html">Lock Screen</a></li>
-							<li><a href="profile.html">Profile</a></li>
-							<li><a href="invoice.html">Invoice</a></li>
-							<li><a href="pricing_table.html">Pricing Table</a></li>
-							<li><a href="faq.html">FAQ</a></li>
-							<li><a href="404.html">404 Error</a></li>
-							<li><a href="500.html">500 Error</a></li>
-						</ul></li>
-					<li class="sub-menu"><a class="active" href="javascript:;">
-							<i class="fa fa-tasks"></i> <span>업체</span>
-					</a>
-						<ul class="sub">
-							<li><a href="activitymyinfo">업체정보</a></li>
-							<li><a href="activitylocationinfo">업체 위치</a></li>
-							<li><a href="activitypicinfo">업체 시설 첨부</a></li>
-							<li class="active"><a href="activityregiste">액티비티 등록</a></li>
-							<li><a href="activitydelete">액티비티 삭제</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>Data Tables</span>
-					</a>
-						<ul class="sub">
-							<li><a href="basic_table.html">Basic Table</a></li>
-							<li><a href="responsive_table.html">Responsive Table</a></li>
-							<li><a href="advanced_table.html">Advanced Table</a></li>
-						</ul></li>
-					<li><a href="inbox.html"> <i class="fa fa-envelope"></i> <span>Mail
-						</span> <span class="label label-theme pull-right mail-info">2</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa fa-bar-chart-o"></i> <span>Charts</span>
-					</a>
-						<ul class="sub">
-							<li><a href="morris.html">Morris</a></li>
-							<li><a href="chartjs.html">Chartjs</a></li>
-							<li><a href="flot_chart.html">Flot Charts</a></li>
-							<li><a href="xchart.html">xChart</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-comments-o"></i> <span>Chat Room</span>
-					</a>
-						<ul class="sub">
-							<li><a href="lobby.html">Lobby</a></li>
-							<li><a href="chat_room.html"> Chat Room</a></li>
-						</ul></li>
-					<li><a href="google_maps.html"> <i
-							class="fa fa-map-marker"></i> <span>Google Maps </span>
-					</a></li>
+					 <li class="mt">
+            <a href="/ItGoo/">
+              <i class="fa fa-dashboard"></i>
+              <span>메인 페이지로</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a class="active" href="javascript:;">
+              <i class="fa fa-tasks"></i>
+              <span>업체</span>
+              </a>
+            <ul class="sub">
+              <li ><a href="activitymyinfo">업체정보</a></li>
+              <li><a href="activitylocationinfo">업체 위치</a></li>
+              <li><a href="activitypicinfo">업체 시설 첨부</a></li>
+              <li class="active"><a href="activityregiste">액티비티 등록</a></li>
+              <li><a href="activitydelete">등록된 액티비티 리스트</a></li>
+            </ul>
+          </li>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>
@@ -221,8 +164,6 @@
 							<section class="panel">
 								<h4 class="title"></h4>
 								<div id="message"></div>
-								<form class="contact-form php-mail-form" role="form"
-									action="contactform/contactform.php" method="POST">
 
 									<div class="form-group">
 										<div class="main-p-tag">
@@ -230,7 +171,7 @@
 												<tr>
 													<td>액티비티 이름:</td>
 													<td><input type="text" id="activityname"
-														class="activityname" name="activityname" /></td>
+														class="activityname" name="activityname" required /></td>
 												</tr>
 											</table>
 										</div>
@@ -241,7 +182,7 @@
 												<tr>
 													<td>액티비티 설명:</td>
 													<td><textarea cols="35" rows="2" id="activitytextarea"
-															class="activitytextarea" name="activityexplanation"></textarea></td>
+															class="activitytextarea" name="activityexplanation" required></textarea></td>
 												</tr>
 											</table>
 										</div>
@@ -252,9 +193,9 @@
 												<tr>
 													<td>액티비티</td>
 													<td>날짜:<input type="text" id="datepicker"
-														class="datepicker" name="activitydate" /></td>
+														class="datepicker" name="activitydate"  required/></td>
 													<td>-시간:<input type="text" id="timepicker"
-														class="timepicker" name="activitystart" /></td>
+														class="timepicker" name="activitystart" required/></td>
 												</tr>
 											</table>
 										</div>
@@ -263,9 +204,9 @@
 										<div class="main-p-tag">
 											<table>
 												<tr>
-													<td>액티비티</td>
+													<td>액티비티 활동 시간:</td>
 													<td><select name="activitytime" id="activitytime"
-														class="activitytime" name="activitytime">
+														class="activitytime" name="activitytime" required>
 															<option value="시간 선택">시간 선택</option>
 															<option value="1">1</option>
 															<option value="2">2</option>
@@ -285,7 +226,7 @@
 												<tr>
 													<td>최대 참여가능 마릿수:</td>
 													<td><select name="activitydogcnt"
-														id="activity-dog-cnt" class="activity-dog-cnt">
+														id="activity-dog-cnt" class="activity-dog-cnt" required>
 															<option value="마릿수 선택">마릿수 선택</option>
 															<option value="1">1</option>
 															<option value="2">2</option>
@@ -306,7 +247,7 @@
 												<tr>
 													<td>액티비티 가격:</td>
 													<td><input type="text" id="activity" class="activity"
-														name="activityprice" /></td>
+														name="activityprice" required/></td>
 												</tr>
 											</table>
 										</div>
@@ -317,7 +258,7 @@
 												<tr>
 													<td>액티비티 사진:&nbsp;</td>
 													<td><input class="box" type="file" name="files"
-														multiple id="files" accept=".jpg,.jpeg,.png,.gif,.bmp">
+														multiple id="files" accept=".jpg,.jpeg,.png,.gif,.bmp" required>
 														<input type="hidden" id="fileCheck" name="file_Check"
 														value="0" /></td>
 												</tr>
@@ -330,7 +271,6 @@
 											type="button" id="cancelactivitybtn"
 											class="cancelactivitybtn" value="취소" />
 									</div>
-								</form>
 							</section>
 						</div>
 

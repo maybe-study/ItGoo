@@ -1,5 +1,7 @@
 package com.itcia.itgoo.service;
 
+import java.io.Console;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import com.itcia.itgoo.dao.IActivityDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.share.UploadFile;
+import com.itcia.itgoo.userclass.Paging;
 
 
 @Service
@@ -27,11 +30,11 @@ public class ActivityManagement {
 	
 	private ModelAndView mav ;
 	
-	public ModelAndView regiActivity(MultipartHttpServletRequest multi,Activity ac,HttpServletRequest req) {
+	public ModelAndView regiActivity(Principal p, MultipartHttpServletRequest multi,Activity ac) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
-		HttpSession session = req.getSession();
-		ac.setCompanyid((String) session.getAttribute("companyid"));
+		
+		ac.setCompanyid((String) p.getName());
 		UploadFile up = new UploadFile();
 		aDao.regiActivity(ac); 
 		
@@ -47,11 +50,11 @@ public class ActivityManagement {
 		
 		return mav;
 	}
-	public ModelAndView uploadactivitycompic(MultipartHttpServletRequest multi, Company cp, HttpServletRequest req) {
+	public ModelAndView uploadactivitycompic(Principal p, MultipartHttpServletRequest multi, Company cp) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
-		HttpSession session = req.getSession();
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		
+		cp.setCompanyid((String) p.getName());
 		UploadFile up = new UploadFile();
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
 		for (String picPath : paths) {
@@ -66,11 +69,11 @@ public class ActivityManagement {
 	}
 	
 	
-	public ModelAndView activityMyInfo1(Company cp,HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView activityMyInfo1(Principal p,Company cp) {
+		
 		mav= new ModelAndView();
 		String view = null;
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		cp.setCompanyid((String) p.getName());
 		List<Company> aList = aDao.activityMyInfo1(cp);
 		mav.addObject("aList",new Gson().toJson(aList));
 		mav.setViewName("activitycompany/activityMyInfo");
@@ -80,11 +83,10 @@ public class ActivityManagement {
 	}
 
 
-	public ModelAndView updatecompanyname(Company cp, HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView updatecompanyname(Principal p,Company cp) {
 		mav = new ModelAndView();
 		
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		cp.setCompanyid((String) p.getName());
 		aDao.updatecompanyname(cp);
 		
 		
@@ -92,45 +94,41 @@ public class ActivityManagement {
 	}
 
 
-	public ModelAndView updatecompanyboss(Company cp, HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView updatecompanyboss(Principal p,Company cp) {
 		mav = new ModelAndView();
 		String view=null;
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		cp.setCompanyid((String) p.getName());
 		aDao.updatecompanyboss(cp);
 		
 		return mav;
 	}
 
 
-	public ModelAndView updatecompanyphone(Company cp, HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView updatecompanyphone(Principal p,Company cp) {
 		mav = new ModelAndView();
 		String view=null;
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		cp.setCompanyid((String) p.getName());
 		aDao.updatecompanyphone(cp);
 		
 		return mav;
 	}
 
 
-	public ModelAndView updatecompanyemail(Company cp, HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView updatecompanyemail(Principal p,Company cp) {
 		mav = new ModelAndView();
 		String view=null;
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		cp.setCompanyid((String) p.getName());
 		aDao.updatecompanyemail(cp);
 		
 		return mav;
 	}
 
 
-	public ModelAndView updatecompanylocation(Company cp, HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView updatecompanylocation(Principal p,Company cp) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
 		String view = null;
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		cp.setCompanyid((String) p.getName());
 		
 		aDao.updatecompanylocation(cp);
 		redirectView.setExposeModelAttributes(false);
@@ -140,17 +138,32 @@ public class ActivityManagement {
 	}
 
 
-	public ModelAndView activityDelete1(Company cp, HttpServletRequest req) {
-		HttpSession session = req.getSession();
+	public ModelAndView activityDelete1(Principal p, Company cp, Integer pageNum) {
 		mav= new ModelAndView();
 		String view = null;
-		cp.setCompanyid((String) session.getAttribute("companyid"));
+		int pNum = (pageNum == null) ? 1:pageNum;
+		if(pNum<=0) {
+			System.out.println("페이지 정보가 잘못되었습니다.");
+		}
+			System.out.println("pNum="+ pNum);
+		cp.setCompanyid((String) p.getName());
+		
 		List<Company> adList = aDao.activityDelete(cp);
 		mav.addObject("adList",new Gson().toJson(adList));
+		mav.addObject("paging", getPaging(pNum,cp));
 		mav.setViewName("activitycompany/activityDelete");
 		
 		System.out.println("companyList[0]=" + adList);
 		return mav; 
+	}
+	private Object getPaging(int pNum,Company cp) {
+		int maxNum= aDao.getActivityCnt(cp);
+		int listCount = 10;
+		int pageCount = 2;
+		String activity = "activitydelete";
+		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, activity);
+		return paging.makeHtmlPaging();
+		
 	}
 
 

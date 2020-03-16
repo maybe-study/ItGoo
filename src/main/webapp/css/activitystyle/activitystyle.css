@@ -3623,10 +3623,10 @@ ul.chat-available-user li a:hover {
 	margin-left: 20px;
 }
 #activitytime{
-	width: 200px;
+	width: 110px;
 	height: 35px;
 	margin-left: 20px;
-	margin-right: 20px;
+	margin-right: 5px;
 }
 #activityday{
 	width: 200px;
@@ -3745,4 +3745,9 @@ ul.chat-available-user li a:hover {
 	top: 30%;
 	left: 37%;
 	border: 2px solid black;
+}
+.pagingdiv{
+margin-left: 45%;
+	
+	
 }
