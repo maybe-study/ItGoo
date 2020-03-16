@@ -1,9 +1,11 @@
 package com.itcia.itgoo.service;
 
+import java.security.Principal;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -64,12 +66,13 @@ public class MemberManagement {
 	}
 
 	public String loginTo() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal;
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println("==============================principal=======================================");
-		String url="";
+		System.out.println(userDetails.getAuthorities().toString());
+		
+		String url="/";
 		switch(userDetails.getAuthorities().toString()) {
-		case "[ROLE_ACTIVITY , ROLE_ADMIN, ROLE_SHELTER, ROLE_USER]":	//관리자
+		case "[ROLE_ACTIVITY, ROLE_ADMIN, ROLE_SHELTER, ROLE_USER]":	//관리자
 			url="redirect:/adminactivity";
 			break;
 		case "[ROLE_USER]":
@@ -80,6 +83,8 @@ public class MemberManagement {
 			break;
 		case "[ROLE_ACTIVITY, ROLE_USER]":
 			url="redirect:/adminactivity.do";
+			break;
+		case "":
 			break;
 		};
 		

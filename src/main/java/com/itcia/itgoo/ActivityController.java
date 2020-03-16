@@ -43,7 +43,7 @@ public class ActivityController {
 	public  ModelAndView activityMyInfo1 (Company cp,HttpServletRequest req) {
 		HttpSession session=req.getSession();
 		session.setAttribute("companyid","123");
-		System.out.println("session="+session.getAttribute("companyid"));
+		System.out.println("session="+session.getAttribute("companyid"));		
 		mav= am.activityMyInfo1(cp, req);
 
 		return mav;
