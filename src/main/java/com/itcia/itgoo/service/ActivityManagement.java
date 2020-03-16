@@ -1,5 +1,6 @@
 package com.itcia.itgoo.service;
 
+import java.io.Console;
 import java.security.Principal;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.itcia.itgoo.dao.IActivityDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.share.UploadFile;
+import com.itcia.itgoo.userclass.Paging;
 
 
 @Service
@@ -136,16 +138,32 @@ public class ActivityManagement {
 	}
 
 
-	public ModelAndView activityDelete1(Principal p, Company cp) {
+	public ModelAndView activityDelete1(Principal p, Company cp, Integer pageNum) {
 		mav= new ModelAndView();
 		String view = null;
+		int pNum = (pageNum == null) ? 1:pageNum;
+		if(pNum<=0) {
+			System.out.println("페이지 정보가 잘못되었습니다.");
+		}
+			System.out.println("pNum="+ pNum);
 		cp.setCompanyid((String) p.getName());
+		
 		List<Company> adList = aDao.activityDelete(cp);
 		mav.addObject("adList",new Gson().toJson(adList));
+		mav.addObject("paging", getPaging(pNum,cp));
 		mav.setViewName("activitycompany/activityDelete");
 		
 		System.out.println("companyList[0]=" + adList);
 		return mav; 
+	}
+	private Object getPaging(int pNum,Company cp) {
+		int maxNum= aDao.getActivityCnt(cp);
+		int listCount = 10;
+		int pageCount = 2;
+		String activity = "activitydelete";
+		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, activity);
+		return paging.makeHtmlPaging();
+		
 	}
 
 

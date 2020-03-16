@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>   
   
   <!-- =======================================================
     Template Name: Dashio
@@ -135,7 +136,7 @@
               <li><a href="activitylocationinfo">업체 위치</a></li>
               <li><a href="activitypicinfo">업체 시설 첨부</a></li>
               <li><a href="activityregiste">액티비티 등록</a></li>
-              <li class="active"><a href="activitydelete">등록된 액티비티 목록</a></li>
+              <li class="active"><a href="activitydelete">등록된 액티비티 리스트</a></li>
             </ul>
           </li>
         </ul>
@@ -172,7 +173,9 @@
                   
                 </tbody>
               </table>
+              
             </div>
+            <div class="pagingdiv"></div>
           </div>
           <!-- /col-md-12 -->
         </div>
@@ -217,18 +220,34 @@
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <!--script for this page-->
 	<script>
-	$.each(${adList},function(idx, data){
-	var $body = $("#activitydelbody");
-	var $tr = $("<tr>").appendTo($body);
-	$("<td>").text(data.companyname).appendTo($tr);
-	$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.activitynum+')').text(data.activityname)).appendTo($tr);
-	$("<td>").text(data.activitydate).appendTo($tr);
-	$("<td>").text(data.activitystart).appendTo($tr);
-	$("<td>").text(data.activitytime).appendTo($tr);
-	$("<td>").text(data.activitydogcnt).appendTo($tr);
-	});
+	let container = $('.pagingdiv');
+    container.pagination({
+      
+        dataSource:${adList} , //받아온 데이터
+        pageSize: 10,
+        callback: function (data, pagination) { //데이터 찍어주는 부분
+           console.log("data=",data);
+           temp=data;
+           $("#activitydelbody").empty();
+           $.each(data,function(idx, data){
+        		var $body = $("#activitydelbody");
+        		
+        		var $tr = $("<tr>").appendTo($body);
+        		$("<td>").text(data.companyname).appendTo($tr);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.activitynum+')').text(data.activityname)).appendTo($tr);
+        		$("<td>").text(data.activitydate).appendTo($tr);
+        		$("<td>").text(data.activitystart).appendTo($tr);
+        		$("<td>").text(data.activitytime).appendTo($tr);
+        		$("<td>").text(data.activitydogcnt).appendTo($tr);
+        		
+        		});
+        }
+    
+    })
+	
 	function articleView(activitynum){
 		var detail= ${detail}
 		$("#articleView_layer").addClass('open');
@@ -268,6 +287,7 @@
 		else if($layerWindow.hasClass('open'))
 			$layerWindow.removeClass('open');
 	});
+	
 	
 	</script>  
 </body>

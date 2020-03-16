@@ -84,12 +84,12 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
-	public  ModelAndView activityDelete (Principal p ,Company cp) {
+	public  ModelAndView activityDelete (Principal p ,Company cp,Integer pageNum) {
 		if(p!=null) {
 			p.getName ();
 			System.out.println("p="+p.getName());
 		}
-		mav= am.activityDelete1(p,cp);
+		mav= am.activityDelete1(p,cp,pageNum);
 
 
 		return mav;
