@@ -1,6 +1,7 @@
 ﻿package com.itcia.itgoo;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Role;
@@ -52,6 +54,20 @@ public class CommonController {
 	@RequestMapping(value = "/itgoo1main", method = RequestMethod.GET)
 	public String itgoo1main() {
 		return "itgoo1main";
+	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public ModelAndView mypage(Principal p, Member mb) {
+		System.out.println("마이페이지 가는중");
+		mav = mm.mypage(p,mb);
+		return mav;
+	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/myadoptphase", method = RequestMethod.GET)
+	public ModelAndView myadoptphase(Principal p, Member mb) {
+		System.out.println("마이페이지 가는중");
+		mav = mm.myadoptphase(p,mb);
+		return mav;
 	}
 	
 	@PreAuthorize("isAuthenticated()")

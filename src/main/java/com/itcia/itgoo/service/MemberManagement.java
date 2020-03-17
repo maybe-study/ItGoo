@@ -2,6 +2,7 @@ package com.itcia.itgoo.service;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +22,7 @@ import com.itcia.itgoo.dto.Role;
 public class MemberManagement {
 	@Autowired
 	private IMemberDao mDao;
-	private ModelAndView mav;
+	private ModelAndView mav=new ModelAndView();
 
 	public ModelAndView memberJoin(Member mb, Role rl) {
 		mav = new ModelAndView();
@@ -91,5 +92,21 @@ public class MemberManagement {
 		
 		return url;
 	}
+
+	public ModelAndView mypage(Principal p,Member mb) {
+		mb.setId(p.getName());
+		List<Member> mList = mDao.myPage(mb);
+		mav.addObject("mList",new Gson().toJson(mList));
+		mav.setViewName("clientMyPage");
+		return mav;
+	}
+
+	public ModelAndView myadoptphase(Principal p, Member mb) {
+		mb.setId(p.getName());
+		List<Member> mList=mDao.myadoptphase(mb);
+		mav.addObject("phase",new Gson().toJson(mList));
+		return mav;
+	}
+
 
 }
