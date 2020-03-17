@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.ClientManagement;
+import com.itcia.itgoo.service.MemberManagement;
 
 @Controller
 public class ClientController {
@@ -23,6 +25,7 @@ public class ClientController {
 
 	@Autowired
 	private ClientManagement cm;
+	@Autowired MemberManagement mm;
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/adoptlist")
@@ -37,8 +40,9 @@ public class ClientController {
 		System.out.println("입양시작하는중");
 		System.out.println("==================id==================="+p.getName());
 		mav = cm.applyadopt(multi,ad,p);
-		
 		return mav;
 	}
+	
+	
 
 }

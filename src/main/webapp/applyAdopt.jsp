@@ -74,7 +74,8 @@ hr {
 	width: 250px;
 	height: 150px;
 }
-#why{
+
+#why {
 	width: 450px;
 	height: 100px;
 }
@@ -97,23 +98,24 @@ hr {
 			</div>
 			<br>
 			<div id="main">
-			<input type="hidden" value="0" name="dogid">
-				* 입양신청서 <br> <hr>
-				
-				* 신분증첨부파일
-				<br><br> <input type="file" id="idfile" class="box"
-							name="identifile" accept=".jpg,.jpeg,.png,.gif,.bmp" required>
+				<input type="hidden" value="0" name="dogid"> * 입양신청서 <br>
 				<hr>
-				* 반려견 키운경력<br> <br> <textarea type="text" id="why"
-					name="dogcareer" placeholder="반려견을 키웠던 경험이나 다짐을 적어주세요" required= ></textarea>
-					
+
+				* 신분증첨부파일 <br>
+				<br> <input type="file" id="idfile" class="box"
+					name="identifile" accept=".jpg,.jpeg,.png,.gif,.bmp" required>
 				<hr>
-				* 직업<br> <br> <input type="text"
-					name="job" id="job" minlength="1" maxlength="20"
-					placeholder="직업을 입력해주세요" required= /> 
+				* 반려견 키운경력<br> <br>
+				<textarea type="text" id="why" name="dogcareer"
+					placeholder="반려견을 키웠던 경험이나 다짐을 적어주세요" required=></textarea>
+
 				<hr>
-				* 이유 <br> <br> <textarea type="text" id="why"
-					name="why" placeholder="입양을 결심한 이유" required= ></textarea>
+				* 직업<br> <br> <input type="text" name="job" id="job"
+					minlength="1" maxlength="20" placeholder="직업을 입력해주세요" required= />
+				<hr>
+				* 이유 <br> <br>
+				<textarea type="text" id="why" name="why" placeholder="입양을 결심한 이유"
+					required=></textarea>
 				<hr>
 				* 적격성평가 희망일 <br> <br> <input type="text" name="teststart"
 					placeholder="yyyymmdd" required= />
@@ -134,21 +136,22 @@ hr {
 
 </body>
 <script type="text/javascript">
-var qs = getQueryStringObject();
-function getQueryStringObject() {
-    var a = window.location.search.substr(1).split('&');
-    if (a == "") return {};
-    var b = {};
-    for (var i = 0; i < a.length; ++i) {
-        var p = a[i].split('=', 2);
-        if (p.length == 1)
-            b[p[0]] = "";
-        else
-            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-    }
-    return b;
-    }
- document.frm.dogid.value=qs.dogid;
- console.log("히든태그:"+document.frm.dogid.value);
+	var qs = getQueryStringObject();
+	function getQueryStringObject() {
+		var a = window.location.search.substr(1).split('&');
+		if (a == "")
+			return {};
+		var b = {};
+		for (var i = 0; i < a.length; ++i) {
+			var p = a[i].split('=', 2);
+			if (p.length == 1)
+				b[p[0]] = "";
+			else
+				b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+		}
+		return b;
+	}
+	document.frm.dogid.value = qs.dogid;
+	console.log("히든태그:" + document.frm.dogid.value);
 </script>
 </html>
