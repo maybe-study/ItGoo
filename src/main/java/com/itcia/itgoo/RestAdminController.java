@@ -6,27 +6,31 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-@Controller
+import org.springframework.web.bind.annotation.RestController;
+
+import com.itcia.itgoo.dto.Adopt;
+import com.itcia.itgoo.service.AdminCompany;
+import com.itcia.itgoo.service.AdminTest;
+@RestController
 public class RestAdminController {
+	@Autowired
+	AdminTest at;
 	private static final Logger logger = LoggerFactory.getLogger(RestAdminController.class);
-	//민호
-	//병규
-	@RequestMapping(value = "/test5", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	@RequestMapping(value = "/documentpass", produces = "text/plain;charset=UTF-8", method=RequestMethod.POST)
+	public String documentPass(Adopt adopt) {
+		System.out.println("adopt:"+adopt);
+		at.documentPass(adopt);
+		return "{\"status\":\"서류합격\"}";
 	}
-	
+	@RequestMapping(value = "/adoptout", produces = "text/plain;charset=UTF-8", method=RequestMethod.POST)
+	public String adoptOut(Adopt adopt) {
+		System.out.println("adopt:"+adopt);
+		at.adoptOut(adopt);
+		return "{\"status\":\"탈락\"}";
+	}
 }

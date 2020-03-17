@@ -165,15 +165,37 @@
   	  		$("<td>").text(adopt.why).appendTo($tr);
   	  		$("<td>").text(adopt.dogcareer).appendTo($tr);
   	  		$("<td>").append($('<img style="width:200px">').attr('src',adopt.idfile)).appendTo($tr);
-  	  		$("<td>").append($btn).appendTo($tr);
   	  		var $btn=$('<button type="button" id="passBtn">').text("서류 합격");
+  	  		var $btn2=$('<button type="button" id="nonPassBtn">').text("탈락");
+  	  		$("<td>").append($btn).appendTo($tr);
+  	  		$("<td>").append($btn2).appendTo($tr);
   	  		$btn.on("click",function(){
-  	  			PassAjax(adopt.id,adopt.dogid,$phaseTd);
+  	  			PassAjax(adopt.id,adopt.dogid,$phaseTd,$btn);
   	  		});
+  	  		$btn2.on("click",function(){
+  	  			nonPassAjax(adopt.id,adopt.dogid,$phaseTd,$btn2)
+  	  		})
   	  		//btn 추가
 		});
-		
-		function PassAjax(id,dogid,$phaseTd){
+		function nonPassAjax(id,dogid,$phaseTd,$btn){
+			$.ajaxSetup({
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				}
+			});//먼저 보냄
+			$.ajax({ // 에이작스 열고
+				type : 'post', //타입은 get 
+				url : "adoptout", // restFul 방식
+				data : {id:id, dogid:dogid},
+				dataType:"json"
+			}).done((data)=>{
+				console.log(data);
+				$phaseTd.text(data.status);
+				$btn.attr('disabled','true')
+				
+			});
+		}
+		function PassAjax(id,dogid,$phaseTd,$btn){
 			$.ajaxSetup({
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -182,10 +204,13 @@
 			$.ajax({ // 에이작스 열고
 				type : 'post', //타입은 get 
 				url : "documentpass", // restFul 방식
-				data : {"id":id, "dogid":dogid},
+				data : {id:id, dogid:dogid},
 				dataType:"json"
-			}).done((status)=>{
-				$phaseTd.text(status);
+			}).done((data)=>{
+				console.log(data);
+				$phaseTd.text(data.status);
+				$btn.attr('disabled','true')
+				
 			});
 		}
 		
