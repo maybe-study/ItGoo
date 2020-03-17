@@ -62,13 +62,7 @@ public class CommonController {
 		mav = mm.mypage(p,mb);
 		return mav;
 	}
-	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value = "/myadoptphase", method = RequestMethod.GET)
-	public ModelAndView myadoptphase(Principal p, Member mb) {
-		System.out.println("마이페이지 가는중");
-		mav = mm.myadoptphase(p,mb);
-		return mav;
-	}
+	
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/adoptMain", method = RequestMethod.GET)

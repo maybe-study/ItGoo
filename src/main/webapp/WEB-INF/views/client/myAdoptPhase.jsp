@@ -35,8 +35,6 @@
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-datetimepicker/datertimepicker.css" />
@@ -87,78 +85,71 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
-		<section id="main-content">
-			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> 나의입양 진행상황
-				</h3>
-				<!-- BASIC FORM ELELEMNTS -->
-				<div class="row mt">
-					<div class="col-lg-6 col-md-6 col-sm-6">
-
-						<h4 class="title">회원님들의 개인정보 보호에 힘쓰겠습니다.</h4>
-						<div id="message"></div>
-						<form class="contact-form php-mail-form" role="form"
-							action="contactform/contactform.php" method="POST">
-						<div id="myAdopt">${phase}</div>					
-						</form>
-
-					</div>
-					<!-- /row -->
-
-				</div>
-				<!-- /row -->
-			</section>
-			<!-- /wrapper -->
-		</section>
-		<footer class="site-footer">
-			<div class="text-center">
-				<p>
-					&copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-				</p>
-				<div class="credits">
-					<!--
-            You are NOT allowed to delete the credit link to TemplateMag with free version.
-            You can delete the credit link only if you bought the pro version.
-            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-            Licensing information: https://templatemag.com/license/
-          -->
-					Created with Dashio template by <a href="index.jsp">ITGOO</a>
-				</div>
-				<a href="index.html#" class="go-top"> <i class="fa fa-angle-up"></i>
-				</a>
-			</div>
-		</footer>
-		<!--footer end-->
-	</section>
+	<section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 나의입양 진행상황 </h3>
+        <form action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
+						onsubmit="return makeTestJson()" name=frm id="frm" method="post" >
+						<input type="hidden" name="test" value="0">
+        <!-- /row -->
+        <!-- INPUT MESSAGES -->
+        <div class="row mt">
+          <div class="col-lg-10">
+          <div class="row mt" id="questionList">
+          				<div class="col-lg-5">
+				            <div class="form-panel">
+				              <h4 class="mb"><i class="fa fa-angle-right"></i> 나의 입양 단계</h4>
+				              
+				              <div class="radio">
+				                  <div id="myPhase"></div>
+				                  		
+				              </div>
+				          </div>
+		  				</div>
+		  				
+		  				
+				          <div class="col-lg-5">
+				            <div class="form-panel">
+				              <h4 class="mb"><i class="fa fa-angle-right"></i> 1. 멍청이</h4>
+				              
+				              <div class="radio">
+				                <label>
+				                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+				                  	
+				                  </label>
+				              </div>
+				              <div class="radio">
+				                <label>
+				                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+				                 		
+				                  </label>
+				              </div>
+				          </div>
+				       </div>
+				          
+          </div>
+          <div class="row mt">
+               <div class="col-lg-12">
+               <br>
+               		<div class="form-group" style="text-align: center">
+                       <button class="btn btn-theme" type="submit" >제출</button>
+                   </div>
+               </div>
+        </div>
+        </div>
+        </div>
+        <!-- /row -->
+        </form>
+      </section>
+      <!-- /wrapper -->
+    </section>
 	<!-- js placed at the end of the document so the pages load faster -->
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
-	let data= undefined;
-	$.each(${phase},function(idx,data){
-	var $trcn=$("#usernamevalue");
-	var $trcb=$("#useremailvalue");
-	var $trcp=$("#userphonevalue");
-	var $trem=$("#userbirthdayvalue");
-	var $trea=$("#useraddressvalue");
-	$("<input id='usernameval1' class='companynameval' >").val(data.username).appendTo($trcn);
-	$("<td><input type='button' class='myButton' id='changename' value='이름변경'>").appendTo($trcn);
-	
-	$("<input id='useremailval1' class='companybossval' >").val(data.useremail).appendTo($trcb);
-	$("<td><input type='button' class='myButton' id='changeemail' value='이메일 변경'>").appendTo($trcb);
-	
-	$("<input id='userphoneval1' class='companyphoneval' > ").val(data.phone).appendTo($trcp);
-	$("<td><input type='button' class='myButton' id='changephone' value='핸드폰 번호변경'>").appendTo($trcp);
-	
-	$("<input id='userbirthdayval1' class='companyemailval' > ").val(data.birthday).appendTo($trem);
-	$("<td><input type='button' class='myButton' id='changebirth' value='생일변경'>").appendTo($trem);
-	
-	$("<input id='useraddrressval1' class='companyemailval' > ").val(data.useraddress).appendTo($trea);
-	$("<td><input type='button' class='myButton' id='changeaddress' value='주소변경'>").appendTo($trea);
-	
-	});
+	console.log(${phase}[0].phase);
+	$("#myPhase").append(${phase}[0].phase+"단계");
   </script>
 </body>
 

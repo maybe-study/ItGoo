@@ -31,10 +31,6 @@
 	<select id="showmyinfo" resultType="member">
 		select *from client where id=#{id}
 	</select>
-	
-	<select id="myadoptphase" resultType="member">
-		select * from client where id=#{id}
-	</select>
 
 	<select id="myPage" resultType="member">
 		select * from client where id=#{id}

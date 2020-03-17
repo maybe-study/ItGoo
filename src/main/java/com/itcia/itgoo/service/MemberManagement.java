@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
+import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Role;
@@ -22,6 +24,8 @@ import com.itcia.itgoo.dto.Role;
 public class MemberManagement {
 	@Autowired
 	private IMemberDao mDao;
+	@Autowired
+	private IClientDao cDao;
 	private ModelAndView mav=new ModelAndView();
 
 	public ModelAndView memberJoin(Member mb, Role rl) {
@@ -101,10 +105,11 @@ public class MemberManagement {
 		return mav;
 	}
 
-	public ModelAndView myadoptphase(Principal p, Member mb) {
-		mb.setId(p.getName());
-		List<Member> mList=mDao.myadoptphase(mb);
+	public ModelAndView myadoptphase(Principal p, Adopt ad) {
+		ad.setId(p.getName());
+		List<Member> mList=cDao.myadoptphase(ad);
 		mav.addObject("phase",new Gson().toJson(mList));
+		mav.setViewName("./client/myAdoptPhase");
 		return mav;
 	}
 

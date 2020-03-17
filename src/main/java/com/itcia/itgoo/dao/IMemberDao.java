@@ -33,7 +33,7 @@ public interface IMemberDao {
 
 	void updateadderess(Member mb);
 
-	List<Member> myadoptphase(Member mb);
+	
 	
 
 }
