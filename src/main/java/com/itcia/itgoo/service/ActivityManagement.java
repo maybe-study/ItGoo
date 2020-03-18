@@ -137,6 +137,19 @@ public class ActivityManagement {
 		return mav;
 	}
 
+	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {
+		mav= new ModelAndView();
+		System.out.println("activityname="+ac.getActivityname());
+		boolean d = aDao.activityDeleteBtn(ac);
+		if(d) {
+			System.out.println("글 존재시 삭제 트랜잭션 성공");
+			attr.addFlashAttribute("ac",ac);
+		}else {
+			System.out.println("삭제 트랜잭션 실패");
+		}
+		mav.setViewName("redirect:activitydelete");
+		return mav;
+	}
 
 	public ModelAndView activityDelete1(Principal p, Company cp, Integer pageNum) {
 		mav= new ModelAndView();
@@ -156,6 +169,7 @@ public class ActivityManagement {
 		System.out.println("companyList[0]=" + adList);
 		return mav; 
 	}
+	
 	private Object getPaging(int pNum,Company cp) {
 		int maxNum= aDao.getActivityCnt(cp);
 		int listCount = 10;
@@ -185,19 +199,6 @@ public class ActivityManagement {
 	}
 
 
-	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {
-		mav= new ModelAndView();
-		System.out.println("activityname="+ac.getActivityname());
-		boolean d = aDao.activityDeleteBtn(ac);
-		if(d) {
-			System.out.println("글 존재시 삭제 트랜잭션 성공");
-			attr.addFlashAttribute("ac",ac);
-		}else {
-			System.out.println("삭제 트랜잭션 실패");
-		}
-		mav.setViewName("redirect:activitydelete");
-		return mav;
-	}
 
 
 	
