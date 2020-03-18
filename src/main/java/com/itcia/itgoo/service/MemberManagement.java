@@ -2,6 +2,7 @@ package com.itcia.itgoo.service;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
+import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Role;
@@ -21,7 +24,9 @@ import com.itcia.itgoo.dto.Role;
 public class MemberManagement {
 	@Autowired
 	private IMemberDao mDao;
-	private ModelAndView mav;
+	@Autowired
+	private IClientDao cDao;
+	private ModelAndView mav=new ModelAndView();
 
 	public ModelAndView memberJoin(Member mb, Role rl) {
 		mav = new ModelAndView();
@@ -91,5 +96,22 @@ public class MemberManagement {
 		
 		return url;
 	}
+
+	public ModelAndView mypage(Principal p,Member mb) {
+		mb.setId(p.getName());
+		List<Member> mList = mDao.myPage(mb);
+		mav.addObject("mList",new Gson().toJson(mList));
+		mav.setViewName("clientMyPage");
+		return mav;
+	}
+
+	public ModelAndView myadoptphase(Principal p, Adopt ad) {
+		ad.setId(p.getName());
+		List<Member> mList=cDao.myadoptphase(ad);
+		mav.addObject("phase",new Gson().toJson(mList));
+		mav.setViewName("./client/myAdoptPhase");
+		return mav;
+	}
+
 
 }

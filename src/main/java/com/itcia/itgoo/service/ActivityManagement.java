@@ -198,6 +198,15 @@ public class ActivityManagement {
 		mav.setViewName("redirect:activitydelete");
 		return mav;
 	}
+	public ModelAndView activityList(Principal p, Activity ac) {
+		mav = new ModelAndView();
+		String view=null;
+		ac.setCompanyid((String) p.getName());
+		List<Activity> atList = aDao.activitylist(ac);
+		mav.addObject("atList",new Gson().toJson(atList));
+		mav.setViewName("activityclient/activityList");
+		return mav;
+	}
 
 
 	

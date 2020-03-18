@@ -4,24 +4,55 @@
 <mapper namespace="com.itcia.itgoo.dao.IMemberDao">
 
 
-<insert id="memberJoin"  parameterType="member">
-	insert into client values(#{id},#{password},#{useraddress},#{useremail},#{username},#{phone},#{birthday},#{enabled})
-</insert>
+	<insert id="memberJoin" parameterType="member">
+		insert into client
+		values(#{id},#{password},#{useraddress},#{useremail},#{username},#{phone},#{birthday},#{enabled})
+	</insert>
 
-<select id="searchid" parameterType="member" resultType="member">
-	select * from client where username=#{username} and useremail=#{useremail}
-</select>
+	<select id="searchid" parameterType="member" resultType="member">
+		select * from client where username=#{username} and useremail=#{useremail}
+	</select>
 
-<select id="searchidphone" parameterType="member" resultType="member">
-	select * from client where username=#{username} and phone=#{phone}
-</select>
+	<select id="searchidphone" parameterType="member"
+		resultType="member">
+		select * from client where username=#{username} and phone=#{phone}
+	</select>
 
 
-<select id="duplicateid" parameterType="member" resultType="member">
-	select * from client where id=#{id}
-</select>
+	<select id="duplicateid" parameterType="member"
+		resultType="member">
+		select * from client where id=#{id}
+	</select>
 
-<insert id="memberRoleJoin"  parameterType="Role">
-	insert into role values(#{id},#{role})
-</insert>
+	<insert id="memberRoleJoin" parameterType="Role">
+		insert into role values(#{id},#{role})
+	</insert>
+
+	<select id="showmyinfo" resultType="member">
+		select *from client where id=#{id}
+	</select>
+
+	<select id="myPage" resultType="member">
+		select * from client where id=#{id}
+	</select>
+
+	<update id="updateusername" parameterType="Member">
+		update client set username=#{username} where id=#{id}
+	</update>
+
+	<update id="updateuseremail" parameterType="Member">
+		update client set useremail=#{useremail} where id=#{id}
+	</update>
+	
+	<update id="updatephone" parameterType="Member">
+		update client set phone=#{phone} where id=#{id}
+	</update>
+	
+	<update id="updatebirth" parameterType="Member">
+		update client set birthday=#{birthday} where id=#{id}
+	</update>
+	
+	<update id="updateadderess" parameterType="Member">
+		update client set useraddress=#{useraddress} where id=#{id}
+	</update>
 </mapper>

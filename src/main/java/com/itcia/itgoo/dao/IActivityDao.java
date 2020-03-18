@@ -42,4 +42,6 @@ public interface IActivityDao {
 
 	@Select("select count(*) from activity where companyid=#{companyid}")
 	public int getActivityCnt(Company cp);
+
+	public List<Activity> activitylist(Activity ac);
 }

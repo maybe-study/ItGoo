@@ -9,12 +9,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.ClientManagement;
+import com.itcia.itgoo.service.MemberManagement;
 
 @Controller
 public class ClientController {
@@ -23,6 +27,7 @@ public class ClientController {
 
 	@Autowired
 	private ClientManagement cm;
+	@Autowired MemberManagement mm;
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/adoptlist")
@@ -37,8 +42,17 @@ public class ClientController {
 		System.out.println("입양시작하는중");
 		System.out.println("==================id==================="+p.getName());
 		mav = cm.applyadopt(multi,ad,p);
-		
 		return mav;
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/myadoptphase", method = RequestMethod.GET)
+	public ModelAndView myadoptphase(Principal p, Adopt ad) {
+		System.out.println("adoptPHase 가는중");
+		mav = mm.myadoptphase(p,ad);
+		return mav;
+	}
+	
+	
 
 }
