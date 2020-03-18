@@ -23,7 +23,11 @@ public class Adopt {
 	private String username;
 	private String dogname;
 	private String phone;
-	
+	private String dogpic;
+	private String dogage;
+	private String dogspecial;
+	private String sex;
+	private String thum;
 	
 }
 

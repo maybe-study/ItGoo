@@ -3,12 +3,112 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itcia.itgoo.dao.IClientDao">
 
-<select id="myadoptphase" resultType="Adopt">
-		select * from adopt where id=#{id}
-	</select>
-	
-	
 <select id="myPhasedogList" resultType="Adopt">
-		SELECT dogpic,dogname,dogage,dogspecial,sex FROM adopt left join DOG on dog.dogid=adopt.dogid left join dogpics on dogpics.dogid=adopt.dogid where adopt.id=#{id}
+		SELECT adopt.DOGID,max(dogpic)as thum ,dogname,dogage,dogspecial,sex 
+FROM adopt left join DOG on dog.dogid=adopt.dogid 
+left join dogpics on dogpics.dogid=adopt.dogid 
+where adopt.id=#{id} group by adopt.DOGID, dogname, dogage, dogspecial, sex
 	</select>
 </mapper>
+
+
+
+
+
+
+
+<!-- <section id="main-content">
+			<section class="wrapper">
+				
+  <hr>
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+      </div>
+      <div class="modal-body">
+        <h3>Modal Body</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+					/row
+				</form>
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+Modal
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+			</section>
+			/wrapper
+		</section>
+		
+		
+		
+		
+		
+		
+		
+		 $.each(${aList},function(idx,data){
+		 console.log("피리스트 만드는중");
+		 console.log("data값은 ",data);
+		 var $qList = $("#addogList");
+		 var $img=$('<img id="myModal" style="width:100%">').attr('src',data.thum);
+		  $img[0].dataset.dogid=data.dogid;
+		var $div1 = $('<div class="col-lg-4">')
+		var $div2=$('<div class="form-panel">');
+		var $h4=$('<h4 class="mb">').append($('<i class="fa fa-angle-right">'))
+		var $div3 = $('<div class="card-body text-center">')
+                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+                .append($('<h4 class="text-uppercase m-0">').text(data.dogname))
+                .append($('<div class="small text-black-50">').text(data.dogage))
+                .append($('<div class="small text-black-50">').text(data.dogspecial));
+		 
+		
+		 $div3.append($img);
+		 $h4.append($div3);
+		 $div2.append($h4);
+		 $div1.append($div2);
+		 $qList.append($div1);
+	 });
+	 
+	 $(".rename").click(function(e){
+		  e.preventDefault();
+		  var $this = $(this);
+		  var fileName = $(this).data("file");
+		    $("#basicModal").data("fileName", fileName).modal("toggle", $this);
+		  
+		});
+
+		$("#basicModal").on("shown.bs.modal", function(e){
+		  //data-fileName attribute associated with the modal added in the click event of the button
+		alert($(this).data("fileName"));
+		  //my data-file associated with the button 
+		  alert($(e.relatedTarget).data("file"));
+		}); -->
+		
