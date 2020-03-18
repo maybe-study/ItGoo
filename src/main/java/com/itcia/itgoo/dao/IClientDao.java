@@ -23,6 +23,12 @@ public interface IClientDao {
 	@Insert("insert into adopt values(#{id},#{dogid},#{phase},#{score},#{idfile},#{dogcareer},#{job},#{why},#{teststart})")
 	void insertapplyadopt(Adopt ad);
 
-	List<Member> myadoptphase(Adopt ad);
+	List<Adopt> myadoptphase(Adopt ad);
+
+	
+//	@Select("SELECT dogpic,dogname,dogage,dogspecial,sex FROM adopt left join DOG "
+//			+ "on dog.dogid=adopt.dogid left join dogpics on dogpics.dogid=adopt.dogid "
+//			+ "where adopt.id=#{id}")
+	List<Dog> myPhasedogList(Adopt ad);
 
 }

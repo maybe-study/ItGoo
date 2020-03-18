@@ -107,8 +107,11 @@ public class MemberManagement {
 
 	public ModelAndView myadoptphase(Principal p, Adopt ad) {
 		ad.setId(p.getName());
-		List<Member> mList=cDao.myadoptphase(ad);
-		mav.addObject("phase",new Gson().toJson(mList));
+		List<Adopt> mList=cDao.myadoptphase(ad);
+		List<Dog> d = cDao.myPhasedogList(ad);
+		mav.addObject("dogList",new Gson().toJson(d));
+		System.out.println(mList);
+		mav.addObject("phaseList",new Gson().toJson(mList));
 		mav.setViewName("./client/myAdoptPhase");
 		return mav;
 	}

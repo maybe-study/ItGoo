@@ -300,25 +300,6 @@ body {
 
 	<script>
 		
-		 $.each(${dogList},function(idx,data){
-			 var $dogList = $("#dogList");
-			 var $img=$('<img id="openModalBtn" style="width:100%">').attr('src',data.dogpic);
-			 $img[0].dataset.dogid=data.dogid;
-			 //$img[0].dataset.
-				var $div3 = $('<div class="card-body text-center">')
-						.append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-						.append($('<h4 class="text-uppercase m-0">').text(data.dogname))
-						.append($('<hr class="my-4">')).append($img)
-						.append($('<div class="small text-black-50">').text(data.dogage+" 살"))
-						.append($('<div class="small text-black-50">').text("특이사항 : "+data.dogspecial))
-						.append($('<div class="small text-black-50">').text("중성화 여부 : "+data.dogjungsung));
-				console.log("인덱스는!!!"+idx);
-				console.log(idx);
-				var $div2 = $('<div class="card py-4 h-100">').append($div3);
-				var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
-				 $dogList.append($div1);
-				 
-		 });
 		 
 		 $('#openModalBtn').on('click', function(e){
 			 //console.log(e.target.dataset.dogid);
