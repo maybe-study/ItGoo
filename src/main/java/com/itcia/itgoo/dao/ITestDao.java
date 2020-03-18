@@ -30,14 +30,22 @@ public interface ITestDao {
 	@Select("select  question.questionnum,question.correct,question.point," + 
 			"        question.question, test.answer" + 
 			"        from test join question on" + 
-			"        test.questionnum = question.questionnum")
-	List<TestResult> getTestResult();
+			"        test.questionnum = question.questionnum"
+			+ " where test.id='${id}' and test.dogid=${dogid}")
+	List<TestResult> getTestResult(Test test);
 	
 	@Update("update adopt set phase=2 where id='${id}' and dogid=${dogid}")
 	void documentPass(Adopt adopt);
 
 	@Delete("delete adopt where id='${id}' and dogid=${dogid}")
 	void adoptOut(Adopt adopt);
+
+	
+	@Update("update adopt set phase=3 where id='${id}' and dogid=${dogid}")
+	void upgrade(Test test);
+	
+	@Update("update adopt set phase=0 where id='${id}' and dogid=${dogid}")
+	void downgrade(Test test);
 	
 	
 

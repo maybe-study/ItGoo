@@ -44,22 +44,32 @@ public class TestManagement {
 				tDao.testPaperSubmit(t);
 				System.out.println(t);
 			}
-		
-		return testResult();
+		return testResult(tList.get(0));
 	}
-	private ModelAndView testResult() {
-		
+	private ModelAndView testResult(Test test) {
+		int pointSum=0;
 		RedirectView redirectView = new RedirectView(); // redirect url 설정
 		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("testResult");
 		mav.setView(redirectView);
-		mav.addObject("rList",new Gson().toJson(tDao.getTestResult()));
+		List<TestResult> rList=tDao.getTestResult(test);
+		mav.addObject("rList",new Gson().toJson(rList));
 		
 		List<Question> qList=tDao.qList();
 		for(Question q: qList) {
 			List<Ex> exList=tDao.exList(q);
 			q.setExList(exList);
 		}
+		//점수 합계
+		for(TestResult t: rList) {
+			if(t.getCorrect()==t.getAnswer());
+				pointSum+=t.getPoint();
+		}
+		//50점 이상이면 단계 상승 -> 4단계
+		if(pointSum>60)tDao.upgrade(test);
+		//단계 하락 ->0단계
+		else tDao.downgrade(test);
+			
 		mav.addObject("qList",new Gson().toJson(qList));
 		mav.setViewName("client/testResult");
 		return mav;
