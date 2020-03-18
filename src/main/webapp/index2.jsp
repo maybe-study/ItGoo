@@ -70,12 +70,16 @@
                <input type="submit" value="로그아웃" id="logout"> <input
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
+            <form method="get" action="mypage">
+            	<input type="submit" value="마이페이지" id="logout"> <input
+                  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            </form>
          </sec:authorize>
       </div>
 
    </div>
    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">ITGOO</a>
+      <a href="index2.jsp" class="navbar-brand">ITGOO</a>
       <!-- Toggle Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse"
          data-target="#collapsibleNavbar">
@@ -86,12 +90,9 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
          <ul class="navbar-nav">
             <li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
-            <li class="nav-item"><a href="companyjoinform.jsp"
-               class="nav-link">업체 회원가입</a></li>
-            <li class="nav-item"><a href="companyjoinform.jsp"
-               class="nav-link">보호소 회원가입</a></li>
+            <li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">업체 회원가입</a></li>
             <li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">입양공고</a></li>
+            <li class="nav-item"><a href="adoptList.jsp" class="nav-link">입양공고</a></li>
             <li class="nav-item"><a href="ItGoostar.html" class="nav-link">ITGOO_STAR</a></li>
          </ul>
       </div>

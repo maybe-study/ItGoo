@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Dog;
+import com.itcia.itgoo.dto.Member;
 
 public interface IClientDao {
 	@Select("SELECT * FROM dog inner join dogpics on dogpics.dogid = dog.dogid where ROWNUM=1")
@@ -21,5 +22,10 @@ public interface IClientDao {
 	
 	@Insert("insert into adopt values(#{id},#{dogid},#{phase},#{score},#{idfile},#{dogcareer},#{job},#{why},#{teststart})")
 	void insertapplyadopt(Adopt ad);
+
+//	@Select("SELECT dogpic,dogname,dogage,dogspecial,sex FROM adopt left join DOG "
+//			+ "on dog.dogid=adopt.dogid left join dogpics on dogpics.dogid=adopt.dogid "
+//			+ "where adopt.id=#{id}")
+	List<Adopt> myPhasedogList(Adopt ad);
 
 }
