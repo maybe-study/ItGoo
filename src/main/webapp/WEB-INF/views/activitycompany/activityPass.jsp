@@ -162,14 +162,14 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 업체에서 올린 액티비티 목록</h3>
+        <h3><i class="fa fa-angle-right"></i> 현재 진행중인 액티비티 목록</h3>
         <div class="row">
           
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
               <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 액티비티를 삭제하고 싶다면 해당 액티비티 활동을 클릭해주세요</h4>
+                <h4><i class="fa fa-angle-right"></i> 평가할 액티비티 목록을 선택해주세요</h4>
                 <hr>
                 <thead>
                   <tr>
@@ -266,7 +266,7 @@
 		
 		$.ajax({
 			type:'get',
-			url:"deletedetail",
+			url:"passdetail",
 			data:{activitynum:activitynum},
 			dataType:'html',
 			success:function(data){

@@ -39,5 +39,8 @@ public class Reservation {
 	private List<String> activitypics;
 	private String username;
 	private String dogname;
+	private String useremail;
+	private String phone;
+	private int phase;
 
 }

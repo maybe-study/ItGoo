@@ -71,11 +71,6 @@ public class ActivityController {
 
 		return mav;
 	}
-
-
-
-
-
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
 	public  ModelAndView activityDelete (Principal p ,Company cp,Integer pageNum) {
 		if(p!=null) {
@@ -83,23 +78,13 @@ public class ActivityController {
 			System.out.println("p="+p.getName());
 		}
 		mav= am.activityDelete1(p,cp,pageNum);
-
-
 		return mav;
 	}
-
-
-
-
-
-
-
 	@RequestMapping(value = "/activitydeletebtn" )
 	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
 		mav= am.activityDeleteBtn(ac,attr);
 		attr.addFlashAttribute("ac",ac);
 		return mav;
-
 	}
 	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
 	public String activityList(Locale locale, Model model) {

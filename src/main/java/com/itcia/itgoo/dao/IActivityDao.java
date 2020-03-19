@@ -51,4 +51,8 @@ public interface IActivityDao {
 	public boolean activityReservationBtn(Reservation rv);
 
 	public List<Company> activityPass(Company cp);
+
+	public List<Reservation> passDetail(Integer activitynum);
+
+	public void acceptBtn(Reservation rv);
 }

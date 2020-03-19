@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -192,7 +193,7 @@ public class ActivityManagement {
 		int maxNum= aDao.getActivityCnt(cp);
 		int listCount = 10;
 		int pageCount = 2;
-		String activity = "activitydelete";
+		String activity = "activitypass";
 		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, activity);
 		return paging.makeHtmlPaging();
 
@@ -213,21 +214,6 @@ public class ActivityManagement {
 
 		view = "activitycompany/activityDeleteDetail";
 		mav.setViewName(view);
-		return mav;
-	}
-
-
-	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {
-		mav= new ModelAndView();
-		System.out.println("activityname="+ac.getActivityname());
-		boolean d = aDao.activityDeleteBtn(ac);
-		if(d) {
-			System.out.println("글 존재시 삭제 트랜잭션 성공");
-			attr.addFlashAttribute("ac",ac);
-		}else {
-			System.out.println("삭제 트랜잭션 실패");
-		}
-		mav.setViewName("redirect:activitydelete");
 		return mav;
 	}
 	public ModelAndView activityList(Principal p, Activity ac) {
@@ -262,6 +248,34 @@ public class ActivityManagement {
 		boolean r = aDao.activityReservationBtn(rv);
 
 		mav.setViewName("redirect:mypage");
+		return mav;
+	}
+	public ModelAndView passDetail(Integer activitynum) {
+		mav = new ModelAndView();
+		String view=null;
+		List<Reservation> passdetail = aDao.passDetail(activitynum);
+
+
+		System.out.println("ac=--------------------------------------------------------");
+
+		mav.addObject("passdetail",new Gson().toJson(passdetail));
+
+		view = "activitycompany/activityPassDetail";
+		mav.setViewName(view);
+		return mav;
+	}
+	public ModelAndView acceptBtn(Principal p, Reservation rv) {
+		System.out.println(rv);
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+	
+		System.out.println("username="+rv.getUsername());
+
+		aDao.acceptBtn(rv);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitypass");
+		mav.setView(redirectView);
+		
 		return mav;
 	}
 
