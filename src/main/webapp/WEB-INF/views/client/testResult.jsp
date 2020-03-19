@@ -101,8 +101,8 @@
   <script type="text/javascript" src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script type="text/javascript" src="lib/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
   <script>
-  console.log(${qList});
-  console.log(${rList});
+  //console.log(${qList});
+  //console.log(${rList});
   	var pointSum = 0;
   	var qs = getQueryStringObject();
   	var qList=${qList}

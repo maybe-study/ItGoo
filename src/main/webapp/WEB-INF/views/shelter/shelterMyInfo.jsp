@@ -113,7 +113,7 @@
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
-						<a href="profile.html"><img src="img/portfolio/itgoo2.PNG"
+						<a href="shelterMyInfo"><img src="img/portfolio/itgoo2.PNG"
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
@@ -124,7 +124,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo.jsp">보호소 정보보기</a></li>
+							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -149,7 +149,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="">삭제</a></li>
+							<li><a href="shelterDelete">삭제</a></li>
 						</ul></li>
 
 
@@ -163,7 +163,7 @@
 					<!-- a href="google_maps.html"-->
 
 
-				<!-- sidebar menu end-->
+					<!-- sidebar menu end-->
 			</div>
 		</aside>
 		<!--sidebar end-->
@@ -180,7 +180,7 @@
 				<div class="row mt">
 					<div class="col-lg-6 col-md-6 col-sm-6">
 
-						<h4 class="title"> 정보보호를 위해 최선을 다하겠습니다.</h4>
+						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
 						<div id="message"></div>
 						<form class="contact-form php-mail-form" role="form"
 							action="contactform/contactform.php" method="POST">
@@ -189,7 +189,7 @@
 								<div class="main-p-tag">
 									<table>
 
-										<tr id="companynamevalue">
+										<tr id="companynamevalue" name="companyname">
 											<td>업체명:</td>
 											<%-- <td>${aList.companyname}</td>
                <td><a href="#" class="myButton">변경</a></td> --%>
@@ -200,7 +200,7 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companybossvalue">
+										<tr id="companybossvalue" name="companyboss">
 											<td>대표자:</td>
 
 											<%--  <td>${aList.companyboss }</td>
@@ -212,7 +212,7 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companyphonevalue">
+										<tr id="companyphonevalue" name="companyphone">
 											<td>휴대폰:</td>
 											<%-- <td>${aList.companyphone }</td>
                <td><a href="#" class="myButton">변경</a></td> --%>
@@ -224,12 +224,20 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companyemailvalue">
+										<tr id="companyemailvalue" name="companyemail">
 											<td>이메일:</td>
 											<%--  <td>${aList.companyemail }</td>
                <td><a href="#" class="myButton">변경</a></td> --%>
 										</tr>
 
+										<c:forEach var="row" items="${list}">
+											<tr>
+												<td>&{row.companyname}</td>
+												<td>&{row.companyboss}</td>
+												<td>&{row.companyphone}</td>
+												<td>&{row.companyemail}</td>
+											</tr>
+										</c:forEach>
 
 									</table>
 								</div>
@@ -291,129 +299,15 @@
 	<script type="text/javascript"
 		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/moment.min.js"></script>
+		src="lib/bootstrap-daterangepic===ker/moment.min.js"></script>
 	<script type="text/javascript"
 		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 	<script src="lib/advanced-form-components.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
-		let data= undefined;
-	$.each(${aList},function(idx,data){
-	var $trcn=$("#companynamevalue");
-	var $trcb=$("#companybossvalue");
-	var $trcp=$("#companyphonevalue");
-	var $trem=$("#companyemailvalue");
-	$("<input id='companynameval1' class='companynameval' >").val(data.companyname).appendTo($trcn);
-	$("<td><input type='button' class='myButton' id='changename' value='업체명 번경'>").appendTo($trcn);
-	$("<input id='companybossval1' class='companybossval' >").val(data.companyboss).appendTo($trcb);
-	$("<td><input type='button' class='myButton' id='changeboss' value='대표자 번경'>").appendTo($trcb);
-	$("<input id='companyphoneval1' class='companyphoneval' > ").val(data.companyphone).appendTo($trcp);
-	$("<td><input type='button' class='myButton' id='changephone' value='휴대폰번호 번경'>").appendTo($trcp);
-	$("<input id='companyemailval1' class='companyemailval' > ").val(data.companyemail).appendTo($trem);
-	$("<td><input type='button' class='myButton' id='changeemail' value='이메일 번경'>").appendTo($trem);
-	
-	});
-	var company123 = $("#companynameval1").val();
-	$("#changename").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyname:$("#companynameval1").val(),
-				
-		}
-		console.log("companyname=" ,company123);
-		$.ajax({
-			url: "updatecompanyname",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("회사명을 변경하였습니다", '서버메시지');
-			console.log("result=",result);
 		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	$("#changeboss").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyboss:$("#companybossval1").val(),
-				
-		}
-		$.ajax({
-			url: "updatecompanyboss",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("대표자를 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "대표자이름 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	$("#changephone").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyphone:$("#companyphoneval1").val(),
-				
-		}
-		$.ajax({
-			url: "updatecompanyphone",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("휴대폰 번호를 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "휴대폰 번호 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	$("#changeemail").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyemail:$("#companyemailval1").val(),
-				
-		}
-		$.ajax({
-			url: "updatecompanyemail",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("이메일 정보를 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	
-</script>
+	</script>
 </body>
 
 </html>

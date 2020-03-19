@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itcia.itgoo.dao.IClientDao">
-<select id="myadoptphase" resultType="Adopt">
-		select phase from adopt where id=#{id}
+
+<select id="myPhasedogList" resultType="Adopt">
+		SELECT adopt.DOGID,max(dogpic)as thum,phase,dogname,dogage,dogspecial,sex FROM adopt left join DOG on dog.dogid=adopt.dogid 
+		left join dogpics on dogpics.dogid=adopt.dogid where adopt.id=#{id} group by adopt.DOGID,phase, dogname, dogage, dogspecial, sex
 	</select>
 </mapper>
