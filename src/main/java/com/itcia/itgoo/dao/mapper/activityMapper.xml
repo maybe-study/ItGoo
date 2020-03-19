@@ -86,4 +86,23 @@
 		at.activitydate,
 		at.activitystart
 	</select>
+	<select id="activityListDetail" parameterType="int"
+	resultType="Activity">
+	select at.activitynum, at.activityname,at.activityexplanation,at.activitydate,at.activitystart,at.activitytime, 
+	at.activitydogcnt,at.activityprice, cp.companyname, cp.companyphone,cp.companyemail
+	from activity at, company cp
+	where at.companyid = cp.companyid and at.activitynum = #{activitynum}
+	
+	</select>
+	<insert id="activityReservationBtn" >
+	insert into activityreserve values(#{activitynum},#{id},#{dogid})
+	</insert>
+	<select id="activityPass" parameterType="Activity"
+		resultType="Activity">
+		select c.companyname,a.activitynum,a.activityname,
+		a.activitydate,
+		a.activitystart,a.activitytime, a.activitydogcnt from
+		company c,
+		activity a where c.companyid=a.companyid
+	</select>
 </mapper>

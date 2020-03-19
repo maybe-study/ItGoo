@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="UTF-8">
 
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +16,19 @@
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
   <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker/css/datepicker.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-daterangepicker/daterangepicker.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-timepicker/compiled/timepicker.css" />
-  <link rel="stylesheet" type="text/css" href="lib/bootstrap-datetimepicker/datertimepicker.css" />
   <!-- Custom styles for this template -->
   <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>   
+  
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -43,7 +43,11 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <header class="header black-bg">
+    <div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
+     <header class="header black-bg">
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
@@ -116,20 +120,20 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/portfolio/itgoo2.PNG" class="img-circle" width="80"></a></p>
           <h5 class="centered">ACTIVITY MANAGER</h5>
-         <li class="mt"><a href="/ItGoo/"> <i
+          <li class="mt"><a href="/ItGoo/"> <i
 							class="fa fa-dashboard"></i> <span>메인 페이지로</span>
 					</a></li>
-					<li class="sub-menu"><a class="active" href="javascript:;">
+					<li class="sub-menu"><a href="javascript:;">
 							<i class="fa fa-tasks"></i> <span>업체정보</span>
 					</a>
 						<ul class="sub">
-							<li class="active"><a href="activitymyinfo">업체정보</a></li>
+							<li><a href="activitymyinfo">업체정보</a></li>
 						</ul></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>정보변경</span>
 					</a>
 						<ul class="sub">
-							<li><a href="activitylocationinfo">업체 위치
+							<li ><a href="activitylocationinfo">업체 위치
 									변경</a></li>
 							<li><a href="activitypicinfo">업체 시설 첨부</a></li>
 						</ul>
@@ -140,11 +144,11 @@
 							<li><a href="activityregiste">액티비티 등록</a></li>
 							<li><a href="activitydelete">등록된 액티비티 리스트</a></li>
 						</ul></li>
-						<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a class="active" href="javascript:;"> <i
 							class="fa fa-book"></i> <span>진행상황 </span>
 					</a>
 						<ul class="sub">
-							<li><a href="activitypass">합격 및 불합격 선택</a></li>
+							<li class="active"><a href="activitypass">합격 및 불합격 선택</a></li>
 						</ul></li>
 				</ul>
         </ul>
@@ -155,74 +159,42 @@
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-   <!--main content start-->
+    <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 업체 정보</h3>
-        <!-- BASIC FORM ELELEMNTS -->
-        <div class="row mt">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-           
-            <h4 class="title">업체의 정보보호를 위해 최선을 다하겠습니다.</h4>
-            <div id="message"></div>
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
-
-              <div class="form-group">
-              <div class="main-p-tag">
-              <table>
+        <h3><i class="fa fa-angle-right"></i> 업체에서 올린 액티비티 목록</h3>
+        <div class="row">
+          
+          <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
+            <div class="content-panel">
+              <table class="table table-hover">
+                <h4><i class="fa fa-angle-right"></i> 액티비티를 삭제하고 싶다면 해당 액티비티 활동을 클릭해주세요</h4>
+                <hr>
+                <thead>
+                  <tr>
+                    <th>업체 명</th>
+                    <th>액티비티 활동</th>
+                    <th>액티비티 시작 날짜 </th>
+                    <th>액티비티 시작 시간</th>
+                    <th>액티비티 진행 및 활동 시간</th>
+                    <th>참여가능한 최대 마릿 수</th>
+                    </tr>
+                </thead>
+                <tbody id="activitydelbody">
+                  
+                </tbody>
+              </table>
               
-               <tr id="companynamevalue">
-               <td>업체명:</td>
-               <%-- <td>${aList.companyname}</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
-               </tr>
-               </table>
-               </div>
-              </div>
-              <div class="form-group">
-                <div class="main-p-tag">
-              <table >
-               <tr id="companybossvalue">
-               <td>대표자:</td>
-               
-              <%--  <td>${aList.companyboss }</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
-               </tr>
-               </table>
-               </div>
-              </div>
-              <div class="form-group">
-                <div class="main-p-tag">
-              <table >
-               <tr id="companyphonevalue">
-               <td>휴대폰:</td>
-               <%-- <td>${aList.companyphone }</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
-               </tr>
-               </table>
-               </div>
-              </div>
-
-              <div class="form-group">
-                 <div class="main-p-tag">
-              <table >
-               <tr id="companyemailvalue">
-               <td>이메일:</td>
-              <%--  <td>${aList.companyemail }</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
-               </tr>
-               </table>
-               </div>
-              </div>
-            </form>
-            
+            </div>
+            <div class="pagingdiv"></div>
           </div>
-        <!-- /row -->
-
-
+          <!-- /col-md-12 -->
+        </div>
+        <!-- row -->
+      
         <!-- /row -->
       </section>
-      <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
@@ -233,6 +205,8 @@
          <a href="/ItGoo/"><img class="footerimg" src="img/mainlogo.png" alt="mainlogo" /></a>
         </p>
         <div class="credits">
+        
+          
           <!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
@@ -249,6 +223,8 @@
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="lib/time-select/timepicker-addon.js"></script>
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -256,134 +232,67 @@
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <!--script for this page-->
-  <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-daterangepicker/date.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-daterangepicker/moment.min.js"></script>
-  <script type="text/javascript" src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-  <script src="lib/advanced-form-components.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-		let data= undefined;
-	$.each(${aList},function(idx,data){
-	var $trcn=$("#companynamevalue");
-	var $trcb=$("#companybossvalue");
-	var $trcp=$("#companyphonevalue");
-	var $trem=$("#companyemailvalue");
-	$("<input id='companynameval1' class='companynameval' >").val(data.companyname).appendTo($trcn);
-	$("<td><input type='button' class='myButton' id='changename' value='업체명 번경'>").appendTo($trcn);
-	$("<input id='companybossval1' class='companybossval' >").val(data.companyboss).appendTo($trcb);
-	$("<td><input type='button' class='myButton' id='changeboss' value='대표자 번경'>").appendTo($trcb);
-	$("<input id='companyphoneval1' class='companyphoneval' > ").val(data.companyphone).appendTo($trcp);
-	$("<td><input type='button' class='myButton' id='changephone' value='휴대폰번호 번경'>").appendTo($trcp);
-	$("<input id='companyemailval1' class='companyemailval' > ").val(data.companyemail).appendTo($trem);
-	$("<td><input type='button' class='myButton' id='changeemail' value='이메일 번경'>").appendTo($trem);
+	<script>
+	let container = $('.pagingdiv');
+    container.pagination({
+      
+        dataSource:${apList} , //받아온 데이터
+        pageSize: 10,
+        callback: function (data, pagination) { //데이터 찍어주는 부분
+           console.log("data=",data);
+           temp=data;
+           $("#activitydelbody").empty();
+           $.each(data,function(idx, data){
+        		var $body = $("#activitydelbody");
+        		
+        		var $tr = $("<tr>").appendTo($body);
+        		$("<td>").text(data.companyname).appendTo($tr);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.activitynum+')').text(data.activityname)).appendTo($tr);
+        		$("<td>").text(data.activitydate).appendTo($tr);
+        		$("<td>").text(data.activitystart).appendTo($tr);
+        		$("<td>").text(data.activitytime).appendTo($tr);
+        		$("<td>").text(data.activitydogcnt).appendTo($tr);
+        		
+        		});
+        }
+    
+    })
 	
-	});
-	var company123 = $("#companynameval1").val();
-	$("#changename").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyname:$("#companynameval1").val(),
-				
-		}
-		console.log("companyname=" ,company123);
+	function articleView(activitynum){
+		var detail= ${detail}
+		$("#articleView_layer").addClass('open');
+		
 		$.ajax({
-			url: "updatecompanyname",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("회사명을 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
+			type:'get',
+			url:"deletedetail",
+			data:{activitynum:activitynum},
+			dataType:'html',
+			success:function(data){
+			
+				$("#contents_layer").html(data);
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
 	});
-	$("#changeboss").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyboss:$("#companybossval1").val(),
-				
-		}
-		$.ajax({
-			url: "updatecompanyboss",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("대표자를 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "대표자이름 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	$("#changephone").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyphone:$("#companyphoneval1").val(),
-				
-		}
-		$.ajax({
-			url: "updatecompanyphone",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("휴대폰 번호를 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "휴대폰 번호 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	$("#changeemail").on("click", function(data){
-		var param={
-				_method:"patch",
-				companyemail:$("#companyemailval1").val(),
-				
-		}
-		$.ajax({
-			url: "updatecompanyemail",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("이메일 정보를 변경하였습니다", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
 	});
 	
-</script>
+	
+	</script>  
 </body>
 
 </html>

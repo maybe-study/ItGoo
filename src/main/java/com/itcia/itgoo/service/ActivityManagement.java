@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IActivityDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.share.UploadFile;
 import com.itcia.itgoo.userclass.Paging;
 
@@ -156,6 +157,24 @@ public class ActivityManagement {
 		System.out.println("companyList[0]=" + adList);
 		return mav; 
 	}
+	public ModelAndView activityPass(Principal p, Company cp, Integer pageNum) {
+		mav= new ModelAndView();
+		String view = null;
+		int pNum = (pageNum == null) ? 1:pageNum;
+		if(pNum<=0) {
+			System.out.println("페이지 정보가 잘못되었습니다.");
+		}
+			System.out.println("pNum="+ pNum);
+		cp.setCompanyid((String) p.getName());
+		
+		List<Company> apList = aDao.activityPass(cp);
+		mav.addObject("apList",new Gson().toJson(apList));
+		mav.addObject("paging", getPaging(pNum,cp));
+		mav.setViewName("activitycompany/activityPass");
+		
+		System.out.println("companyList[0]=" + apList);
+		return mav; 
+	}
 	private Object getPaging(int pNum,Company cp) {
 		int maxNum= aDao.getActivityCnt(cp);
 		int listCount = 10;
@@ -207,6 +226,32 @@ public class ActivityManagement {
 		mav.setViewName("activityclient/activityList");
 		return mav;
 	}
+	public ModelAndView activityListDetail(Integer activitynum) {
+		mav = new ModelAndView();
+		String view=null;
+		aDao.activitypics(activitynum);
+		Activity listdetail = aDao.activityListDetail(activitynum);
+		listdetail.setActivitynum(activitynum);
+		listdetail.setActivitypics(aDao.activitypics(activitynum));
+		
+		System.out.println("ac=--------------------------------------------------------");
+		
+		mav.addObject("listdetail",new Gson().toJson(listdetail));
+		
+		view = "activityclient/activityListDetail";
+		mav.setViewName(view);
+		return mav;
+	}
+	public ModelAndView activityReservationBtn(Principal p,Reservation rv, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+		rv.setId((String) p.getName());
+		boolean r = aDao.activityReservationBtn(rv);
+		
+		mav.setViewName("redirect:mypage");
+		return mav;
+	}
+	
 
 
 	

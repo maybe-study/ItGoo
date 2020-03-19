@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.service.ActivityManagement;
 @Controller
 
@@ -118,6 +119,23 @@ public class ActivityController {
 		mav= am.activityList(p,ac);
 		return mav;
 	}
-
-
+	@RequestMapping(value = "/activityreservationbtn" )
+	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr) {	//null 값도 받으려고
+		if(p!= null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav= am.activityReservationBtn(p,rv,attr);
+		attr.addFlashAttribute("rv",rv);
+		return mav;
+	}
+	@RequestMapping(value = "/activitypass", method = RequestMethod.GET)
+	public  ModelAndView activityPass (Principal p ,Company cp,Integer pageNum) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= am.activityPass(p,cp,pageNum);
+		return mav;
+	}
 }

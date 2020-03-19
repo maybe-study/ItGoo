@@ -81,23 +81,21 @@ html, body {
 			<form
 				action="activitydeletebtn?${_csrf.parameterName}=${_csrf.token}"
 				name="activitydeletebtn" method="post" id="modalform">
-				<table class= "form-table">
-					<tr  id="activitynametr">
-						<td>액티비티명:</td>
-					</tr>
-					<tr  id="activitypricetr">
-						<td>가격:</td>
-
-					</tr>
-					<tr  id="activitydatetr">
-						<td>날짜:</td>
-
-					</tr>
-					<tr id="activitystarttr">
-						<td>시작 시간:</td>
-
-					</tr>
-				</table>
+				<table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>사용자 이름</th>
+                    <th>액티비티 활동</th>
+                    <th>액티비티 시작 날짜 </th>
+                    <th>액티비티 시작 시간</th>
+                    <th>액티비티 진행 및 활동 시간</th>
+                    <th>참여가능한 최대 마릿 수</th>
+                    </tr>
+                </thead>
+                <tbody id="activitypassbody">
+                  
+                </tbody>
+              </table>
 				<div class="deletebtnclass">
 				<input type="submit" id="deletebtn" class="deletebtn"
 							value="액티비티 삭제" />
