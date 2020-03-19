@@ -133,16 +133,12 @@ public class ShelterManagement {
 	
 	
 	//마이페이지
-	public ModelAndView shelterMyInfo1(Principal p, Company cp) {
-	
-		mav = new ModelAndView();
-		String view = null;
-		cp.setCompanyid((String) p.getName());
-		List<Company> aList = sDao.shelterMyInfo1(cp);
-		mav.addObject("aList",new Gson().toJson(aList));
-		mav.setViewName("activitycompany/shelterMyInfo");
-		
-		System.out.println("companyList[0]=" + aList);
+	public ModelAndView shelterMyInfo(Principal p) {
+		Company c = new Company();
+		c.setCompanyid(p.getName());
+		c=sDao.shelterMyInfo(c);
+		mav.addObject("shelter",new Gson().toJson(c));
+		mav.setViewName("shelter/shelterMyInfo"); 
 		return mav;
 	}
 	

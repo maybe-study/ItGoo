@@ -224,53 +224,7 @@
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
                 .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
-	/* 	if(data.phase==0){
-        	var $p0=$('#adoptBtn').text("입양");
-        	$p0.on("click", function(){
-        		location.href="./adoptList";
-        	})
-        }else if(data.phase==1){
-        	var $p1=$('#adoptBtn').text("서류심사 대기")
-        	$p1.on("click",function(){
-        		location.href="#"
-        	})
-        }else if(data.phase==2){
-        	var $p2=$('#adoptBtn').text("테스트 시작")
-        	$p2.on("click",function(){
-        		location.href="./testpaper?dogid="+data.dogid	
-        	})
-        }else if(data.phase==3){
-        	var $p3=$('#adoptBtn').text("액티비티")
-        	$p3.on("click",function(){
-        		location.href="./"
-        	})
-        }else if(data.phase==4){
-        	var $p4=$('#adoptBtn').text("액티비티 예약확인")
-        	$p4.on("click".function(){
-        		$p4.on("click",function(){
-        		}
-            		location.href="./showmyactivity?dogid="+data.dogid
-        	})
-        }else if(data.phase==5){
-        	var $p4=$('#adoptBtn').text("숙려기간")
-        	$p5.on("click".function(){
-        		$p5.on("click",function(){
-            		location.href="./"
-        	})
-        }else if(data.phase==6){
-        	var $p6=$('#adoptBtn').text("설문지 작성")
-        	$p6.on("click".function(){
-            		location.href="./"
-        	})
-        }else(data.phase==7){
-        	var $p7=$('#adoptBtn').text("입양 감사합니다.")
-        	$p7.on("click".function(){
-            		location.href="./"
-        	})
-        };
-	 */
 	
-		        
 		
 						 
 		
@@ -279,6 +233,7 @@
 		 $div2.append($h4);
 		 $div1.append($div2);
 		 $qList.append($div1);
+		 
 	 });
 	 
 	 $('#openModalBtn').on('click', function(e){
