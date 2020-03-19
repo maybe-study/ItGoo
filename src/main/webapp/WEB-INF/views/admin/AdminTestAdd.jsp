@@ -76,7 +76,7 @@
 				<!-- BASIC FORM VALIDATION -->
 				<!-- FORM VALIDATION -->
 				<form class="cmxform form-horizontal style-form" id="addTestFrm" name="addTestFrm"
-					method="get" action="addtest" onsubmit="testSubmit()">
+					method="get" action="addtest" onsubmit="return testSubmit()">
 					<div class="row mt">
 						<div class="col-lg-12">
 							<h4>

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Adopt;
+import com.itcia.itgoo.dto.CareSheet;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Ex;
@@ -54,6 +55,9 @@ public interface IAdminDao {
 	void shelterRole(String companyid);
 	@Select("select d.dogname,d.dogid,c.id,c.username,c.phone,a.phase,a.score,a.idfile,a.dogcareer,a.job,a.why from dog d join adopt a on d.dogid=a.dogid join client c on a.id=c.id")
 	List<Adopt> adminAdoptList();
+	
+	@Select("select * from caresheet")
+	List<CareSheet> careSheetList();
 
 
 }

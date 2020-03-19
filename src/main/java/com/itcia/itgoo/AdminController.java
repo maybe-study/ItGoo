@@ -113,5 +113,24 @@ public class AdminController {
 		ModelAndView mav=Ac.adminAdoptList();
 		return mav;
 	}
+	@RequestMapping(value = "/admincaresheet", method = RequestMethod.GET)
+	public ModelAndView adminCareSheet() {
+		ModelAndView mav=Ac.adminCareSheet();
+		return mav;
+	}
+	@RequestMapping(value = "/updatecaresheetfrm", method = RequestMethod.GET)
+	public ModelAndView adminCareSheetUpdateFrm() {
+		ModelAndView mav = new ModelAndView();
+		mav=Ac.adminCareSheetUpdateFrm();
+		
+		return mav;
+	}
+	@RequestMapping(value = "/updatecaresheet", method = RequestMethod.GET)
+	public ModelAndView adminUpdateCareSheet(String careJson) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("json:"+careJson);
+		mav=Ac.adminUpdateCareSheet(careJson);
+		return mav;
+	}
 
 }
