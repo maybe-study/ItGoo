@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 @Alias("activity")
 @Data
 @Accessors(chain=true)
-public class Activity {
+public class Reservation {
 	private int activitynum;
 	private String activityname;
 	private String activitydate;

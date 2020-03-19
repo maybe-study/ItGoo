@@ -89,4 +89,10 @@ public class ClientManagement {
 		mDao.updateadderess(mb);
 		return null;
 	}
+
+	public ModelAndView showmyactivity(Principal p, Adopt ad) {
+		ad.setDogid(ad.getDogid());
+		cDao.showmyactivity(ad);
+		return null;
+	}
 }
