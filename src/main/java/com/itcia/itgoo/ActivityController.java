@@ -18,13 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.service.ActivityManagement;
 @Controller
 
 public class ActivityController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	//민호
-	//병규
+
 	@Autowired
 	private ActivityManagement am;
 
@@ -71,7 +71,6 @@ public class ActivityController {
 
 		return mav;
 	}
-
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
 	public  ModelAndView activityDelete (Principal p ,Company cp,Integer pageNum) {
 		if(p!=null) {
@@ -79,15 +78,8 @@ public class ActivityController {
 			System.out.println("p="+p.getName());
 		}
 		mav= am.activityDelete1(p,cp,pageNum);
-
-
 		return mav;
 	}
-	@RequestMapping(value = "/activitydeletedetail", method = RequestMethod.GET)
-	public String acitivityDeleteDetail(Locale locale, Model model) {
-		return "activitycompany/activityDeleteDetail";
-	}
-
 	@RequestMapping(value = "/activitydeletebtn" )
 	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
 		mav= am.activityDeleteBtn(ac,attr);
@@ -107,6 +99,23 @@ public class ActivityController {
 		mav= am.activityList(p,ac);
 		return mav;
 	}
-
-
+	@RequestMapping(value = "/activityreservationbtn" )
+	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr) {	//null 값도 받으려고
+		if(p!= null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav= am.activityReservationBtn(p,rv,attr);
+		attr.addFlashAttribute("rv",rv);
+		return mav;
+	}
+	@RequestMapping(value = "/activitypass", method = RequestMethod.GET)
+	public  ModelAndView activityPass (Principal p ,Company cp,Integer pageNum) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= am.activityPass(p,cp,pageNum);
+		return mav;
+	}
 }

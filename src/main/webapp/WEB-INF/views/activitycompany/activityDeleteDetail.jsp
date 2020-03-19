@@ -125,7 +125,7 @@ html, body {
 		$("<td>").text(detail.activitystart).appendTo($tras);
 		$.each(detail.activitypics,function(idx,data){
 			console.log(data);
-			var $picdiv= $('<div class="swiper-slide">').append($("<img src='"+data+"'/>"));
+			var $picdiv= $('<div class="swiper-slide">').append($("<img src='"+data+"' id='activityimg''/>"));
 			$(".swiper-wrapper").append($picdiv);
 		});
 		var swiper = new Swiper('.swiper-container', {

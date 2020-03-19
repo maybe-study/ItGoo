@@ -1,10 +1,13 @@
 package com.itcia.itgoo.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
@@ -40,10 +43,18 @@ public interface IShelterDao {
 	void insertDog(Dog dog);
 
 	
-	
-	
-	
 	void inserDogPics(Dfile df);
+
 	
+	@Select("SELECT * FROM DOG WHERE SHELTERID=(#{shelterid})")
+	List<Dog> shelterdelete(Dog dog);
+	
+
+	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
+	Company shelterMyInfo(Company c);
+
+	
+	
+
 	
 }

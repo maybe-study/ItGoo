@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.service.ActivityManagement;
 @RestController
 public class RestActivityController {
@@ -56,7 +57,6 @@ public class RestActivityController {
 
 		return "{\"a\":\"1\"}";
 	}
-	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/updatecompanylocation")
 	public  ModelAndView updatecompanylocation (Principal p,Company cp) {
 		
@@ -69,6 +69,29 @@ public class RestActivityController {
 		System.out.println("여기 있어요");
 		
 		mav= am.deleteDetail(activitynum);
+		
+		return mav;
+	}
+	@RequestMapping(value = "/passdetail" , method = RequestMethod.GET)
+	public ModelAndView passDetail(Integer activitynum) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+		
+		mav= am.passDetail(activitynum);
+		
+		return mav;
+	}
+	@RequestMapping(value = "/activitylistdetail" , method = RequestMethod.GET)
+	public ModelAndView activityListDetail(Integer activitynum) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+		
+		mav= am.activityListDetail(activitynum);
+		
+		return mav;
+	}
+	@PostMapping(value = "/acceptbtn")
+	public  ModelAndView acceptBtn (Principal p,Reservation rv) {
+		
+		mav= am.acceptBtn(p,rv);
 		
 		return mav;
 	}

@@ -86,4 +86,33 @@
 		at.activitydate,
 		at.activitystart
 	</select>
+	<select id="activityListDetail" parameterType="int"
+		resultType="Activity">
+		select at.activitynum,
+		at.activityname,at.activityexplanation,at.activitydate,at.activitystart,at.activitytime,
+		at.activitydogcnt,at.activityprice, cp.companyname,
+		cp.companyphone,cp.companyemail
+		from activity at, company cp
+		where at.companyid = cp.companyid and at.activitynum = #{activitynum}
+
+	</select>
+	<insert id="activityReservationBtn">
+		insert into activityreserve values(#{activitynum},#{id},#{dogid})
+	</insert>
+	<select id="activityPass" parameterType="Activity"
+		resultType="Activity">
+		select c.companyname,a.activitynum,a.activityname,
+		a.activitydate,
+		a.activitystart,a.activitytime, a.activitydogcnt 
+		from company c,activity a,activityreserve ar 
+		where c.companyid=a.companyid and a.activitynum = ar.activitynum
+	</select>
+	<select id="passDetail" parameterType="int"
+		resultType="Reservation">
+		select cli.username, cli.useremail, cli.phone,
+		at.activityname,dog.dogname from activity at, activityreserve ar,
+		adopt ado, client cli, dog dog
+		where at.activitynum = ar.activitynum and ar.id =ado.id
+		and ado.id= cli.id and ado.dogid = dog.dogid and ado.phase=3
+	</select>
 </mapper>

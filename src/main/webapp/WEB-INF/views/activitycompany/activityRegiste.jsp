@@ -123,25 +123,37 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">ACTIVITY MANAGER</h5>
-					 <li class="mt">
-            <a href="/ItGoo/">
-              <i class="fa fa-dashboard"></i>
-              <span>메인 페이지로</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a class="active" href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>업체</span>
-              </a>
-            <ul class="sub">
-              <li ><a href="activitymyinfo">업체정보</a></li>
-              <li><a href="activitylocationinfo">업체 위치</a></li>
-              <li><a href="activitypicinfo">업체 시설 첨부</a></li>
-              <li class="active"><a href="activityregiste">액티비티 등록</a></li>
-              <li><a href="activitydelete">등록된 액티비티 리스트</a></li>
-            </ul>
-          </li>
+					 <li class="mt"><a href="/ItGoo/"> <i
+							class="fa fa-dashboard"></i> <span>메인 페이지로</span>
+					</a></li>
+					<li class="sub-menu"><a href="javascript:;">
+							<i class="fa fa-tasks"></i> <span>업체정보</span>
+					</a>
+						<ul class="sub">
+							<li><a href="activitymyinfo">업체정보</a></li>
+						</ul></li>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class="fa fa-book"></i> <span>정보변경</span>
+					</a>
+						<ul class="sub">
+							<li class="active"><a href="activitylocationinfo">업체 위치
+									변경</a></li>
+							<li><a href="activitypicinfo">업체 시설 첨부</a></li>
+						</ul>
+					<li class="sub-menu"><a  class="active" href="javascript:;"> <i
+							class="fa fa-book"></i> <span>액티비티 등록 및 삭제</span>
+					</a>
+						<ul class="sub">
+							<li class="active"><a href="activityregiste">액티비티 등록</a></li>
+							<li><a href="activitydelete">등록된 액티비티 리스트</a></li>
+						</ul></li>
+						<li class="sub-menu"><a href="javascript:;"> <i
+							class="fa fa-book"></i> <span>진행상황 </span>
+					</a>
+						<ul class="sub">
+							<li><a href="activitypass">합격 및 불합격 선택</a></li>
+						</ul></li>
+				</ul>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>

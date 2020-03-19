@@ -9,15 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-
-//@Getter@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("activity")
+@Alias("reservation")
+
 @Data
 @Accessors(chain=true)
-public class Activity {
+public class Reservation {
 	private int activitynum;
+	private String id;
+	private int dogid;
 	private String activityname;
 	private String activitydate;
 	private String activitystart;
@@ -38,4 +39,8 @@ public class Activity {
 	private List<String> activitypics;
 	private String username;
 	private String dogname;
+	private String useremail;
+	private String phone;
+	private int phase;
+
 }

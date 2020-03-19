@@ -68,5 +68,4 @@ public class RestClientController {
 		
 		return "{\"a\":\"성공했습니다.\"}";
 	}
-	
 }

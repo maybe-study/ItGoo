@@ -10,12 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.share.UploadFile;
+import com.itcia.itgoo.userclass.Paging;
 
 @Service
 @Transactional
@@ -89,12 +92,8 @@ public class ShelterManagement {
 				df.setDogpic(path);
 				sDao.inserDogPics(df);
 			}
-			
-			
 			return null;  
 		}
-	 
-	 
 	 
 //아이디중복검사
 	 
@@ -104,6 +103,47 @@ public class ShelterManagement {
 	}
 	
 	
+	public ModelAndView shelterdelete1(Principal p, Dog dog, Integer pageNum) {
+
+		mav= new ModelAndView();
+		String view = null;
+		int pNum = (pageNum == null) ? 1:pageNum;
+		if(pNum<=0) {
+			System.out.println("페이지 정보가 잘못되었습니다.");
+		}
+			System.out.println("pNum="+ pNum);
+		dog.setShelterid(p.getName());
+		
+		List<Dog> adList = sDao.shelterdelete(dog);
+		mav.addObject("adList",new Gson().toJson(adList));
+		/* mav.addObject("paging", getPaging(pNum,dog)); */
+		/* mav.setViewName("activitycompany/activityDelete"); */
+		
+		System.out.println("companyList[0]=" + adList);
+		return mav; 
+	}
+	/*
+	 * private Object getPaging(int pNum,Company cp) { int maxNum= sDao.; int
+	 * listCount = 10; int pageCount = 2; String activity = "activitydelete"; Paging
+	 * paging = new Paging(maxNum, pNum, listCount, pageCount, activity); return
+	 * paging.makeHtmlPaging();
+	 * 
+	 * }
+	 */
+	
+	
+	//마이페이지
+	public ModelAndView shelterMyInfo(Principal p) {
+		Company c = new Company();
+		c.setCompanyid(p.getName());
+		c=sDao.shelterMyInfo(c);
+		mav.addObject("shelter",new Gson().toJson(c));
+		mav.setViewName("shelter/shelterMyInfo"); 
+		return mav;
+	}
+	
+	
+
 
 	
 	
