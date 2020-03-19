@@ -23,8 +23,7 @@ import com.itcia.itgoo.service.ActivityManagement;
 
 public class ActivityController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	//민호
-	//병규
+
 	@Autowired
 	private ActivityManagement am;
 
@@ -72,6 +71,10 @@ public class ActivityController {
 		return mav;
 	}
 
+
+
+
+
 	@RequestMapping(value = "/activitydelete", method = RequestMethod.GET)
 	public  ModelAndView activityDelete (Principal p ,Company cp,Integer pageNum) {
 		if(p!=null) {
@@ -83,16 +86,19 @@ public class ActivityController {
 
 		return mav;
 	}
-	@RequestMapping(value = "/activitydeletedetail", method = RequestMethod.GET)
-	public String acitivityDeleteDetail(Locale locale, Model model) {
-		return "activitycompany/activityDeleteDetail";
-	}
+
+
+
+
+
+
 
 	@RequestMapping(value = "/activitydeletebtn" )
 	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {	//null 값도 받으려고
 		mav= am.activityDeleteBtn(ac,attr);
 		attr.addFlashAttribute("ac",ac);
 		return mav;
+
 	}
 	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
 	public String activityList(Locale locale, Model model) {

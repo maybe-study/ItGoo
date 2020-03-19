@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.service.ShelterManagement;
 import com.itcia.itgoo.share.UploadFile;
@@ -30,7 +31,7 @@ public class ShelterController {
 
 	@Autowired
 	private ShelterManagement smm;
-	ModelAndView mav = new ModelAndView();
+	ModelAndView mav = new ModelAndView(); //계속 추가해줘야함
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@RequestMapping(value = "/joinfrm", method = RequestMethod.GET)
@@ -47,6 +48,30 @@ public class ShelterController {
 		return "main";
 	}
 
+	//마이페이지
+	@PreAuthorize("isAnonymous()")
+	@PostMapping(value = "/shelterMyInfo")
+	public ModelAndView shelterMyInfo1(Principal p,Company cp) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= smm.shelterMyInfo1(p,cp);
+		
+		
+		
+		return mav;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 회원가입
 	@PreAuthorize("isAnonymous()")
@@ -69,9 +94,19 @@ public class ShelterController {
 	}
 	
 	
-	
-	
-	
+	//공고리스트 삭제
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/shelterdelete")
+	public ModelAndView shelterdelete(Principal p, Dog dog, Integer pageNum) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= smm.shelterdelete1(p,dog,pageNum);
+
+
+		return mav;
+	}
 	
 	
 	
@@ -83,13 +118,14 @@ public class ShelterController {
 		
 		@GetMapping(value = "/sheltermyinfo")
 		public ModelAndView shelterMyInfo() {
+			mav = new ModelAndView();
 			mav.setViewName("shelter/shelterMyInfo");
 			
 			return mav;
 		}
-		@PreAuthorize("isAuthenticated()")
-		@GetMapping(value = "/shelterdelete")
-		public String page1() {
+		
+		@GetMapping(value = "/shelterDelete")
+		public String shelterDelete() {
 			return "shelter/shelterDelete";
 		}
 

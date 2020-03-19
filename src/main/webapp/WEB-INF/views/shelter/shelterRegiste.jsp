@@ -136,7 +136,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo.jsp">보호소 정보보기</a></li>
+							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -161,7 +161,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="">삭제</a></li>
+							<li><a href="shelterDelete">삭제</a></li>
 						</ul></li>
 
 
@@ -205,7 +205,7 @@
 											</tr>
 											<tr>
 												<td>사진 첨부:</td>
-												<td><input type="file" id="profile" class="profile"
+												<td><input type="file" id="profile" class="profile" multiple
 													name="dogpicby" accept=".jpg,.jpeg,.png,.gif,.bmp" /></td>
 											</tr>
 										</table>
@@ -233,7 +233,7 @@
 											<tr>
 												<td>강아지 나이:</td>
 												<td><input type="text" id="dogage" class="dogage"
-													name="dogage" /></td>
+													name="dogage" maxlength="15"/></td>
 											</tr>
 										</table>
 									</div>
@@ -281,7 +281,7 @@
 										<table>
 											<tr>
 
-												<td>특이사항</td>
+												<td>소개글</td>
 												<td><textarea id="dogspecial" class="dogspecial"
 														name="dogspecial"
 														style="word-break: normal; height: 200px; width: 500px;"></textarea>
