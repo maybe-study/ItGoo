@@ -101,7 +101,7 @@
 	</insert>
 	<select id="activityPass" parameterType="Activity"
 		resultType="Activity">
-		select c.companyname,a.activitynum,a.activityname,
+		select distinct c.companyname,a.activitynum,a.activityname,
 		a.activitydate,
 		a.activitystart,a.activitytime, a.activitydogcnt 
 		from company c,activity a,activityreserve ar 

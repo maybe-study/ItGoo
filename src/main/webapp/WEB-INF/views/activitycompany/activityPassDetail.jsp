@@ -110,8 +110,10 @@ html, body {
 							var $body = $("#activitypassbody");
 							var $accept = $("#acceptactivity");
 							var $reject = $("#rejectactivity");
+							var $nametd = $("#nametd");
 							var $tr = $("<tr>").appendTo($body);
-							$("<td>").append($("<input type='hidden' name='username' />").val(data.username)).text(data.username).appendTo($tr);
+							$("<td id='nametd'>").text(data.username).appendTo($tr);
+							$("<td>").append($("<input type='hidden' name='username' />").val(data.username)).appendTo($tr);
 							$("<td>").text(data.useremail).appendTo($tr);
 							$("<td>").text(data.phone).appendTo($tr);
 							$("<td>").text(data.activityname).appendTo($tr);

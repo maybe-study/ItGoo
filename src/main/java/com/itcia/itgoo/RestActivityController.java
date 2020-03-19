@@ -90,7 +90,7 @@ public class RestActivityController {
 	}
 	@PostMapping(value = "/acceptbtn")
 	public  ModelAndView acceptBtn (Principal p,Reservation rv) {
-		
+		System.out.println("username="+rv.getUsername());
 		mav= am.acceptBtn(p,rv);
 		
 		return mav;
