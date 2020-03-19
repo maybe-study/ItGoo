@@ -23,14 +23,7 @@
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-datetimepicker/datertimepicker.css" />
+
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
@@ -183,7 +176,9 @@
 						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
 						<div id="message"></div>
 						<form class="contact-form php-mail-form" role="form"
-							action="contactform/contactform.php" method="POST">
+							onsubmit="return makeTestJson()"
+							action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
+							method="POST">
 
 							<div class="form-group">
 								<div class="main-p-tag">
@@ -191,8 +186,7 @@
 
 										<tr id="companynamevalue" name="companyname">
 											<td>업체명:</td>
-											<%-- <td>${aList.companyname}</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
+											<td id="sheltername"></td>
 										</tr>
 									</table>
 								</div>
@@ -202,9 +196,7 @@
 									<table>
 										<tr id="companybossvalue" name="companyboss">
 											<td>대표자:</td>
-
-											<%--  <td>${aList.companyboss }</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
+											<td id="shelterboss"></td>
 										</tr>
 									</table>
 								</div>
@@ -214,8 +206,18 @@
 									<table>
 										<tr id="companyphonevalue" name="companyphone">
 											<td>휴대폰:</td>
-											<%-- <td>${aList.companyphone }</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
+											<td id="shelterphone"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companylocationvalue" name="companyaddr">
+											<td>주소:</td>
+											<td id="shelteraddr"></td>
 										</tr>
 									</table>
 								</div>
@@ -226,18 +228,8 @@
 									<table>
 										<tr id="companyemailvalue" name="companyemail">
 											<td>이메일:</td>
-											<%--  <td>${aList.companyemail }</td>
-               <td><a href="#" class="myButton">변경</a></td> --%>
+											<td id="shelteremail"></td>
 										</tr>
-
-										<c:forEach var="row" items="${list}">
-											<tr>
-												<td>&{row.companyname}</td>
-												<td>&{row.companyboss}</td>
-												<td>&{row.companyphone}</td>
-												<td>&{row.companyemail}</td>
-											</tr>
-										</c:forEach>
 
 									</table>
 								</div>
@@ -288,24 +280,22 @@
 	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/date.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepic===ker/moment.min.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-	<script src="lib/advanced-form-components.js"></script>
+
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 	<script>
+	
+		var shelter = ${shelter}
+		console.log(shelter);
+		$('#sheltername').text(shelter.companyname);
+		$('#shelterboss').text(shelter.companyboss);
+		$('#shelterphone').text(shelter.companyphone);
+		$('#shelteraddr').text(shelter.companylocation);
+		$('#shelteremail').text(shelter.companyemail);
+
+		
 		
 	</script>
 </body>

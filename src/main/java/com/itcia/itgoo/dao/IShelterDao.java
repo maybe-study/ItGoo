@@ -50,8 +50,8 @@ public interface IShelterDao {
 	List<Dog> shelterdelete(Dog dog);
 	
 
-	@Select("SELECT * FROM COMPANY WHERE COMPANYID=#{companyid} and companykind=2 ")
-	List<Company> shelterMyInfo1(Company cp);
+	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
+	Company shelterMyInfo(Company c);
 
 	
 	
