@@ -52,6 +52,13 @@ public class ClientController {
 		mav = mm.myadoptphase(p,ad);
 		return mav;
 	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/showmyactivity", method = RequestMethod.GET)
+	public ModelAndView showmyactivity(Principal p, Adopt ad) {
+		System.out.println("adoptPHase 가는중");
+		mav = cm.showmyactivity(p,ad);
+		return mav;
+	}
 	
 	
 
