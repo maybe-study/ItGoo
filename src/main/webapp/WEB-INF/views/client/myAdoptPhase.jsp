@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
 <meta charset="utf-8">
@@ -39,42 +40,23 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-
 </head>
+
 <body>
-	<section id="container">
-		<!-- **********************************************************************************************************************************************************
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
-		<!--header start-->
-		<header class="header black-bg">
-			<div class="sidebar-toggle-box">
-				<div class="fa fa-bars tooltips" data-placement="right"
-					data-original-title="Toggle Navigation"></div>
-			</div>
-			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
-			<!--logo end-->
+    <!--header start-->
 
-			<div class="top-menu">
-				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="#" onclick="document.getElementById('logout').submit();">
-					Logout</a>
-					 <form id="logout" action="logout" method="POST">
-							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}" />
-						</form> 
-					</li>
-				</ul>
-			</div>
-		</header>
-		<!--header end-->
-		<!-- **********************************************************************************************************************************************************
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-		<!--sidebar start-->
-		<aside></aside>
-		<!--sidebar end-->
-		<!-- **********************************************************************************************************************************************************
+    <!--sidebar start-->
+
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
@@ -170,7 +152,7 @@
 					</div>
 					<!-- /row -->
 				</form>
-				
+
 			</section>
 			<!-- /wrapper -->
 
@@ -202,12 +184,12 @@
 			<script src="main2.js?ver"></script>
 
 			<script>
-	
+
 /* 	 $.each(${phase},function(idx,data){
 		 var $phaselist = $("$phaselist");
 		 var $div1=$('<div>').append(data.phase);
 		 $phaselist.append($div1);
-	
+
 	 }); */
 	 $.each(${aList},function(idx,data){
 		 console.log("피리스트 만드는중");
@@ -224,20 +206,20 @@
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
                 .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
-	
-		
-						 
-		
+
+
+
+
 		 $div3.append($img);
 		 $h4.append($div3);
 		 $div2.append($h4);
 		 $div1.append($div2);
 		 $qList.append($div1);
-		 
+
 	 });
-	 
+
 	 $('#openModalBtn').on('click', function(e){
-		 $('#modalBox').modal('show'); 
+		 $('#modalBox').modal('show');
 	 //console.log(e.target.dataset.dogid);
 		   var dogid=e.target.dataset.dogid;
 		 console.log("dogid:",dogid);
@@ -247,7 +229,7 @@
 				}
 			});//먼저 보냄
 			$.ajax({ // 에이작스 열고
-				type : 'post', //타입은 get 
+				type : 'post', //타입은 get
 				url : "adoptlistdetail", // restFul 방식
 				data : {dogid:dogid},
 				dataType : "json",
@@ -268,16 +250,16 @@
 							var $div=$('<div class="item">').appendTo($items);
 							$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
 						}
-						
+
 					});
 					$('#name').text(data.dogname);
 					$('#age').text(data.dogage+" 살");
 					$('#dogjungsung').text(data.dogjungsung==0?"O":"X");
 					$('#sex').text(data.sex==0?"남":"여");
 					$('#special').text(data.dogspecial);
-					
-					  
-					
+
+
+
 				} , error : function(error) {
 					console.log(error);
 				}
@@ -285,11 +267,10 @@
 			});
 	 });
 					 $('#closeModalBtn').on('click', function(e){
-						 $('#modalBox').modal('hide'); 
+						 $('#modalBox').modal('hide');
 	});
   </script>
+
 </body>
-
-
 
 </html>

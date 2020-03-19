@@ -91,7 +91,7 @@ html, body {
 					</tr>
 				</thead>
 				<tbody id="activitypassbody">
-					
+
 				</tbody>
 			</table>
 			</form>
@@ -102,7 +102,7 @@ html, body {
 	<script>
 		var passdetail = ${passdetail}
 		//이거 리스트가 아닌데?
-				
+
 		console.log("passdetail=", passdetail);
 
 		$.each(passdetail,function(idx, data) {
@@ -112,22 +112,24 @@ html, body {
 							var $reject = $("#rejectactivity");
 							var $nametd = $("#nametd");
 							var $tr = $("<tr>").appendTo($body);
-							$("<td id='nametd'>").text(data.username).appendTo($tr);
-							$("<td>").append($("<input type='hidden' name='username' />").val(data.username)).appendTo($tr);
+							$("<td>").text(data.username).appendTo($tr);
 							$("<td>").text(data.useremail).appendTo($tr);
 							$("<td>").text(data.phone).appendTo($tr);
 							$("<td>").text(data.activityname).appendTo($tr);
 							$("<td>").text(data.dogname).appendTo($tr);
-							$("<td>").append($("<input type='submit' id='acceptbtn' class='acceptbtn' value='합격' />")).appendTo($tr);
+							var $btn=$("<input type='submit' id='acceptbtn' class='acceptbtn' value='합격' />");
+							$btn.click(function(){
+								$("form").attr("action","acceptbtn?${_csrf.parameterName}=${_csrf.token}");
+								$("form").append($("<input type='hidden' name='username' value='"+data.username+"' />"))
+							});
+							$("<td>").append($btn).appendTo($tr);
 							$("<td>").append($("<input type='submit' id='rejectbtn' class='rejectbtn' value='불합격' />")).appendTo($tr);
 
 						});
-		$("#acceptbtn").click(function(){
-			$("form").attr("action","acceptbtn?${_csrf.parameterName}=${_csrf.token}");
-		});
-		$("#rejectbtn").click(function(){
-			$("form").attr("action","rejectbtn?${_csrf.parameterName}=${_csrf.token}");
-		});
+
+
+		$("#acceptbtn")
+		$("#rejectbtn")
 	</script>
 </body>
 </html>

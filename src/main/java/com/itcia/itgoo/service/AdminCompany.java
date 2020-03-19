@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IAdminDao;
 import com.itcia.itgoo.dto.Adopt;
+import com.itcia.itgoo.dto.CareSheet;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Ex;
 import com.itcia.itgoo.dto.Question;
@@ -136,5 +137,26 @@ public class AdminCompany {
 		mav.setViewName("/admin/AdminAdopt");
 		return mav;
 	}
+	public ModelAndView adminCareSheet() {
+		List<CareSheet> cList=aDao.careSheetList();
+		mav.addObject("cList",new Gson().toJson(cList));
+		mav.setViewName("/admin/AdminCareSheet");
+		return mav;
+		
+	}
+	public ModelAndView adminUpdateCareSheet(String careJson) {
+		List<CareSheet> cList= new Gson().fromJson(careJson, new TypeToken<List<CareSheet>>() {}.getType());
+		for(CareSheet c : cList) {
+			System.out.println(c);
+		}
+		return null;
+	}
+	public ModelAndView adminCareSheetUpdateFrm() {
+		List<CareSheet> cList=aDao.careSheetList();
+		mav.addObject("cList",new Gson().toJson(cList));
+		mav.setViewName("admin/AdminCareSheetUpdate");
+		return mav;
+	}
+	
 
 }
