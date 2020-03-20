@@ -141,15 +141,36 @@ public class AdminCompany {
 		List<CareSheet> cList=aDao.careSheetList();
 		mav.addObject("cList",new Gson().toJson(cList));
 		mav.setViewName("/admin/AdminCareSheet");
+		
 		return mav;
 		
 	}
 	public ModelAndView adminUpdateCareSheet(String careJson) {
+		
+		System.out.println("careJson"+careJson);
 		List<CareSheet> cList= new Gson().fromJson(careJson, new TypeToken<List<CareSheet>>() {}.getType());
-		for(CareSheet c : cList) {
-			System.out.println(c);
+		
+		for(CareSheet c : cList) { //지우고 넣기
+			if(c.getQuestionnum()!=0) aDao.deleteCareSheet(c);
+			else aDao.adminInsertCareSheet(c);
 		}
-		return null;
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("admincaresheet");
+		mav.setView(redirectView);
+		return mav;
+	}
+	public ModelAndView deleteCareSheet(int questionnum) {
+		//토글 0으로 바꾸기
+		CareSheet c= new CareSheet();
+		c.setQuestionnum(questionnum);
+		aDao.deleteCareSheet(c);
+		
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("admincaresheet");
+		mav.setView(redirectView);
+		return mav;
 	}
 	public ModelAndView adminCareSheetUpdateFrm() {
 		List<CareSheet> cList=aDao.careSheetList();
