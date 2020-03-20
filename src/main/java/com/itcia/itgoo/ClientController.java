@@ -63,9 +63,17 @@ public class ClientController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/finalsook", method = RequestMethod.GET)
-	public ModelAndView finalsook(Principal p, Adopt ad) {
+	public ModelAndView finalsook(Principal p, Reservation rs) {
 		System.out.println("숙려기간으로  가는중");
-		mav = cm.finalsook(p,ad);
+		mav = cm.finalsook(p,rs);
+		return mav;
+	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/finalchoice", method = RequestMethod.GET)
+	public ModelAndView finalchoice(Principal p, Reservation rs) {
+		System.out.println("숙려기간선택!");
+		mav = cm.finalsook(p,rs);
+		mav = cm.updatedog()
 		return mav;
 	}
 	

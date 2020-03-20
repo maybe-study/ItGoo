@@ -140,7 +140,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
-							<li><a href="shelterPicInfo">시설사진</a></li>
+							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -148,17 +148,17 @@
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="shelterDelete">삭제</a></li>
+							<li><a href="shelterregiste">등록</a></li>
+							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
 
 
 
-					<li class=""><a href="javascript:;"><i
+					<li class=""><a class="active" href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
+							<li class="active"><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 

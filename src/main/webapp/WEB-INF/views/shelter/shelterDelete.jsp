@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/> 
 
 <!-- =======================================================
     Template Name: Dashio
@@ -124,7 +125,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
+							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -140,16 +141,16 @@
 					</a>
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
-							<li><a href="shelterPicInfo">시설사진</a></li>
+							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
 
 
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a class="active" href="javascript:;"> <i
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
 							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="shelterDelete">삭제</a></li>
+							<li class="active"><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
 
@@ -158,7 +159,7 @@
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
+							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -166,7 +167,7 @@
 					<!-- sidebar menu end-->
 			</div>
 		</aside>
-		</aside>
+		
 		<!--sidebar end-->
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
@@ -244,33 +245,94 @@
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="lib/time-select/timepicker-addon.js"></script>
-	<script src="lib/jquery/jquery.min.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="lib/jquery.scrollTo.min.js"></script>
-	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-	<!--common script for all pages-->
-	<script src="lib/common-scripts.js"></script>
+	 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="lib/time-select/timepicker-addon.js"></script>
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 	<!--script for this page-->
 
 	<script>
-	$.each(${adList},function(idx,data){
-		var $picdiv= $("#acitvitypics");
-		var $tran = $("#activitynametr");
-		var $trap = $("#activitypricetr");
-		var $trad = $("#activitydatetr");
-		var $tras = $("#activitystarttr");
-		console.log("activitypic="+data.activitypic);
-		$("<img>").attr("src",data.activitypic).attr("alt",data.activitypic).appendTo($picdiv);
-
-		$("<td>").text(data.activityname).appendTo($tran);
-		$("<td>").text(data.activityprice).appendTo($trap);
-		$("<td>").text(data.activitydate).appendTo($trad);
-		$("<td>").text(data.activitystart).appendTo($tras);
+	let container = $('.pagingdiv');
+	
+	container.pagination({
+        dataSource:${dogList} ,  //받아온 데이터
+        pageSize: 10,
+        callback: function (data, pagination) { //데이터 찍어주는 부분
+           console.log("data=",data);
+           temp=data;
+           $("#shelterlist").empty();
+           $.each(data,function(idx, data){
+        		var $body = $("#shelterlist");
+        		var sex = data.sex
+        		var jungsung = data.dogjungsung
+        		console.log("sex="+sex);
+        		var $tr = $("<tr>").appendTo($body);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.dogid+')').text("사진보기")).appendTo($tr);
+        		$("<td>").text(data.dogid).appendTo($tr);
+        		$("<td>").text(data.dogname).appendTo($tr);
+        		$("<td>").text(data.dogage).appendTo($tr);
+        		if(sex == 0 ){
+        			$("<td>").text("암컷").appendTo($tr);
+        		}else{
+        			$("<td>").text("수컷").appendTo($tr);
+        		}
+        		if(jungsung == 0 ){
+        			$("<td>").text("중성화 안함").appendTo($tr);
+        		}else{
+        			$("<td>").text("중성화 했음").appendTo($tr);
+        		}
+        		
+        		$("<td>").text(data.dogspecial).appendTo($tr);
+        		});
+        }
+    
+    })
+    function articleView(dogid){
+		var detail= ${detail}
+		$("#articleView_layer").addClass('open');
+		
+		$.ajax({
+			type:'get',
+			url:"shelterdeletedetail",
+			data:{dogid:dogid},
+			dataType:'html',
+			success:function(data){
+			
+				$("#contents_layer").html(data);
+				
+				/* $.each(detail,function(idx,data){
+	                  console.log("stst="+data);
+	                  var $activityPic = $("#activitypics");
+	                  var $li = $('<li>')
+	                  var $img = $("<img class='recoimg' src="+detail.activitypics[idx]+" alt='imgslide' />");
+	                  $li.append($img);
+	                  $activityPic.append($li);
+	               }) */
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
 	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	});
+	
 	
 	</script>
 </body>
