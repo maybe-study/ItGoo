@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="UTF-8">
+<html lang="">
 
 
 <head>
@@ -24,24 +24,11 @@
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
 
-
-
-
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-
-
-<style>
-#show_profile {
-	width: 20%;
-	height: 20%;
-}
-</style>
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -114,7 +101,6 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
-		<!--sidebar start-->
 	<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
@@ -178,138 +164,83 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
-
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 반려견 등록
+					<i class="fa fa-angle-right"></i> 업체 정보
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
 				<div class="row mt">
-					<form action="shelterdogregi?${_csrf.parameterName}=${_csrf.token}"
-						name="registe" method="post" id="registe"
-						enctype="multipart/form-data">
-						<div class="col-lg-6 col-md-6 col-sm-6">
-							<section class="panel">
-								<h4 class="title"></h4>
-								<div id="message"></div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
 
+						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
+						<div id="message"></div>
+						<form class="contact-form php-mail-form" role="form"
+							onsubmit="return makeTestJson()"
+							action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
+							method="POST">
 
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td><img id="show_profile" style="border-color: white;" /></td>
-											</tr>
-											<tr>
-												<td>사진 첨부:</td>
-												<td><input type="file" id="profile" class="profile"
-													multiple name="dogpicby" accept=".jpg,.jpeg,.png,.gif,.bmp" /></td>
-											</tr>
-										</table>
-									</div>
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+
+										<tr id="companynamevalue" name="companyname">
+											<td>업체명:</td>
+											<td id="sheltername"></td>
+										</tr>
+									</table>
 								</div>
-
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>강아지 이름:</td>
-												<td><input type="text" id="dogname" class="dogname"
-													name="dogname" /></td>
-											</tr>
-										</table>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companybossvalue" name="companyboss">
+											<td>대표자:</td>
+											<td id="shelterboss"></td>
+										</tr>
+									</table>
 								</div>
-
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>강아지 나이:</td>
-												<td><input type="text" id="dogage" class="dogage"
-													name="dogage" maxlength="15" /></td>
-											</tr>
-										</table>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companyphonevalue" name="companyphone">
+											<td>휴대폰:</td>
+											<td id="shelterphone"></td>
+										</tr>
+									</table>
 								</div>
+							</div>
 
-
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>성별:</td>
-												<td><select name="sex" id="sex" class="sex">
-														<option value="선택">선택</option>
-														<option value="0">수컷</option>
-														<option value="1">암컷</option>
-
-												</select></td>
-											</tr>
-										</table>
-									</div>
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companylocationvalue" name="companyaddr">
+											<td>주소:</td>
+											<td id="shelteraddr"></td>
+										</tr>
+									</table>
 								</div>
+							</div>
 
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companyemailvalue" name="companyemail">
+											<td>이메일:</td>
+											<td id="shelteremail"></td>
+										</tr>
 
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-												<td>중성화 여부:</td>
-												<td><select name="dogjungsung" id="activity-dog-cnt"
-													class="activity-dog-cnt" name="dogiungsung">
-														<option value="중성화여부">선택</option>
-														<option value="1">O</option>
-														<option value="2">X</option>
-
-												</select></td>
-											</tr>
-										</table>
-									</div>
+									</table>
 								</div>
+							</div>
+						</form>
+
+					</div>
+					<!-- /row -->
 
 
-								<div class="form-group">
-									<div class="main-p-tag">
-										<table>
-											<tr>
-
-												<td>소개글</td>
-												<td><textarea id="dogspecial" class="dogspecial"
-														name="dogspecial"
-														style="word-break: normal; height: 200px; width: 500px;"></textarea>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-
-
-
-
-							</section>
-						</div>
-						<div class="btn-div">
-
-							<button id="but" class="but" type="submit">등록</button>
-							<button class="but">취소</button>
-
-						</div>
-					</form>
-				</div>
-
-				<!-- /row -->
-				<div id="articleView_layer">
-					<div id="bg_layer"></div>
-					<div id="contents_layer"></div>
-				</div>
-
-
-				<!-- /row -->
+					<!-- /row -->
 			</section>
 			<!-- /wrapper -->
 		</section>
@@ -350,34 +281,13 @@
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
 
-	<script type="text/javascript"
-		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 
-	<script src="lib/advanced-form-components.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
-		$(function() {
-			$("#profile").on("change", loadImage)
-		});
-		function loadImage() {
-			console.log($('#profile'));
-			var file = $("#profile")[0].files[0]; //한개의 프사만 등록
-			var maxSize = 1024 * 1024; //1MB
-			if (file.size > maxSize) {
-				toastr.warning("사진은 1M이하여야 합니다.", "경고");
-				$("#profile").val("");
-				return false;//작업 실패
-			}
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				console.log("e=", e);
-				$('#show_profile').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(file); //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
-			return true;
-		}
+	
+
 	</script>
 </body>
 

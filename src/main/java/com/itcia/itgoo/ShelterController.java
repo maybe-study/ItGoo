@@ -88,6 +88,11 @@ public class ShelterController {
 		mav = smm.shelterdelete1(p, dog, pageNum);
 		return mav;
 	}
+	
+	
+	
+	
+	
 
 	// 페이지 보기만
 
