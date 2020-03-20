@@ -15,6 +15,7 @@ import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.share.UploadFile;
 
 @Service
@@ -23,6 +24,7 @@ public class ClientManagement {
 	private IClientDao cDao;
 	@Autowired
 	private IMemberDao mDao;
+	
 	private ModelAndView mav = new ModelAndView();
 
 	public ModelAndView adoplist() {
@@ -83,6 +85,7 @@ public class ClientManagement {
 		mDao.updatebirth(mb);
 		return null;
 	}
+	
 
 	public ModelAndView updateuseraddress(Principal p, Member mb) {
 		mb.setId(p.getName());
@@ -90,9 +93,22 @@ public class ClientManagement {
 		return null;
 	}
 
-	public ModelAndView showmyactivity(Principal p, Adopt ad) {
-		ad.setDogid(ad.getDogid());
-		cDao.showmyactivity(ad);
-		return null;
+	public ModelAndView showmyactivity(Principal p, Reservation rs) {
+		System.out.println("액티비티 마이페이지가는중 ");
+		System.out.println("도그번호"+rs);
+		rs.setId(p.getName());
+		List<Reservation> rList = cDao.showmyactivity(rs);
+		System.out.println("알리스트 값은 "+rList);
+		mav.addObject("rsList",new Gson().toJson(rList));
+		mav.setViewName("client/MyActivityPage");
+		return mav;
+	}
+
+	public ModelAndView finalsook(Principal p, Adopt ad) {
+		ad.setId(p.getName());
+		//List<Adopt> adList=cDao.finalsook(ad);
+		//mav.addObject("adList",new Gson().toJson(adList));
+		mav.setViewName("client/sook");
+		return mav;
 	}
 }

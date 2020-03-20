@@ -58,12 +58,12 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="#" onclick="document.getElementById('logout').submit();">
-					Logout</a>
-					 <form id="logout" action="logout" method="POST">
-							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}" />
-						</form> 
-					</li>
+					<li><a class="logout" href="#"
+						onclick="document.getElementById('logout').submit();"> Logout</a>
+						<form id="logout" action="logout" method="POST">
+							<input name="${_csrf.parameterName}" type="hidden"
+								value="${_csrf.token}" />
+						</form></li>
 				</ul>
 			</div>
 		</header>
@@ -97,7 +97,7 @@
 
 					<!-- modal  -->
 					<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel" >
+						role="dialog" aria-labelledby="myModalLabel">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -108,43 +108,44 @@
 									</button>
 
 								</div>
-								<div class="modal-body" >
-									<div id="productCarousel" class="carousel slide" data-ride="carousel" style="display: flex;">
-					                    <ol class="carousel-indicators">
-					                    </ol>
+								<div class="modal-body">
+									<div id="productCarousel" class="carousel slide"
+										data-ride="carousel" style="display: flex;">
+										<ol class="carousel-indicators">
+										</ol>
 										<div>
-					                    <div class="carousel-inner" role="listbox">
-					                    </div>
-					                    </div>
-					                    <div style="margin-top: 100px; margin-left: 30px;">
-					                    <table style="margin: auto">
-										<tr>
-											<td>이름:</td>
-											<td id="name"></td>
-										</tr>
-										<tr>
-											<td>나이:</td>
-											<td id="age"></td>
-										</tr>
-										<tr>
-											<td>성별:</td>
-											<td id="sex"></td>
-										</tr>
-										<tr>
-											<td>특이사항:</td>
-											<td id="special"></td>
-										</tr>
-									</table>
+											<div class="carousel-inner" role="listbox"></div>
+										</div>
+										<div style="margin-top: 100px; margin-left: 30px;">
+											<table style="margin: auto">
+												<tr>
+													<td>이름:</td>
+													<td id="name"></td>
+												</tr>
+												<tr>
+													<td>나이:</td>
+													<td id="age"></td>
+												</tr>
+												<tr>
+													<td>성별:</td>
+													<td id="sex"></td>
+												</tr>
+												<tr>
+													<td>특이사항:</td>
+													<td id="special"></td>
+												</tr>
+											</table>
+										</div>
 									</div>
-					                    </div>
-					                    <a class="left carousel-control" href="#productCarousel" role="button" data-slide="prev">
-					                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					                        <span class="sr-only">Previous</span>
-					                    </a>
-					                    <a class="right carousel-control" href="#productCarousel" role="button" data-slide="next">
-					                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					                        <span class="sr-only">Next</span>
-					                    </a>
+									<a class="left carousel-control" href="#productCarousel"
+										role="button" data-slide="prev"> <span
+										class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a> <a class="right carousel-control" href="#productCarousel"
+										role="button" data-slide="next"> <span
+										class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
 									<!-- <div id="demo" class="carousel slide" data-ride="carousel">
 										<ul class="carousel-indicators">
 										</ul>
@@ -160,7 +161,7 @@
 										</a>
 									</div> -->
 								</div>
-								<div class="modal-footer" >
+								<div class="modal-footer">
 									<button type="button" class="btn btn-primary" id="adoptBtn"></button>
 									<button type="button" class="btn btn-default"
 										id="closeModalBtn">뒤로가기</button>
@@ -170,7 +171,7 @@
 					</div>
 					<!-- /row -->
 				</form>
-				
+
 			</section>
 			<!-- /wrapper -->
 
@@ -224,7 +225,20 @@
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
                 .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
-	/* 	if(data.phase==0){
+		if(data.phase==4){
+			var $p4=$('#adoptBtn').text("액티비티 예약확인")
+    		$p4.on("click",function(){
+        		location.href="./showmyactivity?dogid="+data.dogid
+    	})
+    }else if(data.phase==5){
+    var $p5=$('#adoptBtn').text("숙려기간")
+    $p5.on("click",function(){
+        		location.href="./finalsook"
+    }) 
+    }
+		
+		
+		/* if(data.phase==0){
         	var $p0=$('#adoptBtn').text("입양");
         	$p0.on("click", function(){
         		location.href="./adoptList";
@@ -244,19 +258,19 @@
         	$p3.on("click",function(){
         		location.href="./"
         	})
-        }else if(data.phase==4){
+        }  if(data.phase==4){
         	var $p4=$('#adoptBtn').text("액티비티 예약확인")
         	$p4.on("click".function(){
         		$p4.on("click",function(){
         		}
             		location.href="./showmyactivity?dogid="+data.dogid
         	})
-        }else if(data.phase==5){
+        }  else if(data.phase==5){
         	var $p4=$('#adoptBtn').text("숙려기간")
         	$p5.on("click".function(){
         		$p5.on("click",function(){
             		location.href="./"
-        	})
+        	}) 
         }else if(data.phase==6){
         	var $p6=$('#adoptBtn').text("설문지 작성")
         	$p6.on("click".function(){
@@ -266,9 +280,9 @@
         	var $p7=$('#adoptBtn').text("입양 감사합니다.")
         	$p7.on("click".function(){
             		location.href="./"
-        	})
-        };
-	 */
+        	}) 
+         }; 
+	  */
 	
 		        
 		
