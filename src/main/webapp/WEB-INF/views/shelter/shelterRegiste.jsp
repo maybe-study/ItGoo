@@ -23,20 +23,15 @@
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-datetimepicker/datertimepicker.css" />
+
+
+
+
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 
@@ -120,16 +115,16 @@
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
 		<!--sidebar start-->
-		<aside>
+	<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
-						<a href="profile.html"><img src="img/portfolio/itgoo2.PNG"
+						<a href="shelterMyInfo"><img src="img/portfolio/itgoo2.PNG"
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index.html"> <i
+					<li class="mt"><a href="index2.html"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -144,15 +139,15 @@
 							class="fa fa-cogs"></i> <span>정보 수정</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">보호소정보 수정</a></li>
+							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">사업자등록증</a></li>
-							<li><a href="">시설사진</a></li>
+							<li><a href="sheltercard">사업자등록증</a></li>
+							<li><a href="shelterPicInfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -165,10 +160,12 @@
 						</ul></li>
 
 
+
+
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="">위치 및 수정</a></li>
+							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -190,7 +187,8 @@
 				<!-- BASIC FORM ELELEMNTS -->
 				<div class="row mt">
 					<form action="shelterdogregi?${_csrf.parameterName}=${_csrf.token}"
-						name="registe" method="post" id="registe" enctype="multipart/form-data">
+						name="registe" method="post" id="registe"
+						enctype="multipart/form-data">
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<section class="panel">
 								<h4 class="title"></h4>
@@ -205,8 +203,8 @@
 											</tr>
 											<tr>
 												<td>사진 첨부:</td>
-												<td><input type="file" id="profile" class="profile" multiple
-													name="dogpicby" accept=".jpg,.jpeg,.png,.gif,.bmp" /></td>
+												<td><input type="file" id="profile" class="profile"
+													multiple name="dogpicby" accept=".jpg,.jpeg,.png,.gif,.bmp" /></td>
 											</tr>
 										</table>
 									</div>
@@ -233,7 +231,7 @@
 											<tr>
 												<td>강아지 나이:</td>
 												<td><input type="text" id="dogage" class="dogage"
-													name="dogage" maxlength="15"/></td>
+													name="dogage" maxlength="15" /></td>
 											</tr>
 										</table>
 									</div>
@@ -262,9 +260,8 @@
 										<table>
 											<tr>
 												<td>중성화 여부:</td>
-												<td><select name="dogjungsung"
-													id="activity-dog-cnt" class="activity-dog-cnt"
-													name="dogiungsung">
+												<td><select name="dogjungsung" id="activity-dog-cnt"
+													class="activity-dog-cnt" name="dogiungsung">
 														<option value="중성화여부">선택</option>
 														<option value="1">O</option>
 														<option value="2">X</option>
@@ -297,10 +294,10 @@
 							</section>
 						</div>
 						<div class="btn-div">
-						
-						<button id="but" class="but" type="submit">등록</button>
-						<button class="but">취소</button>
-						
+
+							<button id="but" class="but" type="submit">등록</button>
+							<button class="but">취소</button>
+
 						</div>
 					</form>
 				</div>
@@ -352,23 +349,13 @@
 	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+
 	<script type="text/javascript"
 		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/date.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/moment.min.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
 	<script src="lib/advanced-form-components.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="lib/time-select/timepicker-addon.js"></script>
+
 
 	<script>
 		$(function() {

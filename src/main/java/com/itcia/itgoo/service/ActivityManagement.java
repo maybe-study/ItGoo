@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IActivityDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.share.UploadFile;
 import com.itcia.itgoo.userclass.Paging;
 
@@ -168,13 +170,30 @@ public class ActivityManagement {
 
 		System.out.println("companyList[0]=" + adList);
 		return mav;
-	}
+}
+	public ModelAndView activityPass(Principal p, Company cp, Integer pageNum) {
+		mav= new ModelAndView();
+		String view = null;
+		int pNum = (pageNum == null) ? 1:pageNum;
+		if(pNum<=0) {
+			System.out.println("페이지 정보가 잘못되었습니다.");
+		}
+			System.out.println("pNum="+ pNum);
+		cp.setCompanyid((String) p.getName());
 
+		List<Company> apList = aDao.activityPass(cp);
+		mav.addObject("apList",new Gson().toJson(apList));
+		mav.addObject("paging", getPaging(pNum,cp));
+		mav.setViewName("activitycompany/activityPass");
+
+		System.out.println("companyList[0]=" + apList);
+		return mav;
+	}
 	private Object getPaging(int pNum,Company cp) {
 		int maxNum= aDao.getActivityCnt(cp);
 		int listCount = 10;
 		int pageCount = 2;
-		String activity = "activitydelete";
+		String activity = "activitypass";
 		Paging paging = new Paging(maxNum, pNum, listCount, pageCount, activity);
 		return paging.makeHtmlPaging();
 
@@ -197,21 +216,6 @@ public class ActivityManagement {
 		mav.setViewName(view);
 		return mav;
 	}
-
-
-	public ModelAndView activityDeleteBtn(Activity ac,RedirectAttributes attr) {
-		mav= new ModelAndView();
-		System.out.println("activityname="+ac.getActivityname());
-		boolean d = aDao.activityDeleteBtn(ac);
-		if(d) {
-			System.out.println("글 존재시 삭제 트랜잭션 성공");
-			attr.addFlashAttribute("ac",ac);
-		}else {
-			System.out.println("삭제 트랜잭션 실패");
-		}
-		mav.setViewName("redirect:activitydelete");
-		return mav;
-	}
 	public ModelAndView activityList(Principal p, Activity ac) {
 		mav = new ModelAndView();
 		String view=null;
@@ -221,6 +225,74 @@ public class ActivityManagement {
 		mav.setViewName("activityclient/activityList");
 		return mav;
 	}
+	public ModelAndView activityListDetail(Integer activitynum) {
+		mav = new ModelAndView();
+		String view=null;
+		aDao.activitypics(activitynum);
+		Activity listdetail = aDao.activityListDetail(activitynum);
+		listdetail.setActivitynum(activitynum);
+		listdetail.setActivitypics(aDao.activitypics(activitynum));
+
+		System.out.println("ac=--------------------------------------------------------");
+
+		mav.addObject("listdetail",new Gson().toJson(listdetail));
+
+		view = "activityclient/activityListDetail";
+		mav.setViewName(view);
+		return mav;
+	}
+	public ModelAndView activityReservationBtn(Principal p,Reservation rv, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+		rv.setId((String) p.getName());
+		boolean r = aDao.activityReservationBtn(rv);
+		aDao.updateReservationPhase(rv);
+
+		mav.setViewName("redirect:mypage");
+		return mav;
+	}
+	public ModelAndView passDetail(Integer activitynum) {
+		mav = new ModelAndView();
+		String view=null;
+		List<Reservation> passdetail = aDao.passDetail(activitynum);
+		
+
+		System.out.println("ac=--------------------------------------------------------");
+
+		mav.addObject("passdetail",new Gson().toJson(passdetail));
+
+		view = "activitycompany/activityPassDetail";
+		mav.setViewName(view);
+		return mav;
+	}
+	public ModelAndView acceptBtn(Principal p, Reservation rv) {
+		System.out.println(rv);
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+	
+		System.out.println("username="+rv.getUsername());
+
+		aDao.acceptBtn(rv);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitypass");
+		mav.setView(redirectView);
+		
+		return mav;
+	}
+	public ModelAndView rejectBtn(Principal p, Reservation rv) {
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+	
+		System.out.println("username="+rv.getUsername());
+
+		aDao.rejectBtn(rv);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitypass");
+		mav.setView(redirectView);
+		
+		return mav;
+	}
+
 
 
 

@@ -7,5 +7,10 @@
 <select id="xduplicateid" parameterType="member" resultType="member">
 	select * from client where id=#{id}
 </select>
-
+<update id="updateshelterlocation" parameterType="Company">
+		update company
+		set companylocation=#{companylocation} where
+		companyid=#{companyid} and
+		companykind=2
+	</update>
 </mapper>

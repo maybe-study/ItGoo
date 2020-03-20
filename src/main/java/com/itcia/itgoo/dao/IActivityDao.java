@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Company;
+import com.itcia.itgoo.dto.Reservation;
 
 public interface IActivityDao {
 
@@ -44,4 +45,18 @@ public interface IActivityDao {
 	public int getActivityCnt(Company cp);
 
 	public List<Activity> activitylist(Activity ac);
+
+	public Activity activityListDetail(Integer activitynum);
+
+	public boolean activityReservationBtn(Reservation rv);
+
+	public List<Company> activityPass(Company cp);
+
+	public List<Reservation> passDetail(Integer activitynum);
+
+	public void acceptBtn(Reservation rv);
+
+	public void updateReservationPhase(Reservation rv);
+
+	public void rejectBtn(Reservation rv);
 }

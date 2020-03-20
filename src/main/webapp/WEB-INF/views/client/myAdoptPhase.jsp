@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
 <meta charset="utf-8">
@@ -39,22 +40,14 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-
 </head>
+
 <body>
-	<section id="container">
-		<!-- **********************************************************************************************************************************************************
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
-		<!--header start-->
-		<header class="header black-bg">
-			<div class="sidebar-toggle-box">
-				<div class="fa fa-bars tooltips" data-placement="right"
-					data-original-title="Toggle Navigation"></div>
-			</div>
-			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
-			<!--logo end-->
+    <!--header start-->
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
@@ -71,10 +64,10 @@
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-		<!--sidebar start-->
-		<aside></aside>
-		<!--sidebar end-->
-		<!-- **********************************************************************************************************************************************************
+    <!--sidebar start-->
+
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
@@ -203,12 +196,12 @@
 			<script src="main2.js?ver"></script>
 
 			<script>
-	
+
 /* 	 $.each(${phase},function(idx,data){
 		 var $phaselist = $("$phaselist");
 		 var $div1=$('<div>').append(data.phase);
 		 $phaselist.append($div1);
-	
+
 	 }); */
 	 $.each(${aList},function(idx,data){
 		 console.log("피리스트 만드는중");
@@ -234,10 +227,10 @@
     var $p5=$('#adoptBtn').text("숙려기간")
     $p5.on("click",function(){
         		location.href="./finalsook"
-    }) 
+    })
     }
-		
-		
+
+
 		/* if(data.phase==0){
         	var $p0=$('#adoptBtn').text("입양");
         	$p0.on("click", function(){
@@ -251,7 +244,7 @@
         }else if(data.phase==2){
         	var $p2=$('#adoptBtn').text("테스트 시작")
         	$p2.on("click",function(){
-        		location.href="./testpaper?dogid="+data.dogid	
+        		location.href="./testpaper?dogid="+data.dogid
         	})
         }else if(data.phase==3){
         	var $p3=$('#adoptBtn').text("액티비티")
@@ -270,7 +263,7 @@
         	$p5.on("click".function(){
         		$p5.on("click",function(){
             		location.href="./"
-        	}) 
+        	})
         }else if(data.phase==6){
         	var $p6=$('#adoptBtn').text("설문지 작성")
         	$p6.on("click".function(){
@@ -280,23 +273,24 @@
         	var $p7=$('#adoptBtn').text("입양 감사합니다.")
         	$p7.on("click".function(){
             		location.href="./"
-        	}) 
-         }; 
+        	})
+         };
 	  */
-	
-		        
-		
-						 
-		
+
+
+
+
+
 		 $div3.append($img);
 		 $h4.append($div3);
 		 $div2.append($h4);
 		 $div1.append($div2);
 		 $qList.append($div1);
+
 	 });
-	 
+
 	 $('#openModalBtn').on('click', function(e){
-		 $('#modalBox').modal('show'); 
+		 $('#modalBox').modal('show');
 	 //console.log(e.target.dataset.dogid);
 		   var dogid=e.target.dataset.dogid;
 		 console.log("dogid:",dogid);
@@ -306,7 +300,7 @@
 				}
 			});//먼저 보냄
 			$.ajax({ // 에이작스 열고
-				type : 'post', //타입은 get 
+				type : 'post', //타입은 get
 				url : "adoptlistdetail", // restFul 방식
 				data : {dogid:dogid},
 				dataType : "json",
@@ -327,16 +321,16 @@
 							var $div=$('<div class="item">').appendTo($items);
 							$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
 						}
-						
+
 					});
 					$('#name').text(data.dogname);
 					$('#age').text(data.dogage+" 살");
 					$('#dogjungsung').text(data.dogjungsung==0?"O":"X");
 					$('#sex').text(data.sex==0?"남":"여");
 					$('#special').text(data.dogspecial);
-					
-					  
-					
+
+
+
 				} , error : function(error) {
 					console.log(error);
 				}
@@ -344,11 +338,10 @@
 			});
 	 });
 					 $('#closeModalBtn').on('click', function(e){
-						 $('#modalBox').modal('hide'); 
+						 $('#modalBox').modal('hide');
 	});
   </script>
+
 </body>
-
-
 
 </html>

@@ -86,4 +86,42 @@
 		at.activitydate,
 		at.activitystart
 	</select>
+	<select id="activityListDetail" parameterType="int"
+		resultType="Activity">
+		select at.activitynum,
+		at.activityname,at.activityexplanation,at.activitydate,at.activitystart,at.activitytime,
+		at.activitydogcnt,at.activityprice, cp.companyname,
+		cp.companyphone,cp.companyemail
+		from activity at, company cp
+		where at.companyid = cp.companyid and at.activitynum = #{activitynum}
+
+	</select>
+	<insert id="activityReservationBtn">
+		insert into activityreserve values(#{activitynum},#{id},#{dogid})
+	</insert>
+	<select id="activityPass" parameterType="Activity"
+		resultType="Activity">
+		select distinct c.companyname,a.activitynum,a.activityname,
+		a.activitydate,
+		a.activitystart,a.activitytime, a.activitydogcnt ,ado.phase
+		from company c,activity a,activityreserve ar ,adopt ado
+		where c.companyid=a.companyid and a.activitynum = ar.activitynum and ado.phase=4
+	</select>
+	<select id="passDetail" parameterType="int"
+		resultType="Reservation">
+		select cli.username, cli.useremail, cli.phone,ado.id,
+		at.activityname,dog.dogname from activity at, activityreserve ar,
+		adopt ado, client cli, dog dog
+		where at.activitynum = ar.activitynum and ar.id =ado.id
+		and ado.id= cli.id and ado.dogid = dog.dogid and ado.phase=4
+	</select>
+	<update id="updateReservationPhase" parameterType="Reservation">
+		update adopt set phase = 4 where id=#{id}
+	</update>
+	<update id="acceptBtn" parameterType="Reservation">
+	update adopt set phase = 5 where id = #{id}
+	</update>
+	<update id="rejectBtn" parameterType="Reservation">
+	update adopt set phase = 0 where id = #{id}
+	</update>
 </mapper>

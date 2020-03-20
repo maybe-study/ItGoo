@@ -3748,6 +3748,8 @@ ul.chat-available-user li a:hover {
 }
 .pagingdiv{
 margin-left: 45%;
-	
-	
+}
+#activityimg{
+	width: 210px;
+	height: 110px;
 }

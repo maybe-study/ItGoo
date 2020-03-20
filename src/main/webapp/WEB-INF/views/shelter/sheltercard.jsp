@@ -69,7 +69,6 @@
   ======================================================= -->
 
 <style>
-
 #yes {
 	margin-left: 45%;
 }
@@ -97,14 +96,11 @@
 	background-color: #31b0d5;
 	border-color: #269abc;
 	margin-top: 10px;
-
 }
 
-#show_profile{
-width: 40%;
-height: 40%;
-
-
+#show_profile {
+	width: 40%;
+	height: 40%;
 }
 </style>
 </head>
@@ -172,24 +168,24 @@ height: 40%;
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-		<!--sidebar start-->
+	<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
-						<a href="profile.html"><img src="img/portfolio/itgoo2.PNG"
+						<a href="shelterMyInfo"><img src="img/portfolio/itgoo2.PNG"
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index.html"> <i
+					<li class="mt"><a href="index2.html"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo.jsp">보호소 정보보기</a></li>
+							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -197,15 +193,15 @@ height: 40%;
 							class="fa fa-cogs"></i> <span>정보 수정</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">보호소정보 수정</a></li>
+							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">사업자등록증</a></li>
-							<li><a href="">시설사진</a></li>
+							<li><a href="sheltercard">사업자등록증</a></li>
+							<li><a href="shelterPicInfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -213,15 +209,17 @@ height: 40%;
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">등록</a></li>
-							<li><a href="">삭제</a></li>
+							<li><a href="shelterRegiste">등록</a></li>
+							<li><a href="shelterDelete">삭제</a></li>
 						</ul></li>
+
+
 
 
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="">위치 및 수정</a></li>
+							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -253,13 +251,12 @@ height: 40%;
 									<form action="boardwrite" id="frm" method="post"
 										enctype="multipart/form-data">
 
-										<label for="profile">프로필사진</label> <span class="help-block"
-											id="helper_profile">1M이하만 가능</span> <input type="file"
-											id="profile" class="form-control" name="profile"
+										<span class="help-block" id="helper_profile">1M이하만 가능</span> 
+										<input type="file" id="profile" class="form-control" name="profile"
 											accept=".jpg,.jpeg,.png,.gif,.bmp" />
 										<!-- 버튼 -->
-										<input type="submit" value="사진 변경" id="yes" /> 
-										<input type="reset" id="reset" value="취소" />
+										<input type="submit" value="사진 변경" id="yes" /> <input
+											type="reset" id="reset" value="취소" />
 
 									</form>
 

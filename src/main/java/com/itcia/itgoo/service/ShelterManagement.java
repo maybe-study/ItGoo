@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IShelterDao;
@@ -133,16 +134,24 @@ public class ShelterManagement {
 	
 	
 	//마이페이지
-	public ModelAndView shelterMyInfo1(Principal p, Company cp) {
-	
-		mav = new ModelAndView();
+	public ModelAndView shelterMyInfo(Principal p) {
+		Company c = new Company();
+		c.setCompanyid(p.getName());
+		c=sDao.shelterMyInfo(c);
+		mav.addObject("shelter",new Gson().toJson(c));
+		mav.setViewName("shelter/shelterMyInfo"); 
+		return mav;
+	}
+	public ModelAndView updateshelterlocation(Principal p, Company cp) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
 		String view = null;
 		cp.setCompanyid((String) p.getName());
-		List<Company> aList = sDao.shelterMyInfo1(cp);
-		mav.addObject("aList",new Gson().toJson(aList));
-		mav.setViewName("activitycompany/shelterMyInfo");
-		
-		System.out.println("companyList[0]=" + aList);
+
+		sDao.updateshelterlocation(cp);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("sheltermyinfo");
+		mav.setView(redirectView);
 		return mav;
 	}
 	
