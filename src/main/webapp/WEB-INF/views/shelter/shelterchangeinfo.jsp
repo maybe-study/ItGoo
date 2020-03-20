@@ -101,7 +101,7 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
-		<aside>
+	<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
@@ -117,7 +117,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
+							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -151,7 +151,7 @@
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
+							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -287,16 +287,7 @@
 
 	<script>
 	
-		var shelter = ${shelter}
-		console.log(shelter);
-		$('#sheltername').text(shelter.companyname);
-		$('#shelterboss').text(shelter.companyboss);
-		$('#shelterphone').text(shelter.companyphone);
-		$('#shelteraddr').text(shelter.companylocation);
-		$('#shelteremail').text(shelter.companyemail);
 
-		
-		
 	</script>
 </body>
 

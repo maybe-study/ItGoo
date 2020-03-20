@@ -105,8 +105,9 @@
 								<div class="main-p-tag">
 									<table>
 
-										<tr id="adopter">
+										<tr>
 											<td>견주:</td>
+											<td id="adopter"></td>
 										</tr>
 									</table>
 								</div>
@@ -115,8 +116,9 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="dog">
+										<tr >
 											<td>강아지:</td>
+											<td id="dog"></td>
 										</tr>
 									</table>
 								</div>
@@ -126,8 +128,9 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="activityname">
+										<tr>
 											<td>액티비티 이름:</td>
+											<td id="activityname"></td>
 										</tr>
 									</table>
 								</div>
@@ -137,8 +140,9 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="activityexplanin">
+										<tr>
 											<td>액티비티 설명:</td>
+											<td id="activityexplanin"></td>
 										</tr>
 									</table>
 								</div>
@@ -148,9 +152,9 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="price">
+										<tr >
 											<td>액티비티 가격:</td>
-											
+											<td id="price"></td>
 										</tr>
 									</table>
 								</div>
@@ -159,9 +163,9 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="startdate">
+										<tr >
 											<td>날짜:</td>
-											
+											<td id="startdate"></td>
 										</tr>
 									</table>
 								</div>
@@ -170,9 +174,9 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="starttime">
+										<tr >
 											<td>시작시간:</td>
-											
+											<td id="starttime"></td>
 										</tr>
 									</table>
 								</div>
@@ -181,29 +185,16 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="howlong">
+										<tr >
 											<td>소요시간:</td>
-											
-										</tr>
-									</table>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr id="howmanydog">
-											<td>참여가능 마리 :</td>
-											
+											<td id="howlong"></td>
 										</tr>
 									</table>
 								</div>
 							</div>
 						</form>
-
 					</div>
 					<!-- /row -->
-
 				</div>
 				<!-- /row -->
 			</section>
@@ -229,5 +220,21 @@
 		</footer>
 		<!--footer end-->
 	</section>
+	<script>
+	 $.each(${rsList},function(idx,data){
+		$('#adopter').text(data.username);
+		$('#dog').text(data.dogname);
+		$('#activityname').text(data.activityname);
+		$('#activityexplanin').text(data.activityexplanation);
+		$('#price').text(data.activityprice);
+		$('#startdate').text(data.activitydate);
+		$('#starttime').text(data.activitystart);
+		$('#howlong').text(data.activitytime+"시간 소요");
+	 });
+	
+	
+	
+	</script>
 	</body>
+	
 </html>

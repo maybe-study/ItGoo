@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.Reservation;
 
 public interface IClientDao {
 	@Select("select max(dogpics.dogpic) dogpic,dog.dogid,dog.DOGAGE,dog.dogname,dog.dogspecial,dog.sex,dog.shelterid,dog.status "
@@ -19,6 +20,7 @@ public interface IClientDao {
 
 	@Select("SELECT dogpic FROM dog inner join dogpics on dogpics.dogid = dog.dogid")
 	List<String> adoptlistdetail(String dogid);
+	
 	@Select("SELECT * FROM dog where dogid=#{param1}")
 	Dog dogDetail(String dogid);
 
@@ -31,6 +33,9 @@ public interface IClientDao {
 //			+ "where adopt.id=#{id}")
 	List<Adopt> myPhasedogList(Adopt ad);
 
-	void showmyactivity(Adopt ad);
+	
+	List<Reservation> showmyactivity(Reservation rs);
+
+
 
 }

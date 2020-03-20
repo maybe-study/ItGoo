@@ -87,11 +87,7 @@ public class ActivityController {
 		return mav;
 	}
 	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
-	public String activityList(Locale locale, Model model) {
-		return "activityclient/activityList";
-	}
-	@RequestMapping(value = "/activitylist1", method = RequestMethod.GET)
-	public ModelAndView activityList1(Principal p, Activity ac) {
+	public ModelAndView activityList(Principal p, Activity ac) {
 		if(p!= null) {
 			p.getName();
 			System.out.println("p="+p.getName());

@@ -88,6 +88,11 @@ public class ShelterController {
 		mav = smm.shelterdelete1(p, dog, pageNum);
 		return mav;
 	}
+	
+	
+	
+	
+	
 
 	// 페이지 보기만
 
@@ -103,7 +108,7 @@ public class ShelterController {
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterLocationInfo")
+	@GetMapping(value = "/shelterlocationinfo")
 	public String page3() {
 		return "shelter/shelterLocationInfo";
 	}

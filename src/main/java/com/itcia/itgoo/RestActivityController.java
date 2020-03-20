@@ -95,5 +95,13 @@ public class RestActivityController {
 		
 		return mav;
 	}
+	@PostMapping(value = "/rejectbtn")
+	public  ModelAndView rejectBtn (Principal p,Reservation rv) {
+		System.out.println("username="+rv.getUsername());
+		mav= am.rejectBtn(p,rv);
+		
+		return mav;
+	}
+	
 	
 }

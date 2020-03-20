@@ -53,6 +53,8 @@ public interface IShelterDao {
 	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
 	Company shelterMyInfo(Company c);
 
+	int updateshelterlocation(Company cp);
+
 	
 	
 
