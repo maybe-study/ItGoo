@@ -65,6 +65,8 @@ public interface IAdminDao {
 	
 	@Insert("insert into caresheet values(caresheet_seq.nextval,'${question}',1)")
 	void adminInsertCareSheet(CareSheet c);
+	@Select("select * from companypic where companyid=${companyid}")
+	List<String> adminCompanyPics(String companyid);
 	
 
 

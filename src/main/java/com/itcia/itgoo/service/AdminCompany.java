@@ -59,7 +59,9 @@ public class AdminCompany {
 		return mav;
 	}
 	public ModelAndView adminOkNo(String companyid) {
+		System.out.println("companyid="+companyid);
 		mav.addObject("company",new Gson().toJson(aDao.adminCompany(companyid)));
+		mav.addObject("pList",new Gson().toJson(aDao.adminCompanyPics(companyid)));
 		mav.setViewName("admin/AdminOkNo");
 		return mav;
 	}
