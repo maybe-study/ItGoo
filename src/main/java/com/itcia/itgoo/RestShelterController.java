@@ -59,4 +59,13 @@ public class RestShelterController {
 
 		return mav;
 	}
+	@RequestMapping(value = "/shelterdeletedetail" , method = RequestMethod.GET)
+	public ModelAndView shelterDeleteDetail(Integer dogid) {	//null 값도 받으려고
+		ModelAndView mav = new ModelAndView();
+		System.out.println("여기 있어요");
+		
+		mav= sm.shelterDeleteDetail(dogid);
+		
+		return mav;
+	}
 }

@@ -46,7 +46,7 @@ public interface IShelterDao {
 	void inserDogPics(Dfile df);
 
 	
-	@Select("SELECT * FROM DOG WHERE SHELTERID=(#{shelterid})")
+	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid}")
 	List<Dog> shelterdelete(Dog dog);
 	
 
@@ -54,6 +54,13 @@ public interface IShelterDao {
 	Company shelterMyInfo(Company c);
 
 	int updateshelterlocation(Company cp);
+
+	@Select("select dogpic from dogpics where dogid=#{dogid}")
+	List<String> shelterdogpics(Integer dogid);
+	
+	@Select("select * from dog where dogid=#{dogid}")
+	Dog shelterdeletedetail(Integer dogid);
+
 
 	
 	

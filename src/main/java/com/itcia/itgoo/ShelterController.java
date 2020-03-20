@@ -78,8 +78,7 @@ public class ShelterController {
 	}
 
 	// 공고리스트 삭제
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping(value = "/shelterdelete")
+	@RequestMapping(value = "/shelterdelete", method = RequestMethod.GET)
 	public ModelAndView shelterdelete(Principal p, Dog dog, Integer pageNum) {
 		if (p != null) {
 			p.getName();
@@ -96,17 +95,6 @@ public class ShelterController {
 
 	// 페이지 보기만
 
-	@GetMapping(value = "/shelterDelete")
-	public String shelterDelete() {
-		return "shelter/shelterDelete";
-	}
-
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterDeleteDetail")
-	public String page2() {
-		return "shelter/shelterDeleteDetail";
-	}
-
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/shelterlocationinfo")
 	public String page3() {
@@ -114,13 +102,13 @@ public class ShelterController {
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterPicInfo")
+	@GetMapping(value = "/shelterpicinfo")
 	public String page4() {
 		return "shelter/shelterPicInfo";
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterRegiste")
+	@GetMapping(value = "/shelterregiste")
 	public String page5() {
 		return "shelter/shelterRegiste";
 	}
