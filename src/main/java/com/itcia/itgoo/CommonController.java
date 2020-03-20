@@ -27,7 +27,7 @@ public class CommonController {
 
 	@GetMapping("/")
 	public String home() {
-		return "index";
+		return "index2";
 	}
 	@GetMapping("/loginto")
 	public String loginTo() {
