@@ -12,7 +12,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Alias("reservation")
-
 @Data
 @Accessors(chain=true)
 public class Reservation {
@@ -42,5 +41,6 @@ public class Reservation {
 	private String useremail;
 	private String phone;
 	private int phase;
+
 
 }

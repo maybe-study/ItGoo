@@ -133,4 +133,11 @@ public class AdminController {
 		return mav;
 	}
 
+	
+	@RequestMapping(value = "/deletecaresheet", method = RequestMethod.GET)
+	public ModelAndView adminDeleteCareSheet(int questionnum) {
+		ModelAndView mav = new ModelAndView();
+		mav=Ac.deleteCareSheet(questionnum);
+		return mav;
+	}
 }
