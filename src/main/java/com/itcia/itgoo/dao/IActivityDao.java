@@ -55,4 +55,8 @@ public interface IActivityDao {
 	public List<Reservation> passDetail(Integer activitynum);
 
 	public void acceptBtn(Reservation rv);
+
+	public void updateReservationPhase(Reservation rv);
+
+	public void rejectBtn(Reservation rv);
 }

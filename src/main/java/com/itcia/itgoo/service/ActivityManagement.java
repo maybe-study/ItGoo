@@ -246,6 +246,7 @@ public class ActivityManagement {
 		RedirectView redirectView = new RedirectView();
 		rv.setId((String) p.getName());
 		boolean r = aDao.activityReservationBtn(rv);
+		aDao.updateReservationPhase(rv);
 
 		mav.setViewName("redirect:mypage");
 		return mav;
@@ -254,7 +255,7 @@ public class ActivityManagement {
 		mav = new ModelAndView();
 		String view=null;
 		List<Reservation> passdetail = aDao.passDetail(activitynum);
-
+		
 
 		System.out.println("ac=--------------------------------------------------------");
 
@@ -272,6 +273,19 @@ public class ActivityManagement {
 		System.out.println("username="+rv.getUsername());
 
 		aDao.acceptBtn(rv);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitypass");
+		mav.setView(redirectView);
+		
+		return mav;
+	}
+	public ModelAndView rejectBtn(Principal p, Reservation rv) {
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+	
+		System.out.println("username="+rv.getUsername());
+
+		aDao.rejectBtn(rv);
 		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("activitypass");
 		mav.setView(redirectView);

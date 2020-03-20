@@ -108,7 +108,7 @@ public class ShelterController {
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterLocationInfo")
+	@GetMapping(value = "/shelterlocationinfo")
 	public String page3() {
 		return "shelter/shelterLocationInfo";
 	}
