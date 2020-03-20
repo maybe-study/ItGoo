@@ -104,10 +104,12 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView finalsook(Principal p, Adopt ad) {
-		ad.setId(p.getName());
-		//List<Adopt> adList=cDao.finalsook(ad);
-		//mav.addObject("adList",new Gson().toJson(adList));
+	public ModelAndView finalsook(Principal p, Reservation rs) {
+		rs.setId(p.getName());
+		System.out.println("숙려기간 데이터 쏴주자");
+		List<Reservation> adList=cDao.finalsook(rs);
+		System.out.println("나의리스트는"+adList);
+		mav.addObject("adList",new Gson().toJson(adList));
 		mav.setViewName("client/sook");
 		return mav;
 	}

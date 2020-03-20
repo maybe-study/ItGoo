@@ -36,6 +36,9 @@ public interface IClientDao {
 	
 	List<Reservation> showmyactivity(Reservation rs);
 
+	
+	List<Reservation> finalsook(Reservation rs);
+
 
 
 }

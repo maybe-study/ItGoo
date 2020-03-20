@@ -46,6 +46,9 @@
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="main2.js?ver"></script>
+<script>
+
+</script>
 <!--script for this page-->
 <!-- =======================================================
     Template Name: Dashio

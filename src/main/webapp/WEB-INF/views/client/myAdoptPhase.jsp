@@ -226,7 +226,7 @@
     }else if(data.phase==5){
     var $p5=$('#adoptBtn').text("숙려기간")
     $p5.on("click",function(){
-        		location.href="./finalsook"
+        		location.href="./finalsook?dogid="+data.dogid
     })
     }
 
