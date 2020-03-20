@@ -33,7 +33,7 @@ public class AdminController {
 		if(p!=null) {
 			System.out.println("세션이름:"+p.getName());
 		}
-		return "admin/test";
+		return "index2";
 	}
 	@RequestMapping(value = "/addtestfrm", method = RequestMethod.GET)
 	public ModelAndView addTestFrm(Locale locale, Model model) {

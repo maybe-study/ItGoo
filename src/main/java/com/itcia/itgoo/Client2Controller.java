@@ -25,9 +25,9 @@ public class Client2Controller {
 
 	
 	@GetMapping("/testpaper")
-	public ModelAndView testPaper() {
+	public ModelAndView testPaper(int dogid) {
 		
-		mav = tm.testPaper();
+		mav = tm.testPaper(dogid);
 		return mav;
 	}
 	

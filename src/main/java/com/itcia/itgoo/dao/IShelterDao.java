@@ -39,7 +39,7 @@ public interface IShelterDao {
 	void insertRole(String id, String string);
 
 	
-	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex})")
+	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex},0)")
 	void insertDog(Dog dog);
 
 	

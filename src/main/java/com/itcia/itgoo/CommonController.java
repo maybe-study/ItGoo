@@ -25,10 +25,7 @@ public class CommonController {
 
 	ModelAndView mav = new ModelAndView();
 
-	@GetMapping("/")
-	public String home() {
-		return "index2";
-	}
+	
 	@GetMapping("/loginto")
 	public String loginTo() {
 		//사용자면 /

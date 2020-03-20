@@ -79,6 +79,7 @@ public class ShelterManagement {
 		sDao.insertClient(cMember);
 		sDao.insertRole(cMember.getId(),"ROLE_UNCOMPANY");
 		sDao.insertRole(cMember.getId(),"ROLE_USER");
+		mav.setViewName("login");
 		return mav;
 	}
 	 @Transactional
@@ -87,6 +88,7 @@ public class ShelterManagement {
 			
 			List<String> paths = up.fileUp(multi.getFiles("dogpicby"), "dogpics");
 			dog.setShelterid(p.getName());
+			dog.setStatus(0);
 			sDao.insertDog(dog);
 			Dfile df= new Dfile();
 			for(String path: paths) {

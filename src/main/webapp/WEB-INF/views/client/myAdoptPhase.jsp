@@ -218,11 +218,24 @@
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
                 .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
+		if(data.phase==2){	//시험 시작
+			var $p4=$('#adoptBtn').text("적격성 평가 시작")
+			$p4.on("click",function(){
+        		location.href="./testpaper?dogid="+data.dogid
+    		})	
+		}
+		if(data.phase==2){	//액티비티 예약
+			var $p4=$('#adoptBtn').text("액티비티 예약")
+			$p4.on("click",function(){
+        		location.href="./testpaper?dogid="+data.dogid
+    		})	
+		}
 		if(data.phase==4){
 			var $p4=$('#adoptBtn').text("액티비티 예약확인")
     		$p4.on("click",function(){
         		location.href="./showmyactivity?dogid="+data.dogid
     	})
+    	
     }else if(data.phase==5){
     var $p5=$('#adoptBtn').text("숙려기간")
     $p5.on("click",function(){

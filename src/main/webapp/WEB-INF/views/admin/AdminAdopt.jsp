@@ -18,7 +18,6 @@
 <!-- Bootstrap core CSS -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--external css-->
-<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
 	href="lib/gritter/css/jquery.gritter.css" />
@@ -32,8 +31,6 @@
 <script src="main.js?ver"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
-<script src="https://kit.fontawesome.com/c9422a165f.js"
-	crossorigin="anonymous"></script>
 
 <!-- =======================================================
     Template Name: Dashio
