@@ -16,97 +16,25 @@
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- Bootstrap core CSS -->
 <link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
 <!--external css-->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-datetimepicker/datertimepicker.css" />
+
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script>
-	$(function() {
-		$("#profile").on("change", loadImage)
-	});
-	function loadImage() {
-		console.log($('#profile'));
-		var file = $("#profile")[0].files[0]; //한개의 프사만 등록
-		var maxSize = 1024 * 1024; //1MB
-		if (file.size > maxSize) {
-			toastr.warning("사진은 1M이하여야 합니다.", "경고");
-			$("#profile").val("");
-			return false;//작업 실패
-		}
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			console.log("e=", e);
-			$('#show_profile').attr('src', e.target.result);
-		}
-		reader.readAsDataURL(file); //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
-		return true;
-	}
-</script>
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-
-<style>
-
-#yes {
-	margin-left: 45%;
-}
-
-#reset {
-	margin-left: 5%;
-}
-
-#yes, #reset {
-	display: inline-block;
-	font-weight: 400;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	touch-action: manipulation;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid transparent;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	border-radius: 4px;
-	user-select: none;
-	color: #fff;
-	background-color: #31b0d5;
-	border-color: #269abc;
-	margin-top: 10px;
-
-}
-
-#show_profile{
-width: 40%;
-height: 40%;
-
-
-}
-</style>
 </head>
 
 <body>
@@ -164,7 +92,13 @@ height: 40%;
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' method="POST">
+					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+					</form>
+					
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -173,23 +107,23 @@ height: 40%;
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
-		<aside>
+	<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
-						<a href="profile.html"><img src="img/portfolio/itgoo2.PNG"
+						<a href="shelterMyInfo"><img src="img/portfolio/itgoo2.PNG"
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index.html"> <i
+					<li class="mt"><a href="index2.html"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo.jsp">보호소 정보보기</a></li>
+							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -197,15 +131,15 @@ height: 40%;
 							class="fa fa-cogs"></i> <span>정보 수정</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">보호소정보 수정</a></li>
+							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">사업자등록증</a></li>
-							<li><a href="">시설사진</a></li>
+							<li><a href="sheltercard">사업자등록증</a></li>
+							<li><a href="shelterPicInfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -213,15 +147,17 @@ height: 40%;
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">등록</a></li>
-							<li><a href="">삭제</a></li>
+							<li><a href="shelterRegiste">등록</a></li>
+							<li><a href="shelterDelete">삭제</a></li>
 						</ul></li>
+
+
 
 
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="">위치 및 수정</a></li>
+							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -234,45 +170,83 @@ height: 40%;
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
-
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 업체 시설 사진 첨부
+					<i class="fa fa-angle-right"></i> 업체 정보
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
-				<!-- 버튼 테이블  -->
 				<div class="row mt">
 					<div class="col-lg-6 col-md-6 col-sm-6">
-						<section class="panel">
-							<h3 class="title">첨부할 파일들을 선택해주세요</h3>
-							<div class="form-group" id="main-file-tag">
-								<div class="main-file-tag">
 
-									<img id="show_profile" height="240" />
-									<form action="boardwrite" id="frm" method="post"
-										enctype="multipart/form-data">
+						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
+						<div id="message"></div>
+						<form class="contact-form php-mail-form" role="form"
+							onsubmit="return makeTestJson()"
+							action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
+							method="POST">
 
-										<label for="profile">프로필사진</label> <span class="help-block"
-											id="helper_profile">1M이하만 가능</span> <input type="file"
-											id="profile" class="form-control" name="profile"
-											accept=".jpg,.jpeg,.png,.gif,.bmp" />
-										<!-- 버튼 -->
-										<input type="submit" value="사진 변경" id="yes" /> 
-										<input type="reset" id="reset" value="취소" />
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
 
-									</form>
-
+										<tr id="companynamevalue" name="companyname">
+											<td>업체명:</td>
+											<td id="sheltername"></td>
+										</tr>
+									</table>
 								</div>
 							</div>
-						</section>
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companybossvalue" name="companyboss">
+											<td>대표자:</td>
+											<td id="shelterboss"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companyphonevalue" name="companyphone">
+											<td>휴대폰:</td>
+											<td id="shelterphone"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companylocationvalue" name="companyaddr">
+											<td>주소:</td>
+											<td id="shelteraddr"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="companyemailvalue" name="companyemail">
+											<td>이메일:</td>
+											<td id="shelteremail"></td>
+										</tr>
+
+									</table>
+								</div>
+							</div>
+						</form>
+
 					</div>
-				</div>
-
-				<!-- /row -->
+					<!-- /row -->
 
 
-				<!-- /row -->
+					<!-- /row -->
 			</section>
 			<!-- /wrapper -->
 		</section>
@@ -312,22 +286,15 @@ height: 40%;
 	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/date.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-daterangepicker/moment.min.js"></script>
-	<script type="text/javascript"
-		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-	<script src="lib/advanced-form-components.js"></script>
 
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+	<script>
+	
+
+	</script>
 </body>
 
 </html>

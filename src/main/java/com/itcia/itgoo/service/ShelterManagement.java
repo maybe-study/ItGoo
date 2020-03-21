@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IShelterDao;
+import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
@@ -78,6 +80,7 @@ public class ShelterManagement {
 		sDao.insertClient(cMember);
 		sDao.insertRole(cMember.getId(),"ROLE_UNCOMPANY");
 		sDao.insertRole(cMember.getId(),"ROLE_USER");
+		mav.setViewName("login");
 		return mav;
 	}
 	 @Transactional
@@ -86,6 +89,7 @@ public class ShelterManagement {
 			
 			List<String> paths = up.fileUp(multi.getFiles("dogpicby"), "dogpics");
 			dog.setShelterid(p.getName());
+			dog.setStatus(0);
 			sDao.insertDog(dog);
 			Dfile df= new Dfile();
 			for(String path: paths) {
@@ -114,12 +118,11 @@ public class ShelterManagement {
 			System.out.println("pNum="+ pNum);
 		dog.setShelterid(p.getName());
 		
-		List<Dog> adList = sDao.shelterdelete(dog);
-		mav.addObject("adList",new Gson().toJson(adList));
+		List<Dog> dogList = sDao.shelterdelete(dog);
+		mav.addObject("dogList",new Gson().toJson(dogList));
+		mav.setViewName("shelter/shelterDelete");
 		/* mav.addObject("paging", getPaging(pNum,dog)); */
 		/* mav.setViewName("activitycompany/activityDelete"); */
-		
-		System.out.println("companyList[0]=" + adList);
 		return mav; 
 	}
 	/*
@@ -139,6 +142,34 @@ public class ShelterManagement {
 		c=sDao.shelterMyInfo(c);
 		mav.addObject("shelter",new Gson().toJson(c));
 		mav.setViewName("shelter/shelterMyInfo"); 
+		return mav;
+	}
+	public ModelAndView updateshelterlocation(Principal p, Company cp) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+		cp.setCompanyid((String) p.getName());
+
+		sDao.updateshelterlocation(cp);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("sheltermyinfo");
+		mav.setView(redirectView);
+		return mav;
+	}
+	public ModelAndView shelterDeleteDetail(Integer dogid) {
+		mav = new ModelAndView();
+		String view=null;
+		sDao.shelterdogpics(dogid);
+		Dog detail = sDao.shelterdeletedetail(dogid);
+		detail.setDogid(dogid);
+		detail.setDogpics(sDao.shelterdogpics(dogid));
+
+		System.out.println("ac=--------------------------------------------------------");
+
+		mav.addObject("detail",new Gson().toJson(detail));
+
+		view = "shelter/shelterDeleteDetail";
+		mav.setViewName(view);
 		return mav;
 	}
 	

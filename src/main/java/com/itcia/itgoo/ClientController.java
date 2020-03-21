@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.MemberManagement;
 
@@ -54,9 +55,25 @@ public class ClientController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/showmyactivity", method = RequestMethod.GET)
-	public ModelAndView showmyactivity(Principal p, Adopt ad) {
-		System.out.println("adoptPHase 가는중");
-		mav = cm.showmyactivity(p,ad);
+	public ModelAndView showmyactivity(Principal p, Reservation rs) {
+		System.out.println("마이액티비티 가는중");
+		mav = cm.showmyactivity(p,rs);
+		return mav;
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/finalsook", method = RequestMethod.GET)
+	public ModelAndView finalsook(Principal p, Reservation rs) {
+		System.out.println("숙려기간으로  가는중");
+		mav = cm.finalsook(p,rs);
+		return mav;
+	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/finalchoice", method = RequestMethod.GET)
+	public ModelAndView finalchoice(Principal p, Reservation rs) {
+		System.out.println("숙려기간선택!");
+		mav = cm.finalsook(p,rs);
+		mav = cm.updatedog()
 		return mav;
 	}
 	

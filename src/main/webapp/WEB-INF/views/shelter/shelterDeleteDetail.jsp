@@ -1,68 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="UTF-8">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/activitystyle/activitystyle.css">
 <style>
-.maindiv{
-border: 3px solid black;
+/* .maindiv {
+	border: 3px solid black;
+	text-align: center;
+} */
+
+#modalform{
+
+font-weight: bolder;
+font-size: 20px;
+margin: auto;
+}
+.form-table{
+margin: auto;}
+.upper-form-div{
 text-align: center;
 }
-.div1{
-float: left;
-background-color: gray;
-}
-.div2{
-display: inline-block; 
-background-color: yellow;
-}
+html, body {
+      position: relative;
+      height: 100%;
+    }
+    /* body {
+    border: 3px solid black;
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    } */
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
 </style>
 </head>
 <body>
 	<div class="maindiv">
-		<div class="div1" id="activitypics"></div>
-		<div class="div2">
-		<table>
-			<tr id="activitynametr">
-				<td>액티비티명</td>
-			</tr>
-			<tr id="activitypricetr">
-				<td>가격</td>
-				
-			</tr>
-			<tr id="activitydatetr">
-				<td>날짜 </td>
-				
-			</tr>
-			<tr id="activitystarttr">
-				<td>시작 시간</td>
-				
-			</tr>
-
-
-		</table>
+		<div class="swiper-container">
+		
+    	<div class="swiper-wrapper">
+      
+      
+    	</div>
+    	<!-- Add Arrows -->
+	    <div class="swiper-button-next"></div>
+	    <div class="swiper-button-prev"></div>
+  </div>
+	<div class="upper-form-div">
+			
+</div>
+		
 		</div>
 
-	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="js/swiper.min.js"></script>
 	<script>
-	$.each(${adtList},function(idx,data){
-		var $picdiv= $("#acitvitypics");
-		var $tran = $("#activitynametr");
-		var $trap = $("#activitypricetr");
-		var $trad = $("#activitydatetr");
-		var $tras = $("#activitystarttr");
-		console.log("activitypic="+data.activitypic);
-		$("<img>").attr("src",data.activitypic).attr("alt",data.activitypic).appendTo($picdiv);
-
-		$("<td>").text(data.activityname).appendTo($tran);
-		$("<td>").text(data.activityprice).appendTo($trap);
-		$("<td>").text(data.activitydate).appendTo($trad);
-		$("<td>").text(data.activitystart).appendTo($tras);
-	});
+	 
+	var detail= ${detail}
+	console.log ("detail=",detail);
+		$.each(detail.dogpics,function(idx,data){
+			console.log(data);
+			var $picdiv= $('<div class="swiper-slide">').append($("<img src='"+data+"' id='activityimg''/>"));
+			$(".swiper-wrapper").append($picdiv);
+		});
+		var swiper = new Swiper('.swiper-container', {
+		      navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		      },
+		    });
 	</script>
 </body>
 </html>

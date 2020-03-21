@@ -22,13 +22,17 @@ public class TestManagement {
 	@Autowired
 	private ITestDao tDao;
 	ModelAndView mav=new ModelAndView();
-	public ModelAndView testPaper() {
+	public ModelAndView testPaper(int dogid) {
+		if(dogid==0) {	//강아지 아이디가 없으면 돌려보냄
+			return null;
+		}
 		List<Question> qList=tDao.qList();
 		for(Question q: qList) {
 			List<Ex> exList=tDao.exList(q);
 			q.setExList(exList);
 		}
 		mav.addObject("qList",new Gson().toJson(qList));
+		mav.addObject("dogid",dogid);
 		mav.setViewName("client/testPaper");
 		return mav;
 	}
@@ -65,7 +69,7 @@ public class TestManagement {
 			if(t.getCorrect()==t.getAnswer());
 				pointSum+=t.getPoint();
 		}
-		//50점 이상이면 단계 상승 -> 4단계
+		//50점 이상이면 단계 상승 -> 3단계
 		if(pointSum>60)tDao.upgrade(test);
 		//단계 하락 ->0단계
 		else tDao.downgrade(test);

@@ -93,7 +93,13 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' method="POST">
+					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+					</form>
+					
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -101,96 +107,63 @@
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-		<!--sidebar start-->
+	<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
-						<a href="profile.html"><img src="img/portfolio/itgoo2.PNG"
+						<a href="shelterMyInfo"><img src="img/portfolio/itgoo2.PNG"
 							class="img-circle" width="80"></a>
 					</p>
-					<h5 class="centered">ACTIVITY MANAGER</h5>
-					<li class="mt"><a href="index.html"> <i
-							class="fa fa-dashboard"></i> <span>Dashboard</span>
+					<h5 class="centered">SHELTER MANAGER</h5>
+					<li class="mt"><a href="index2.html"> <i
+							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-desktop"></i> <span>UI Elements</span>
+							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="general.html">General</a></li>
-							<li class="active"><a href="buttons.html">Buttons</a></li>
-							<li><a href="panels.html">Panels</a></li>
-							<li><a href="font_awesome.html">Font Awesome</a></li>
+							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
 						</ul></li>
+
+
 					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-cogs"></i> <span>Components</span>
+							class="fa fa-cogs"></i> <span>정보 수정</span>
 					</a>
 						<ul class="sub">
-							<li><a href="grids.html">Grids</a></li>
-							<li><a href="calendar.html">Calendar</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li><a href="todo_list.html">Todo List</a></li>
-							<li><a href="dropzone.html">Dropzone File Upload</a></li>
-							<li><a href="inline_editor.html">Inline Editor</a></li>
-							<li><a href="file_upload.html">Multiple File Upload</a></li>
+							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
 						</ul></li>
+
 					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-book"></i> <span>Extra Pages</span>
+							class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
-							<li><a href="blank.html">Blank Page</a></li>
-							<li><a href="login.html">Login</a></li>
-							<li><a href="lock_screen.html">Lock Screen</a></li>
-							<li><a href="profile.html">Profile</a></li>
-							<li><a href="invoice.html">Invoice</a></li>
-							<li><a href="pricing_table.html">Pricing Table</a></li>
-							<li><a href="faq.html">FAQ</a></li>
-							<li><a href="404.html">404 Error</a></li>
-							<li><a href="500.html">500 Error</a></li>
+							<li><a href="sheltercard">사업자등록증</a></li>
+							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
-					<li class="sub-menu"><a class="active" href="javascript:;">
-							<i class="fa fa-tasks"></i> <span>업체</span>
-					</a>
-						<ul class="sub">
-							<li><a href="activitymyinfo">업체정보</a></li>
-							<li class="active"><a href="activitylocationinfo">업체 위치</a></li>
-							<li><a href="activitypicinfo">업체 시설 첨부</a></li>
-							<li><a href="activityregiste">액티비티 등록</a></li>
-							<li><a href="activitydelete">액티비티 삭제</a></li>
-						</ul></li>
+
+
 					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>Data Tables</span>
+							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="basic_table.html">Basic Table</a></li>
-							<li><a href="responsive_table.html">Responsive Table</a></li>
-							<li><a href="advanced_table.html">Advanced Table</a></li>
+							<li><a href="shelterregiste">등록</a></li>
+							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
-					<li><a href="inbox.html"> <i class="fa fa-envelope"></i> <span>Mail
-						</span> <span class="label label-theme pull-right mail-info">2</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa fa-bar-chart-o"></i> <span>Charts</span>
-					</a>
+
+
+
+
+					<li class=""><a class="active" href="javascript:;"><i
+							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="morris.html">Morris</a></li>
-							<li><a href="chartjs.html">Chartjs</a></li>
-							<li><a href="flot_chart.html">Flot Charts</a></li>
-							<li><a href="xchart.html">xChart</a></li>
+							<li class="active"><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-comments-o"></i> <span>Chat Room</span>
-					</a>
-						<ul class="sub">
-							<li><a href="lobby.html">Lobby</a></li>
-							<li><a href="chat_room.html"> Chat Room</a></li>
-						</ul></li>
-					<li><a href="google_maps.html"> <i
-							class="fa fa-map-marker"></i> <span>Google Maps </span>
-					</a></li>
-				</ul>
-				<!-- sidebar menu end-->
+					<!-- a href="google_maps.html"-->
+
+
+					<!-- sidebar menu end-->
 			</div>
 		</aside>
 		<!--sidebar end-->
@@ -202,10 +175,10 @@
 			<section class="wrapper site-min-height">
 				<div class="row mt">
 					<div class="col-sm-12">
-					<form action="updatecompanylocation?${_csrf.parameterName}=${_csrf.token}" id="updateloc" name="updateloc" method="post" enctype="multipart/form-data">
+					<form action="updateshelterlocation?${_csrf.parameterName}=${_csrf.token}" id="updateloc" name="updateloc" method="post" enctype="multipart/form-data">
 						<section class="panel">
 						
-							<header class="panel-heading"> 액티비티 업체 위치 검색 및 변경 </header>
+							<header class="panel-heading">위치 검색 및 변경 </header>
 							
 							<div class="panel-body">
 								<input type="text" id="sample4_postcode" placeholder="우편번호" >
@@ -285,8 +258,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 주소로 좌표를 검색합니다
-		geocoder
-				.addressSearch(
+		geocoder.addressSearch(
 						roadAddr,
 						function(result, status) {
 
@@ -454,8 +426,7 @@
 
 								// 결과값으로 받은 위치를 마커로 표시합니다
 								var marker = new kakao.maps.Marker(
-										{
-											map : map,
+										{map : map,
 											position : coords
 										});
 

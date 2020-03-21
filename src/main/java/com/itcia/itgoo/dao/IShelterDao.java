@@ -39,19 +39,28 @@ public interface IShelterDao {
 	void insertRole(String id, String string);
 
 	
-	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex})")
+	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex},0)")
 	void insertDog(Dog dog);
 
 	
 	void inserDogPics(Dfile df);
 
 	
-	@Select("SELECT * FROM DOG WHERE SHELTERID=(#{shelterid})")
+	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid}")
 	List<Dog> shelterdelete(Dog dog);
 	
 
 	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
 	Company shelterMyInfo(Company c);
+
+	int updateshelterlocation(Company cp);
+
+	@Select("select dogpic from dogpics where dogid=#{dogid}")
+	List<String> shelterdogpics(Integer dogid);
+	
+	@Select("select * from dog where dogid=#{dogid}")
+	Dog shelterdeletedetail(Integer dogid);
+
 
 	
 	

@@ -36,6 +36,5 @@ public class Activity {
 	private int companykind;
 	private int enroll;
 	private List<String> activitypics;
-	private String username;
-	private String dogname;
+
 }

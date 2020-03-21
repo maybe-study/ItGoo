@@ -92,7 +92,13 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' method="POST">
+					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+					</form>
+					
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -110,14 +116,14 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index.html"> <i
+					<li class="mt"><a href="index2.html"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a class="active" href="javascript:;"> <i
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
+							<li class="active"><a href="sheltermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -125,15 +131,15 @@
 							class="fa fa-cogs"></i> <span>정보 수정</span>
 					</a>
 						<ul class="sub">
-							<li><a href="">보호소정보 수정</a></li>
+							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterPicInfo.jsp">사업자등록증</a></li>
-							<li><a href="shelterPicInfo2.jsp">시설사진</a></li>
+							<li><a href="sheltercard">사업자등록증</a></li>
+							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -141,8 +147,8 @@
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="shelterDelete">삭제</a></li>
+							<li><a href="shelterregiste">등록</a></li>
+							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
 
@@ -151,7 +157,7 @@
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="">위치 및 수정</a></li>
+							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 

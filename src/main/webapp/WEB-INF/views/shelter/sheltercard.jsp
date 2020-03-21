@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="UTF-8">
+<html lang="">
+
 
 <head>
 <meta charset="utf-8">
@@ -15,29 +16,93 @@
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap core CSS -->
-<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
 <!--external css-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap-datetimepicker/datertimepicker.css" />
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/> 
-
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script>
+	$(function() {
+		$("#profile").on("change", loadImage)
+	});
+	function loadImage() {
+		console.log($('#profile'));
+		var file = $("#profile")[0].files[0]; //한개의 프사만 등록
+		var maxSize = 1024 * 1024; //1MB
+		if (file.size > maxSize) {
+			toastr.warning("사진은 1M이하여야 합니다.", "경고");
+			$("#profile").val("");
+			return false;//작업 실패
+		}
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			console.log("e=", e);
+			$('#show_profile').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(file); //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
+		return true;
+	}
+</script>
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+
+<style>
+#yes {
+	margin-left: 45%;
+}
+
+#reset {
+	margin-left: 5%;
+}
+
+#yes, #reset {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	user-select: none;
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+	margin-top: 10px;
+}
+
+#show_profile {
+	width: 40%;
+	height: 40%;
+}
+</style>
 </head>
 
 <body>
@@ -108,8 +173,8 @@
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-		<!--sidebar start-->
-	<aside>
+	<!--sidebar start-->
+		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
@@ -125,7 +190,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
+							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -141,16 +206,16 @@
 					</a>
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
-							<li><a href="shelterpicinfo">시설사진</a></li>
+							<li><a href="shelterPicInfo">시설사진</a></li>
 						</ul></li>
 
 
-					<li class="sub-menu"><a class="active" href="javascript:;"> <i
+					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
 							<li><a href="shelterRegiste">등록</a></li>
-							<li class="active"><a href="shelterdelete">삭제</a></li>
+							<li><a href="shelterDelete">삭제</a></li>
 						</ul></li>
 
 
@@ -159,7 +224,7 @@
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
+							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -167,52 +232,51 @@
 					<!-- sidebar menu end-->
 			</div>
 		</aside>
-		
 		<!--sidebar end-->
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
+
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 리스트삭제
+					<i class="fa fa-angle-right"></i> 업체 시설 사진 첨부
 				</h3>
-				<div class="row">
+				<!-- BASIC FORM ELELEMNTS -->
+				<!-- 버튼 테이블  -->
+				<div class="row mt">
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<section class="panel">
+							<h3 class="title">첨부할 파일들을 선택해주세요</h3>
+							<div class="form-group" id="main-file-tag">
+								<div class="main-file-tag">
 
-					<!-- /col-md-12 -->
-					<div class="col-md-12 mt">
-						<div class="content-panel">
-							<table class="table table-hover">
-								<h4>
-									<i class="fa fa-angle-right"></i> 현재 등록되어있는 강아지 목록
-								</h4>
-								<hr>
-								<thead>
-									<tr>
-										<th>사진</th>
-										<th>고유번호</th>
-										<th>이름</th>
-										<th>나이</th>
-										<th>성별</th>
-										<th>중성화
-										<th>특이사항</th>
-										<th>삭제</th>
-									</tr>
-								</thead>
-								<tbody id="shelterlist">
+									<img id="show_profile" height="240" />
+									<form action="boardwrite" id="frm" method="post"
+										enctype="multipart/form-data">
 
-								</tbody>
-							</table>
-						</div>
-						   <div class="pagingdiv"></div>
+										<span class="help-block" id="helper_profile">1M이하만 가능</span> 
+										<input type="file" id="profile" class="form-control" name="profile"
+											accept=".jpg,.jpeg,.png,.gif,.bmp" />
+										<!-- 버튼 -->
+										<input type="submit" value="사진 변경" id="yes" /> <input
+											type="reset" id="reset" value="취소" />
+
+									</form>
+
+								</div>
+							</div>
+						</section>
 					</div>
-					<!-- /col-md-12 -->
 				</div>
-				<!-- row -->
+
+				<!-- /row -->
+
 
 				<!-- /row -->
 			</section>
+			<!-- /wrapper -->
 		</section>
 		<!-- /MAIN CONTENT -->
 		<!--main content end-->
@@ -224,11 +288,6 @@
 						src="img/mainlogo.png" alt="mainlogo" /></a>
 				</p>
 				<div class="credits">
-
-					<div id="articleView_layer">
-						<div id="bg_layer"></div>
-						<div id="contents_layer"></div>
-					</div>
 					<!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
@@ -245,96 +304,32 @@
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
-	 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="lib/time-select/timepicker-addon.js"></script>
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script class="include" type="text/javascript"
+		src="lib/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="lib/jquery.scrollTo.min.js"></script>
+	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+	<!--common script for all pages-->
+	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
+	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/date.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+	<script src="lib/advanced-form-components.js"></script>
 
-	<script>
-	let container = $('.pagingdiv');
-	
-	container.pagination({
-        dataSource:${dogList} ,  //받아온 데이터
-        pageSize: 10,
-        callback: function (data, pagination) { //데이터 찍어주는 부분
-           console.log("data=",data);
-           temp=data;
-           $("#shelterlist").empty();
-           $.each(data,function(idx, data){
-        		var $body = $("#shelterlist");
-        		var sex = data.sex
-        		var jungsung = data.dogjungsung
-        		console.log("sex="+sex);
-        		var $tr = $("<tr>").appendTo($body);
-        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.dogid+')').text("사진보기")).appendTo($tr);
-        		$("<td>").text(data.dogid).appendTo($tr);
-        		$("<td>").text(data.dogname).appendTo($tr);
-        		$("<td>").text(data.dogage).appendTo($tr);
-        		if(sex == 0 ){
-        			$("<td>").text("암컷").appendTo($tr);
-        		}else{
-        			$("<td>").text("수컷").appendTo($tr);
-        		}
-        		if(jungsung == 0 ){
-        			$("<td>").text("중성화 안함").appendTo($tr);
-        		}else{
-        			$("<td>").text("중성화 했음").appendTo($tr);
-        		}
-        		
-        		$("<td>").text(data.dogspecial).appendTo($tr);
-        		});
-        }
-    
-    })
-    function articleView(dogid){
-		var detail= ${detail}
-		$("#articleView_layer").addClass('open');
-		
-		$.ajax({
-			type:'get',
-			url:"shelterdeletedetail",
-			data:{dogid:dogid},
-			dataType:'html',
-			success:function(data){
-			
-				$("#contents_layer").html(data);
-				
-				/* $.each(detail,function(idx,data){
-	                  console.log("stst="+data);
-	                  var $activityPic = $("#activitypics");
-	                  var $li = $('<li>')
-	                  var $img = $("<img class='recoimg' src="+detail.activitypics[idx]+" alt='imgslide' />");
-	                  $li.append($img);
-	                  $activityPic.append($li);
-	               }) */
-			},
-			error:function(error){
-				console.log(error);
-			}
-			})
-	}
-	var $layerWindow=$("#articleView_layer");
-	$layerWindow.find('#bg_layer').on('mousedown',function(event){
-		console.log(event);
-		$layerWindow.removeClass('open');
-	});
-	$(document).keydown(function(event){
-		console.log(event);
-		if(event.keyCode!=27)
-			return;
-		else if($layerWindow.hasClass('open'))
-			$layerWindow.removeClass('open');
-	});
-	
-	
-	</script>
 </body>
 
 </html>

@@ -118,12 +118,18 @@ html, body {
 							$("<td>").text(data.activityname).appendTo($tr);
 							$("<td>").text(data.dogname).appendTo($tr);
 							var $btn=$("<input type='submit' id='acceptbtn' class='acceptbtn' value='합격' />");
+							var $btn1= $("<input type='submit' id='rejectbtn' class='rejectbtn' value='불합격' />");
 							$btn.click(function(){
 								$("form").attr("action","acceptbtn?${_csrf.parameterName}=${_csrf.token}");
-								$("form").append($("<input type='hidden' name='username' value='"+data.username+"' />"))
+								$("form").append($("<input type='hidden' name='id' value='"+data.id+"' />"))
+							
+							});
+							$btn1.click(function(){
+								$("form").attr("action","rejectbtn?${_csrf.parameterName}=${_csrf.token}");
+								$("form").append($("<input type='hidden' name='id' value='"+data.id+"' />"))
 							});
 							$("<td>").append($btn).appendTo($tr);
-							$("<td>").append($("<input type='submit' id='rejectbtn' class='rejectbtn' value='불합격' />")).appendTo($tr);
+							$("<td>").append($btn1).appendTo($tr);
 
 						});
 

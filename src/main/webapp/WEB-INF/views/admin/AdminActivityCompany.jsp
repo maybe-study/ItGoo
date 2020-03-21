@@ -17,7 +17,6 @@
   <!-- Bootstrap core CSS -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
-  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
   <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
   <!-- Custom styles for this template -->
@@ -53,7 +52,11 @@
       
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+           <form id="logout-form" action='logout' method="POST">
+			   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+			</form>
+          </li>
         </ul>
       </div>
     </header>
@@ -175,6 +178,9 @@
   		
   	})
   </script>
+ 
+
+
 </body>
 
 </html>
