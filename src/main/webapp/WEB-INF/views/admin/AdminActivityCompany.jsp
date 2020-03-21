@@ -83,7 +83,8 @@
             <div class="content-panel">
             <h4><i class="fa fa-angle-right"></i> 액티비티 업체 신규 등록 </h4>
                 <hr>
-              <table class="table table-hover">
+              <table id="table2" class="table table-hover">
+              
                 
                 <thead>
                   <tr>
@@ -105,7 +106,7 @@
             <div class="content-panel">
             <h4><i class="fa fa-angle-right"></i> 등록된 업체 </h4>
                 <hr>
-              <table class="table table-hover">
+              <table id="table1" class="table table-hover">
                 
                 <thead>
                   <tr>
@@ -152,8 +153,16 @@
     </footer>
     <!--footer end-->
   </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  
+
+ <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script>
+        jQuery(function($){
+            $("#table1").DataTable({info: false});
+        });
+        jQuery(function($){
+            $("#table2").DataTable({info: false});
+        });
+    </script>
   
   <script>
   	$.each(${companyWaitList},function(idx,data){

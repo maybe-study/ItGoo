@@ -92,6 +92,7 @@
                                         <h4>업체 사진</h4>
                                     </li>
                                     <li>
+                                    <div>
                                         <div id="productCarousel" class="carousel slide"
 										data-ride="carousel" style="display: flex;">
 										<ol class="carousel-indicators">
@@ -99,16 +100,17 @@
 										<div>
 											<div class="carousel-inner" role="listbox"></div>
 										</div>
-									</div>
-									<a class="left carousel-control" href="#productCarousel"
-										role="button" data-slide="prev"> <span
-										class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a> <a class="right carousel-control" href="#productCarousel"
-										role="button" data-slide="next"> <span
-										class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
+										</div>
+										<a class="left carousel-control" href="#productCarousel"
+											role="button" data-slide="prev"> <span
+											class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a> <a class="right carousel-control" href="#productCarousel"
+											role="button" data-slide="next"> <span
+											class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+										</div>
                                     </li>
                                 </ul>
 							</div>
@@ -257,12 +259,12 @@
 		if(idx==0){
 			$('<li data-target="#productCarousel" data-slide-to="0" class="active">').appendTo($uls);
 			var $div=$('<div class="item active">').appendTo($items);
-			$('<img class="dog" style="width: 700px">').attr('src',pic).appendTo($div);
+			$('<img style="width: 450px;height:300px">').attr('src',pic).appendTo($div);
 		}else{
 			var $li=$('<li data-target="#productCarousel">').appendTo($uls);
 			$li[0].dataset.slideTo=idx;
 			var $div=$('<div class="item">').appendTo($items);
-			$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
+			$('<img style="width: 450px;height:300px">').attr('src',pic).appendTo($div);
 		}
 
 	});

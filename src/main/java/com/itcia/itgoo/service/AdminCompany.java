@@ -68,25 +68,23 @@ public class AdminCompany {
 	
 	
 	public ModelAndView adminUpdateComPany(String select, String companyid, int companykind) {
-		System.out.println("========================================여부 : "+ select);
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
 		//수락
 		if(select.equals("ok")) {
 			aDao.adminOk(companyid);	//등록
 			aDao.deleteCompanyRole(companyid);
-			RedirectView redirectView = new RedirectView(); // redirect url 설정
-			redirectView.setExposeModelAttributes(false);
-			
-			if(companykind==1) {	//액티비티업체라면
-				aDao.activityRole(companyid);
-				redirectView.setUrl("adminactivity");
-				mav.setView(redirectView);
-			}else if(companykind==2) {	//보호소라면
-				aDao.shelterRole(companyid);
-				redirectView.setUrl("adminshelter");
-				mav.setView(redirectView);
-			}
 		}else {//거절
 			aDao.adminNo(companyid);	//삭제
+		}
+		if(companykind==1) {	//액티비티업체라면
+			aDao.activityRole(companyid);
+			redirectView.setUrl("adminactivity");
+			mav.setView(redirectView);
+		}else if(companykind==2) {	//보호소라면
+			aDao.shelterRole(companyid);
+			redirectView.setUrl("adminshelter");
+			mav.setView(redirectView);
 		}
 		
 		return mav;

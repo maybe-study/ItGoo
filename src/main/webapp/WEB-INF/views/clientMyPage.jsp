@@ -106,7 +106,7 @@
 									<table>
 
 										<tr id="usernamevalue">
-											<td>이름:</td>
+											<td>이름:</td>
 										</tr>
 									</table>
 								</div>
@@ -149,7 +149,7 @@
 								<div class="main-p-tag">
 									<table>
 										<tr id="useraddressvalue">
-											<td>주소:</td>
+											<td>주소:</td>
 
 										</tr>
 									</table>

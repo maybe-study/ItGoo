@@ -89,11 +89,10 @@ public class MemberManagement {
 		case "[ROLE_ACTIVITY, ROLE_USER]":
 			url="redirect:/activitymyinfo";
 			break;
-		case "":
+		case "[ROLE_UNCOMPANY, ROLE_USER]":	//등록 안된 업체
+			url="client/wait";
 			break;
 		};
-		
-		
 		return url;
 	}
 

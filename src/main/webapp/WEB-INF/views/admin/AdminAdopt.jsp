@@ -87,7 +87,7 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
+              <table id="table1" class="table table-hover">
                 <h4><i class="fa fa-angle-right"></i> 입양신청자 </h4>
                 <hr>
                 <thead>
@@ -154,6 +154,13 @@
 	<!--script for this page-->
 	<script src="lib/sparkline-chart.js"></script>
 	<script src="lib/zabuto_calendar.js"></script>
+	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script>
+        jQuery(function($){
+            $("#table1").DataTable({info: false});
+        });
+        
+    </script>
 	<script>
 		$.each(${adoptList}, function(idx, adopt){
   	  		console.log(adopt.idfile);
