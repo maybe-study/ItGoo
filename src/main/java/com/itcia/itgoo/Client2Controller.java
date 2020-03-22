@@ -8,11 +8,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dto.Test;
+import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.TestManagement;
 
@@ -22,7 +24,8 @@ public class Client2Controller {
 
 	@Autowired
 	private TestManagement tm;
-
+	@Autowired
+	private AuctionManagement am;
 	
 	@GetMapping("/testpaper")
 	public ModelAndView testPaper(int dogid) {
@@ -41,4 +44,18 @@ public class Client2Controller {
 		
 		return mav;
 	}
+	@GetMapping("/auctionfrm")
+	public ModelAndView auctionFrm() {
+		mav.setViewName("client/AuctionFrm");
+		return mav;
+	}
+	
+	@PostMapping("/addauction")
+	public ModelAndView addAuction(String contents) {
+		System.out.println("콘텐트:"+ contents);
+		mav.setViewName("client/AuctionFrm");
+		return mav;
+	}
+	
+	
 }
