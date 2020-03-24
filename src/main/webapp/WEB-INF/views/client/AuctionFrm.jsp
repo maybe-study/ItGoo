@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html lang="kr">
 
 <head>
@@ -79,19 +78,19 @@
           <div class="col-lg-12">
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i> 등록 물품</h4>
-              <form class="form-horizontal style-form" method="post" action="addauction">
-                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+              <form class="form-horizontal style-form" method="post" action="addauction?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+                
                 <div class="form-group">
                   <label class="col-sm-2  control-label">경매 이름</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" required>
+                    <input type="text" class="form-control" name="auctionname" required>
                     <span class="help-block">등록할 경매 이름을 입력하세요</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2  control-label">최저가</label>
                   <div class="col-sm-6" > 
-                    <input type="text" class="form-control" name="">
+                    <input type="text" class="form-control" name="lowprice">
                   </div>
                   <label class="col-sm-2  control-label">원</label>
                 </div>
@@ -101,17 +100,23 @@
                     <label class="col-sm-2  control-label">경매 시작</label>
                     <div class='col-sm-6'>
                       <div class='input-group date' id='datetimepicker1'>
-                          <input type='text' class="form-control" />
+                          <input type='text' class="form-control" name="auctionstart"/>
                           <span class="input-group-addon">
                               <span class="glyphicon glyphicon-calendar"></span>
                           </span>
                       </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2  control-label">상품 상세</label>
+			   <div class="form-group">
+                  <label class="col-sm-2  control-label" >썸네일</label>
                   <div class="col-sm-10">
-                    <textarea id="editor" name="contents">
+                    <input type="file" class="box" name="f" accept=".jpg,.jpeg,.png,.gif,.bmp">
+                  </div>
+              </div>
+                <div class="form-group">
+                  <label class="col-sm-2  control-label" >상품 상세</label>
+                  <div class="col-sm-10">
+                    <textarea id="editor" name="auctionexplain">
                       
                   </textarea>
                   </div>
@@ -178,7 +183,7 @@
   <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker({
-          minDate : moment().format("YYYY-MM-DD")
+          minDate : moment()
         });
     });
 </script>

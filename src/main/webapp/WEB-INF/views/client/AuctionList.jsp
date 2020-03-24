@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 
@@ -76,6 +77,21 @@
       -webkit-align-items: center;
       align-items: center;
     }
+	.auction-title {
+		height: 50px;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+	}
 </style>
 <body id="page-top">
 
@@ -94,11 +110,11 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">경매</a></li>
+						href="#">경매</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">소모임</a></li>
+						href="#portfolio">소모임</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
@@ -121,76 +137,25 @@
 			<div
 				class="row h-100 align-items-center justify-content-center text-center">
 				<div class="col-lg-10 align-self-end">
-					<h1 class="text-uppercase text-white font-weight-bold">Puppies
-						Make Your Life Happy.</h1>
+					<h1 class="text-uppercase text-white font-weight-bold">강아지 물품 경매</h1>
 					<hr class="divider my-4">
 				</div>
 				<div class="col-lg-8 align-self-baseline">
-					<p class="text-white-75 font-weight-light mb-5">당신의 강아지를 행복하게
-						해줄 ITGOO 커뮤니티!</p>
-					<a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">둘러보기</a>
+					<p class="text-white-75 font-weight-light mb-5">원하는 물품을 싸고 빠르게 찾아보세요!</p>
+					<!-- <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">둘러보기</a> -->
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<!-- About Section -->
-	<section class="page-section bg-primary" id="about">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8 text-center">
-					<h2 class="text-white mt-0">경매</h2>
-					<hr class="divider light my-4">
-					<p class="text-white-50 mb-4">원하는 물품을 싸고 빠르게 찾아보세요!ITGOO 매</p>
-					<a class="btn btn-light btn-xl js-scroll-trigger" href="auctionlist">물품둘러보기</a>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 
-	<!-- Services Section -->
-	<section class="page-section" id="services">
-		<div class="container">
-			<h2 class="text-center mt-0">ITGOO의 Service</h2>
-			<hr class="divider my-4">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="mt-5">
-						<i class="fas fa-4x fa-gem text-primary mb-4"></i>
-						<h3 class="h4 mb-2">물품경매</h3>
-						<p class="text-muted mb-0">필요한 물품을 빠르고 안전하게 구매해보세요</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="mt-5">
-						<i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-						<h3 class="h4 mb-2">소모임</h3>
-						<p class="text-muted mb-0">우리 강아지 사회성 기르기 & 친구 만들어주기</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="mt-5">
-						<i class="fas fa-4x fa-globe text-primary mb-4"></i>
-						<h3 class="h4 mb-2">해외 선진사례</h3>
-						<p class="text-muted mb-0">ITGOO는 독일의 동물보호 선진사례를 분석해 기획된
-							시스템입니다.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="mt-5">
-						<i class="fas fa-4x fa-heart text-primary mb-4"></i>
-						<h3 class="h4 mb-2">입양</h3>
-						<p class="text-muted mb-0">유기견들에게 사랑과 행복을 전해주세요!</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 
 	<!-- Portfolio Section -->
 	<section id="portfolio">
 		<div class="container-fluid p-0">
-			<div class="row no-gutters">
+			<div class="row no-gutters" id="aList">
 				<div class="col-lg-4 col-sm-6">
 					<a class="portfolio-box" href="img/portfolio/fullsize/1.jpg"> <img
 						class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
@@ -238,8 +203,9 @@
 					</a>
 				</div>
 				<div class="col-lg-4 col-sm-6">
-					<a class="portfolio-box" href="img/portfolio/fullsize/6.jpg"> <img
-						class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+					<a class="portfolio-box" href="img/portfolio/fullsize/6.jpg"> 
+						<div class="auction-title">제목</div>
+						<img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
 						<div class="portfolio-box-caption p-3">
 							<div class="project-category text-white-50">친구만들기</div>
 							<div class="project-name">우리 강아지 친구 만들어주기</div>
@@ -250,13 +216,6 @@
 		</div>
 	</section>
 
-	<!-- Call to Action Section -->
-	<section class="page-section bg-dark text-white">
-		<div class="container text-center">
-			<h2 class="mb-4">강아지 소모임</h2>
-			<a class="btn btn-light btn-xl" href="강아지 소모임 얀결">강아지 소모임 둘러보기</a>
-		</div>
-	</section>
 
 	<!-- Contact Section -->
 	<section class="page-section" id="contact">
@@ -265,7 +224,7 @@
 				<div class="col-lg-8 text-center">
 					<h2 class="mt-0">문의사항</h2>
 					<hr class="divider my-4">
-					<p class="text-muted mb-5">문의사항&봉사활동 연락주세요. 빠른시일내에 답변드리겠습니다.</p>
+					<p class="text-muted mb-5">문의사항은 연락주세요. 빠른시일내에 답변드리겠습니다.</p>
 				</div>
 			</div>
 			<div class="row">
@@ -301,6 +260,26 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="js/creative.min.js"></script>
+	
+	<script>
+		var $aList=$('#aList');
+		$.each(${aList},function(idx,a){
+			console.log(a);
+			$aList.empty();
+			var $contaier=$('<div class="col-lg-4 col-sm-6">').appendTo($aList);
+			var $a=$('<a class="portfolio-box">').attr('href','auctionattend?auctionnum='+a.auctionnum).appendTo($contaier);
+			var $title=$('<div class="auction-title">').text(a.auctionname).appendTo($a);
+			var $img=$('<img class="img-fluid">').attr('src',a.auctionpic).appendTo($a);
+			var $div=$('<div class="portfolio-box-caption p-3">').appendTo($a);
+			var $div2=$('<div class="project-category text-white-50">').text(a.auctionname).appendTo($div);
+			var $div3=$('<div class="project-name">').text('최저가:').append(a.lowprice).appendTo($div);
+			var $div4=$('<div class="project-name">').text('경매 시작:').append(a.auctionstart).appendTo($div);
+			var $div5=$('<div class="project-name">').text('호스트:').append(a.owner).appendTo($div);
+			
+		})
+		
+
+	</script>
 
 </body>
 

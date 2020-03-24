@@ -24,7 +24,7 @@ import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.TestManagement;
 
 @Controller
-public class Client2Controller {
+public class RestClient2Controller {
 	ModelAndView mav = new ModelAndView();
 
 	@Autowired
@@ -32,51 +32,14 @@ public class Client2Controller {
 	@Autowired
 	private AuctionManagement am;
 	
-	@GetMapping("/testpaper")
-	public ModelAndView testPaper(int dogid) {
+	@GetMapping("/example")
+	public String auctionAttend(int dogid) {
 		
 		mav = tm.testPaper(dogid);
-		return mav;
+		return null;
 	}
 	
-	@PostMapping("/testpapersubmit")
-	public ModelAndView testPaperSubmit(String test,Principal p) {
-		System.out.println("===================test====================");
-		System.out.println(test);
-		mav=tm.testPaperSubmit(test,p);
-		
-		
-		
-		return mav;
-	}
-	@GetMapping("/auctionfrm")
-	public ModelAndView auctionFrm() {
-		mav.setViewName("client/AuctionFrm");
-		return mav;
-	}
 	
-	@PostMapping("/addauction")
-	public ModelAndView addAuction(Principal p,Auction a,MultipartFile f) {
-		mav=am.addAuction(p,a,f);
-		return mav;
-	}
-	
-	@RequestMapping(value = "/auctionlist", method = RequestMethod.GET)
-	public ModelAndView auctionList() {
-		mav = am.auctionList();
-		return mav;
-	}
-	
-	@RequestMapping(value = "/auctionattend", method = RequestMethod.GET)
-	public ModelAndView auctionAttend(int auctionnum,Principal p) {
-		mav = am.auctionAttend(auctionnum,p);
-		return mav;
-	}
-	@RequestMapping(value = "/auctiondetail", method = RequestMethod.GET)
-	public ModelAndView auctionDetail(int auctionnum) {
-		mav = am.auctionDetail(auctionnum);
-		return mav;
-	}
 	
 	
 }
