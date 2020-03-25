@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Auction;
@@ -29,9 +30,14 @@ public interface IAuctionDao {
 			"to_char(auctionstart,'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
 			"as auctionstart,owner,lowprice from auction where AUCTIONSTART + (interval '1' hour)<systimestamp")
 	List<Auction> completeAuctionListts();
-	@Insert("insert into auction values(auction_seq.nextval,#{auctionname},#{auctionpic},#{lowprice},#{auctionexplain},TO_timestamp(#{auctionstart},'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN'),#{owner},'undefined',0)")
+	//매퍼
 	void addAuction(Auction a);
 	@Select("select * from auction where auctionnum=#{auctionnum}")
 	Auction auctionDetail(int auctionnum);
+	
+	@Insert("insert into auctionpics values(#{param2},#{param1})")
+	void addauctionPic(int i, String src);
+	@Select("select * from auctionpics where auctionnum=#{auctionnum}")
+	List<String> auctionPics(int auctionnum);
 
 }

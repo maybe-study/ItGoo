@@ -104,7 +104,9 @@
 	.card-label{
 		width:200px;
 	}
-	
+	#auctionexplain img{
+		width:100%
+	}
 
 </style>
 <body id="page-top">
@@ -226,7 +228,7 @@
 	$('#auctionname').append(a.auctionname);
 	$('#lowprice').append(a.lowprice);
 	$('#auctionexplain').append(a.auctionexplain);
-	$('#button').append($btn)
+	$('#button').append($btn);
 	</script>
 	</body>
 

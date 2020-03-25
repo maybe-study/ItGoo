@@ -47,7 +47,7 @@
       height: 100%;
     }
     body {
-      background: #eee;
+      background: #5d5047;
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
       font-size: 14px;
       color:#000;
@@ -102,6 +102,12 @@
     	background-attachment: scroll;
     	background-size: cover;
 	}
+	.aPics{
+		width:100%
+	}
+	.btn-div{
+		padding-top:40px;
+	}
 	
 
 </style>
@@ -155,37 +161,120 @@
 		<div class="container-fluid" id="bg">
 			<div class="container row" style="margin:auto">
 				<div class="card col-lg-12">
-					<div class="card-body">경매 이름</div>
+					<div class="card-body" id="auctionname">
+					
+					</div>
 				</div>
 				<div class="card col-lg-4">
-					<div class="card-body" style="height:500px">사진</div>
+					<div class="card-body" style="height:500px">
+					<h5 class="card-title">사진</h5>
+					<div id="demo" class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+								<ul class="carousel-indicators">
+									<!-- <li data-target="#demo" data-slide-to="0" class="active"></li>
+								    <li data-target="#demo" data-slide-to="1"></li>
+								    <li data-target="#demo" data-slide-to="2"></li> -->
+								</ul>
+
+								<!-- The slideshow -->
+								<div class="carousel-inner">
+									<!-- <div class="carousel-item active">
+								      <img src="/fileupload/dog/1.jpg" class="dog" alt="Los Angeles">
+								    </div>
+								    <div class="carousel-item">
+								      <img src="/fileupload/dog/2.jpg" class="dog" alt="Chicago">
+								    </div>
+								    <div class="carousel-item">
+								      <img src="/fileupload/dog/3.jpg" class="dog" alt="New York">
+								    </div> -->
+								</div>
+								<!-- Left and right controls -->
+								<a class="carousel-control-prev" href="#demo" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+
+
+							</div>
+					
+					</div>
 				</div>
 				<div class="card col-lg-4">
-					<div class="card-body">경매 정보</div>
+					<div class="card-body">
+					<h5 class="card-label" >경매 정보</h5>
+					<table>
+						<tr>
+						<td>시작가</td>
+						<td id="lowprice"></td>
+						</tr>
+						<tr>
+						<td>시작 시간</td>
+						<td id="auctionstart"></td>
+						</tr>
+						<tr>
+						<td>주인</td>
+						<td id="owner"></td>
+						</tr>
+					</table>
+					</div>
 				</div>
 				<div class="card col-lg-4">
-					<div class="card-body">참여자 가격</div>
+					<div class="card-body">
+					<h5 class="card-label" >경매장</h5>
+					<div style="height: 580px;overflow:auto">
+						asdadadsad<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						
+					</div>
+					<div class="col-lg-12 btn-div" id="button" style="text-align: center">
+						<input type="text" id="bid">
+						<button class="btn btn-primary"><i class="fas fa-plus"></i> 참가</button>
+					</div>
+					
+					</div>
 				</div>
 				
 			</div>
 		</div>
 	</section>
 
-	
-
-	
 
 
 
 
 
-	<!-- Footer -->
-	<footer class="bg-light py-5">
-		<div class="container">
-			<div class="small text-center text-muted">Copyright &copy; 2020
-				- ITGOO</div>
-		</div>
-	</footer>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -199,8 +288,29 @@
 	<script src="js/creative.min.js"></script>
 	
 	<script>
-	
-
+	console.log(${auction});
+	var a=${auction};
+	var aPics=${aPics}
+	console.log(aPics);
+	$('#auctionname').append($('<h5>').text(a.auctionname));
+	$('#owner').append(a.owner);
+	$('#auctionstart').append(a.auctionstart);
+	$('#lowprice').append(a.lowprice);
+	var $uls=$('.carousel-indicators').empty();
+	var $items=$('.carousel-inner').empty();
+	$.each(aPics,function(idx,pic){
+		if(idx==0){
+			$('<li data-target="#demo" data-slide-to="0" class="active">').appendTo($uls);
+			var $div=$('<div class="carousel-item active">').appendTo($items);
+			$('<img class="aPics">').attr('src',pic).appendTo($div);
+		}else{
+			var $li=$('<li data-target="#demo">').appendTo($uls);
+			$li[0].dataset.slideTo=idx;
+			var $div=$('<div class="carousel-item">').appendTo($items);
+			$('<img class="aPics">').attr('src',pic).appendTo($div);
+		}
+		
+	});
 	</script>
 	</body>
 
