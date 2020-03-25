@@ -279,7 +279,6 @@
 	<!-- Plugin JavaScript -->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-	<script src="js/sockjs.js"></script>
 
 
 	
@@ -305,9 +304,7 @@
 	</script>
 	<script>
 	//소켓 생성
-	var wSocket= new WebSocket(
-			""
-	);
+
 	
 	
 	</script>

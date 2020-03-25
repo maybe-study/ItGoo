@@ -269,13 +269,6 @@
 			</div>
 		</div>
 	</section>
-
-
-
-
-
-
-
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -285,12 +278,21 @@
 	<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 	<!-- Custom scripts for this template -->
-	<script src="js/creative.min.js"></script>
+	<script src="js/stomp.js"></script>
+	<script src="js/sockjs.js"></script>
 	
 	<script>
-	console.log(${auction});
+	
+	
+	
+	
+	
+	
+	function sendBid(){
+		stompClient.send("/bid",{},"10000")
+	}
 	var a=${auction};
-	var aPics=${aPics}
+	var aPics=${aPics};
 	console.log(aPics);
 	$('#auctionname').append($('<h5>').text(a.auctionname));
 	$('#owner').append(a.owner);
@@ -311,6 +313,29 @@
 		}
 		
 	});
+	
+	
+	//소켓
+	var socket = new SockJS("./auction");
+	var stompClient = Stomp.over(socket);
+	stompClient.connect({}, function(frame) {
+		console.log("연결")
+		
+		//입찰구독
+		stompClient.subscribe('/topic/bidding/'+a.auctionnum,function(msg){
+			console.log(msg);
+		});
+		stompClient.send("/enter",{},JSON.stringify({auctionnum: ""+a.auctionnum}));
+	});
+	
+	
+	window.onbeforeunload = function (e) {
+		if(stompClient!=null){
+			stompClient.disconnect();;
+
+			console.log("Disconnected");
+		}
+	};
 	</script>
 	</body>
 
