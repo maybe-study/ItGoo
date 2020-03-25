@@ -11,7 +11,7 @@
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>Dashio - Bootstrap Admin Template</title>
 
-<!-- Favicons -->
+<!-- Favicons -->`
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 <!-- Bootstrap core CSS -->
@@ -106,7 +106,7 @@
 									<table>
 
 										<tr id="usernamevalue">
-											<td>이름:</td>
+											<td>이름:</td>
 										</tr>
 									</table>
 								</div>
@@ -149,7 +149,7 @@
 								<div class="main-p-tag">
 									<table>
 										<tr id="useraddressvalue">
-											<td>주소:</td>
+											<td>주소:</td>
 
 										</tr>
 									</table>

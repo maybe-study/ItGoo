@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
@@ -78,8 +79,7 @@ public class ShelterController {
 	}
 
 	// 공고리스트 삭제
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping(value = "/shelterdelete")
+	@RequestMapping(value = "/shelterdelete", method = RequestMethod.GET)
 	public ModelAndView shelterdelete(Principal p, Dog dog, Integer pageNum) {
 		if (p != null) {
 			p.getName();
@@ -88,8 +88,8 @@ public class ShelterController {
 		mav = smm.shelterdelete1(p, dog, pageNum);
 		return mav;
 	}
-	
-	
+
+
 	//마이페이지 수정
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/shelterinfochange")
@@ -97,11 +97,6 @@ public class ShelterController {
 		mav= smm.shelterinfochange(p);
 		return mav;
 	}
-	
-	
-	
-	
-	
 
 	// 페이지 보기만
 
@@ -110,40 +105,61 @@ public class ShelterController {
 	public String page6() {
 		return "shelter/shelterchangeinfo";
 	}
-	
-	
-	
-	
-	
-	
+
 	@GetMapping(value = "/shelterDelete")
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
+	@RequestMapping(value = "/dogdeletebtn")
+	public ModelAndView dogdeletebtn( Dog dog, RedirectAttributes attr) {
+
+		mav = smm.dogdeletebtn(dog,attr);
+		attr.addFlashAttribute("dog",dog);
+		return mav;
+	}
+	@PostMapping(value = "/updatecompanypic")
+	public ModelAndView updatecompanypic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=smm.updatecompanypic(p,multi,cp);
+
+		return mav;
+	}
+	@PostMapping(value = "/updatecompanylocpic")
+	public ModelAndView updatecompanylocpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=smm.updatecompanylocpic(p,multi,cp);
+
+		return mav;
 	}
 
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterDeleteDetail")
-	public String page2() {
-		return "shelter/shelterDeleteDetail";
-	}
+	// 페이지 보기만
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterLocationInfo")
+	@GetMapping(value = "/shelterlocationinfo")
 	public String page3() {
 		return "shelter/shelterLocationInfo";
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterPicInfo")
+	@GetMapping(value = "/shelterpicinfo")
 	public String page4() {
 		return "shelter/shelterPicInfo";
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterRegiste")
+	@GetMapping(value = "/shelterregiste")
 	public String page5() {
 		return "shelter/shelterRegiste";
 	}
-	
-	
+
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/sheltercard")
+	public String page6() {
+		return "shelter/sheltercard";
+	}
 }

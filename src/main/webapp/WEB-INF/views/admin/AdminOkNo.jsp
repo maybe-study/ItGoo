@@ -18,7 +18,6 @@
 <!-- Bootstrap core CSS -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--external css-->
-<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
 	href="lib/gritter/css/jquery.gritter.css" />
@@ -32,8 +31,7 @@
 <script src="main.js?ver"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
-<script src="https://kit.fontawesome.com/c9422a165f.js"
-	crossorigin="anonymous"></script>
+
 
 <!-- =======================================================
     Template Name: Dashio
@@ -62,7 +60,12 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+           <form id="logout-form" action='logout' method="POST">
+			   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+			</form>
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -89,7 +92,25 @@
                                         <h4>업체 사진</h4>
                                     </li>
                                     <li>
-                                        <img id="companypics" src="img/test.png" style="max-width: 100%">
+                                    <div>
+                                        <div id="productCarousel" class="carousel slide"
+										data-ride="carousel" style="display: flex;">
+										<ol class="carousel-indicators">
+										</ol>
+										<div>
+											<div class="carousel-inner" role="listbox"></div>
+										</div>
+										</div>
+										<a class="left carousel-control" href="#productCarousel"
+											role="button" data-slide="prev"> <span
+											class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a> <a class="right carousel-control" href="#productCarousel"
+											role="button" data-slide="next"> <span
+											class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+										</div>
                                     </li>
                                 </ul>
 							</div>
@@ -229,6 +250,27 @@
 	//히든으로 companyid companykind 저장
   	$("<input>").attr("type",'hidden').attr("name","companyid").attr("value",data.companyid).appendTo("#frm");
   	$("<input>").attr("type",'hidden').attr("name","companykind").attr("value",data.companykind).appendTo("#frm");
+  	//업체 사진 띄우기
+  	var pList=${pList};
+  	console.log(pList);
+  	var $uls=$('.carousel-indicators').empty();
+	var $items=$('.carousel-inner').empty();
+	$.each(pList,function(idx,pic){
+		if(idx==0){
+			$('<li data-target="#productCarousel" data-slide-to="0" class="active">').appendTo($uls);
+			var $div=$('<div class="item active">').appendTo($items);
+			$('<img style="width: 450px;height:300px">').attr('src',pic).appendTo($div);
+		}else{
+			var $li=$('<li data-target="#productCarousel">').appendTo($uls);
+			$li[0].dataset.slideTo=idx;
+			var $div=$('<div class="item">').appendTo($items);
+			$('<img style="width: 450px;height:300px">').attr('src',pic).appendTo($div);
+		}
+
+	});
+  	
+  	
+  	
 	//지도 표시
 	roadAddr=data.companylocation;
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div

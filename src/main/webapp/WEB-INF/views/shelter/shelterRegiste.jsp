@@ -105,7 +105,12 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' method="POST">
+					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+					</form>
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -132,6 +137,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="shletermyinfo">보호소 정보보기</a></li>
+
 						</ul></li>
 
 
@@ -151,11 +157,13 @@
 						</ul></li>
 
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>입양 공고</span>
+					<li class="sub-menu"><a class="active" href="javascript:;">
+							<i class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
+
 							<li><a href="shelterregiste">등록</a></li>
+
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
@@ -165,7 +173,7 @@
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
+							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -295,8 +303,9 @@
 						</div>
 						<div class="btn-div">
 
-							<button id="but" class="but" type="submit">등록</button>
-							<button class="but">취소</button>
+							<input type="submit" id="insertdogbtn"
+								class="insertactivitybtn" value="액티비티 등록" />
+								<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
 
 						</div>
 					</form>

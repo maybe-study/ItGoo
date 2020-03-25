@@ -17,7 +17,6 @@
   <!-- Bootstrap core CSS -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
-  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
   <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
   <!-- Custom styles for this template -->
@@ -53,7 +52,12 @@
 
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li>
+          <a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+           <form id="logout-form" action='logout' method="POST">
+			   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+			</form>
+          </li>
         </ul>
       </div>
     </header>
@@ -78,7 +82,7 @@
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-              <table class="table table-hover">
+              <table id="table1" class="table table-hover">
                 <h4><i class="fa fa-angle-right"></i> 보호소 신규 등록 </h4>
                 <hr>
                 <thead>
@@ -100,7 +104,7 @@
             <div class="content-panel">
             <h4><i class="fa fa-angle-right"></i> 등록된 보호소 </h4>
                 <hr>
-              <table class="table table-hover">
+              <table id="table2" class="table table-hover">
 
                 <thead>
                   <tr>
@@ -161,6 +165,15 @@
   <!--script for this page-->
   <script src="lib/sparkline-chart.js"></script>
   <script src="lib/zabuto_calendar.js"></script>
+  <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script>
+        jQuery(function($){
+            $("#table1").DataTable({info: false});
+        });
+        jQuery(function($){
+            $("#table2").DataTable({info: false});
+        });
+    </script>
   <script>
 
   $.each(${companyWaitList},function(idx,data){

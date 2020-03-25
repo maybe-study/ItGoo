@@ -172,7 +172,7 @@
   			var obj= new Object();
   			obj.questionnum=question.questionnum;
   			obj.answer=document.frm["q"+question.questionnum].value;
-  			obj.dogid=1;//qs.dogid;
+  			obj.dogid=${dogid};
   			qArr.push(obj);
   		})
   		document.frm.test.value=JSON.stringify(qArr);

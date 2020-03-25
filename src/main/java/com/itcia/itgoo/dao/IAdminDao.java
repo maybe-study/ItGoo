@@ -53,11 +53,21 @@ public interface IAdminDao {
 	void activityRole(String companyid);
 	@Insert("insert into role values(#{param},'ROLE_SHELTER')")
 	void shelterRole(String companyid);
+	
 	@Select("select d.dogname,d.dogid,c.id,c.username,c.phone,a.phase,a.score,a.idfile,a.dogcareer,a.job,a.why from dog d join adopt a on d.dogid=a.dogid join client c on a.id=c.id")
 	List<Adopt> adminAdoptList();
 	
-	@Select("select * from caresheet")
+	@Select("select * from caresheet where toggle=1")
 	List<CareSheet> careSheetList();
+	
+	@Update("update caresheet set toggle=0 where questionnum=${questionnum}")
+	void deleteCareSheet(CareSheet c);
+	
+	@Insert("insert into caresheet values(caresheet_seq.nextval,'${question}',1)")
+	void adminInsertCareSheet(CareSheet c);
+	@Select("select * from companypic where companyid=#{companyid}")
+	List<String> adminCompanyPics(String companyid);
+	
 
 
 }

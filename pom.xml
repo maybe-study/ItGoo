@@ -68,8 +68,15 @@
             <artifactId>spring-websocket</artifactId>
             <version>${org.springframework-version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-messaging</artifactId>
+		    <version>5.2.2.RELEASE</version>
+		</dependency>
 
-
+		
 
           
 		<!--slf4j-log4j12대신 logback을 사용하기위해 삭제 -->

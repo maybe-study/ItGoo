@@ -160,7 +160,12 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li><a class="logout" href="#"
+						onclick="document.getElementById('logout-form').submit();">Logout</a>
+						<form id="logout-form" action='logout' method="POST">
+							<input name="${_csrf.parameterName}" type="hidden"
+								value="${_csrf.token}" />
+						</form></li>
 				</ul>
 			</div>
 		</header>
@@ -168,7 +173,7 @@
 		<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-	<!--sidebar start-->
+		<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
@@ -186,6 +191,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="shletermyinfo">보호소 정보보기</a></li>
+
 						</ul></li>
 
 
@@ -196,11 +202,13 @@
 							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
 						</ul></li>
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-book"></i> <span>보호소 사진</span>
+					<li class="sub-menu"><a class="active" href="javascript:;">
+							<i class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
+
 							<li><a href="sheltercard">사업자등록증</a></li>
+
 							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
 
@@ -240,32 +248,33 @@
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
 				<!-- 버튼 테이블  -->
-				<div class="row mt">
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<section class="panel">
-							<h3 class="title">첨부할 파일들을 선택해주세요</h3>
-							<div class="form-group" id="main-file-tag">
-								<div class="main-file-tag">
+				<form action="updatecompanylocpic">
+					<div class="row mt">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<section class="panel">
+								<h3 class="title">첨부할 파일들을 선택해주세요</h3>
+								<div class="form-group" id="main-file-tag">
+									<div class="main-file-tag">
 
-									<img id="show_profile" height="240" />
-									<form action="boardwrite" id="frm" method="post"
-										enctype="multipart/form-data">
+										<img id="show_profile" height="240" />
+										<form action="boardwrite" id="frm" method="post"
+											enctype="multipart/form-data">
 
-										<span class="help-block" id="helper_profile">1M이하만 가능</span> 
-										<input type="file" id="profile" class="form-control" name="profile"
-											accept=".jpg,.jpeg,.png,.gif,.bmp" />
-										<!-- 버튼 -->
-										<input type="submit" value="사진 변경" id="yes" /> <input
-											type="reset" id="reset" value="취소" />
+											<span class="help-block" id="helper_profile">1M이하만 가능</span>
+											<input type="file" id="profile" class="form-control"
+												name="profile" accept=".jpg,.jpeg,.png,.gif,.bmp" />
+											<!-- 버튼 -->
+											<input type="submit" value="사진 변경" id="yes" /> <input
+												type="reset" id="reset" value="취소" />
 
-									</form>
+										</form>
 
+									</div>
 								</div>
-							</div>
-						</section>
+							</section>
+						</div>
 					</div>
-				</div>
-
+				</form>
 				<!-- /row -->
 
 

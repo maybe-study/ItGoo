@@ -89,11 +89,10 @@ public class MemberManagement {
 		case "[ROLE_ACTIVITY, ROLE_USER]":
 			url="redirect:/activitymyinfo";
 			break;
-		case "":
+		case "[ROLE_UNCOMPANY, ROLE_USER]":	//등록 안된 업체
+			url="client/wait";
 			break;
 		};
-		
-		
 		return url;
 	}
 
@@ -108,6 +107,8 @@ public class MemberManagement {
 	public ModelAndView myadoptphase(Principal p, Adopt ad) {
 		ad.setId(p.getName());
 		List<Adopt> d = cDao.myPhasedogList(ad);
+		System.out.println("들어있는 값은 "+d);
+		System.out.println("매니지먼트 온다");
 		mav.addObject("aList",new Gson().toJson(d));
 		mav.setViewName("./client/myAdoptPhase");
 		return mav;

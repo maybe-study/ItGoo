@@ -18,7 +18,6 @@
 <!-- Bootstrap core CSS -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--external css-->
-<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
 	href="lib/gritter/css/jquery.gritter.css" />
@@ -57,7 +56,12 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+						<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+				           <form id="logout-form" action='logout' method="POST">
+							   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+							</form>
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -143,18 +147,20 @@
 
 	<script>
 	//전역 변수
-	cnt=0;
 	var cList=${cList};
+	//추가된 질문마다 질문 번호 추가
 	$.each(cList, function(idx,c){
-		cnt++;
 		console.log(c);
-		if(idx==0) $('#question').val(c.question);
+		if(idx==0) {
+			$('#question').val(c.question);
+			$('#question')[0].dataset.questionnum=c.questionnum;
+		}
 		else{
 			let $formGroup=$('<div class="form-group ">');
         	let $label=$('<div class="col-lg-2">').append("질문 : ").appendTo($formGroup);
         	let $div=$('<div class="col-lg-10">').appendTo($formGroup);
             let $input =$('<input class=" form-control" id="question" name="question" minlength="2" type="text" required >');
-            
+            $input[0].dataset.questionnum=c.questionnum;
             $div.append($input.val(c.question));
             $('#cList').append($formGroup);
 		}
@@ -166,18 +172,20 @@
 		if(!(document.addCareFrm.question  instanceof RadioNodeList)){
 			var sheet=new Object();
 			sheet.question=document.addCareFrm.question.value;
-			careArr.push(sheet)
+			sheet.questionnum=document.addCareFrm.question.dataset.questionnum;
+			careArr.push(sheet);
 		}else{
 			$.each(document.addCareFrm.question,function(idx, c){
 				console.log(c);
 				var sheet=new Object();
 				sheet.question=c.value;
+				sheet.questionnum=c.dataset.questionnum;
 				careArr.push(sheet);
 			})
 		}
 		//폼에 히든 영역 추가
 		var careJson=JSON.stringify(careArr);
-		
+		console.log(careJson);
 		var h_input=document.createElement("input");
 		h_input.type = "hidden";
 		h_input.name = "careJson";

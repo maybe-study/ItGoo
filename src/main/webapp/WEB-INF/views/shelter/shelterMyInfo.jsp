@@ -92,7 +92,13 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' method="POST">
+					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+					</form>
+
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -113,7 +119,7 @@
 					<li class="mt"><a href="index2.html"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a class="active" href="javascript:;"> <i
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
@@ -151,7 +157,7 @@
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
+							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 
@@ -286,7 +292,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
-	
+
 		var shelter = ${shelter}
 		console.log(shelter);
 		$('#sheltername').text(shelter.companyname);
@@ -295,8 +301,8 @@
 		$('#shelteraddr').text(shelter.companylocation);
 		$('#shelteremail').text(shelter.companyemail);
 
-		
-		
+
+
 	</script>
 </body>
 
