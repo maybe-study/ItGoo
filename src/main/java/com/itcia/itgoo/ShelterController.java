@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
@@ -88,10 +89,33 @@ public class ShelterController {
 		return mav;
 	}
 	
-	
-	
-	
-	
+	@RequestMapping(value = "/dogdeletebtn")
+	public ModelAndView dogdeletebtn( Dog dog, RedirectAttributes attr) {
+		
+		mav = smm.dogdeletebtn(dog,attr);
+		attr.addFlashAttribute("dog",dog);
+		return mav;
+	}
+	@PostMapping(value = "/updatecompanypic")
+	public ModelAndView updatecompanypic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=smm.updatecompanypic(p,multi,cp);
+
+		return mav;
+	}
+	@PostMapping(value = "/updatecompanylocpic")
+	public ModelAndView updatecompanylocpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=smm.updatecompanylocpic(p,multi,cp);
+
+		return mav;
+	}
 
 	// 페이지 보기만
 
@@ -112,5 +136,11 @@ public class ShelterController {
 	public String page5() {
 		return "shelter/shelterRegiste";
 	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/sheltercard")
+	public String page6() {
+		return "shelter/sheltercard";
+	}
+	
 
 }

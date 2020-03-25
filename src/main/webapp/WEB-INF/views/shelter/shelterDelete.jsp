@@ -149,7 +149,7 @@
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterRegiste">등록</a></li>
+							<li><a href="shelterregiste">등록</a></li>
 							<li class="active"><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
@@ -183,6 +183,8 @@
 					<!-- /col-md-12 -->
 					<div class="col-md-12 mt">
 						<div class="content-panel">
+						<form action="dogdeletebtn?${_csrf.parameterName}=${_csrf.token}"
+						name="dogdeletebtn" method="post" id="dogdeletebtn">
 							<table class="table table-hover">
 								<h4>
 									<i class="fa fa-angle-right"></i> 현재 등록되어있는 강아지 목록
@@ -195,15 +197,19 @@
 										<th>이름</th>
 										<th>나이</th>
 										<th>성별</th>
-										<th>중성화
+										<th>중성화</th>
 										<th>특이사항</th>
+										<th></th>
 										<th>삭제</th>
 									</tr>
 								</thead>
+								
 								<tbody id="shelterlist">
-
+								
 								</tbody>
+								
 							</table>
+							</form>
 						</div>
 						   <div class="pagingdiv"></div>
 					</div>
@@ -269,6 +275,7 @@
            $("#shelterlist").empty();
            $.each(data,function(idx, data){
         		var $body = $("#shelterlist");
+        		var $form = $("#dogdeletebtn");
         		var sex = data.sex
         		var jungsung = data.dogjungsung
         		console.log("sex="+sex);
@@ -289,7 +296,9 @@
         		}
         		
         		$("<td>").text(data.dogspecial).appendTo($tr);
-        		});
+        		$("<td> <input type='hidden' name='dogid' id='dogid' class='dogid' value='"+data.dogid+"' />").appendTo($tr);
+        		$("<td> <input type='submit' name='dogdeletebtn' id='deletebtn' class='deletebtn' value='삭제' />").appendTo($tr);
+           });
         }
     
     })

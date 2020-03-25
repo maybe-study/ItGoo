@@ -2,6 +2,7 @@ package com.itcia.itgoo.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -60,6 +61,12 @@ public interface IShelterDao {
 	
 	@Select("select * from dog where dogid=#{dogid}")
 	Dog shelterdeletedetail(Integer dogid);
+	
+	boolean dogDeleteBtn(Dog dog);
+
+	void updateCompanyPic(String param1, String param2);
+
+	void updateCompanyLocPic(String param1, String param2);
 
 
 	

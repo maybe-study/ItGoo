@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
@@ -170,6 +171,52 @@ public class ShelterManagement {
 
 		view = "shelter/shelterDeleteDetail";
 		mav.setViewName(view);
+		return mav;
+	}
+	public ModelAndView dogdeletebtn(Dog dog, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		System.out.println("activityname="+dog.getDogid());
+		boolean d = sDao.dogDeleteBtn(dog);
+		if(d) {
+			System.out.println("글 존재시 삭제 트랜잭션 성공");
+			attr.addFlashAttribute("dog",dog);
+		}else {
+			System.out.println("삭제 트랜잭션 실패");
+		}
+		mav.setViewName("redirect:shelterdelete");
+		return mav;
+	}
+	public ModelAndView updatecompanypic(Principal p, MultipartHttpServletRequest multi, Company cp) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+
+		cp.setCompanyid((String) p.getName());
+		UploadFile up = new UploadFile();
+		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
+		for (String picPath : paths) {
+			System.out.println("cp="+cp);
+			System.out.println("num="+cp.getCompanyid());
+			sDao.updateCompanyPic(picPath, cp.getCompanyid());
+		}redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("sheltermyinfo");
+		mav.setView(redirectView);
+		return mav;
+
+	}
+	public ModelAndView updatecompanylocpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+
+		cp.setCompanyid((String) p.getName());
+		UploadFile up = new UploadFile();
+		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
+		for (String picPath : paths) {
+			System.out.println("cp="+cp);
+			System.out.println("num="+cp.getCompanyid());
+			sDao.updateCompanyLocPic(picPath, cp.getCompanyid());
+		}redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("sheltermyinfo");
+		mav.setView(redirectView);
 		return mav;
 	}
 	
