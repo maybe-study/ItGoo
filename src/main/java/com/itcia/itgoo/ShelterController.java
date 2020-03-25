@@ -90,12 +90,32 @@ public class ShelterController {
 	}
 	
 	
+	//마이페이지 수정
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/shelterinfochange")
+	public ModelAndView shelterinfochange(Principal p) {
+		mav= smm.shelterinfochange(p);
+		return mav;
+	}
+	
+	
 	
 	
 	
 
 	// 페이지 보기만
 
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/shelterchangeinfo")
+	public String page6() {
+		return "shelter/shelterchangeinfo";
+	}
+	
+	
+	
+	
+	
+	
 	@GetMapping(value = "/shelterDelete")
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
@@ -124,5 +144,6 @@ public class ShelterController {
 	public String page5() {
 		return "shelter/shelterRegiste";
 	}
-
+	
+	
 }

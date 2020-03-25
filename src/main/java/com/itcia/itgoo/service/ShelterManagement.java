@@ -142,6 +142,16 @@ public class ShelterManagement {
 		return mav;
 	}
 	
+	public ModelAndView shelterinfochange(Principal p) {
+		Company c= new Company();
+		
+		
+		
+		
+		
+		return mav;
+	}
+	
 	
 
 

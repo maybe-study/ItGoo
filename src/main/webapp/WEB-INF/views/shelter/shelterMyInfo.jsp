@@ -117,7 +117,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
+							<li><a href="shletermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -133,7 +133,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
-							<li><a href="shelterPicInfo">시설사진</a></li>
+							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -141,8 +141,8 @@
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="shelterDelete">삭제</a></li>
+							<li><a href="shelterregiste">등록</a></li>
+							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
 
