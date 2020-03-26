@@ -67,6 +67,14 @@ public interface IShelterDao {
 	void updateCompanyPic(String param1, String param2);
 
 	void updateCompanyLocPic(String param1, String param2);
+	
+	void updatecompanyname(Company cp);
+
+	void updatecompanyboss(Company cp);
+
+	void updatecompanyphone(Company cp);
+
+	void updatecompanyemail(Company cp);
 
 
 	

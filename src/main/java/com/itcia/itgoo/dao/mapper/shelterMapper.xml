@@ -4,23 +4,39 @@
 <mapper namespace="com.itcia.itgoo.dao.IShelterDao">
 
 
-<select id="xduplicateid" parameterType="member" resultType="member">
-	select * from client where id=#{id}
-</select>
-<update id="updateshelterlocation" parameterType="Company">
-		update company
-		set companylocation=#{companylocation} where
-		companyid=#{companyid} and
-		companykind=2
+	<select id="xduplicateid" parameterType="member"
+		resultType="member">
+		select * from client where id=#{id}
+	</select>
+	<update id="updateshelterlocation" parameterType="Company">
+		update companyset companylocation=#{companylocation} where companyid=#{companyid} and companykind=2
 	</update>
-<delete id="dogDeleteBtn" parameterType="int">
-	delete from dog dog where exists
-	(select * from dogpics dp where dp.dogid=dog.dogid and dog.dogid=#{dogid})
-</delete>
-<update id="updateCompanyPic" parameterType="Company">
-update companypic set (comapnypic=#{param1}, companyid=#{param2}) where companyid=#{companyid}
-</update>
-<update id="updateCompanyLocPic" parameterType="Company">
-update company set (comapnycard=#{param1}, companyid=#{param2}) where companyid=#{companyid}
-</update>
+	<delete id="dogDeleteBtn" parameterType="int">
+		delete from dog dog where exists (select * from dogpics dp where dp.dogid=dog.dogid and dog.dogid=#{dogid})
+	</delete>
+	<update id="updateCompanyPic" parameterType="Company">
+		update companypic set (comapnypic=#{param1}, companyid=#{param2}) where companyid=#{companyid}
+	</update>
+	<update id="updateCompanyLocPic" parameterType="Company">
+		update company set (comapnycard=#{param1}, companyid=#{param2}) where companyid=#{companyid}
+	</update>
+
+	<update id="updatecompanyname" parameterType="Company">
+		update company set companyname=#{companyname} where companyid=#{companyid}
+	</update>
+
+	<update id="updatecompanyboss" parameterType="Company">
+		update company set companyboss=#{companyboss} where companyid=#{companyid}
+	</update>
+
+	<update id="updatecompanyphone" parameterType="Company">
+		update company set companyphone=#{companyphone} where companyid=#{companyid}
+	</update>
+
+	
+
+	<update id="updatecompanyemail" parameterType="Company">
+		update company set companyemail=#{companyemail} where companyid=#{companyid}
+	</update>
+
 </mapper>

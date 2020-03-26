@@ -92,13 +92,12 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li>
-					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
-		           <form id="logout-form" action='logout' method="POST">
-					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
-					</form>
-
-					</li>
+					<li><a class="logout" href="#"
+						onclick="document.getElementById('logout-form').submit();">Logout</a>
+						<form id="logout-form" action='logout' method="POST">
+							<input name="${_csrf.parameterName}" type="hidden"
+								value="${_csrf.token}" />
+						</form></li>
 				</ul>
 			</div>
 		</header>
@@ -116,23 +115,17 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index2.html"> <i
+					<li class="mt"><a href="index2"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
-					<li class="sub-menu"><a class="active" href="javascript:;"> <i
-							class="fa fa-desktop"></i> <span>정보보기</span>
+					<li class="sub-menu"><a class="active" href="javascript:;">
+							<i class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shletermyinfo">보호소 정보보기</a></li>
+							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-cogs"></i> <span>정보 수정</span>
-					</a>
-						<ul class="sub">
-							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
-						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>보호소 사진</span>
@@ -190,9 +183,10 @@
 								<div class="main-p-tag">
 									<table>
 
-										<tr id="companynamevalue" name="companyname">
+										<tr>
 											<td>업체명:</td>
-											<td id="sheltername"></td>
+											<td><input id="sheltername"></td>
+											<td><input type="button" id="shname" value="변경"></td>
 										</tr>
 									</table>
 								</div>
@@ -200,9 +194,10 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companybossvalue" name="companyboss">
+										<tr>
 											<td>대표자:</td>
-											<td id="shelterboss"></td>
+											<td><input id="shelterboss"></td>
+											<td><input type="button" id="shboss" value="변경"></td>
 										</tr>
 									</table>
 								</div>
@@ -210,9 +205,10 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companyphonevalue" name="companyphone">
+										<tr>
 											<td>휴대폰:</td>
-											<td id="shelterphone"></td>
+											<td><input id="shelterphone" maxlength="11"></td>
+											<td><input type="button" id="shphone" value="변경"></td>
 										</tr>
 									</table>
 								</div>
@@ -221,10 +217,10 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companylocationvalue" name="companyaddr">
+										<tr>
 											<td>주소:</td>
-											<td id="shelteraddr"></td>
-										</tr>
+											<td  id="shelteraddr"></td>
+											</tr>
 									</table>
 								</div>
 							</div>
@@ -232,9 +228,10 @@
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companyemailvalue" name="companyemail">
+										<tr>
 											<td>이메일:</td>
-											<td id="shelteremail"></td>
+											<td><input id="shelteremail"></td>
+											<td><input type="button" id="shemail" value="변경"></td>
 										</tr>
 
 									</table>
@@ -293,16 +290,142 @@
 
 	<script>
 
-		var shelter = ${shelter}
-		console.log(shelter);
-		$('#sheltername').text(shelter.companyname);
-		$('#shelterboss').text(shelter.companyboss);
-		$('#shelterphone').text(shelter.companyphone);
-		$('#shelteraddr').text(shelter.companylocation);
-		$('#shelteremail').text(shelter.companyemail);
+	var shelter = ${shelter}
+	console.log(shelter);
+	$('#sheltername').val(shelter.companyname);
+	$('#shelterboss').val(shelter.companyboss);
+	$('#shelterphone').val(shelter.companyphone);
+	$('#shelteraddr').text(shelter.companylocation);
+	$('#shelteremail').val(shelter.companyemail);
+		
+		//업체이름 변경
+		var sheltername = $("#sheltername").val();
+		$("#shname").on("click", function(data){
+			var param={
+					_method:"patch",
+					companyname:$("#sheltername").val(),
+			}
+			$.ajax({
+				url: "updatesheltername",
+				method: "get",
+				data:param,
+				dataType: "JSON"
+			}).done((result)=>{
+				toastr.success("업체명변경에 성공했습니다.", '서버메시지');
+				console.log("result=",result);
+		
+			})
+			
+			.fail((xhr)=>{
+				(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
+				console.log("xhr=",xhr);
+			});
+			
+		});
+		
 
+ 	//업체대표이름변경
+		var shelterboss = $("#shelterboss").val();
+		$("#shboss").on("click",function(data){
+			var param={
+					_method:"patch",
+					companyboss:$("#shelterboss").val(),
+			}
+			$.ajax({
+				url:"updateshelterboss",
+				method:"get",
+				data:param,
+				dataType:"JSON"
+			}).don((result)=>{
+				toastr.success("이름변경에 성공했습니다.",'서버 메세지');
+				console.log("result=",result);
+				
+			} )
+			.fail((xhr)=>{
+				(xhr)=>printError(xhr, "이름변경에 실패하였습니다.")
+				console.log("xhr=",xhr);
+			} );
+			
+		} );
+		
+		
+		//보호소 전화번호 변경
+		var shelterphone = $("#shelterphone").val();
+		$("#shphone").on("click", function(data){
+			var param={
+					_method:"patch",
+					companyphone:$("#shelterphone").val(),
+			}
+			$.ajax({
+				url: "updateshelterphone",
+				method: "get",
+				data:param,
+				dataType: "JSON"
+			}).done((result)=>{
+				toastr.success("전화번호 변경에 성공했습니다.", '서버메시지');
+				console.log("result=",result);
+			
+			} )
+			
+			.fail((xhr)=>{
+				(xhr)=>printError(xhr, "전화번호 변경에 실패하였습니다.")
+				console.log("xhr=",xhr);
+			});
+			
+		});
+		
+		
+		/* //보호소 주소 변경
+		var shelteraddr = $("#shelteraddr").val();
+		$("#shaddr").on("click", function(data){
+			var param={
+					_method:"patch",
+					companylocation:$("#shelteraddr").val(),
+			}
+			$.ajax({
+				url: "updateshelteraddr",
+				method: "get",
+				data:param,
+				dataType: "JSON"
+			}).done((result)=>{
+				toastr.success("주소 변경에 성공했습니다.", '서버메시지');
+				console.log("result=",result);
+			
+			
+			} )
+			
+			.fail((xhr)=>{
+				(xhr)=>printError(xhr, "주소 변경에 실패하였습니다.")
+				console.log("xhr=",xhr);
+			});
+			
+		}); */
 
-
+		//보호소 이메일 변경
+	    var shelteremails = $("#shelteremail").val();
+		$("#shemail").on("click", function(data){
+			var param={
+					_method:"patch",
+					companyemail:$("#shelteremail").val(),
+			}
+			$.ajax({
+				url: "updateshelteremail",
+				method: "get",
+				data:param,
+				dataType: "JSON"
+			}).done((result)=>{
+				toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
+				console.log("result=",result);
+			
+			} )
+			
+			.fail((xhr)=>{
+				(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
+				console.log("xhr=",xhr);
+			});
+			
+		});
+ 
 	</script>
 </body>
 
