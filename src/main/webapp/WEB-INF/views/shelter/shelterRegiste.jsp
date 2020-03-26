@@ -136,7 +136,8 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
+							<li><a href="shletermyinfo">보호소 정보보기</a></li>
+
 						</ul></li>
 
 
@@ -160,7 +161,9 @@
 							<i class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li class="active"><a href="shelterregiste">등록</a></li>
+
+							<li><a href="shelterregiste">등록</a></li>
+
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
@@ -301,7 +304,7 @@
 						<div class="btn-div">
 
 							<input type="submit" id="insertdogbtn"
-								class="insertactivitybtn" value="액티비티 등록" /> 
+								class="insertactivitybtn" value="액티비티 등록" />
 								<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
 
 						</div>

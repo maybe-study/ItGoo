@@ -92,6 +92,12 @@
 		-webkit-align-items: center;
 		align-items: center;
 	}
+	.portfolio-box{
+		height:100%;
+	}
+	#nav{
+		margin:50px;
+	}
 </style>
 <body id="page-top">
 
@@ -153,6 +159,22 @@
 	
 
 	<!-- Portfolio Section -->
+	<section>
+		<ul class="nav nav-pills nav-fill" id="nav">
+		  <li class="nav-item">
+		    <a class="nav-link active" href="#">Active</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#">Longer nav link</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#">Link</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link disabled" href="#">Disabled</a>
+		  </li>
+		</ul>
+	</section>
 	<section id="portfolio">
 		<div class="container-fluid p-0">
 			<div class="row no-gutters" id="aList">
@@ -258,16 +280,16 @@
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-	<!-- Custom scripts for this template -->
-	<script src="js/creative.min.js"></script>
+
 	
 	<script>
 		var $aList=$('#aList');
+		$aList.empty();
 		$.each(${aList},function(idx,a){
 			console.log(a);
-			$aList.empty();
-			var $contaier=$('<div class="col-lg-4 col-sm-6">').appendTo($aList);
-			var $a=$('<a class="portfolio-box">').attr('href','auctionattend?auctionnum='+a.auctionnum).appendTo($contaier);
+			
+			var $contaier=$('<div class="col-lg-2 col-sm-3">').appendTo($aList);
+			var $a=$('<a class="portfolio-box">').attr('href','auctiondetail?auctionnum='+a.auctionnum).appendTo($contaier);
 			var $title=$('<div class="auction-title">').text(a.auctionname).appendTo($a);
 			var $img=$('<img class="img-fluid">').attr('src',a.auctionpic).appendTo($a);
 			var $div=$('<div class="portfolio-box-caption p-3">').appendTo($a);
@@ -280,7 +302,12 @@
 		
 
 	</script>
+	<script>
+	//소켓 생성
 
+	
+	
+	</script>
 </body>
 
 </html>

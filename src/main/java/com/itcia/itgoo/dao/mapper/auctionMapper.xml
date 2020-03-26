@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcia.itgoo.dao.IAuctionDao">
+<insert id="addAuction">
+<selectKey keyProperty="auctionnum" order="AFTER" resultType="int">
+	select max(auctionnum) from auction
+</selectKey>
+	insert into auction values(auction_seq.nextval,#{auctionname},#{auctionpic},#{lowprice},#{auctionexplain},TO_timestamp(#{auctionstart},'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN'),#{owner},'undefined',0)
+</insert>
+
+</mapper>

@@ -35,8 +35,13 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-</head>
+<style>
+#text {
+	background-color: red;
+}
+</style>
 
+</head>
 <body>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
@@ -107,7 +112,7 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
-	<aside>
+		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
@@ -123,7 +128,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterMyInfo">보호소 정보보기</a></li>
+							<li><a href="shletermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -139,7 +144,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
-							<li><a href="shelterPicInfo">시설사진</a></li>
+							<li><a href="shelterpicinfo">시설사진</a></li>
 						</ul></li>
 
 
@@ -147,8 +152,8 @@
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterRegiste">등록</a></li>
-							<li><a href="shelterDelete">삭제</a></li>
+							<li><a href="shelterregiste">등록</a></li>
+							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 
 
@@ -173,86 +178,90 @@
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 업체 정보
+					<i class="fa fa-angle-right"></i> 마이페이지
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
 				<div class="row mt">
 					<div class="col-lg-6 col-md-6 col-sm-6">
 
-						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
+						<h4 class="title">회원님들의 개인정보 보호에 힘쓰겠습니다.</h4>
 						<div id="message"></div>
 						<form class="contact-form php-mail-form" role="form"
-							onsubmit="return makeTestJson()"
-							action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
-							method="POST">
+							action="shelterinfochange" method="POST">
 
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
 
-										<tr id="companynamevalue" name="companyname">
-											<td>업체명:</td>
-											<td id="sheltername"></td>
+										<tr id="sheltername">
+											<td>업체명:</td>
 										</tr>
 									</table>
 								</div>
 							</div>
+
+
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companybossvalue" name="companyboss">
+
+										<tr id="shelterboss">
 											<td>대표자:</td>
-											<td id="shelterboss"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr id="companyphonevalue" name="companyphone">
-											<td>휴대폰:</td>
-											<td id="shelterphone"></td>
 										</tr>
 									</table>
 								</div>
 							</div>
 
+
+
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companylocationvalue" name="companyaddr">
+										<tr id="shelterphone">
+											<td>핸드폰:</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							
+							<div class="form-group">
+								<div class="main-p-tag">
+									<table>
+										<tr id="shelteraddr">
 											<td>주소:</td>
-											<td id="shelteraddr"></td>
 										</tr>
 									</table>
 								</div>
 							</div>
+
+
 
 							<div class="form-group">
 								<div class="main-p-tag">
 									<table>
-										<tr id="companyemailvalue" name="companyemail">
+										<tr id="shelteremail">
 											<td>이메일:</td>
-											<td id="shelteremail"></td>
 										</tr>
-
 									</table>
 								</div>
 							</div>
+
+
+
+
+
+
 						</form>
 
 					</div>
 					<!-- /row -->
 
-
-					<!-- /row -->
+				</div>
+				<!-- /row -->
 			</section>
 			<!-- /wrapper -->
 		</section>
-		<!-- /MAIN CONTENT -->
-		<!--main content end-->
-		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
 				<p>
@@ -292,8 +301,159 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
+	let data= undefined;
+	$.each(${mList},function(idx,data){
+	var $trcn=$("#sheltername");
+	var $trcb=$("#shelterboss");
+	var $trcp=$("#shelterphone");
+	var $trem=$("#shelteremail");
+	var $trea=$("#shelteraddr");
+	$("<input id='sheltername1' class='companynameval' >").val(data.sheltername).appendTo($trcn);
+	$("<td><input type='button' class='myButton' id='changename' value='업체이름변경'>").appendTo($trcn);
 	
+	$("<input id='shelterboss1' class='companybossval' >").val(data.shelterboss).appendTo($trcb);
+	$("<td><input type='button' class='myButton' id='changeemail' value='대표자이름변경'>").appendTo($trcb);
+	
+	$("<input id='shelterphone1' class='companyphoneval' > ").val(data.shelterphone).appendTo($trcp);
+	$("<td><input type='button' class='myButton' id='changephone' value='핸드폰 번호변경'>").appendTo($trcp);
+	
+	$("<input id='shelteraddr1' class='companyemailval' > ").val(data.shelteraddr).appendTo($trea);
+	$("<td><input type='button' class='myButton' id='changeaddress' value='주소변경'>").appendTo($trea);
+	
+	$("<input id='shelteremail1' class='companyemailval' > ").val(data.shelteremail).appendTo($trem);
+	$("<td><input type='button' class='myButton' id='changebirth' value='이메일변경'>").appendTo($trem);
+	});
+  	 
+	
+	var usernamae = $("#usernameval1").val();
+	$("#changename").on("click", function(data){
+		var param={
+				_method:"patch",
+				username:$("#usernameval1").val(),
+		}
+		console.log("companyname=" ,usernamae);
+		$.ajax({
+			url: "updateusername",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("이름변경에 성공했습니다.", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	
+	var useremails = $("#useremailval1").val();
+	$("#changeemail").on("click", function(data){
+		var param={
+				_method:"patch",
+				useremail:$("#useremailval1").val(),
+		}
+		$.ajax({
+			url: "updateuseremail",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
 
+	var userphone = $("#userphoneval1").val();
+	$("#changephone").on("click", function(data){
+		var param={
+				_method:"patch",
+				phone:$("#userphoneval1").val(),
+		}
+		$.ajax({
+			url: "updateuserphone",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("전화번호 변경에 성공했습니다.", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "전화번호 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	
+	
+	var userphone = $("#userbirthdayval1").val();
+	$("#changebirth").on("click", function(data){
+		var param={
+				_method:"patch",
+				birthday:$("#userbirthdayval1").val(),
+		}
+		$.ajax({
+			url: "updateuserbirth",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("생일 변경에 성공했습니다.", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "생일 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	
+	var useraddr = $("#useraddrressval1").val();
+	$("#changeaddress").on("click", function(data){
+		var param={
+				_method:"patch",
+				useraddress:$("#useraddrressval1").val(),
+		}
+		$.ajax({
+			url: "updateuseraddress",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("주소 변경에 성공했습니다.", '서버메시지');
+			console.log("result=",result);
+		
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "주소 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+	
+	
+		
 	</script>
 </body>
 

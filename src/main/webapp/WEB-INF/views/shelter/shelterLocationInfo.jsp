@@ -98,7 +98,7 @@
 		           <form id="logout-form" action='logout' method="POST">
 					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 					</form>
-					
+
 					</li>
 				</ul>
 			</div>
@@ -124,7 +124,8 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
+							<li><a href="shletermyinfo">보호소 정보보기</a></li>
+
 						</ul></li>
 
 
@@ -177,9 +178,9 @@
 					<div class="col-sm-12">
 					<form action="updateshelterlocation?${_csrf.parameterName}=${_csrf.token}" id="updateloc" name="updateloc" method="post" enctype="multipart/form-data">
 						<section class="panel">
-						
+
 							<header class="panel-heading">위치 검색 및 변경 </header>
-							
+
 							<div class="panel-body">
 								<input type="text" id="sample4_postcode" placeholder="우편번호" >
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -194,7 +195,7 @@
 								<br>
 								<div id="map" style="width: 100%; height: 350px;"></div>
 								<script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script> 
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
 							</div>
 							<div class="button-div"><input type="submit" class="location-button" value="위치 등록"/></div>
 						</section>
@@ -228,7 +229,7 @@
 		<!-- /MAIN CONTENT -->
 		<!--main content end-->
 		<!--footer start-->
-		
+
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
@@ -244,14 +245,14 @@
 	<!--Google Map-->
 	<script>
 	function showmap(roadAddr) {
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 			level : 3
 		// 지도의 확대 레벨
 		};
 
-		// 지도를 생성합니다    
+		// 지도를 생성합니다
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 
 		// 주소-좌표 변환 객체를 생성합니다
@@ -262,7 +263,7 @@
 						roadAddr,
 						function(result, status) {
 
-							// 정상적으로 검색이 완료됐으면 
+							// 정상적으로 검색이 완료됐으면
 							if (status === kakao.maps.services.Status.OK) {
 
 								var coords = new kakao.maps.LatLng(result[0].y,
@@ -290,50 +291,50 @@
 	}
 	function myMarkers(map){
 		console.log("getAdresses");
-		$.ajax({ 
-			type: "GET", 
+		$.ajax({
+			type: "GET",
 			url: 'getadds',
 			success: function(json){
 				var listData=[];
 				var geocoder = new kakao.maps.services.Geocoder();
 				$.each(json, function(index, item){
 					console.log(item);
-					var data= { 
-							title : item.branchname, 
+					var data= {
+							title : item.branchname,
 							groupAddress : item.companylocation
 					};
 					listData.push(data);
-					
+
 				})
 				console.log(listData);
-				var imageSrc = "./img/marker.png"; 
-				var imageSize = new kakao.maps.Size(50, 50); 
-				// 마커 이미지를 생성합니다    
+				var imageSrc = "./img/marker.png";
+				var imageSize = new kakao.maps.Size(50, 50);
+				// 마커 이미지를 생성합니다
 				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 				for (var i=0; i < listData.length ; i++) {
 					// 주소로 좌표를 검색합니다
 					geocoder.addressSearch(listData[i].groupAddress, function(result, status) {
-					    // 정상적으로 검색이 완료됐으면 
+					    // 정상적으로 검색이 완료됐으면
 					     if (status === kakao.maps.services.Status.OK) {
-	
+
 					        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
+
 					        // 결과값으로 받은 위치를 마커로 표시합니다
 					        var marker = new kakao.maps.Marker({
 					            map: map,
 					            position: coords,
 					            image:markerImage,
 					        });
-					    } 
+					    }
 					});
-				}   
-			}, 
+				}
+			},
 			error:function(error){
 				console.log(error);
 			},
 			dataType: 'json' });
 
-		
+
 	}
 
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -384,40 +385,40 @@
 							guideTextBox.innerHTML = '';
 							guideTextBox.style.display = 'none';
 						}
-						
-						
-						
-						
-						
-						
-						
-						
+
+
+
+
+
+
+
+
 //======================================================================================================================================================
-	
-						
-						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 						mapOption = {
 							center : new kakao.maps.LatLng(33.450701,
 									126.570667), // 지도의 중심좌표
 							level : 3
 						// 지도의 확대 레벨
 						};
-						// 지도를 생성합니다    
+						// 지도를 생성합니다
 						var map = new kakao.maps.Map(mapContainer, mapOption);
 						// 주소-좌표 변환 객체를 생성합니다
-						var coords = new kakao.maps.LatLng(0,0);						
-						var geocoder = new kakao.maps.services.Geocoder();	
-						
-						
-						
+						var coords = new kakao.maps.LatLng(0,0);
+						var geocoder = new kakao.maps.services.Geocoder();
+
+
+
 						//ajax를 통해 지점들의 주소를 가져오고 맵에 표시하는 함수
 						myMarkers(map);	//맵을 같이 써야함
-						
-						
-						
+
+
+
 						// 검색한 주소로 좌표를 검색하고 마커로 표시하는 부분
 						geocoder.addressSearch(roadAddr,function(result, status) {
-							// 정상적으로 검색이 완료됐으면 
+							// 정상적으로 검색이 완료됐으면
 							if (status === kakao.maps.services.Status.OK) {
 
 								var coords = new kakao.maps.LatLng(

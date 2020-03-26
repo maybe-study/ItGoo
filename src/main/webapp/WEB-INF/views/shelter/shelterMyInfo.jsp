@@ -97,7 +97,7 @@
 		           <form id="logout-form" action='logout' method="POST">
 					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 					</form>
-					
+
 					</li>
 				</ul>
 			</div>
@@ -123,7 +123,7 @@
 							class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li class="active"><a href="sheltermyinfo">보호소 정보보기</a></li>
+							<li><a href="shletermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
@@ -292,7 +292,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
-	
+
 		var shelter = ${shelter}
 		console.log(shelter);
 		$('#sheltername').text(shelter.companyname);
@@ -301,8 +301,8 @@
 		$('#shelteraddr').text(shelter.companylocation);
 		$('#shelteremail').text(shelter.companyemail);
 
-		
-		
+
+
 	</script>
 </body>
 

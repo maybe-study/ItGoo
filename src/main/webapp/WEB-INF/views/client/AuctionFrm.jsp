@@ -78,8 +78,10 @@
           <div class="col-lg-12">
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i> 등록 물품</h4>
-              <form class="form-horizontal style-form" method="post" action="addauction?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-                
+              <form class="form-horizontal style-form" method="post" 
+              action="addauction?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data"
+              onsubmit="return check()" name="auctionfrm">
+                <input type="hidden" name="srcJson">
                 <div class="form-group">
                   <label class="col-sm-2  control-label">경매 이름</label>
                   <div class="col-sm-10">
@@ -123,6 +125,9 @@
               </div>
                 <div class="form-group" style="text-align: center">
                     <button class="btn btn-theme" type="submit">경매 등록</button>
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <button class="btn btn-theme" type="button" onclick="check()">테스트</button>
                 </div>
               </form>
             </div>
@@ -188,7 +193,9 @@
     });
 </script>
 <script>
-  ClassicEditor
+//전역변수
+let myeditor
+ClassicEditor
     .create( document.querySelector( '#editor' ),{
         ckfinder: {
             uploadUrl: './ck/upload?${_csrf.parameterName}=${_csrf.token}' // 내가 지정한 업로드 url (post로 요청감)
@@ -197,11 +204,37 @@
         }
     } )
     .then( editor => {
+    	//대입
+    	myeditor=editor;
         console.log( editor );
     } )
     .catch( error => {
         console.error( error );
     } );
+    
+  //이미지 src 추출
+  function getSrc(textarea) {
+	    var temporaryElement = document.createElement('div');
+
+	    temporaryElement.innerHTML = textarea;
+		
+	    var images = temporaryElement.getElementsByTagName('img');
+
+	    var output = [];
+
+	    for (var i = 0; i < images.length; i++) {
+	        output.push(images[i].src);
+	    }
+
+	    return output;
+	}
+  function check(){
+	  const data = myeditor.getData();
+	  var frm=document.auctionfrm
+	  //디비에 저장할 이미지 리스트
+	  frm.srcJson.value=JSON.stringify(getSrc(data));
+	  return true;
+  }
 </script>
 </body>
 

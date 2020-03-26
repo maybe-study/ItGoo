@@ -56,8 +56,8 @@ public class Client2Controller {
 	}
 	
 	@PostMapping("/addauction")
-	public ModelAndView addAuction(Principal p,Auction a,MultipartFile f) {
-		mav=am.addAuction(p,a,f);
+	public ModelAndView addAuction(Principal p,Auction a,MultipartFile f,String srcJson) {
+		mav=am.addAuction(p,a,f,srcJson);
 		return mav;
 	}
 	
