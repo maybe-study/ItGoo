@@ -216,35 +216,36 @@ public class ActivityManagement {
 		mav.setViewName(view);
 		return mav;
 	}
-	public ModelAndView activityList(Principal p, Activity ac) {
+	public ModelAndView activityList(Activity ac,int dogid) {
 		mav = new ModelAndView();
 		String view=null;
-		ac.setCompanyid((String) p.getName());
 		List<Activity> atList = aDao.activitylist(ac);
+		System.out.println("at리스트에 들어있는 값은 "+atList);
 		mav.addObject("atList",new Gson().toJson(atList));
+		mav.addObject("dogid",dogid);
 		mav.setViewName("activityclient/activityList");
 		return mav;
 	}
-	public ModelAndView activityListDetail(Integer activitynum) {
+	public ModelAndView activityListDetail(Integer activitynum,int dogid) {
 		mav = new ModelAndView();
 		String view=null;
 		aDao.activitypics(activitynum);
 		Activity listdetail = aDao.activityListDetail(activitynum);
 		listdetail.setActivitynum(activitynum);
 		listdetail.setActivitypics(aDao.activitypics(activitynum));
-
 		System.out.println("ac=--------------------------------------------------------");
-
+		System.out.println("제발 별이야 아이디좀 알려주라 좀 "+dogid);
 		mav.addObject("listdetail",new Gson().toJson(listdetail));
-
+		mav.addObject("dogid",dogid);
 		view = "activityclient/activityListDetail";
 		mav.setViewName(view);
 		return mav;
 	}
-	public ModelAndView activityReservationBtn(Principal p,Reservation rv, RedirectAttributes attr) {
+	public ModelAndView activityReservationBtn(Principal p,Reservation rv, RedirectAttributes attr, int dogid) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
 		rv.setId((String) p.getName());
+		rv.setDogid(dogid);
 		boolean r = aDao.activityReservationBtn(rv);
 		aDao.updateReservationPhase(rv);
 

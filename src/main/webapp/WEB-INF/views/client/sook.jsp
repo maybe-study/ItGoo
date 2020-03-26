@@ -8,9 +8,9 @@
 </head>
 <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/c9422a165f.js"
-	crossorigin="anonymous"></script>
-	<script src="lib/jquery/jquery.min.js"></script>
-	<script src="main3.js?ver"></script>
+   crossorigin="anonymous"></script>
+   <script src="lib/jquery/jquery.min.js"></script>
+   <script src="main3.js?ver"></script>
 <style>
 
 :root {
@@ -114,9 +114,9 @@ border-radius: 50px;
 text-align: center;
 margin-top: 100px;}
 #fix:hover {
-	color:#04da97;
-	border: 2px solid #04da97;
-	background-color: #333;
+   color:#04da97;
+   border: 2px solid #04da97;
+   background-color: #333;
 }
 #log1{
 display: none;
@@ -124,10 +124,10 @@ display: none;
 </style>
 <body>
 <div class="container">
-		<div id="sinsang">
-		
-		</div>
-        <form class="toggle" method="get" action="finalchoice?${_csrf.parameterName}=${_csrf.token}" id="log">
+      <div id="sinsang">
+      </div>
+        <form class="toggle" method="get" action="finalchoice?${_csrf.parameterName}=${_csrf.token}" id="log" name="frm">
+        <input type="hidden" name="dogid">
 
             <input type="radio" id="choice1" name="choice" value="go">
             <label for="choice1">입양유지</label>
@@ -139,8 +139,8 @@ display: none;
             <button type="submit" id="log1"></button>
         </form>
       <div class="container ss">
-      	<input type="button" id="fix" value="확정" onclick="document.getElementById('log').submit();" >
-	</div>
+         <input type="button" id="fix" value="확정" onclick="document.getElementById('log').submit();" >
+   </div>
     </div>
 </body>
 <script type="text/javascript">
@@ -179,13 +179,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', (e) => st.clickHandler(e));
 
-$.each(${adList},function(idx,data){
-	console.log("adList해"+data);
-	var $dex=$('#sinsang');
-	var $div1=$('<div>').append($('<div>').text("강아지 이름 : "+data.dogname)).append($('<br>').text("나이 :"+data.dogage+" 살"));
-	$(dex).append($div1);
-	
-})
+var qs=getQueryStringObject();
+function getQueryStringObject() {
+    var a = window.location.search.substr(1).split('&');
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i) {
+        var p = a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+ }
 
+document.frm.dogid.value=qs.dogid;
 </script>
 </html>

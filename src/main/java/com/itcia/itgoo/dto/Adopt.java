@@ -1,5 +1,7 @@
 package com.itcia.itgoo.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
@@ -26,6 +28,8 @@ public class Adopt {
 	private String dogpic;
 	private String dogage;
 	private String dogspecial;
+	private List<String> dogpics;
+	private int status;
 	private String sex;
 	private String thum;
 	

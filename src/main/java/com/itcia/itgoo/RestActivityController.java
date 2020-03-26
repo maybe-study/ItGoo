@@ -81,10 +81,10 @@ public class RestActivityController {
 		return mav;
 	}
 	@RequestMapping(value = "/activitylistdetail" , method = RequestMethod.GET)
-	public ModelAndView activityListDetail(Integer activitynum) {	//null 값도 받으려고
+	public ModelAndView activityListDetail(Integer activitynum,int dogid) {	//null 값도 받으려고
 		System.out.println("여기 있어요");
 		
-		mav= am.activityListDetail(activitynum);
+		mav= am.activityListDetail(activitynum,dogid);
 		
 		return mav;
 	}
