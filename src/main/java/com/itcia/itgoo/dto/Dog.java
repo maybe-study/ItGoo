@@ -16,6 +16,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain=true)
 public class Dog {
+	private String id;
 	private int dogid;
 	private String dogname;
 	private int dogage;

@@ -29,6 +29,7 @@ public class ActivityController {
 	private ActivityManagement am;
 
 	private ModelAndView mav;
+	
 	@RequestMapping(value = "/activitymyinfo", method = RequestMethod.GET)
 	public  ModelAndView activityMyInfo1 (Principal p,Company cp) {
 		if(p!=null) {
@@ -87,21 +88,19 @@ public class ActivityController {
 		return mav;
 	}
 	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
-	public ModelAndView activityList(Principal p, Activity ac) {
-		if(p!= null) {
-			p.getName();
-			System.out.println("p="+p.getName());
-		}
-		mav= am.activityList(p,ac);
+	public ModelAndView activityList( Activity ac,int dogid) {
+			System.out.println(dogid);
+		mav= am.activityList(ac,dogid);
 		return mav;
 	}
 	@RequestMapping(value = "/activityreservationbtn" )
-	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr) {	//null 값도 받으려고
+	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {	//null 값도 받으려고
 		if(p!= null) {
 			p.getName();
 			System.out.println("p="+p.getName());
+			System.out.println("액티비티에 필요한 강아지 번호는"+dogid);
 		}
-		mav= am.activityReservationBtn(p,rv,attr);
+		mav= am.activityReservationBtn(p,rv,attr,dogid);
 		attr.addFlashAttribute("rv",rv);
 		return mav;
 	}
