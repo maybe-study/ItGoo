@@ -41,7 +41,7 @@ public interface IAuctionDao {
 	@Select("select * from auctionpics where auctionnum=#{auctionnum}")
 	List<String> auctionPics(int auctionnum);
 	@Select("select * from (select * from bidupdate ORDER by currentprice desc) " + 
-			"where auctionnum=10 and rownum=1")
+			"where auctionnum=${auctionnum} and rownum=1")
 	BidUpdate getMaxBid(BidUpdate b);
 	@Insert("insert into bidupdate values(#{currentprice},#{id},#{auctionnum})")
 	void insertBid(BidUpdate b);

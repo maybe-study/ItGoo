@@ -188,8 +188,12 @@
   <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker({
-          minDate : moment()
+        	format:'MM/DD/YYYY h:00 A',
+        	minDate: moment().add(1,'h')
+          	
+          
         });
+        
     });
 </script>
 <script>
@@ -212,27 +216,20 @@ ClassicEditor
         console.error( error );
     } );
     
-  //이미지 src 추출
-  function getSrc(textarea) {
-	    var temporaryElement = document.createElement('div');
-
-	    temporaryElement.innerHTML = textarea;
-		
-	    var images = temporaryElement.getElementsByTagName('img');
-
-	    var output = [];
-
-	    for (var i = 0; i < images.length; i++) {
-	        output.push(images[i].src);
-	    }
-
-	    return output;
-	}
+  
   function check(){
 	  const data = myeditor.getData();
-	  var frm=document.auctionfrm
 	  //디비에 저장할 이미지 리스트
-	  frm.srcJson.value=JSON.stringify(getSrc(data));
+	  var imgList=[];
+	  console.log(data);
+	  $(data).find('img').each(function(){
+	  	  imgList.push($(this).attr('src'));
+	  });
+
+	  var frm=document.auctionfrm
+	  
+	  frm.srcJson.value=JSON.stringify(imgList);
+	  console.log(JSON.stringify(imgList));
 	  return true;
   }
 </script>
