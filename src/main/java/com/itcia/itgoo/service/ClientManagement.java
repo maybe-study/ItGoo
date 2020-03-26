@@ -39,7 +39,7 @@ public class ClientManagement {
 
 	public String adoptlistdetail(String dogid) {
 		System.out.println("======================================\ndogid:" + dogid);
-		Dog dog = cDao.dogDetail(dogid);
+		Adopt dog = cDao.dogDetail(dogid);
 		dog.setDogpics(cDao.adoptlistdetail(dogid));
 		return new Gson().toJson(dog);
 	}
@@ -104,13 +104,33 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView finalsook(Principal p, Reservation rs) {
-		rs.setId(p.getName());
+	public ModelAndView finalsook(Principal p, Dog dog,int dogid) {
+		dog.setId(p.getName());
+		dog.setDogid(dogid);
+		Dog choice=cDao.finalsook(dog);
 		System.out.println("숙려기간 데이터 쏴주자");
-		List<Reservation> adList=cDao.finalsook(rs);
-		System.out.println("나의리스트는"+adList);
-		mav.addObject("adList",new Gson().toJson(adList));
+		System.out.println("나의리스트는"+choice);
+		mav.addObject("fifa",new Gson().toJson(choice));
 		mav.setViewName("client/sook");
+		return mav;
+	}
+
+	public ModelAndView updatedog(int dogid,String choice, Principal p, Reservation rs) {
+		System.out.println("마지막 선택 업데이트 중");
+		rs.setId(p.getName());
+		rs.setDogid(dogid);
+		
+		if(choice.equals("go")){
+			System.out.println("사랑으로 키우기");
+			cDao.updateDog(rs);
+			mav.setViewName("./client/myAdoptPhase");
+		}
+		if(choice.equals("stop")){
+			System.out.println("강아지 입양해 좀!!!!!");
+			cDao.deleteadopt(rs);
+			mav.setViewName("adoptList");
+		}
+		
 		return mav;
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -55,19 +56,17 @@ public class AuctionManagement {
 		for(String src:srcList) {
 			aDao.addauctionPic(a.getAuctionnum(),src);
 		}
-		mav.setViewName("/auctionlist");
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("auctionlist");
+		mav.setView(redirectView);
 		return mav;
 	}
 
 	public ModelAndView auctionAttend(int auctionnum, Principal p) {
 		mav.addObject("auction",new Gson().toJson(aDao.auctionDetail(auctionnum)));
 		mav.addObject("aPics",new Gson().toJson(aDao.auctionPics(auctionnum)));
-		//방 생성
-		
-		//소켓 열고
-		
-		//경매 참여자 리스트에 저장
-		
+		mav.addObject("bids",new Gson().toJson(aDao.bids(auctionnum)));
 		mav.setViewName("client/AuctionAttend");
 		return mav;
 	}

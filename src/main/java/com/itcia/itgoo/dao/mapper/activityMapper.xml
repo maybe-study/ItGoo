@@ -116,12 +116,12 @@
 		and ado.id= cli.id and ado.dogid = dog.dogid and ado.phase=4
 	</select>
 	<update id="updateReservationPhase" parameterType="Reservation">
-		update adopt set phase = 4 where id=#{id}
+		update adopt set phase = 4 where dogid=#{dogid} and id=#{id}
 	</update>
 	<update id="acceptBtn" parameterType="Reservation">
-	update adopt set phase = 5 where id = #{id}
+	update adopt set phase = 5 where dogid=#{dogid} and id=#{id}
 	</update>
 	<update id="rejectBtn" parameterType="Reservation">
-	update adopt set phase = 0 where id = #{id}
+	update adopt set phase = 0 where dogid=#{dogid} and id=#{id}
 	</update>
 </mapper>

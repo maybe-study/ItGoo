@@ -43,11 +43,12 @@
 </head>
 
 <body>
-  <section id="container">
-    <!-- **********************************************************************************************************************************************************
+	<header>
+		<section id="container">
+			<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
-    <!--header start-->
+			<!--header start-->
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
@@ -59,87 +60,88 @@
 						</form></li>
 				</ul>
 			</div>
-		</header>
-		<!--header end-->
-		<!-- **********************************************************************************************************************************************************
+		</section>
+	</header>
+	<!--header end-->
+	<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
-    <!--sidebar start-->
+	<!--sidebar start-->
 
-    <!--sidebar end-->
-    <!-- **********************************************************************************************************************************************************
+	<!--sidebar end-->
+	<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-		<!--main content start-->
-		<section id="main-content">
-			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> 나의입양 진행상황
-				</h3>
-				<form action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
-					onsubmit="return makeTestJson()" name=frm id="frm" method="post">
-					<input type="hidden" name="test" value="0">
-					<!-- /row -->
-					<!-- INPUT MESSAGES -->
-					<div class="row mt">
-						<div class="col-lg-10">
-							<div class="row mt" id="addogList"></div>
+	<!--main content start-->
+	<section id="main-content">
+		<section class="wrapper">
+			<h3>
+				<i class="fa fa-angle-right"></i> 나의입양 진행상황
+			</h3>
+			<form action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
+				onsubmit="return makeTestJson()" name=frm id="frm" method="post">
+				<input type="hidden" name="test" value="0">
+				<!-- /row -->
+				<!-- INPUT MESSAGES -->
+				<div class="row mt">
+					<div class="col-lg-10">
+						<div class="row mt" id="addogList"></div>
 
-						</div>
 					</div>
+				</div>
 
-					<!-- modal  -->
-					<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">×</span>
-									</button>
+				<!-- modal  -->
+				<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
+					role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
 
-								</div>
-								<div class="modal-body">
-									<div id="productCarousel" class="carousel slide"
-										data-ride="carousel" style="display: flex;">
-										<ol class="carousel-indicators">
-										</ol>
-										<div>
-											<div class="carousel-inner" role="listbox"></div>
-										</div>
-										<div style="margin-top: 100px; margin-left: 30px;">
-											<table style="margin: auto">
-												<tr>
-													<td>이름:</td>
-													<td id="name"></td>
-												</tr>
-												<tr>
-													<td>나이:</td>
-													<td id="age"></td>
-												</tr>
-												<tr>
-													<td>성별:</td>
-													<td id="sex"></td>
-												</tr>
-												<tr>
-													<td>특이사항:</td>
-													<td id="special"></td>
-												</tr>
-											</table>
-										</div>
+							</div>
+							<div class="modal-body">
+								<div id="productCarousel" class="carousel slide"
+									data-ride="carousel" style="display: flex;">
+									<ol class="carousel-indicators">
+									</ol>
+									<div>
+										<div class="carousel-inner" role="listbox"></div>
 									</div>
-									<a class="left carousel-control" href="#productCarousel"
-										role="button" data-slide="prev"> <span
-										class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a> <a class="right carousel-control" href="#productCarousel"
-										role="button" data-slide="next"> <span
-										class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
-									<!-- <div id="demo" class="carousel slide" data-ride="carousel">
+									<div style="margin-top: 100px; margin-left: 30px;">
+										<table style="margin: auto">
+											<tr>
+												<td>이름:</td>
+												<td id="name"></td>
+											</tr>
+											<tr>
+												<td>나이:</td>
+												<td id="age"></td>
+											</tr>
+											<tr>
+												<td>성별:</td>
+												<td id="sex"></td>
+											</tr>
+											<tr>
+												<td>특이사항:</td>
+												<td id="special"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<a class="left carousel-control" href="#productCarousel"
+									role="button" data-slide="prev"> <span
+									class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a> <a class="right carousel-control" href="#productCarousel"
+									role="button" data-slide="next"> <span
+									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+								<!-- <div id="demo" class="carousel slide" data-ride="carousel">
 										<ul class="carousel-indicators">
 										</ul>
 										The slideshow
@@ -153,49 +155,49 @@
 											class="carousel-control-next-icon"></span>
 										</a>
 									</div> -->
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" id="adoptBtn"></button>
-									<button type="button" class="btn btn-default"
-										id="closeModalBtn">뒤로가기</button>
-								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" id="adoptBtn"></button>
+								<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
 							</div>
 						</div>
 					</div>
-					<!-- /row -->
-				</form>
+				</div>
+				<!-- /row -->
+			</form>
 
-			</section>
-			<!-- /wrapper -->
+		</section>
+	</section>
+	<!-- /wrapper -->
 
-			<script src="lib/jquery/jquery.min.js"></script>
-			<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-			<script class="include" type="text/javascript"
-				src="lib/jquery.dcjqaccordion.2.7.js"></script>
-			<script src="lib/jquery.scrollTo.min.js"></script>
-			<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-			<!--common script for all pages-->
-			<script src="lib/common-scripts.js"></script>
-			<!--script for this page-->
-			<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-daterangepicker/date.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-daterangepicker/moment.min.js"></script>
-			<script type="text/javascript"
-				src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-			<script src="lib/advanced-form-components.js"></script>
-			<script src="main2.js?ver"></script>
+	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script class="include" type="text/javascript"
+		src="lib/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="lib/jquery.scrollTo.min.js"></script>
+	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+	<!--common script for all pages-->
+	<script src="lib/common-scripts.js"></script>
+	<!--script for this page-->
+	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/date.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript"
+		src="lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+	<script src="lib/advanced-form-components.js"></script>
+	<script src="main2.js?ver"></script>
 
-			<script>
+	<script>
 
 /* 	 $.each(${phase},function(idx,data){
 		 var $phaselist = $("$phaselist");
@@ -218,32 +220,16 @@
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
                 .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
-		if(data.phase==2){	//시험 시작
-			var $p4=$('#adoptBtn').text("적격성 평가 시작")
-			$p4.on("click",function(){
-        		location.href="./testpaper?dogid="+data.dogid
-    		})	
-		}
-		if(data.phase==2){	//액티비티 예약
-			var $p4=$('#adoptBtn').text("액티비티 예약")
-			$p4.on("click",function(){
-        		location.href="./testpaper?dogid="+data.dogid
-    		})	
-		}
-		if(data.phase==4){
-			var $p4=$('#adoptBtn').text("액티비티 예약확인")
-    		$p4.on("click",function(){
-        		location.href="./showmyactivity?dogid="+data.dogid
-    	})
-    	
-    }else if(data.phase==5){
-    var $p5=$('#adoptBtn').text("숙려기간")
-    $p5.on("click",function(){
-        		location.href="./finalsook?dogid="+data.dogid
-    })
-    }
+		
+		 $div3.append($img);
+		 $h4.append($div3);
+		 $div2.append($h4);
+		 $div1.append($div2);
+		 $qList.append($div1);
+		 
+		});
 
-
+	
 		/* if(data.phase==0){
         	var $p0=$('#adoptBtn').text("입양");
         	$p0.on("click", function(){
@@ -289,24 +275,13 @@
         	})
          };
 	  */
-
-
-
-
-
-		 $div3.append($img);
-		 $h4.append($div3);
-		 $div2.append($h4);
-		 $div1.append($div2);
-		 $qList.append($div1);
-
-	 });
-
-	 $('#openModalBtn').on('click', function(e){
+	 $(document).on('click','#openModalBtn', function(e){
 		 $('#modalBox').modal('show');
-	 //console.log(e.target.dataset.dogid);
-		   var dogid=e.target.dataset.dogid;
-		 console.log("dogid:",dogid);
+	 console.log(e.target.dataset);
+		  var dogid=e.target.dataset.dogid;
+		  var phase=e.target.dataset.phase;
+		 console.log("클릭한 모달의 dogid:"+dogid);
+		 console.log("클릭한 모달의 phase:"+phase);
 		 $.ajaxSetup({
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -320,7 +295,36 @@
 
 				//서블릿이 성공하면 다시 돌아오는것
 				success : function(data) {
-					console.log("data",data);
+					console.log("모달에 나올 data",data);
+					console.log(data.phase);
+					 if(data.phase==2){   //시험 시작
+				         var $p2=$('#adoptBtn').text("적격성 평가 시작")
+				         $p2.on("click",function(){
+				        	 console.log("2단계"+data.phase);
+				              location.href="./testpaper?dogid="+data.dogid
+				          })   
+				      }else if(data.phase==3){   //액티비티 예약
+				         var $p3=$('#adoptBtn').text("액티비티 예약")
+				         console.log("3단계"+data.phase);
+				         $p3.on("click",function(){
+				              location.href="./activitylist?dogid="+data.dogid
+				          })   
+				      }else if(data.phase==4){
+				         var $p4=$('#adoptBtn').text("액티비티 예약확인")
+				         console.log("4단계"+data.phase);
+				          $p4.on("click",function(){
+				              location.href="./showmyactivity?dogid="+data.dogid
+				       })
+				    }else if(data.phase==5){
+				    var $p5=$('#adoptBtn').text("숙려기간")
+				    console.log("페이즈페이지에서 아이디"+data.dogid);
+				    $p5.on("click",function(){
+				              location.href="./finalsook?dogid="+data.dogid
+				            
+				   		 })
+				    }
+					
+					
 					var $uls=$('.carousel-indicators').empty();
 					var $items=$('.carousel-inner').empty();
 					$.each(data.dogpics,function(idx,pic){
@@ -350,11 +354,10 @@
 
 			});
 	 });
-					 $('#closeModalBtn').on('click', function(e){
-						 $('#modalBox').modal('hide');
+	 $('#closeModalBtn').on('click', function(e){
+			 $('#modalBox').modal('hide');
 	});
   </script>
-
 </body>
 
 </html>

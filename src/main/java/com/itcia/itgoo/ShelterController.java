@@ -104,7 +104,6 @@ public class ShelterController {
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
 	}
-
 	@RequestMapping(value = "/dogdeletebtn")
 	public ModelAndView dogdeletebtn(Dog dog, RedirectAttributes attr) {
 
