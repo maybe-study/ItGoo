@@ -109,6 +109,7 @@ public class ShelterController {
 	@GetMapping(value = "/shelterDelete")
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
+	}
 	@RequestMapping(value = "/dogdeletebtn")
 	public ModelAndView dogdeletebtn( Dog dog, RedirectAttributes attr) {
 
@@ -159,7 +160,7 @@ public class ShelterController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/sheltercard")
-	public String page6() {
+	public String page7() {
 		return "shelter/sheltercard";
 	}
 }

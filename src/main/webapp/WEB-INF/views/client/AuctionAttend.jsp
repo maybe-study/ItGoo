@@ -222,45 +222,13 @@
 				<div class="card col-lg-4">
 					<div class="card-body">
 					<h5 class="card-label" >경매장</h5>
-					<div style="height: 580px;overflow:auto">
-						asdadadsad<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
+					<div id="auction" style="height: 580px;overflow:auto">
+						
 						
 					</div>
 					<div class="col-lg-12 btn-div" id="button" style="text-align: center">
 						<input type="text" id="bid">
-						<button class="btn btn-primary"><i class="fas fa-plus"></i> 참가</button>
+						<button class="btn btn-primary" id="bid" onclick="sendBid()"><i class="fas fa-plus"></i> 참가</button>
 					</div>
 					
 					</div>
@@ -285,12 +253,13 @@
 	
 	
 	
-	
-	
-	
 	function sendBid(){
-		stompClient.send("/bid",{},"10000")
+		var bid=$('#bid').val();
+		stompClient.send("/bid",{},JSON.stringify({auctionnum:a.auctionnum, currentprice:bid}))
 	}
+	
+	
+	
 	var a=${auction};
 	var aPics=${aPics};
 	console.log(aPics);
@@ -313,6 +282,13 @@
 		}
 		
 	});
+	var bids=${bids};
+	
+	$.each(bids, function(idx,bid){
+		var $label=$('<div class="label label-default">').append(bid.id+":"+bid.currentprice);
+		$("#auction").append($label)
+	})
+	
 	
 	
 	//소켓
@@ -323,7 +299,11 @@
 		
 		//입찰구독
 		stompClient.subscribe('/topic/bidding/'+a.auctionnum,function(msg){
-			console.log(msg);
+			console.log(msg.body);
+			var bid=JSON.parse(msg.body);
+			console.log(bid)
+			var $label=$('<div class="label label-default">').append(bid.id+":"+bid.currentprice)
+			$("#auction").append($label)
 		});
 		stompClient.send("/enter",{},JSON.stringify({auctionnum: ""+a.auctionnum}));
 	});

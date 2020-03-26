@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.SelectKey;
 
 import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Auction;
+import com.itcia.itgoo.dto.BidUpdate;
 
 
 public interface IAuctionDao {
@@ -39,5 +40,12 @@ public interface IAuctionDao {
 	void addauctionPic(int i, String src);
 	@Select("select * from auctionpics where auctionnum=#{auctionnum}")
 	List<String> auctionPics(int auctionnum);
+	@Select("select * from (select * from bidupdate ORDER by currentprice desc) " + 
+			"where auctionnum=10 and rownum=1")
+	BidUpdate getMaxBid(BidUpdate b);
+	@Insert("insert into bidupdate values(#{currentprice},#{id},#{auctionnum})")
+	void insertBid(BidUpdate b);
+	@Select("select * from bidupdate where auctionnum=#{auctionnum}")
+	List<BidUpdate> bids(int auctionnum);
 
 }
