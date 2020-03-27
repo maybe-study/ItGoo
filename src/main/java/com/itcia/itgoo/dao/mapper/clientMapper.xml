@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itcia.itgoo.dao.IClientDao">
 
 <select id="myPhasedogList" resultType="Adopt">
-		SELECT adopt.DOGID,max(dogpic)as thum,phase,dogname,dogage,dogspecial,sex FROM adopt left join DOG on dog.dogid=adopt.dogid 
+		SELECT adopt.DOGID,max(dogpic)as thum,phase,dogname,dogage,dogspecial,sex FROM adopt left join DOG on dog.dogid=adopt.dogid
 		left join dogpics on dogpics.dogid=adopt.dogid where adopt.id=#{id} group by adopt.DOGID,phase, dogname, dogage, dogspecial, sex
 	</select>
-	
-	
-	
+
+
+
 <select id="showmyactivity" resultType="Reservation">
 select dog.dogid,client.id,client.username,dog.dogname,
 company.companyid,company.companyname,ACTIVITY.ACTIVITYNUM,
@@ -18,15 +18,26 @@ ACTIVITY.ACTIVITYPRICE,ACTIVITY.ACTIVITYTIME
 ,ACTIVITY.ACTIVITYDOGCNT,ACTIVITY.ACTIVITYEXPLANATION,
 activitythumb.activitypic,dogthumb.dogpic
 from dogthumb join dog on dog.dogid=dogthumb.dogid
-join adopt on adopt.dogid=dog.dogid 
+join adopt on adopt.dogid=dog.dogid
 join client on adopt.id=client.id
 join activityreserve on adopt.dogid=activityreserve.dogid and adopt.id=activityreserve.id
 join activity on activityreserve.activitynum=activity.activitynum
 join activitythumb on activitythumb.activitynum=activity.activitynum
 join company on activity.companyid= company.companyid where adopt.id=#{id} and adopt.dogid=#{dogid}
 	</select>
-	
+
 <select id="finalsook" resultType="Dog">
 select * from dog where dogid=#{dogid}
 	</select>
+
+
+<select id="showcaresheet" resultType="CareSheet">
+select * from caresheet
+	</select>
+
+	<insert id="regismallmeeting" parameterType="SmallMeeting">
+	insert into smallmeeting values(small_seq.nextval,#{id},#{smalllocation},#{maximumdog},#{meetingname},#{meetparticipatecnt},#{time},#{meetingdate} )
+
+	</insert>
+
 </mapper>

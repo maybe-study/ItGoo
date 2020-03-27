@@ -41,6 +41,7 @@ public class TestManagement {
 			List<Test> tList= new Gson().fromJson(test, new TypeToken<List<Test>>() {}.getType());
 			tList.get(0).setId(p.getName());
 			tDao.testDelete(tList.get(0));
+			
 			for(Test t: tList) {
 				t.setId(p.getName());
 				System.out.println(t);

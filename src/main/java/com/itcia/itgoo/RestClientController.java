@@ -31,7 +31,13 @@ public class RestClientController {
 	public String adoptlistdetail(String dogid) {
 		System.out.println("==============================controller=============================\ndogid:"+dogid);
 		String dogpics = cm.adoptlistdetail(dogid);
-		
+		return dogpics;
+	}
+	
+	@PostMapping(value = "/myadoptlistdetail", produces="plain/text;charset=utf-8")
+	public String myadoptlistdetail(String dogid,Principal p) {
+		System.out.println("==============================controller=============================\ndogid:"+dogid);
+		String dogpics = cm.myAdoptlistdetail(dogid,p);
 		return dogpics;
 	}
 	

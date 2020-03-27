@@ -106,7 +106,7 @@ html, body {
 		console.log("passdetail=", passdetail);
 
 		$.each(passdetail,function(idx, data) {
-			console.log("data="+data);
+			console.log("data=",data);
 							var $body = $("#activitypassbody");
 							var $accept = $("#acceptactivity");
 							var $reject = $("#rejectactivity");
@@ -120,9 +120,8 @@ html, body {
 							var $btn=$("<input type='submit' id='acceptbtn' class='acceptbtn' value='합격' />");
 							var $btn1= $("<input type='submit' id='rejectbtn' class='rejectbtn' value='불합격' />");
 							$btn.click(function(){
-								$("form").attr("action","acceptbtn?${_csrf.parameterName}=${_csrf.token}");
+								$("form").attr("action","acceptbtn?${_csrf.parameterName}=${_csrf.token}&dogid="+data.dogid);
 								$("form").append($("<input type='hidden' name='id' value='"+data.id+"' />"))
-							
 							});
 							$btn1.click(function(){
 								$("form").attr("action","rejectbtn?${_csrf.parameterName}=${_csrf.token}");
