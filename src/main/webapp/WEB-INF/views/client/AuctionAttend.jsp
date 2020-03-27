@@ -305,16 +305,27 @@
 			var $label=$('<div class="label label-default">').append(bid.id+":"+bid.currentprice)
 			$("#auction").append($label)
 		});
+		stompClient.subscribe('/topic/auctoinEnd/'+a.auctionnum,function(msg){
+			//종료된 경매입니다. 소켓 끊기
+			var $label=$('<div class="label label-default">').append("경매가 종료되었습니다.")
+			$("#auction").append($label)
+			disconnect();
+			
+			
+		});
+		
 		stompClient.send("/enter",{},JSON.stringify({auctionnum: ""+a.auctionnum}));
 	});
-	
-	
-	window.onbeforeunload = function (e) {
+	function disconnect(){
 		if(stompClient!=null){
 			stompClient.disconnect();;
 
 			console.log("Disconnected");
 		}
+	}
+	
+	window.onbeforeunload = function (e) {
+		disconnect();
 	};
 	</script>
 	</body>

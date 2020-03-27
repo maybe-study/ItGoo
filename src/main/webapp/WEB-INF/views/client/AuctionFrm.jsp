@@ -190,8 +190,6 @@
         $('#datetimepicker1').datetimepicker({
         	format:'MM/DD/YYYY h:00 A',
         	minDate: moment().add(1,'h')
-          	
-          
         });
         
     });

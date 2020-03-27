@@ -24,14 +24,7 @@
   <link href="css/style-responsive.css" rel="stylesheet">
   <script src="lib/chart-master/Chart.js"></script>
   <script src="lib/jquery/jquery.min.js"></script>
-  <script src="main.js?ver"></script>
-
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
+  <script src="main2.js?ver"></script>
 </head>
 
 <body>
@@ -73,7 +66,10 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 설문지 문항 관리 </h3>
+      <form action="submitsheet?${_csrf.parameterName}=${_csrf.token}" id="act" method="get" onsubmit="return makeJson()" name="frm">
+        <h3><i class="fa fa-angle-right"></i> 설문지 </h3>
+        <input type="hidden" name="aJson">
+        <input type="hidden" name="dogid" value="${dogid}">
         <div class="row">
           
           <!-- /col-md-12 -->
@@ -85,8 +81,8 @@
                 <thead>
                   <tr>
                     <th>번호</th>
-                    <th>문제</th>
-                    <th>관리</th>
+                    <th>질문</th>
+                    <th>응답</th>
                   </tr>
                 </thead>
                 <tbody id="careList">
@@ -101,44 +97,42 @@
                <div class="col-lg-12">
                <br>
                		<div class="form-group" style="text-align: center">
-                       <button class="btn btn-theme" type="submit" onclick="location.href='./updatecaresheetfrm'">설문지 수정</button>
+                       <button class="btn btn-theme" type="submit">설문지 제출</button>
+                   </div>
+                   <div class="form-group" style="text-align: center">
+                       <button class="btn btn-theme" type="button" onclick="makeJson()">테스트</button>
                    </div>
                </div>
         </div>
+        </form>
         </section>
       </section>
        
-        <!-- /row -->
-    <!--main content end-->
-    <!--footer start-->
 
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
  <script>
- 	
- 
- 
- 	var cList=${cList};
- 	//var cList=${correctList};
- 	console.dir(cList);
- 	$.each(cList, function(idx,care){
+ 	var cList=${care};
+ 	console.log("왜안나올까잉",cList);
+ 	 $.each(cList, function(idx,data){
  		var $tr=$('<tr>');
- 		
- 		$('<td>').text(care.questionnum).appendTo($tr);
- 		$('<td>').text(care.question).appendTo($tr);
- 		
- 		var $btn=$('<button>').attr('type','button').attr('class','btn btn-theme04').text('삭제');
- 		
- 		$btn.click(function(){location.href="deletecaresheet?questionnum="+care.questionnum});
- 
- 		$('<td>').append($btn).appendTo($tr)
- 		
+ 		$('<td>').text(data.questionnum).appendTo($tr);
+ 		$('<td>').text(data.question).appendTo($tr);
+ 		$("<input id='answer' class='answer' name='answer'>").appendTo($tr);
  	 	$('#careList').append($tr);
- 	})
+ 	}); 
+ 	
+ 	function makeJson(){
+ 		var arr=new Array();
+ 		$.each($(".answer"),function(idx,data){
+ 			arr.push(data.value);
+ 		})
+ 		console.log("arr",arr);
+ 		document.frm.aJson.value=JSON.stringify(arr);
+ 		console.log(JSON.stringify(arr));
+ 		return true;
+ 	}
  	
  </script>
-  
-  
 </body>
-
 </html>

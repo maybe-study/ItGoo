@@ -35,13 +35,22 @@ public class RestClient2Controller {
 	private AuctionManagement am;
 	@Autowired
 	private ClientManagement cm;
-	
+
 	@GetMapping("/example")
 	public String auctionAttend(int dogid) {
-		
+
 		mav = tm.testPaper(dogid);
 		return null;
 	}
+
+	@RequestMapping(value = "/ajauctionlist", method = RequestMethod.GET)
+	public String auctionListAJ(String kind) {
+		String aList = am.auctionListAJ(kind);
+		return aList;
+	}
+
+
+
 
 	@PostMapping(value = "/regismallmeeting")
 	public  ModelAndView regismallmeeting (Principal p,SmallMeeting sm) {
@@ -56,10 +65,9 @@ public class RestClient2Controller {
 	@RequestMapping(value = "/smalllistdetail" , method = RequestMethod.GET)
 	public ModelAndView smalllistdetail(Integer smallnumber) {	//null 값도 받으려고
 		System.out.println("여기 있어요");
-		
+
 		mav= cm.smalllistdetail(smallnumber);
-		
+
 		return mav;
 	}
-	
 }
