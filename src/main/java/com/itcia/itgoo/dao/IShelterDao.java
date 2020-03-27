@@ -35,21 +35,21 @@ public interface IShelterDao {
 
 	//@Select("SELECT * FROM CLIENT WHERE id=#{id}")
 	Member xduplicateid(Member mb);
-	
+
 	@Insert("insert into role values(#{param1},#{param2})")
 	void insertRole(String id, String string);
 
-	
+
 	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex},0)")
 	void insertDog(Dog dog);
 
-	
+
 	void inserDogPics(Dfile df);
 
-	
+
 	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid}")
 	List<Dog> shelterdelete(Dog dog);
-	
+
 
 	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
 	Company shelterMyInfo(Company c);
@@ -58,21 +58,33 @@ public interface IShelterDao {
 
 	@Select("select dogpic from dogpics where dogid=#{dogid}")
 	List<String> shelterdogpics(Integer dogid);
-	
+
 	@Select("select * from dog where dogid=#{dogid}")
 	Dog shelterdeletedetail(Integer dogid);
-	
+
 	boolean dogDeleteBtn(Dog dog);
 
 	void insertCompanyLocPic(String param1, String param2);
+
 
 	void updateCompanyCardPic(String param1, String param2);
 
 	boolean deleteCompanyLocPic(Company cp);
 
+	void updateCompanyLocPic(String param1, String param2);
 
-	
-	
+	void updatecompanyname(Company cp);
 
-	
+	void updatecompanyboss(Company cp);
+
+	void updatecompanyphone(Company cp);
+
+	void updatecompanyemail(Company cp);
+
+
+
+
+
+
+
 }

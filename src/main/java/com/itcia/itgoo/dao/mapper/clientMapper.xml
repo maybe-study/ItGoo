@@ -26,20 +26,8 @@ join activitythumb on activitythumb.activitynum=activity.activitynum
 join company on activity.companyid= company.companyid where adopt.id=#{id} and adopt.dogid=#{dogid}
 	</select>
 	
-<select id="finalsook" resultType="Reservation">
-select dog.dogid,client.id,client.username,dog.dogname,
-company.companyid,company.companyname,ACTIVITY.ACTIVITYNUM,
-activity.ACTIVITYNAME,activity.ACTIVITYDATE,activity.ACTIVITYSTART,
-ACTIVITY.ACTIVITYPRICE,ACTIVITY.ACTIVITYTIME
-,ACTIVITY.ACTIVITYDOGCNT,ACTIVITY.ACTIVITYEXPLANATION,
-activitythumb.activitypic,dogthumb.dogpic
-from dogthumb join dog on dog.dogid=dogthumb.dogid
-join adopt on adopt.dogid=dog.dogid 
-join client on adopt.id=client.id
-join activityreserve on adopt.dogid=activityreserve.dogid and adopt.id=activityreserve.id
-join activity on activityreserve.activitynum=activity.activitynum
-join activitythumb on activitythumb.activitynum=activity.activitynum
-join company on activity.companyid= company.companyid where adopt.id=#{id} and adopt.dogid=#{dogid}
+<select id="finalsook" resultType="Dog">
+select * from dog where dogid=#{dogid}
 	</select>
 	<insert id="regismallmeeting" parameterType="SmallMeeting">
 	insert into smallmeeting values(small_seq.nextval,#{id},#{smalllocation},#{maximumdog},#{meetingname},#{meetparticipatecnt},#{time},#{meetingdate} )

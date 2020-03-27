@@ -94,7 +94,7 @@
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
 					<li>
-					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+					<a class="logout" href="/index" onclick="document.getElementById('logout-form').submit();">Logout</a>
 		           <form id="logout-form" action='logout' method="POST">
 					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 					</form>

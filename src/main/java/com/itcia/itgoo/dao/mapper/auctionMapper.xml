@@ -7,4 +7,5 @@
 </selectKey>
 	insert into auction values(auction_seq.nextval,#{auctionname},#{auctionpic},#{lowprice},#{auctionexplain},TO_timestamp(#{auctionstart},'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN'),#{owner},'undefined',0)
 </insert>
+
 </mapper>

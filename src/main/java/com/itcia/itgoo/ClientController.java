@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
+import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.service.ClientManagement;
@@ -63,17 +64,19 @@ public class ClientController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/finalsook", method = RequestMethod.GET)
-	public ModelAndView finalsook(Principal p, Reservation rs) {
+	public ModelAndView finalsook(Principal p, Dog dog ,int dogid) {
 		System.out.println("숙려기간으로  가는중");
-		mav = cm.finalsook(p,rs);
+		System.out.println("숙려기간넘어가는 도그아이디"+dogid);
+		mav = cm.finalsook(p,dog,dogid);
 		return mav;
 	}
+
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/finalchoice", method = RequestMethod.GET)
-	public ModelAndView finalchoice(Principal p, Reservation rs) {
+	public ModelAndView finalchoice(int dogid,String choice,Principal p, Reservation rs) {
 		System.out.println("숙려기간선택!");
-		mav = cm.finalsook(p,rs);
-		mav = cm.updatedog()
+		System.out.println("마지막 선택한 강아지 도그아이디를 알려줘"+dogid);
+		mav = cm.updatedog(dogid,choice,p,rs);
 		return mav;
 	}
 	

@@ -213,7 +213,10 @@
 	$("<td><input type='button' class='myButton' id='changeaddress' value='주소변경'>").appendTo($trea);
 	
 	});
-  	 
+  	
+
+	
+	
 	
 	var usernamae = $("#usernameval1").val();
 	$("#changename").on("click", function(data){
@@ -265,6 +268,10 @@
 		});
 		
 	});
+	
+	
+	
+	
 
 	var userphone = $("#userphoneval1").val();
 	$("#changephone").on("click", function(data){

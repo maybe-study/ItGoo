@@ -20,8 +20,7 @@
 			<div class="swiper-button-prev"></div>
 		</div>
 		<div class="upper-form-div">
-			<form
-				action="activityreservationbtn?${_csrf.parameterName}=${_csrf.token}"
+			<form action="activityreservationbtn?${_csrf.parameterName}=${_csrf.token}&dogid=${dogid}"
 				name="activityreservationbtn" method="post" id="modalform">
 				<input type="hidden" id="activitynum" name="activitynum" value="0" />
 				<table class="form-table">
