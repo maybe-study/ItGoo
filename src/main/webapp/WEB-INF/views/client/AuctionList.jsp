@@ -162,13 +162,13 @@
 	<section>
 		<ul class="nav nav-pills nav-fill" id="nav">
 		  <li class="nav-item">
-		    <a class="nav-link active" href="#">Active</a>
+		    <a class="nav-link active" href="javascript:void(0)" id="expected" onclick="aj(this)">진행 예정 경매</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">Longer nav link</a>
+		    <a class="nav-link" href="javascript:void(0)"id="proceeding" onclick="aj(this)">진행중</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">Link</a>
+		    <a class="nav-link" href="javascript:void(0)"id="complete" onclick="aj(this)">완료</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link disabled" href="#">Disabled</a>
@@ -283,22 +283,54 @@
 
 	
 	<script>
-		var $aList=$('#aList');
-		$aList.empty();
-		$.each(${aList},function(idx,a){
-			console.log(a);
+		
+		function makeList(aList){
+			var $aList=$('#aList');
+			$aList.empty();
+			$.each(aList,function(idx,a){
+				console.log(a);
+				var $contaier=$('<div class="col-lg-2 col-sm-3">').appendTo($aList);
+				var $a=$('<a class="portfolio-box">').attr('href','auctiondetail?auctionnum='+a.auctionnum).appendTo($contaier);
+				var $title=$('<div class="auction-title">').text(a.auctionname).appendTo($a);
+				var $img=$('<img class="img-fluid">').attr('src',a.auctionpic).appendTo($a);
+				var $div=$('<div class="portfolio-box-caption p-3">').appendTo($a);
+				var $div2=$('<div class="project-category text-white-50">').text(a.auctionname).appendTo($div);
+				var $div3=$('<div class="project-name">').text('최저가:').append(a.lowprice).appendTo($div);
+				var $div4=$('<div class="project-name">').text('경매 시작:').append(a.auctionstart).appendTo($div);
+				var $div5=$('<div class="project-name">').text('호스트:').append(a.owner).appendTo($div);
+				
+			});
+		}
+		
+		
+		//처음 접속했을 때
+		var aList=${aList};
+		makeList(aList);
+		
+		
+		
+		function aj(e){
+			var text=e.text;
+			$(".nav-item a").attr("class","nav-link");
+			e.setAttribute("class","nav-link active");
+			console.log(e.text);
+			//에이작스
+			$.ajax({
+				url: "ajauctionlist",
+				method: "get",
+				data:{kind:e.text},
+				dataType: "JSON"
+			}).done((result)=>{
+				
+				makeList(result);
 			
-			var $contaier=$('<div class="col-lg-2 col-sm-3">').appendTo($aList);
-			var $a=$('<a class="portfolio-box">').attr('href','auctiondetail?auctionnum='+a.auctionnum).appendTo($contaier);
-			var $title=$('<div class="auction-title">').text(a.auctionname).appendTo($a);
-			var $img=$('<img class="img-fluid">').attr('src',a.auctionpic).appendTo($a);
-			var $div=$('<div class="portfolio-box-caption p-3">').appendTo($a);
-			var $div2=$('<div class="project-category text-white-50">').text(a.auctionname).appendTo($div);
-			var $div3=$('<div class="project-name">').text('최저가:').append(a.lowprice).appendTo($div);
-			var $div4=$('<div class="project-name">').text('경매 시작:').append(a.auctionstart).appendTo($div);
-			var $div5=$('<div class="project-name">').text('호스트:').append(a.owner).appendTo($div);
+			} )
 			
-		})
+			.fail((xhr)=>{
+				console.log("xhr=",xhr);
+			});
+		};
+		
 		
 
 	</script>

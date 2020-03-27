@@ -38,7 +38,11 @@ public class RestClient2Controller {
 		mav = tm.testPaper(dogid);
 		return null;
 	}
-	
+	@RequestMapping(value = "/ajauctionlist", method = RequestMethod.GET)
+	public String auctionListAJ(String kind) {
+		String aList = am.auctionListAJ(kind);
+		return aList;
+	}
 	
 	
 	

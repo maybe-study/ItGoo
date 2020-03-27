@@ -88,4 +88,16 @@ public class AuctionManagement {
 		mav.setViewName("client/AuctionDetail");
 		return mav;
 	}
+
+	public String auctionListAJ(String kind) {
+		List<Auction> aList=null;
+		if(kind.equals("진행 예정 경매"))
+			aList=aDao.expectedAuctionList();
+		if(kind.equals("진행중"))
+			aList=aDao.proceedingAuctionList();
+		if(kind.equals("완료"))
+			aList=aDao.completeAuctionListts();
+		
+		return new Gson().toJson(aList);
+	}
 }
