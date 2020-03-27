@@ -89,16 +89,16 @@ public class RestActivityController {
 		return mav;
 	}
 	@PostMapping(value = "/acceptbtn")
-	public  ModelAndView acceptBtn (Principal p,Reservation rv) {
+	public  ModelAndView acceptBtn (Reservation rv) {
 		System.out.println("username="+rv.getUsername());
-		mav= am.acceptBtn(p,rv);
+		mav= am.acceptBtn(rv);
 		
 		return mav;
 	}
 	@PostMapping(value = "/rejectbtn")
-	public  ModelAndView rejectBtn (Principal p,Reservation rv) {
+	public  ModelAndView rejectBtn (Reservation rv) {
 		System.out.println("username="+rv.getUsername());
-		mav= am.rejectBtn(p,rv);
+		mav= am.rejectBtn(rv);
 		
 		return mav;
 	}

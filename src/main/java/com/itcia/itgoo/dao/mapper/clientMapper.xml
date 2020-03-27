@@ -29,4 +29,8 @@ join company on activity.companyid= company.companyid where adopt.id=#{id} and a
 <select id="finalsook" resultType="Dog">
 select * from dog where dogid=#{dogid}
 	</select>
+	
+<select id="showcaresheet" resultType="CareSheet">
+select * from caresheet
+	</select>
 </mapper>

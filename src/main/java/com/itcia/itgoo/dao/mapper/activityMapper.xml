@@ -22,79 +22,39 @@
 
 	<select id="activityMyInfo1" parameterType="Company"
 		resultType="Company">
-		select * from company where companyid=#{companyid} and
-		companykind=1
+		select * from company where companyid=#{companyid} and companykind=1
 	</select>
 	<update id="updatecompanyname" parameterType="Company">
-		update company set
-		companyname=#{companyname} where companyid=#{companyid}
-		and
-		companykind=1
+		update company set companyname=#{companyname} where companyid=#{companyid} and companykind=1
 	</update>
 	<update id="updatecompanyboss" parameterType="Company">
-		update company set
-		companyboss=#{companyboss} where companyid=#{companyid}
-		and
-		companykind=1
+		update company set companyboss=#{companyboss} where companyid=#{companyid} and companykind=1
 	</update>
 	<update id="updatecompanyphone" parameterType="Company">
-		update company set
-		companyphone=#{companyphone} where companyid=#{companyid}
-		and
-		companykind=1
+		update company set companyphone=#{companyphone} where companyid=#{companyid} and companykind=1
 	</update>
 	<update id="updatecompanyemail" parameterType="Company">
-		update company set
-		companyemail=#{companyemail} where companyid=#{companyid}
-		and
-		companykind=1
+		update company set companyemail=#{companyemail} where companyid=#{companyid} and companykind=1
 	</update>
 	<update id="updatecompanylocation" parameterType="Company">
-		update company
-		set companylocation=#{companylocation} where
-		companyid=#{companyid} and
-		companykind=1
+		update company set companylocation=#{companylocation} where companyid=#{companyid} and companykind=1
 	</update>
-	<select id="activityDelete" parameterType="Activity"
-		resultType="Activity">
-		select c.companyname,a.activitynum,a.activityname,
-		a.activitydate,
-		a.activitystart,a.activitytime, a.activitydogcnt from
-		company c,
-		activity a where c.companyid=a.companyid
+	<select id="activityDelete" parameterType="Activity" resultType="Activity">
+	select c.companyname,a.activitynum,a.activityname,a.activitydate,a.activitystart,a.activitytime, a.activitydogcnt from company c,activity a where c.companyid=a.companyid
 	</select>
-	<select id="deleteDetail" parameterType="int"
-		resultType="Activity">
-		select activitynum,activityname,activityprice,
-		activitydate, activitystart
-		from activity where
-		activitynum=#{activitynum}
+	<select id="deleteDetail" parameterType="int" resultType="Activity">
+		select activitynum,activityname,activityprice,activitydate, activitystart from activity where activitynum=#{activitynum}
 	</select>
 	<delete id="activityDeleteBtn" parameterType="String">
-		delete from
-		activity at where exists(select * from activitypics ap where
-		at.activitynum=ap.activitynum and at.activityname=#{activityname} )
+		delete from activity at where exists(select * from activitypics ap where at.activitynum=ap.activitynum and at.activityname=#{activityname} )
 	</delete>
-	<select id="activitylist" parameterType="Activity"
-		resultType="Activity">
-		select at.activitynum ,max(ap.activitypic) as activitypic
-		,at.activityname,
-		at.activityprice,at.activitydate,at.activitystart
-		from activity at , activitypics ap
-		where at.activitynum= ap.activitynum
-		group by at.activitynum, at.activityname, at.activityprice,
-		at.activitydate,
-		at.activitystart
+	<select id="activitylist" parameterType="Activity" resultType="Activity">
+		select at.activitynum ,max(ap.activitypic) as activitypic,at.activityname,at.activityprice,at.activitydate,at.activitystart from activity at , activitypics ap
+		where at.activitynum= ap.activitynum group by at.activitynum, at.activityname, at.activityprice,at.activitydate,at.activitystart
 	</select>
-	<select id="activityListDetail" parameterType="int"
-		resultType="Activity">
-		select at.activitynum,
-		at.activityname,at.activityexplanation,at.activitydate,at.activitystart,at.activitytime,
-		at.activitydogcnt,at.activityprice, cp.companyname,
-		cp.companyphone,cp.companyemail
-		from activity at, company cp
-		where at.companyid = cp.companyid and at.activitynum = #{activitynum}
-
+	<select id="activityListDetail" parameterType="int" resultType="Activity">
+		select at.activitynum,at.activityname,at.activityexplanation,at.activitydate,at.activitystart,at.activitytime,at.activitydogcnt,at.activityprice, cp.companyname,
+		cp.companyphone,cp.companyemail from activity at, company cp where at.companyid = cp.companyid and at.activitynum = #{activitynum}
 	</select>
 	<insert id="activityReservationBtn">
 		insert into activityreserve values(#{activitynum},#{id},#{dogid})
@@ -109,11 +69,11 @@
 	</select>
 	<select id="passDetail" parameterType="int"
 		resultType="Reservation">
-		select cli.username, cli.useremail, cli.phone,ado.id,
-		at.activityname,dog.dogname from activity at, activityreserve ar,
-		adopt ado, client cli, dog dog
-		where at.activitynum = ar.activitynum and ar.id =ado.id
-		and ado.id= cli.id and ado.dogid = dog.dogid and ado.phase=4
+		select client.username,client.useremail,client.phone,adopt.id,activity.activityname,dog.dogname,dog.dogid from dog join adopt on dog.dogid=adopt.dogid 
+		join activityreserve on adopt.id=activityreserve.id 
+		join activity on activity.activitynum=activityreserve.activitynum 
+		join client on client.id=adopt.id
+		where adopt.phase=4 and adopt.dogid=activityreserve.dogid
 	</select>
 	<update id="updateReservationPhase" parameterType="Reservation">
 		update adopt set phase = 4 where dogid=#{dogid} and id=#{id}

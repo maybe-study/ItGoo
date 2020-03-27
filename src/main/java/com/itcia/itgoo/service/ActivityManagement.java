@@ -72,7 +72,7 @@ public class ActivityManagement {
 
 
 	public ModelAndView activityMyInfo1(Principal p,Company cp) {
-
+		//액티비티 패스 긁어오는곳
 		mav= new ModelAndView();
 		String view = null;
 		cp.setCompanyid((String) p.getName());
@@ -154,6 +154,8 @@ public class ActivityManagement {
 	}
 
 	public ModelAndView activityDelete1(Principal p, Company cp, Integer pageNum) {
+		
+		//모달안에서 데이터 긁어오는거
 		mav= new ModelAndView();
 		String view = null;
 		int pNum = (pageNum == null) ? 1:pageNum;
@@ -266,36 +268,25 @@ public class ActivityManagement {
 		mav.setViewName(view);
 		return mav;
 	}
-	public ModelAndView acceptBtn(Principal p, Reservation rv) {
+	public ModelAndView acceptBtn(Reservation rv) {
 		System.out.println(rv);
 		RedirectView redirectView = new RedirectView();
 		String view = null;
-	
 		System.out.println("username="+rv.getUsername());
-
 		aDao.acceptBtn(rv);
 		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("activitypass");
 		mav.setView(redirectView);
-		
 		return mav;
 	}
-	public ModelAndView rejectBtn(Principal p, Reservation rv) {
+	public ModelAndView rejectBtn(Reservation rv) {
 		RedirectView redirectView = new RedirectView();
 		String view = null;
-	
 		System.out.println("username="+rv.getUsername());
-
 		aDao.rejectBtn(rv);
 		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("activitypass");
 		mav.setView(redirectView);
-		
 		return mav;
 	}
-
-
-
-
-
 }
