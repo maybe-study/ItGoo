@@ -128,7 +128,7 @@ public class ClientManagement {
 		redirectView.setUrl("activitymyinfo");
 		mav.setView(redirectView);
 		return mav;
-
+	}
 	public ModelAndView updatedog(int dogid,String choice, Principal p, Reservation rs) {
 		System.out.println("마지막 선택 업데이트 중");
 		rs.setId(p.getName());
