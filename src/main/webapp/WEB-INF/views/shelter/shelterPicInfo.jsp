@@ -39,28 +39,6 @@
 <link href="css/style-responsive.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script>
-	$(function() {
-		$("#profile").on("change", loadImage)
-	});
-	function loadImage() {
-		console.log($('#profile'));
-		var file = $("#profile")[0].files[0]; //한개의 프사만 등록
-		var maxSize = 1024 * 1024; //1MB
-		if (file.size > maxSize) {
-			toastr.warning("사진은 1M이하여야 합니다.", "경고");
-			$("#profile").val("");
-			return false;//작업 실패
-		}
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			console.log("e=", e);
-			$('#show_profile').attr('src', e.target.result);
-		}
-		reader.readAsDataURL(file); //서버가 아닌 pc에서 파일을 읽어오기때문에 빠르다.
-		return true;
-	}
-</script>
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -69,9 +47,7 @@
   ======================================================= -->
 
 <style>
-#yes {
-	margin-left: 45%;
-}
+
 
 #reset {
 	margin-left: 5%;
@@ -207,7 +183,7 @@
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
 
-							<li><a href="shelterpicinfo">시설사진</a></li>
+							<li class="active" ><a href="shelterpicinfo">시설사진</a></li>
 
 						</ul></li>
 
@@ -239,46 +215,47 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
-
-		<section id="main-content">
+<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 업체 시설 사진 첨부
+					<i class="fa fa-angle-right"></i> 보호소 시설 사진 첨부
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
-				<!-- 버튼 테이블  -->
-				<form action="updatecompanypic?${_csrf.parameterName}=${_csrf.token}"
-					name="updatecompanypic" method="post" enctype="multipart/form-data">
+				<form
+					action="updatecompanylocpic?${_csrf.parameterName}=${_csrf.token}"
+					name="uploadactivitylocpic" method="post" enctype="multipart/form-data">
 					<div class="row mt">
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<section class="panel">
 								<h3 class="title">첨부할 파일들을 선택해주세요</h3>
+								<div id="message"></div>
+
 								<div class="form-group" id="main-file-tag">
 									<div class="main-file-tag">
-
-										<img id="show_profile" height="240" />
 										<form action="boardwrite" id="frm" method="post"
 											enctype="multipart/form-data">
+											<table class="file-table">
 
-											<label for="profile">프로필사진</label> <span class="help-block"
-												id="helper_profile">1M이하만 가능</span> <input type="file"
-												id="profile" class="form-control" name="profile"
-												accept=".jpg,.jpeg,.png,.gif,.bmp" />
-											<!-- 버튼 -->
-											<input type="submit" value="사진 변경" id="yes" /> <input
-												type="reset" id="reset" value="취소" />
-
+												<tr class="file-table">
+													<td>파일첨부 :</td>
+													<td><input class="box" type="file" name="files" multiple id="files" accept=".jpg,.jpeg,.png,.gif,.bmp">
+														<input type="hidden" id="fileCheck" name="file_Check"
+														value="0" /></td>
+												</tr>
+												<tr class="file-table">
+													<td colspan="2" align="center"><input type="submit"
+														id="yes" value="사진 변경" /> <input type="reset" id="reset"
+														value="취소" />
+												</tr>
+											</table>
 										</form>
-
 									</div>
 								</div>
 							</section>
 						</div>
+						<!-- /row -->
 					</div>
 				</form>
-				<!-- /row -->
-
-
 				<!-- /row -->
 			</section>
 			<!-- /wrapper -->
@@ -289,7 +266,7 @@
 		<footer class="site-footer">
 			<div class="text-center">
 				<p>
-					<a href="index.html"><img class="footerimg"
+					<a href="/ItGoo/"><img class="footerimg"
 						src="img/mainlogo.png" alt="mainlogo" /></a>
 				</p>
 				<div class="credits">

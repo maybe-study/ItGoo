@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IClientDao;
@@ -16,6 +17,7 @@ import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
+import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.share.UploadFile;
 
 @Service
@@ -112,5 +114,17 @@ public class ClientManagement {
 		mav.addObject("adList",new Gson().toJson(adList));
 		mav.setViewName("client/sook");
 		return mav;
+	}
+
+	public ModelAndView regismallmeeting(Principal p, SmallMeeting sm) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+		sm.setId((String) p.getName());
+		cDao.regismallmeeting(sm);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitymyinfo");
+		mav.setView(redirectView);
+		return null;
 	}
 }

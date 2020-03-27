@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
@@ -109,21 +110,12 @@ public class ShelterController {
 	@GetMapping(value = "/shelterDelete")
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
+	}
 	@RequestMapping(value = "/dogdeletebtn")
 	public ModelAndView dogdeletebtn( Dog dog, RedirectAttributes attr) {
 
 		mav = smm.dogdeletebtn(dog,attr);
 		attr.addFlashAttribute("dog",dog);
-		return mav;
-	}
-	@PostMapping(value = "/updatecompanypic")
-	public ModelAndView updatecompanypic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
-		if(p!=null) {
-			p.getName();
-			System.out.println("p="+p.getName());
-		}
-		mav=smm.updatecompanypic(p,multi,cp);
-
 		return mav;
 	}
 	@PostMapping(value = "/updatecompanylocpic")
@@ -133,6 +125,16 @@ public class ShelterController {
 			System.out.println("p="+p.getName());
 		}
 		mav=smm.updatecompanylocpic(p,multi,cp);
+
+		return mav;
+	}
+	@PostMapping(value = "/updatecompanycardpic")
+	public ModelAndView updatecompanycardpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+		}
+		mav=smm.updatecompanycardpic(p,multi,cp);
 
 		return mav;
 	}
@@ -159,7 +161,7 @@ public class ShelterController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/sheltercard")
-	public String page6() {
+	public String page7() {
 		return "shelter/sheltercard";
 	}
 }

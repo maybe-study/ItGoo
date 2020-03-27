@@ -10,6 +10,7 @@ import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
+import com.itcia.itgoo.dto.SmallMeeting;
 
 public interface IClientDao {
 	@Select("select max(dogpics.dogpic) dogpic,dog.dogid,dog.DOGAGE,dog.dogname,dog.dogspecial,dog.sex,dog.shelterid,dog.status "
@@ -39,6 +40,8 @@ public interface IClientDao {
 	
 	List<Reservation> finalsook(Reservation rs);
 
+	void regismallmeeting(SmallMeeting sm);
+	
 
 
 }

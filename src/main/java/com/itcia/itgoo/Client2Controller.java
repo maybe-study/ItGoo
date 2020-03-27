@@ -2,10 +2,12 @@ package com.itcia.itgoo;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +78,18 @@ public class Client2Controller {
 	public ModelAndView auctionDetail(int auctionnum) {
 		mav = am.auctionDetail(auctionnum);
 		return mav;
+	}
+	@RequestMapping(value = "/puppysmall", method = RequestMethod.GET)
+	public String puppysmall(Locale locale, Model model) {
+		return "client/puppySmall";
+	}
+	@RequestMapping(value = "/smalllist", method = RequestMethod.GET)
+	public String smalllist(Locale locale, Model model) {
+		return "client/smallList";
+	}
+	@RequestMapping(value = "/regipuppysmall", method = RequestMethod.GET)
+	public String regipuppysmall(Locale locale, Model model) {
+		return "client/regiPuppySmall";
 	}
 	
 	

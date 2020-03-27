@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Activity;
+import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
@@ -186,24 +187,25 @@ public class ShelterManagement {
 		mav.setViewName("redirect:shelterdelete");
 		return mav;
 	}
-	public ModelAndView updatecompanypic(Principal p, MultipartHttpServletRequest multi, Company cp) {
+	public ModelAndView updatecompanylocpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
 
-		cp.setCompanyid((String) p.getName());
+		cp.setCompanyid(p.getName());
 		UploadFile up = new UploadFile();
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
+		boolean lp = sDao.deleteCompanyLocPic(cp);
 		for (String picPath : paths) {
 			System.out.println("cp="+cp);
 			System.out.println("num="+cp.getCompanyid());
-			sDao.updateCompanyPic(picPath, cp.getCompanyid());
+			sDao.insertCompanyLocPic(picPath, cp.getCompanyid());
 		}redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("sheltermyinfo");
 		mav.setView(redirectView);
 		return mav;
 
 	}
-	public ModelAndView updatecompanylocpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
+	public ModelAndView updatecompanycardpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
 
@@ -213,7 +215,7 @@ public class ShelterManagement {
 		for (String picPath : paths) {
 			System.out.println("cp="+cp);
 			System.out.println("num="+cp.getCompanyid());
-			sDao.updateCompanyLocPic(picPath, cp.getCompanyid());
+			sDao.updateCompanyCardPic(picPath, cp.getCompanyid());
 		}redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("sheltermyinfo");
 		mav.setView(redirectView);

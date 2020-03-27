@@ -41,4 +41,8 @@ join activity on activityreserve.activitynum=activity.activitynum
 join activitythumb on activitythumb.activitynum=activity.activitynum
 join company on activity.companyid= company.companyid where adopt.id=#{id} and adopt.dogid=#{dogid}
 	</select>
+	<insert id="regismallmeeting" parameterType="SmallMeeting">
+	insert into smallmeeting values(small_seq.nextval,#{id},#{smalllocation},#{maximumdog},#{meetingname},#{meetparticipatecnt},#{time},#{meetingdate} )
+	
+	</insert>
 </mapper>

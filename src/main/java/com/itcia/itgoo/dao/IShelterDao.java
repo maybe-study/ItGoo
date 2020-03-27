@@ -64,9 +64,11 @@ public interface IShelterDao {
 	
 	boolean dogDeleteBtn(Dog dog);
 
-	void updateCompanyPic(String param1, String param2);
+	void insertCompanyLocPic(String param1, String param2);
 
-	void updateCompanyLocPic(String param1, String param2);
+	void updateCompanyCardPic(String param1, String param2);
+
+	boolean deleteCompanyLocPic(Company cp);
 
 
 	

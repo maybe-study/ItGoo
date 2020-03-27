@@ -17,10 +17,13 @@
 	delete from dog dog where exists
 	(select * from dogpics dp where dp.dogid=dog.dogid and dog.dogid=#{dogid})
 </delete>
-<update id="updateCompanyPic" parameterType="Company">
-update companypic set (comapnypic=#{param1}, companyid=#{param2}) where companyid=#{companyid}
+<insert id="insertCompanyLocPic" parameterType="Company">
+insert into companypic values (#{param1}, #{param2})
+</insert>
+<update id="updateCompanyCardPic" parameterType="Company">
+update company set companycard=#{param1} where companyid=#{param2}
 </update>
-<update id="updateCompanyLocPic" parameterType="Company">
-update company set (comapnycard=#{param1}, companyid=#{param2}) where companyid=#{companyid}
-</update>
+<delete id="deleteCompanyLocPic" parameterType="String">
+delete from companypic where companyid=#{companyid}
+</delete>
 </mapper>
