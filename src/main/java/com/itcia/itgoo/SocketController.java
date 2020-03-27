@@ -38,10 +38,12 @@ public class SocketController {
 		System.out.println("유저아이디:"+p.getName());
 		System.out.println("옥션 번호:"+b.getAuctionnum());
 		BidUpdate maxBid=aDao.getMaxBid(b);
-		System.out.println("=======================bid=======================");
+		
 		if(maxBid==null) {	//입찰이 없으면
 			//최저가보다 입찰가가 크면 인서트
 			int lowPrice=aDao.auctionDetail(b.getAuctionnum()).getLowprice();
+			System.out.println("=======================lowPrice=======================");
+			System.out.println("lowPrice:"+lowPrice);
 			if(lowPrice<b.getCurrentprice()) {
 				aDao.insertBid(b);
 				template.convertAndSend("/topic/bidding/"+b.getAuctionnum(), new Gson().toJson(b));

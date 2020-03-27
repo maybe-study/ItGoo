@@ -301,6 +301,17 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<script>
+	//리스트 보기
+	var shelter = ${shelter}
+	console.log(shelter);
+	$('#sheltername').text(shelter.companyname);
+	$('#shelterboss').text(shelter.companyboss);
+	$('#shelterphone').text(shelter.companyphone);
+	$('#shelteraddr').text(shelter.companylocation);
+	$('#shelteremail').text(shelter.companyemail);
+	
+	
+//리스트 수정
 	let data= undefined;
 	$.each(${mList},function(idx,data){
 	var $trcn=$("#sheltername");
@@ -309,36 +320,37 @@
 	var $trem=$("#shelteremail");
 	var $trea=$("#shelteraddr");
 	$("<input id='sheltername1' class='companynameval' >").val(data.sheltername).appendTo($trcn);
-	$("<td><input type='button' class='myButton' id='changename' value='업체이름변경'>").appendTo($trcn);
+	$("<td><input type='button' class='myButton' id='shname' value='업체이름변경'>").appendTo($trcn);
 	
 	$("<input id='shelterboss1' class='companybossval' >").val(data.shelterboss).appendTo($trcb);
-	$("<td><input type='button' class='myButton' id='changeemail' value='대표자이름변경'>").appendTo($trcb);
+	$("<td><input type='button' class='myButton' id='shboss' value='대표자이름변경'>").appendTo($trcb);
 	
 	$("<input id='shelterphone1' class='companyphoneval' > ").val(data.shelterphone).appendTo($trcp);
-	$("<td><input type='button' class='myButton' id='changephone' value='핸드폰 번호변경'>").appendTo($trcp);
+	$("<td><input type='button' class='myButton' id='shphone' value='핸드폰 번호변경'>").appendTo($trcp);
 	
 	$("<input id='shelteraddr1' class='companyemailval' > ").val(data.shelteraddr).appendTo($trea);
-	$("<td><input type='button' class='myButton' id='changeaddress' value='주소변경'>").appendTo($trea);
+	$("<td><input type='button' class='myButton' id='shaddr' value='주소변경'>").appendTo($trea);
 	
 	$("<input id='shelteremail1' class='companyemailval' > ").val(data.shelteremail).appendTo($trem);
-	$("<td><input type='button' class='myButton' id='changebirth' value='이메일변경'>").appendTo($trem);
+	$("<td><input type='button' class='myButton' id='shemail' value='이메일변경'>").appendTo($trem);
 	});
-  	 
 	
-	var usernamae = $("#usernameval1").val();
-	$("#changename").on("click", function(data){
+	
+	//업체이름 변경
+	var sheltername = $("#sheltername1").val();
+	$("#shname").on("click", function(data){
 		var param={
 				_method:"patch",
-				username:$("#usernameval1").val(),
+				sheltername:$("#sheltername1").val(),
 		}
-		console.log("companyname=" ,usernamae);
+		console.log("shletername=" ,sheltername);
 		$.ajax({
-			url: "updateusername",
+			url: "updatesheltername",
 			method: "get",
 			data:param,
 			dataType: "JSON"
 		}).done((result)=>{
-			toastr.success("이름변경에 성공했습니다.", '서버메시지');
+			toastr.success("업체명변경에 성공했습니다.", '서버메시지');
 			console.log("result=",result);
 		
 		
@@ -351,39 +363,43 @@
 		
 	});
 	
-	var useremails = $("#useremailval1").val();
-	$("#changeemail").on("click", function(data){
+	
+	//업체대표이름변경
+	var shelterboss = $("#shleterboss1").val();
+	$("#shboss").on("click",function(data){
 		var param={
 				_method:"patch",
-				useremail:$("#useremailval1").val(),
+				shelterboss:&("#shelterboss1").val(),
 		}
-		$.ajax({
-			url: "updateuseremail",
-			method: "get",
+		console.log("shelterboss=",shelterboss);
+		&.ajax({
+			url:"updateshelterboss",
+			method:"get",
 			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
+			dataType:"JSON"
+		}).don((result)=>{
+			toastr.success("이름변경에 성공했습니다.",'서버 메세지');
 			console.log("result=",result);
-		
-		
+			
 		} )
-		
 		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
+			(xhr)=>printError(xhr, "이름변경에 실패하였습니다.")
 			console.log("xhr=",xhr);
-		});
+		} );
 		
-	});
+	} );
+	
+	
+	//보호소 전화번호 변경
 
-	var userphone = $("#userphoneval1").val();
-	$("#changephone").on("click", function(data){
+	var shelterphone = $("#shelterphone1").val();
+	$("#shphone").on("click", function(data){
 		var param={
 				_method:"patch",
-				phone:$("#userphoneval1").val(),
+				phone:$("#shelterphone1").val(),
 		}
 		$.ajax({
-			url: "updateuserphone",
+			url: "updateshelterphone",
 			method: "get",
 			data:param,
 			dataType: "JSON"
@@ -402,39 +418,16 @@
 	});
 	
 	
-	var userphone = $("#userbirthdayval1").val();
-	$("#changebirth").on("click", function(data){
-		var param={
-				_method:"patch",
-				birthday:$("#userbirthdayval1").val(),
-		}
-		$.ajax({
-			url: "updateuserbirth",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("생일 변경에 성공했습니다.", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "생일 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
 	
-	var useraddr = $("#useraddrressval1").val();
-	$("#changeaddress").on("click", function(data){
+	//보호소 주소 변경
+	var shelteraddr = $("#shelteraddr1").val();
+	$("#shaddr").on("click", function(data){
 		var param={
 				_method:"patch",
-				useraddress:$("#useraddrressval1").val(),
+				useraddress:$("#shelteraddr1").val(),
 		}
 		$.ajax({
-			url: "updateuseraddress",
+			url: "updateshelteraddr",
 			method: "get",
 			data:param,
 			dataType: "JSON"
@@ -451,7 +444,34 @@
 		});
 		
 	});
-	
+
+	//보호소 이메일 변경
+    var shelteremails = $("#shelteremail1").val();
+	$("#shemail").on("click", function(data){
+		var param={
+				_method:"patch",
+				shelteremail:$("#shelteremail1").val(),
+		}
+		$.ajax({
+			url: "updateshelteremail",
+			method: "get",
+			data:param,
+			dataType: "JSON"
+		}).done((result)=>{
+			toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
+			console.log("result=",result);
+		
+		} )
+		
+		.fail((xhr)=>{
+			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
+			console.log("xhr=",xhr);
+		});
+		
+	});
+
+
+
 	
 		
 	</script>

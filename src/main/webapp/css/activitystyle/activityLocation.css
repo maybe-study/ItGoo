@@ -10,11 +10,13 @@ table, tr, td {
 }
 
 form {
-	border: 1px solid #ccc;
 	margin: auto;
 	height: 50%;
 	width: 900px;
-	padding: 30px;
+
+}
+#logout-form{
+	width: 94px;
 }
 
 #sample4_postcode {

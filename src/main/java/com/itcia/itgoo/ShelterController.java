@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
@@ -49,14 +50,15 @@ public class ShelterController {
 	}
 
 	// 마이페이지
+
 	@RequestMapping(value = "/sheltermyinfo", method = RequestMethod.GET)
-	public ModelAndView shelterMyInfo(Principal p) {
+	public ModelAndView shelterMyInfo(Principal p,Company c) {
 		System.out.println("쉘터 마이 인포");
 		if (p != null) {
 			p.getName();
 			System.out.println("p=" + p.getName());
 		}
-		mav = smm.shelterMyInfo(p);
+		mav = smm.shelterMyInfo(p,c);
 		return mav;
 	}
 
@@ -89,51 +91,44 @@ public class ShelterController {
 		return mav;
 	}
 
-
-	//마이페이지 수정
+	// 마이페이지 수정
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/shelterinfochange")
 	public ModelAndView shelterinfochange(Principal p) {
-		mav= smm.shelterinfochange(p);
+		mav = smm.shelterinfochange(p);
 		return mav;
 	}
 
 	// 페이지 보기만
-
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/shelterchangeinfo")
-	public String page6() {
-		return "shelter/shelterchangeinfo";
-	}
 
 	@GetMapping(value = "/shelterDelete")
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
 	}
 	@RequestMapping(value = "/dogdeletebtn")
-	public ModelAndView dogdeletebtn( Dog dog, RedirectAttributes attr) {
+	public ModelAndView dogdeletebtn(Dog dog, RedirectAttributes attr) {
 
-		mav = smm.dogdeletebtn(dog,attr);
-		attr.addFlashAttribute("dog",dog);
-		return mav;
-	}
-	@PostMapping(value = "/updatecompanypic")
-	public ModelAndView updatecompanypic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
-		if(p!=null) {
-			p.getName();
-			System.out.println("p="+p.getName());
-		}
-		mav=smm.updatecompanypic(p,multi,cp);
-
+		mav = smm.dogdeletebtn(dog, attr);
+		attr.addFlashAttribute("dog", dog);
 		return mav;
 	}
 	@PostMapping(value = "/updatecompanylocpic")
 	public ModelAndView updatecompanylocpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
 		if(p!=null) {
 			p.getName();
-			System.out.println("p="+p.getName());
+			System.out.println("p=" + p.getName());
 		}
 		mav=smm.updatecompanylocpic(p,multi,cp);
+
+		return mav;
+	}
+	@PostMapping(value = "/updatecompanycardpic")
+	public ModelAndView updatecompanycardpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
+			p.getName();
+			System.out.println("p=" + p.getName());
+		}
+		mav=smm.updatecompanycardpic(p,multi,cp);
 
 		return mav;
 	}

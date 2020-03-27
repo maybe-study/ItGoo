@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,6 +19,7 @@ import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
+import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.share.UploadFile;
 
 @Service
@@ -26,7 +28,7 @@ public class ClientManagement {
 	private IClientDao cDao;
 	@Autowired
 	private IMemberDao mDao;
-	
+
 	private ModelAndView mav = new ModelAndView();
 
 	public ModelAndView adoplist() {
@@ -45,7 +47,7 @@ public class ClientManagement {
 		dog.setDogpics(cDao.adoptlistdetail(dogid));
 		return new Gson().toJson(dog);
 	}
-	
+
 	public String myAdoptlistdetail(String dogid,Principal p) {
 		System.out.println("======================================\ndogid:" + dogid);
 		Adopt dog = cDao.AdoptDetail(dogid,p.getName());
@@ -63,7 +65,7 @@ public class ClientManagement {
 		ad.setIdfile(path);
 		cDao.insertapplyadopt(ad);
 		mav.setViewName("clientMyPage");
-		
+
 		List<Member> mList = mDao.showmyinfo(ad);
 		mav.addObject("mList",new Gson().toJson(mList));
 		System.out.println("리스트++++++++++++++++++++"+p.getName());
@@ -94,7 +96,7 @@ public class ClientManagement {
 		mDao.updatebirth(mb);
 		return null;
 	}
-	
+
 
 	public ModelAndView updateuseraddress(Principal p, Member mb) {
 		mb.setId(p.getName());
@@ -124,11 +126,23 @@ public class ClientManagement {
 		return mav;
 	}
 
+
+	public ModelAndView regismallmeeting(Principal p, SmallMeeting sm) {
+		mav= new ModelAndView();
+		RedirectView redirectView = new RedirectView();
+		String view = null;
+		sm.setId((String) p.getName());
+		cDao.regismallmeeting(sm);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("activitymyinfo");
+		mav.setView(redirectView);
+		return mav;
+	}
 	public ModelAndView updatedog(int dogid,String choice, Principal p, Reservation rs) {
 		System.out.println("마지막 선택 업데이트 중");
 		rs.setId(p.getName());
 		rs.setDogid(dogid);
-		
+
 		if(choice.equals("go")){
 			System.out.println("사랑으로 키우기");
 			cDao.updateDog(rs);
@@ -164,5 +178,6 @@ public class ClientManagement {
 			cDao.submitSheet(a,cs);
 		}
 		return mav;
+
 	}
 }

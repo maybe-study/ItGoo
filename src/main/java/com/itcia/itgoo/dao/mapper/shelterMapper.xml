@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itcia.itgoo.dao.IShelterDao">
 
 
-<select id="xduplicateid" parameterType="member" resultType="member">
-	select * from client where id=#{id}
-</select>
-<update id="updateshelterlocation" parameterType="Company">
-		update company
-		set companylocation=#{companylocation} where
-		companyid=#{companyid} and
-		companykind=2
+	<select id="xduplicateid" parameterType="member"
+		resultType="member">
+		select * from client where id=#{id}
+	</select>
+	<update id="updateshelterlocation" parameterType="Company">
+		update companyset companylocation=#{companylocation} where companyid=#{companyid} and companykind=2
 	</update>
 <delete id="dogDeleteBtn" parameterType="int">
 	delete from dog dog where exists
 	(select * from dogpics dp where dp.dogid=dog.dogid and dog.dogid=#{dogid})
 </delete>
-<update id="updateCompanyPic" parameterType="Company">
-update companypic set (comapnypic=#{param1}, companyid=#{param2}) where companyid=#{companyid}
+<insert id="insertCompanyLocPic" parameterType="Company">
+insert into companypic values (#{param1}, #{param2})
+</insert>
+<update id="updateCompanyCardPic" parameterType="Company">
+update company set companycard=#{param1} where companyid=#{param2}
 </update>
-<update id="updateCompanyLocPic" parameterType="Company">
-update company set (comapnycard=#{param1}, companyid=#{param2}) where companyid=#{companyid}
-</update>
+<delete id="deleteCompanyLocPic" parameterType="String">
+delete from companypic where companyid=#{companyid}
+</delete>
+
+	<update id="updateCompanyLocPic" parameterType="Company">
+		update company set (comapnycard=#{param1}, companyid=#{param2}) where companyid=#{companyid}
+	</update>
+
+	<update id="updatecompanyname" parameterType="Company">
+		update company set companyname=#{companyname} where companyid=#{companyid}
+	</update>
+
+	<update id="updatecompanyboss" parameterType="Company">
+		update company set companyboss=#{companyboss} where companyid=#{companyid}
+	</update>
+
+	<update id="updatecompanyphone" parameterType="Company">
+		update company set companyphone=#{companyphone} where companyid=#{companyid}
+	</update>
+
+
+
+	<update id="updatecompanyemail" parameterType="Company">
+		update company set companyemail=#{companyemail} where companyid=#{companyid}
+	</update>
 </mapper>

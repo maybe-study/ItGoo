@@ -17,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dto.Auction;
+import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Reservation;
+import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
@@ -31,6 +33,8 @@ public class RestClient2Controller {
 	private TestManagement tm;
 	@Autowired
 	private AuctionManagement am;
+	@Autowired
+	private ClientManagement cm;
 	
 	@GetMapping("/example")
 	public String auctionAttend(int dogid) {
@@ -38,8 +42,16 @@ public class RestClient2Controller {
 		mav = tm.testPaper(dogid);
 		return null;
 	}
-	
-	
-	
+
+	@PostMapping(value = "/regismallmeeting")
+	public  ModelAndView regismallmeeting (Principal p,SmallMeeting sm) {
+		if(p!=null) {
+			p.getName ();
+			System.out.println("p="+p.getName());
+		}
+		mav= cm.regismallmeeting(p,sm);
+
+		return mav;
+	}
 	
 }
