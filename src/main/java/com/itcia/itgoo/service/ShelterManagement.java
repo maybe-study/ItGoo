@@ -251,12 +251,6 @@ public class ShelterManagement {
 		return mav;
 	}
 
-	public ModelAndView updatecompanylocpic(Principal p, Company cp) {
-		cp.setCompanyid(p.getName());
-		sDao.updatecompanylocpic(cp);
-		return mav;
-	}
-
 	public ModelAndView updatecompanyemail(Principal p, Company cp) {
 		cp.setCompanyid(p.getName());
 		sDao.updatecompanyemail(cp);
