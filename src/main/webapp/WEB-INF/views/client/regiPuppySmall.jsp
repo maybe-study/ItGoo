@@ -129,7 +129,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">Start
+			<a class="navbar-brand js-scroll-trigger" href="itgoo1main">Start
 				ITGOO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -139,6 +139,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
+				<li class="nav-item"><a class="#page-top"
+						href="#">맨위로</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
@@ -176,14 +178,8 @@
 				</div>
 				<div class="card col-lg-12">
 					<div class="card-body" id="auctionstart">
-					<label class="card-label">최대 강아지</label>
-					<select name="maximumdog" id="maximumdog">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
+					<label class="card-label">모집할 최대 강아지 마릿 수</label>
+					<input type="text" name="maximumdog"  id="maximumdog"/>마리
 					</div>
 				</div>
 				<div class="card col-lg-12">

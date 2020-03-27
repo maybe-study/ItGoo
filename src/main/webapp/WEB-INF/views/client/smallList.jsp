@@ -30,6 +30,7 @@
 
 <!-- Theme CSS - Includes Bootstrap -->
 <link href="css/creative.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>  
 
 </head>
 <style>
@@ -107,6 +108,14 @@
 	#auctionexplain img{
 		width:100%
 	}
+	.pagingdiv{
+	margin-left: 45%;
+	}
+	.card{
+	height: 350px;
+	}
+	#contents_layer{
+	}
 
 </style>
 <body id="page-top">
@@ -115,7 +124,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">Start
+			<a class="navbar-brand js-scroll-trigger" href="itgoo1main">Start
 				ITGOO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -125,12 +134,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">경매</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">SERVICE</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">소모임</a></li>
+					<li class="nav-item"><a class="#page-top"
+						href="#">맨위로</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
@@ -148,6 +153,10 @@
 
 
 	<!-- Masthead -->
+	<div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
 	<header>
 		<div class="container">
 			
@@ -168,14 +177,16 @@
                     <th>주최자</th>
                     <th>위치 </th>
                     <th>최대 참여 강아지수</th>
+                    <th>소모임 시작날짜</th>
                     <th>소모임 시작시간</th>
                     </tr>
                 </thead>
-                <tbody id="activitydelbody">
+                <tbody id="smallmeetinglist">
                   
                 </tbody>
               </table>
 					</div>
+					<div class="pagingdiv"></div>
 				</div>
 			</div>
 		</div>
@@ -201,9 +212,64 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="js/creative.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 	
 	<script>
-	
+	let container = $('.pagingdiv');
+    container.pagination({
+      
+        dataSource:${smList} ,  //받아온 데이터
+        pageSize: 10,
+        callback: function (data, pagination) { //데이터 찍어주는 부분
+           console.log("data=",data);
+           temp=data;
+           $("#smallmeetinglist").empty();
+           $.each(data,function(idx, data){
+        		var $body = $("#smallmeetinglist");
+        		
+        		var $tr = $("<tr>").appendTo($body);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.smallnumber+')').text(data.meetingname)).appendTo($tr);
+        		$("<td>").text(data.id).appendTo($tr);
+        		$("<td>").text(data.smalllocation).appendTo($tr);
+        		$("<td>").text(data.maximumdog).appendTo($tr);
+        		$("<td>").text(data.meetingdate).appendTo($tr);
+        		$("<td>").text(data.time).appendTo($tr);
+        		
+        		});
+        }
+    
+    })
+    function articleView(smallnumber){
+		var sldetail= ${sldetail}
+		$("#articleView_layer").addClass('open');
+		
+		$.ajax({
+			type:'get',
+			url:"smalllistdetail",
+			data:{smallnumber:smallnumber},
+			dataType:'html',
+			success:function(data){
+			
+				$("#contents_layer").html(data);
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
+	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	}); 
 	</script>
 	</body>
 

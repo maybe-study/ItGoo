@@ -148,4 +148,60 @@ public class ClientManagement {
 		return mav;
 
 	}
+
+	public ModelAndView smalllist(SmallMeeting sm) {
+		mav= new ModelAndView();
+		String view = null;
+		List<SmallMeeting> smList = cDao.smalllist(sm);
+		mav.addObject("smList", new Gson().toJson(smList));
+		mav.setViewName("client/smallList");
+		
+		return mav;
+	}
+
+	public ModelAndView myappliedsmall(Principal p,SmallMeeting sm) {
+		mav= new ModelAndView();
+		String view = null;
+		sm.setId((String) p.getName());
+		List<SmallMeeting> asList = cDao.myappliedsmall(sm);
+		mav.addObject("asList", new Gson().toJson(asList));
+		mav.setViewName("client/mySmallMeeting");
+		return mav;
+	}
+
+	public ModelAndView myrecruitsmall(Principal p,SmallMeeting sm) {
+		mav= new ModelAndView();
+		String view = null;
+		sm.setId((String) p.getName());
+		List<SmallMeeting> rsList = cDao.myrecruitsmall(sm);
+		mav.addObject("rsList", new Gson().toJson(rsList));
+		mav.setViewName("client/mySmallMeeting");
+		return mav;
+	}
+
+	public ModelAndView smalllistdetail(Integer smallnumber) {
+		mav = new ModelAndView();
+		String view=null;
+		SmallMeeting sldetail = cDao.smalllistdetail(smallnumber);
+		sldetail.setSmallnumber(smallnumber);
+		mav.addObject("sldetail",new Gson().toJson(sldetail));
+		view="client/smallListDetail";
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
+		mav= new ModelAndView();
+		System.out.println("smallnumber="+sm.getSmallnumber());
+		System.out.println("smalldogcnt="+sm.getSmalldogcnt());
+		System.out.println("meetparticipatecnt="+sm.getMeetparticipatecnt());
+		RedirectView redirectView= new RedirectView();
+		sm.setId((String) p.getName());
+		cDao.insertsmallmeeting(sm);
+		cDao.updatesmallmeeting(sm);
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("smalllist");
+		return mav;
+	}
 }

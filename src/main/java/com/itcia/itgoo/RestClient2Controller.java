@@ -53,5 +53,13 @@ public class RestClient2Controller {
 
 		return mav;
 	}
+	@RequestMapping(value = "/smalllistdetail" , method = RequestMethod.GET)
+	public ModelAndView smalllistdetail(Integer smallnumber) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+		
+		mav= cm.smalllistdetail(smallnumber);
+		
+		return mav;
+	}
 	
 }

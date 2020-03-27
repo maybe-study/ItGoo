@@ -33,4 +33,24 @@ select * from dog where dogid=#{dogid}
 	insert into smallmeeting values(small_seq.nextval,#{id},#{smalllocation},#{maximumdog},#{meetingname},#{meetparticipatecnt},#{time},#{meetingdate} )
 	
 	</insert>
+	<select id="myappliedsmall" parameterType="SmallMeeting"
+		resultType="SmallMeeting">
+	select sm.meetingname, sm.id, sm.smalllocation, sp.smalldogcnt, sm.meetingdate, sm.time from smallmeeting sm , smallparticipate sp where sm.smallnumber=sp.smallnumber and sp.id=#{id} 
+	</select>
+	
+	<select id="myrecruitsmall" parameterType="SmallMeeting"
+		resultType="SmallMeeting">
+	select * from smallmeeting where id=#{id}
+	</select>
+	<select id="smalllistdetail" parameterType="int"
+		resultType="SmallMeeting">
+	select * from smallmeeting where smallnumber=#{smallnumber}
+	</select>
+	<insert id="insertsmallmeeting" parameterType="SmallMeeting">
+	insert into smallparticipate values (#{id},#{smallnumber},#{smalldogcnt})
+	</insert>
+	
+	<update id="updatesmallmeeting" parameterType="SmallMeeting">
+	update smallmeeting set meetparticiparecnt = (#{meetparticipatecnt}+#{smalldogcnt}) where smallnumber = #{smallnumber}
+	</update>
 </mapper>

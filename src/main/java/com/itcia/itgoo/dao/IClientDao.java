@@ -46,6 +46,19 @@ public interface IClientDao {
 
 	void regismallmeeting(SmallMeeting sm);
 	
+	@Select("select * from smallmeeting")
+	List<SmallMeeting> smalllist(SmallMeeting sm);
+
+	List<SmallMeeting> myappliedsmall(SmallMeeting sm);
+
+	List<SmallMeeting> myrecruitsmall(SmallMeeting sm);
+
+	SmallMeeting smalllistdetail(Integer smallnumber);
+
+	void insertsmallmeeting(SmallMeeting sm);
+
+	void updatesmallmeeting(SmallMeeting sm);
+	
 
 
 }

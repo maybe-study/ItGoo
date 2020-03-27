@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dto.Auction;
 import com.itcia.itgoo.dto.Reservation;
+import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
@@ -33,7 +34,8 @@ public class Client2Controller {
 	private TestManagement tm;
 	@Autowired
 	private AuctionManagement am;
-	
+	@Autowired
+	private ClientManagement cm;
 	@GetMapping("/testpaper")
 	public ModelAndView testPaper(int dogid) {
 		
@@ -84,13 +86,28 @@ public class Client2Controller {
 		return "client/puppySmall";
 	}
 	@RequestMapping(value = "/smalllist", method = RequestMethod.GET)
-	public String smalllist(Locale locale, Model model) {
-		return "client/smallList";
+	public ModelAndView smalllist(SmallMeeting sm) {
+		ModelAndView mav = new ModelAndView();
+		mav = cm.smalllist(sm);
+		return mav;
 	}
 	@RequestMapping(value = "/regipuppysmall", method = RequestMethod.GET)
 	public String regipuppysmall(Locale locale, Model model) {
 		return "client/regiPuppySmall";
 	}
 	
-	
+
+	@RequestMapping(value = "/mysmallmeeting", method = RequestMethod.GET)
+	public ModelAndView mysmallmeeting(Principal p,SmallMeeting sm) {
+		ModelAndView mav = new ModelAndView();
+		mav = cm.myappliedsmall(p,sm);
+		mav = cm.myrecruitsmall(p,sm);
+		return mav;
+	}
+	@RequestMapping(value = "/joinsmallmeeting", method = RequestMethod.GET)
+	public ModelAndView joinsmallmeeting(Principal p,SmallMeeting sm) {
+		ModelAndView mav = new ModelAndView();
+		mav= cm.joinsmallmeeting(p, sm);
+		return mav;
+	}
 }
