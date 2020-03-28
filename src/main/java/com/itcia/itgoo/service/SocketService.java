@@ -43,11 +43,12 @@ public class SocketService {
 			template.convertAndSend("/topic/bidding/"+b.getAuctionnum(), new Gson().toJson(b));
 		}
 	}
-
-	
 	public void auctionEndCast(Auction a) {
 		System.out.println("=======================캐스트!!!!!=======================");
 		System.out.println("종료 하는 경매 : "+a.getAuctionnum());
 		template.convertAndSend("/topic/auctoinEnd/"+a.getAuctionnum(), new Gson().toJson(a));
+	}
+	public void auctionEndCountDown(Auction a, int i) {
+		template.convertAndSend("/topic/auctoinEndCountDown/"+a.getAuctionnum(), i);
 	}
 }

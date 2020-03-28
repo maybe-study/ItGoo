@@ -153,7 +153,8 @@
 				</div>
 				<div class="col-lg-8 align-self-baseline">
 					<p class="text-white-75 font-weight-light mb-5">원하는 물품을 싸고 빠르게 찾아보세요!</p>
-					<!-- <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">둘러보기</a> -->
+					 <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nav">물품둘러보기</a> 
+					
 				</div>
 			</div>
 		</div>
@@ -174,9 +175,6 @@
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" href="javascript:void(0)"id="complete" onclick="aj(this)">완료</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link disabled" href="#">Disabled</a>
 		  </li>
 		</ul>
 	</section>

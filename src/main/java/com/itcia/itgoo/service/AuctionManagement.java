@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,14 +60,18 @@ public class AuctionManagement {
 		a.setAuctionpic(up.fileUp(f , "auctionthumb"));
 		List<String> srcList=new Gson().fromJson(srcJson,new TypeToken<ArrayList<String>>() {}.getType());
 		
-		//경매 종료 타이머
-		AuctionThread aThread =new AuctionThread(a);
-		aThread.start();
 		
-		aDao.addAuction(a);
-		for(String src:srcList) {
-			aDao.addauctionPic(a.getAuctionnum(),src);
+		AuctionThread aThread =new AuctionThread(a);
+		//시작시간이 현재시간보다 크고 종료시간이 시작보다 10초 커야 경매 등록
+		if((aThread.getStart()-new Date().getTime()>1000)&&(aThread.getEnd()-aThread.getStart()>10000)) {
+			//경매 타이머 시작
+			aThread.start();
+			aDao.addAuction(a);
+			for(String src:srcList) {
+				aDao.addauctionPic(a.getAuctionnum(),src);
+			}
 		}
+		
 		
 		RedirectView redirectView = new RedirectView(); // redirect url 설정
 		redirectView.setExposeModelAttributes(false);
@@ -76,10 +81,19 @@ public class AuctionManagement {
 	}
 
 	public ModelAndView auctionAttend(int auctionnum, Principal p) {
-		mav.addObject("auction",new Gson().toJson(aDao.auctionDetail(auctionnum)));
-		mav.addObject("aPics",new Gson().toJson(aDao.auctionPics(auctionnum)));
-		mav.addObject("bids",new Gson().toJson(aDao.bids(auctionnum)));
-		mav.setViewName("client/AuctionAttend");
+		Auction auction=aDao.auctionDetail(auctionnum);
+		if(auction.getStatus()==0) {
+			mav.addObject("msg","시작되지 않은 경매입니다.");
+			mav.setViewName("client/AuctionAttendFail");
+		}else if(auction.getStatus()==1) {
+			mav.addObject("auction",new Gson().toJson(aDao.auctionDetail(auctionnum)));
+			mav.addObject("aPics",new Gson().toJson(aDao.auctionPics(auctionnum)));
+			mav.addObject("bids",new Gson().toJson(aDao.bids(auctionnum)));
+			mav.setViewName("client/AuctionAttend");
+		}else {
+			mav.addObject("msg","종료된 경매입니다.");
+			mav.setViewName("client/AuctionAttendFail");
+		}
 		return mav;
 	}
 

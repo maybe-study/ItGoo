@@ -109,6 +109,9 @@
 	#auctionexplain img{
 		width:100%
 	}
+	.expired{
+		display:none;
+	}
 
 </style>
 <body id="page-top">
@@ -174,6 +177,11 @@
 					</div>
 				</div>
 				<div class="card col-lg-12">
+					<div class="card-body" id="auctionend">
+					<label class="card-label">종료 일시</label>
+					</div>
+				</div>
+				<div class="card col-lg-12">
 					<div class="card-body" id="owner">
 					<label class="card-label">주인</label>
 					</div>
@@ -181,6 +189,16 @@
 				<div class="card col-lg-12">
 					<div class="card-body" id="lowprice">
 					<label class="card-label">시작가</label>
+					</div>
+				</div>
+				<div class="expired card col-lg-12">
+					<div class="card-body" id="buyer">
+					<label class="card-label">낙찰자</label>
+					</div>
+				</div>
+				<div class="expired card col-lg-12">
+					<div class="card-body" id="realprice">
+					<label class="card-label">낙찰가</label>
 					</div>
 				</div>
 				<div class="card col-lg-12">
@@ -228,12 +246,22 @@
 	var $btn=$('<button class="btn btn-primary">').text('경매참여').click(function() {
 		location.href='auctionattend?auctionnum='+a.auctionnum;
 	});
+	
 	$('#owner').append(a.owner);
 	$('#auctionstart').append(a.auctionstart);
+	$('#auctionend').append(a.auctionend);
 	$('#auctionname').append(a.auctionname);
 	$('#lowprice').append(a.lowprice);
 	$('#auctionexplain').append(a.auctionexplain);
-	$('#button').append($btn);
+	//진행중인 경매
+	if(a.status==1)$('#button').append($btn);
+	//종료된 경매
+	if(a.status==2){
+		console.log('나와야되ㅡㄴ디')
+		$('.expired').css('display','flex');
+		$('#buyer').append(a.buyer);
+		$('#realprice').append(a.realprice);
+	}
 	</script>
 	</body>
 

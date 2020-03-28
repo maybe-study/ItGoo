@@ -28,5 +28,8 @@ public class Auction {
 	private String auctionstart;
 	private String owner;
 	private String buyer;
-	private int realprice;
+	private int  realprice;
+	private String auctionend;
+	private int status;
+	
 }
