@@ -30,27 +30,7 @@ public class RestClient2Controller {
 	ModelAndView mav = new ModelAndView();
 
 	@Autowired
-	private TestManagement tm;
-	@Autowired
-	private AuctionManagement am;
-	@Autowired
 	private ClientManagement cm;
-
-	@GetMapping("/example")
-	public String auctionAttend(int dogid) {
-
-		mav = tm.testPaper(dogid);
-		return null;
-	}
-
-	@RequestMapping(value = "/ajauctionlist", method = RequestMethod.GET)
-	public String auctionListAJ(String kind) {
-		String aList = am.auctionListAJ(kind);
-		return aList;
-	}
-
-
-
 
 	@PostMapping(value = "/regismallmeeting")
 	public  ModelAndView regismallmeeting (Principal p,SmallMeeting sm) {

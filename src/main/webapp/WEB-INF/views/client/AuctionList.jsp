@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -121,12 +123,15 @@
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#portfolio">소모임</a></li>
+					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
 							<input name="${_csrf.parameterName}" type="hidden"
 								value="${_csrf.token}" />
-						</form></li>
+						</form>
+					</li>
+					</sec:authorize>
 				</ul>
 			</div>
 		</div>
@@ -279,13 +284,17 @@
 	<!-- Plugin JavaScript -->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
+	
+	
+	
+	<script src="js/creative.js"></script>
 
 	
 	<script>
 		
 		function makeList(aList){
 			var $aList=$('#aList');
+			console.log(aList);
 			$aList.empty();
 			$.each(aList,function(idx,a){
 				console.log(a);
@@ -307,7 +316,11 @@
 		var aList=${aList};
 		makeList(aList);
 		
-		
+		$.ajaxSetup({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			}
+		});//먼저 보냄
 		
 		function aj(e){
 			var text=e.text;
@@ -316,29 +329,22 @@
 			console.log(e.text);
 			//에이작스
 			$.ajax({
-				url: "ajauctionlist",
-				method: "get",
-				data:{kind:e.text},
-				dataType: "JSON"
+				url: 'ajauctionlist',
+				type: 'post',
+				dataType:'json',
+				data:{type:e.text}
 			}).done((result)=>{
 				
 				makeList(result);
 			
-			} )
-			
-			.fail((xhr)=>{
+			}).fail((xhr)=>{
 				console.log("xhr=",xhr);
+				$('#aList').empty().append(xhr.responseText);
 			});
 		};
 		
 		
 
-	</script>
-	<script>
-	//소켓 생성
-
-	
-	
 	</script>
 </body>
 

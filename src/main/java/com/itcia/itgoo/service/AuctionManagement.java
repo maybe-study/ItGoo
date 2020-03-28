@@ -89,7 +89,7 @@ public class AuctionManagement {
 		return mav;
 	}
 
-	public String auctionListAJ(String kind) {
+	public List<Auction> auctionListAJ(String kind) {
 		List<Auction> aList=null;
 		if(kind.equals("진행 예정 경매"))
 			aList=aDao.expectedAuctionList();
@@ -98,6 +98,6 @@ public class AuctionManagement {
 		if(kind.equals("완료"))
 			aList=aDao.completeAuctionListts();
 		
-		return new Gson().toJson(aList);
+		return aList;
 	}
 }

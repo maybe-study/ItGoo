@@ -36,13 +36,14 @@ public class Client2Controller {
 	private AuctionManagement am;
 	@Autowired
 	private ClientManagement cm;
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/testpaper")
 	public ModelAndView testPaper(int dogid) {
 		
 		mav = tm.testPaper(dogid);
 		return mav;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/testpapersubmit")
 	public ModelAndView testPaperSubmit(String test,Principal p) {
 		System.out.println("===================test====================");
@@ -53,6 +54,7 @@ public class Client2Controller {
 		
 		return mav;
 	}
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/auctionfrm")
 	public ModelAndView auctionFrm() {
 		mav.setViewName("client/AuctionFrm");
@@ -64,18 +66,19 @@ public class Client2Controller {
 		mav=am.addAuction(p,a,f,srcJson);
 		return mav;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/auctionlist", method = RequestMethod.GET)
 	public ModelAndView auctionList() {
 		mav = am.auctionList();
 		return mav;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/auctionattend", method = RequestMethod.GET)
 	public ModelAndView auctionAttend(int auctionnum,Principal p) {
 		mav = am.auctionAttend(auctionnum,p);
 		return mav;
 	}
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/auctiondetail", method = RequestMethod.GET)
 	public ModelAndView auctionDetail(int auctionnum) {
 		mav = am.auctionDetail(auctionnum);

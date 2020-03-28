@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -133,12 +135,15 @@
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#portfolio">소모임</a></li>
+					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
 							<input name="${_csrf.parameterName}" type="hidden"
 								value="${_csrf.token}" />
-						</form></li>
+						</form>
+					</li>
+					</sec:authorize>
 				</ul>
 			</div>
 		</div>
