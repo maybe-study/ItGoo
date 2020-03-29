@@ -153,7 +153,7 @@
 				</div>
 				<div class="col-lg-8 align-self-baseline">
 					<p class="text-white-75 font-weight-light mb-5">원하는 물품을 싸고 빠르게 찾아보세요!</p>
-					 <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nav">물품둘러보기</a> 
+					 <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nav">진행예정경매</a> 
 					
 				</div>
 			</div>
@@ -332,9 +332,7 @@
 				dataType:'json',
 				data:{type:e.text}
 			}).done((result)=>{
-				
 				makeList(result);
-			
 			}).fail((xhr)=>{
 				console.log("xhr=",xhr);
 				$('#aList').empty().append(xhr.responseText);

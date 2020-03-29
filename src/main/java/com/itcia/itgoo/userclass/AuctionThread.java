@@ -45,8 +45,6 @@ public class AuctionThread extends Thread{
 			ss.auctionEndCountDown(a,i);
 			waiting(1000);
 		}
-		//1)경매 구독한 소켓에 종료 메시지 전달
-		ss.auctionEndCast(a);
 		//2)낙찰가 업데이트
 		if(aDao.biderCnt(a)>0) {//경매에 참여한 사람이 있으면
 			//낙찰가 낙찰자 업데이트
@@ -54,6 +52,8 @@ public class AuctionThread extends Thread{
 		}
 		System.out.println("==============경매 종료=================");
 		aDao.endAuction(a);	//경매 종료
+		//1)경매 구독한 소켓에 업데이트된 종료 메시지 전달
+		ss.auctionEndCast(aDao.auctionDetail(a.getAuctionnum()));
 	}
 	public void waiting(long diff) {
 		try {

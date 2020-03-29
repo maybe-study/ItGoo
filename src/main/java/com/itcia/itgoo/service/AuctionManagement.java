@@ -66,6 +66,7 @@ public class AuctionManagement {
 		if((aThread.getStart()-new Date().getTime()>1000)&&(aThread.getEnd()-aThread.getStart()>10000)) {
 			//경매 타이머 시작
 			aThread.start();
+			System.out.println("========================addAuction========================");
 			aDao.addAuction(a);
 			for(String src:srcList) {
 				aDao.addauctionPic(a.getAuctionnum(),src);

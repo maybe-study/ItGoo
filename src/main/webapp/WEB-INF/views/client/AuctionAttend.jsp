@@ -110,6 +110,10 @@
 	.btn-div{
 		padding-top:40px;
 	}
+	#bid{
+		display:inline-block;
+	}
+	
 	
 
 </style>
@@ -277,6 +281,7 @@
 	$('#auctionstart').append(a.auctionstart);
 	$('#lowprice').append(a.lowprice);
 	$('#auctionend').append(a.auctionend);
+	if(a.status==1)$('#bid').css('display','inline-block');
 	
 	var $uls=$('.carousel-indicators').empty();
 	var $items=$('.carousel-inner').empty();
@@ -322,16 +327,14 @@
 			console.dir(msg);
 			var $label=$('<div class="label label-default">').append("경매 종료 "+msg.body+"초 전");
 			$("#auction").append($label)
-			
-			
 		})
 		//경매 종료 구독
 		stompClient.subscribe('/topic/auctoinEnd/'+a.auctionnum,function(msg){
-			var $label=$('<div class="label label-default">').append("경매가 종료되었습니다.")
+			
+			var a=JSON.parse(msg.body);
+			var $label=$('<div class="label label-default">').append("경매가 종료되었습니다.<br>낙찰자:"+a.buyer+"</br>낙찰가:"+a.realprice)
 			$("#auction").append($label)
 			disconnect();
-			
-			
 		});
 		//입장 전송
 		stompClient.send("/enter",{},JSON.stringify({auctionnum: ""+a.auctionnum}));

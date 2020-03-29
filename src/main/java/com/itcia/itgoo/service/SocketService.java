@@ -26,19 +26,17 @@ public class SocketService {
 		b.setId(p.getName());
 		System.out.println("유저아이디:"+p.getName());
 		System.out.println("옥션 번호:"+b.getAuctionnum());
+		Auction a=aDao.auctionDetail(b.getAuctionnum());
 		BidUpdate maxBid=aDao.getMaxBid(b);
-		
-		if(maxBid==null) {	//입찰이 없으면
-			//최저가보다 입찰가가 크면 인서트
-			int lowPrice=aDao.auctionDetail(b.getAuctionnum()).getLowprice();
-			System.out.println("=======================lowPrice=======================");
-			System.out.println("lowPrice:"+lowPrice);
-			if(lowPrice<b.getCurrentprice()) {
-				aDao.insertBid(b);
-				template.convertAndSend("/topic/bidding/"+b.getAuctionnum(), new Gson().toJson(b));
-			}
-		}else if(maxBid.getCurrentprice()<b.getCurrentprice()){//기존 최고가보다 입찰가가 크면
-		//현재 가격보다 높으면 경매가 갱신하고 전달
+
+		int lowPrice=a.getLowprice();
+		if(a.getStatus()!=1) {//경매 진행중이 아니면
+			return;
+		}else if(maxBid==null&&(lowPrice<b.getCurrentprice())) {	//입찰이 없고, 최저가보다 입찰가가 크면
+			aDao.insertBid(b);
+			template.convertAndSend("/topic/bidding/"+b.getAuctionnum(), new Gson().toJson(b));
+		}else if(maxBid.getCurrentprice()<b.getCurrentprice()){
+		//최고 가격보다 입찰가격이 높으면 경매가 갱신하고 전달
 			aDao.insertBid(b);
 			template.convertAndSend("/topic/bidding/"+b.getAuctionnum(), new Gson().toJson(b));
 		}

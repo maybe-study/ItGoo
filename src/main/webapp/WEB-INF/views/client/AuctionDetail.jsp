@@ -243,9 +243,8 @@
 	<script>
 	console.log(${auction});
 	var a=${auction};
-	var $btn=$('<button class="btn btn-primary">').text('경매참여').click(function() {
-		location.href='auctionattend?auctionnum='+a.auctionnum;
-	});
+	var $btn=$('<button class="btn btn-primary">')
+	
 	
 	$('#owner').append(a.owner);
 	$('#auctionstart').append(a.auctionstart);
@@ -253,8 +252,17 @@
 	$('#auctionname').append(a.auctionname);
 	$('#lowprice').append(a.lowprice);
 	$('#auctionexplain').append(a.auctionexplain);
-	//진행중인 경매
-	if(a.status==1)$('#button').append($btn);
+	//버튼 추가
+	if(a.status==1){
+		$btn.text('경매참여').click(function() {
+			location.href='auctionattend?auctionnum='+a.auctionnum;
+		});
+	}else{
+		$btn.text('돌아가기').click(function() {
+			location.href='itgoo1main';
+		});
+	}
+	$('#button').append($btn)
 	//종료된 경매
 	if(a.status==2){
 		console.log('나와야되ㅡㄴ디')
@@ -262,6 +270,7 @@
 		$('#buyer').append(a.buyer);
 		$('#realprice').append(a.realprice);
 	}
+	
 	</script>
 	</body>
 
