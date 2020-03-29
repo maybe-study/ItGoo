@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+#logo {
+	padding: 30px;
+	width: 300px;
+	height: 150px;
+}
+
+#topMenu {
+	margin-top:100px; 
+	height: 40px;
+	width: 300px;
+}
+
+#topMenu ul li {
+	/* 	list-style: none; */
+	color: white;
+	background-color: #2d2d2d;
+	/* 	float: left; */
+	line-height: 50px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#topMenu .menuLink {
+	text-decoration: none;
+	color: white;
+	display: block;
+	width: 260px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Dotum, Arial;
+}
+
+#topMenu .menuLink:hover {
+	color: red;
+	background-color: #4d4d4d;
+}
+
+#table {
+	margin-left: 250px;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<body>
+	<header>
+		<div id="logo">
+			<a href="index.jsp"><img id="logo"
+				src="img/portfolio/itgoo1004.png"> </a>
+		</div>
+
+		<div></div>
+
+	</header>
+
+	<aside>
+	
+			<nav id="topMenu">
+				<ul>
+					<li><a class="menuLink" href="introduce.jsp">ITGOO소개</a></li>
+					<li><a class="menuLink" href="companyjoinform.jsp">업체회원가입</a></li>
+					<li><a class="menuLink" href="list.html">커뮤니티</a></li>
+					<li><a class="menuLink" href="adoptList.jsp">입양공고</a></li>
+					<li><a class="menuLink" href="ItGoostar.html">ITGOOSTAR</a></li>
+				</ul>
+			</nav>
+
+	</aside>
+
+	<div id="table">
+		<table id="boards" class="table table-hover">
+			<colgroup>
+				<!-- 열너비 지정 -->
+				<col width="10%">
+				<col width="10%">
+				<col width="40%">
+				<col width="10%">
+				<col width="25%">
+				<col width="10%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>글번호</th>
+					<th>첨부</th>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>날짜</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>
