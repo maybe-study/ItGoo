@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Activity;
+import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
@@ -34,13 +35,13 @@ public class ShelterManagement {
 	/*
 	 * public ModelAndView shelterjoin(Commonmember cmb) { mav = new ModelAndView();
 	 * String view = null;
-	 * 
+	 *
 	 * // 인코더 암호화 --디코더 복호화 // 스프링시큐리티는 암호화는 가능하지만 복호화는 불가능하다. // 비번만 암호화해서 DB에 저장
 	 * BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
 	 * cmb.setPassword(pwdEncoder.encode(cmb.getPassword()));
-	 * 
+	 *
 	 * sDao.insertCompany(cmb); sDao.insertClient(cmb); // 파일 첨부 메소드 만들기
-	 * 
+	 *
 	 * mav.setViewName(view); return mav; }
 	 */
 	@Transactional
@@ -131,7 +132,7 @@ public class ShelterManagement {
 	 * listCount = 10; int pageCount = 2; String activity = "activitydelete"; Paging
 	 * paging = new Paging(maxNum, pNum, listCount, pageCount, activity); return
 	 * paging.makeHtmlPaging();
-	 * 
+	 *
 	 * }
 	 */
 
@@ -191,38 +192,37 @@ public class ShelterManagement {
 		return mav;
 	}
 
-	public ModelAndView updatecompanypic(Principal p, MultipartHttpServletRequest multi, Company cp) {
-		mav = new ModelAndView();
+	public ModelAndView updatecompanylocpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
+		mav= new ModelAndView();
+
 		RedirectView redirectView = new RedirectView();
 
-		cp.setCompanyid((String) p.getName());
+		cp.setCompanyid(p.getName());
 		UploadFile up = new UploadFile();
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
+		boolean lp = sDao.deleteCompanyLocPic(cp);
 		for (String picPath : paths) {
-			System.out.println("cp=" + cp);
-			System.out.println("num=" + cp.getCompanyid());
-			sDao.updateCompanyPic(picPath, cp.getCompanyid());
-		}
-		redirectView.setExposeModelAttributes(false);
+			System.out.println("cp="+cp);
+			System.out.println("num="+cp.getCompanyid());
+			sDao.insertCompanyLocPic(picPath, cp.getCompanyid());
+		}redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("sheltermyinfo");
 		mav.setView(redirectView);
 		return mav;
 
 	}
-
-	public ModelAndView updatecompanylocpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
-		mav = new ModelAndView();
+	public ModelAndView updatecompanycardpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
+		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
 
 		cp.setCompanyid((String) p.getName());
 		UploadFile up = new UploadFile();
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
 		for (String picPath : paths) {
-			System.out.println("cp=" + cp);
-			System.out.println("num=" + cp.getCompanyid());
-			sDao.updateCompanyLocPic(picPath, cp.getCompanyid());
-		}
-		redirectView.setExposeModelAttributes(false);
+			System.out.println("cp="+cp);
+			System.out.println("num="+cp.getCompanyid());
+			sDao.updateCompanyCardPic(picPath, cp.getCompanyid());
+		}redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("sheltermyinfo");
 		mav.setView(redirectView);
 		return mav;
@@ -251,7 +251,7 @@ public class ShelterManagement {
 		return mav;
 	}
 
-	
+
 
 	public ModelAndView updatecompanyemail(Principal p, Company cp) {
 		cp.setCompanyid(p.getName());

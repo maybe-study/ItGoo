@@ -2,6 +2,7 @@ package com.itcia.itgoo;
 
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dto.Adopt;
+import com.itcia.itgoo.dto.CareSheet;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
+import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.MemberManagement;
 
@@ -79,7 +84,22 @@ public class ClientController {
 		mav = cm.updatedog(dogid,choice,p,rs);
 		return mav;
 	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/finalcaresheet", method = RequestMethod.GET)
+	public ModelAndView finalcaresheet(int dogid,CareSheet cs,Principal p) {
+		System.out.println("케어시트!");
+		System.out.println("케어시트에 추가할 강아지"+dogid);
+		mav = cm.finalcaresheet(dogid,cs,p);
+		return mav;
+	}
 	
-	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/submitsheet", method = RequestMethod.GET)
+	public ModelAndView submitSheet(int dogid,String aJson,Principal p) {
+		System.out.println("시트 제출!");
+		System.out.println(dogid);
+		mav=cm.submitSheet(dogid,aJson,p);
+		return mav;
+	}
 
 }

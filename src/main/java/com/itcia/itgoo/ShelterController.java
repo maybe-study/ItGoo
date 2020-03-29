@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
@@ -111,25 +112,23 @@ public class ShelterController {
 		attr.addFlashAttribute("dog", dog);
 		return mav;
 	}
-
-	@PostMapping(value = "/updatecompanypic")
-	public ModelAndView updatecompanypic(Principal p, MultipartHttpServletRequest multi, Company cp) {
-		if (p != null) {
+	@PostMapping(value = "/updatecompanylocpic")
+	public ModelAndView updatecompanylocpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
 			p.getName();
 			System.out.println("p=" + p.getName());
 		}
-		mav = smm.updatecompanypic(p, multi, cp);
+		mav=smm.updatecompanylocpic(p,multi,cp);
 
 		return mav;
 	}
-
-	@PostMapping(value = "/updatecompanylocpic")
-	public ModelAndView updatecompanylocpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
-		if (p != null) {
+	@PostMapping(value = "/updatecompanycardpic")
+	public ModelAndView updatecompanycardpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
+		if(p!=null) {
 			p.getName();
 			System.out.println("p=" + p.getName());
 		}
-		mav = smm.updatecompanylocpic(p, multi, cp);
+		mav=smm.updatecompanycardpic(p,multi,cp);
 
 		return mav;
 	}

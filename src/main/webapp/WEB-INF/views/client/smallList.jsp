@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec"
-   uri="http://www.springframework.org/security/tags"%>    
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -32,6 +30,7 @@
 
 <!-- Theme CSS - Includes Bootstrap -->
 <link href="css/creative.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>  
 
 </head>
 <style>
@@ -109,8 +108,13 @@
 	#auctionexplain img{
 		width:100%
 	}
-	.expired{
-		display:none;
+	.pagingdiv{
+	margin-left: 45%;
+	}
+	.card{
+	height: 350px;
+	}
+	#contents_layer{
 	}
 
 </style>
@@ -120,7 +124,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">Start
+			<a class="navbar-brand js-scroll-trigger" href="itgoo1main">Start
 				ITGOO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -130,21 +134,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">경매</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">SERVICE</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">소모임</a></li>
-					<sec:authorize access="isAuthenticated()">
+					<li class="nav-item"><a class="#page-top"
+						href="#">맨위로</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
 							<input name="${_csrf.parameterName}" type="hidden"
 								value="${_csrf.token}" />
-						</form>
-					</li>
-					</sec:authorize>
+						</form></li>
 				</ul>
 			</div>
 		</div>
@@ -156,6 +153,10 @@
 
 
 	<!-- Masthead -->
+	<div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
 	<header>
 		<div class="container">
 			
@@ -167,54 +168,26 @@
 		<div class="container-fluid" id="bg">
 			<div class="container row" style="margin:auto">
 				<div class="card col-lg-12">
-					<div class="card-body" id="auctionname" style="font-size:20px">
-					<label class="card-label" >제목</label>
+					<div class="card-body" id="auctionname" style="font-size:14px">
+					 <table class="table table-hover">
+      
+                <thead>
+                  <tr>
+                    <th>그룹이름</th>
+                    <th>주최자</th>
+                    <th>위치 </th>
+                    <th>최대 참여 강아지수</th>
+                    <th>소모임 시작날짜</th>
+                    <th>소모임 시작시간</th>
+                    </tr>
+                </thead>
+                <tbody id="smallmeetinglist">
+                  
+                </tbody>
+              </table>
 					</div>
+					<div class="pagingdiv"></div>
 				</div>
-				<div class="card col-lg-12">
-					<div class="card-body" id="auctionstart">
-					<label class="card-label">시작 일시</label>
-					</div>
-				</div>
-				<div class="card col-lg-12">
-					<div class="card-body" id="auctionend">
-					<label class="card-label">종료 일시</label>
-					</div>
-				</div>
-				<div class="card col-lg-12">
-					<div class="card-body" id="owner">
-					<label class="card-label">주인</label>
-					</div>
-				</div>
-				<div class="card col-lg-12">
-					<div class="card-body" id="lowprice">
-					<label class="card-label">시작가</label>
-					</div>
-				</div>
-				<div class="expired card col-lg-12">
-					<div class="card-body" id="buyer">
-					<label class="card-label">낙찰자</label>
-					</div>
-				</div>
-				<div class="expired card col-lg-12">
-					<div class="card-body" id="realprice">
-					<label class="card-label">낙찰가</label>
-					</div>
-				</div>
-				<div class="card col-lg-12">
-					
-					<div class="card-body col-lg-12">
-					
-					<h5 class="card-title" style="font-size:14px">상세</h5>
-					<div class="col-lg-12" id="auctionexplain"></div>
-					<div class="col-lg-12" id="button" style="text-align: center"></div>
-					</div>
-					
-				</div>
-				<br>
-				<br>
-				
-				
 			</div>
 		</div>
 	</section>
@@ -239,38 +212,64 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="js/creative.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 	
 	<script>
-	console.log(${auction});
-	var a=${auction};
-	var $btn=$('<button class="btn btn-primary">')
-	
-	
-	$('#owner').append(a.owner);
-	$('#auctionstart').append(a.auctionstart);
-	$('#auctionend').append(a.auctionend);
-	$('#auctionname').append(a.auctionname);
-	$('#lowprice').append(a.lowprice);
-	$('#auctionexplain').append(a.auctionexplain);
-	//버튼 추가
-	if(a.status==1){
-		$btn.text('경매참여').click(function() {
-			location.href='auctionattend?auctionnum='+a.auctionnum;
-		});
-	}else{
-		$btn.text('돌아가기').click(function() {
-			location.href='itgoo1main';
-		});
+	let container = $('.pagingdiv');
+    container.pagination({
+      
+        dataSource:${smList} ,  //받아온 데이터
+        pageSize: 10,
+        callback: function (data, pagination) { //데이터 찍어주는 부분
+           console.log("data=",data);
+           temp=data;
+           $("#smallmeetinglist").empty();
+           $.each(data,function(idx, data){
+        		var $body = $("#smallmeetinglist");
+        		
+        		var $tr = $("<tr>").appendTo($body);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.smallnumber+')').text(data.meetingname)).appendTo($tr);
+        		$("<td>").text(data.id).appendTo($tr);
+        		$("<td>").text(data.smalllocation).appendTo($tr);
+        		$("<td>").text(data.maximumdog).appendTo($tr);
+        		$("<td>").text(data.meetingdate).appendTo($tr);
+        		$("<td>").text(data.time).appendTo($tr);
+        		
+        		});
+        }
+    
+    })
+    function articleView(smallnumber){
+		var sldetail= ${sldetail}
+		$("#articleView_layer").addClass('open');
+		
+		$.ajax({
+			type:'get',
+			url:"smalllistdetail",
+			data:{smallnumber:smallnumber},
+			dataType:'html',
+			success:function(data){
+			
+				$("#contents_layer").html(data);
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
 	}
-	$('#button').append($btn)
-	//종료된 경매
-	if(a.status==2){
-		console.log('나와야되ㅡㄴ디')
-		$('.expired').css('display','flex');
-		$('#buyer').append(a.buyer);
-		$('#realprice').append(a.realprice);
-	}
-	
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
+	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	}); 
 	</script>
 	</body>
 

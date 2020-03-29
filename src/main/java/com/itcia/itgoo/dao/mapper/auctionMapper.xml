@@ -5,7 +5,12 @@
 <selectKey keyProperty="auctionnum" order="AFTER" resultType="int">
 	select max(auctionnum) from auction
 </selectKey>
-	insert into auction values(auction_seq.nextval,#{auctionname},#{auctionpic},#{lowprice},#{auctionexplain},TO_timestamp(#{auctionstart},'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN'),#{owner},'undefined',0)
+	insert into auction values(auction_seq.nextval,#{auctionname},#{auctionpic},#{lowprice},#{auctionexplain},TO_timestamp(#{auctionstart},'MM/DD/YYYY HH:MI:SS AM', 'NLS_DATE_LANGUAGE = AMERICAN'),#{owner},'undefined',0,TO_timestamp(#{auctionend},'MM/DD/YYYY HH:MI:SS AM', 'NLS_DATE_LANGUAGE = AMERICAN'),0)
 </insert>
-
+<update id="updateAuctionBider">
+<selectKey keyProperty="buyer,realprice" resultType="auction" order="BEFORE">
+	select id as buyer,currentprice as realprice from (select * from bidupdate currentprice  where auctionnum=#{auctionnum} order by currentprice desc) where rownum=1
+</selectKey>
+	update auction set buyer=#{buyer}, realprice=${realprice} where auctionnum=#{auctionnum}
+</update>
 </mapper>

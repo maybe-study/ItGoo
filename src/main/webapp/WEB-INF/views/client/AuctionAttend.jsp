@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -108,6 +110,10 @@
 	.btn-div{
 		padding-top:40px;
 	}
+	#bid{
+		display:inline-block;
+	}
+	
 	
 
 </style>
@@ -133,12 +139,15 @@
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#portfolio">소모임</a></li>
+					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
 							<input name="${_csrf.parameterName}" type="hidden"
 								value="${_csrf.token}" />
-						</form></li>
+						</form>
+					</li>
+					</sec:authorize>
 				</ul>
 			</div>
 		</div>
@@ -203,7 +212,7 @@
 				<div class="card col-lg-4">
 					<div class="card-body">
 					<h5 class="card-label" >경매 정보</h5>
-					<table>
+					<table id="info">
 						<tr>
 						<td>시작가</td>
 						<td id="lowprice"></td>
@@ -211,6 +220,10 @@
 						<tr>
 						<td>시작 시간</td>
 						<td id="auctionstart"></td>
+						</tr>
+						<tr>
+						<td>종료 시간</td>
+						<td id="auctionend"></td>
 						</tr>
 						<tr>
 						<td>주인</td>
@@ -267,8 +280,12 @@
 	$('#owner').append(a.owner);
 	$('#auctionstart').append(a.auctionstart);
 	$('#lowprice').append(a.lowprice);
+	$('#auctionend').append(a.auctionend);
+	if(a.status==1)$('#bid').css('display','inline-block');
+	
 	var $uls=$('.carousel-indicators').empty();
 	var $items=$('.carousel-inner').empty();
+	console.log(a);
 	$.each(aPics,function(idx,pic){
 		if(idx==0){
 			$('<li data-target="#demo" data-slide-to="0" class="active">').appendTo($uls);
@@ -282,6 +299,7 @@
 		}
 		
 	});
+	
 	var bids=${bids};
 	
 	$.each(bids, function(idx,bid){
@@ -296,7 +314,6 @@
 	var stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
 		console.log("연결")
-		
 		//입찰구독
 		stompClient.subscribe('/topic/bidding/'+a.auctionnum,function(msg){
 			console.log(msg.body);
@@ -305,16 +322,33 @@
 			var $label=$('<div class="label label-default">').append(bid.id+":"+bid.currentprice)
 			$("#auction").append($label)
 		});
+		//경매 종료 카운트다운 구독
+		stompClient.subscribe('/topic/auctoinEndCountDown/'+a.auctionnum,function(msg){
+			console.dir(msg);
+			var $label=$('<div class="label label-default">').append("경매 종료 "+msg.body+"초 전");
+			$("#auction").append($label)
+		})
+		//경매 종료 구독
+		stompClient.subscribe('/topic/auctoinEnd/'+a.auctionnum,function(msg){
+			
+			var a=JSON.parse(msg.body);
+			var $label=$('<div class="label label-default">').append("경매가 종료되었습니다.<br>낙찰자:"+a.buyer+"</br>낙찰가:"+a.realprice)
+			$("#auction").append($label)
+			disconnect();
+		});
+		//입장 전송
 		stompClient.send("/enter",{},JSON.stringify({auctionnum: ""+a.auctionnum}));
 	});
-	
-	
-	window.onbeforeunload = function (e) {
+	function disconnect(){
 		if(stompClient!=null){
 			stompClient.disconnect();;
 
 			console.log("Disconnected");
 		}
+	}
+	
+	window.onbeforeunload = function (e) {
+		disconnect();
 	};
 	</script>
 	</body>

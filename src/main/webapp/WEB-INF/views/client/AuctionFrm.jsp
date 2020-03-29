@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 <html lang="kr">
 
 <head>
@@ -72,10 +74,10 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i>경매</h3>
+        <h3><i class="fa fa-angle-right"></i>강아지 용품 경매</h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
-          <div class="col-lg-12">
+          <div class="col-lg-11">
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i> 등록 물품</h4>
               <form class="form-horizontal style-form" method="post" 
@@ -101,12 +103,23 @@
                 <div class="form-group">
                     <label class="col-sm-2  control-label">경매 시작</label>
                     <div class='col-sm-6'>
-                      <div class='input-group date' id='datetimepicker1'>
-                          <input type='text' class="form-control" name="auctionstart"/>
-                          <span class="input-group-addon">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                      </div>
+                      <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" name="auctionstart"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">경매 종료</label>
+                    <div class='col-sm-6'>
+                      <div class='input-group date' id='datetimepicker7'>
+                <input type='text' class="form-control" name="auctionend"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
                   </div>
                 </div>
 			   <div class="form-group">
@@ -127,7 +140,7 @@
                     <button class="btn btn-theme" type="submit">경매 등록</button>
                 </div>
                 <div class="form-group" style="text-align: center">
-                    <button class="btn btn-theme" type="button" onclick="check()">테스트</button>
+                    <button class="btn btn-theme" type="button" onclick="demo()">테스트</button>
                 </div>
               </form>
             </div>
@@ -184,18 +197,35 @@
     <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
   
 
-
-  <script type="text/javascript">
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+        	format:'MM/DD/YYYY h:mm:00 A',
+        	minDate: moment().add(1,'h')
+        });
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false, //Important! See issue #1075
+            format:'MM/DD/YYYY h:mm:00 A',
+            defaultDate:moment().add(2,'h'),
+        	minDate: moment().add(2,'h')
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
+<!-- <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker({
         	format:'MM/DD/YYYY h:00 A',
         	minDate: moment().add(1,'h')
-          	
-          
         });
         
     });
-</script>
+</script> -->
 <script>
 //전역변수
 let myeditor
@@ -229,6 +259,27 @@ ClassicEditor
 	  var frm=document.auctionfrm
 	  
 	  frm.srcJson.value=JSON.stringify(imgList);
+	  console.log(JSON.stringify(imgList));
+	  return true;
+  }
+  function demo(){
+	  console.log("데모");
+	  const data = myeditor.getData();
+	  //디비에 저장할 이미지 리스트
+	  var imgList=[];
+	  console.log(data);
+	  $(data).find('img').each(function(){
+	  	  imgList.push($(this).attr('src'));
+	  });
+
+	  var frm=document.auctionfrm
+	  
+	  frm.srcJson.value=JSON.stringify(imgList);
+	  frm.auctionstart.value=moment().add(5,'s').format('MM/DD/YYYY h:mm:ss A')
+	  frm.auctionend.value=moment().add(35,'s').format('MM/DD/YYYY h:mm:ss A')
+	  
+	  console.log(frm.auctionstart.value);
+	  
 	  console.log(JSON.stringify(imgList));
 	  return true;
   }

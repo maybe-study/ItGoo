@@ -141,8 +141,9 @@
 				<div class="col-lg-8 text-center">
 					<h2 class="text-white mt-0">경매</h2>
 					<hr class="divider light my-4">
-					<p class="text-white-50 mb-4">원하는 물품을 싸고 빠르게 찾아보세요!ITGOO 매</p>
+					
 					<a class="btn btn-light btn-xl js-scroll-trigger" href="auctionlist">물품둘러보기</a>
+					<a class="btn btn-light btn-xl js-scroll-trigger" href="auctionfrm">물품등록하기</a>
 				</div>
 			</div>
 		</div>
@@ -254,7 +255,7 @@
 	<section class="page-section bg-dark text-white">
 		<div class="container text-center">
 			<h2 class="mb-4">강아지 소모임</h2>
-			<a class="btn btn-light btn-xl" href="강아지 소모임 얀결">강아지 소모임 둘러보기</a>
+			<a class="btn btn-light btn-xl" href="puppysmall">강아지 소모임 둘러보기</a>
 		</div>
 	</section>
 

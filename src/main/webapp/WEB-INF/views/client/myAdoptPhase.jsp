@@ -289,15 +289,20 @@
 			});//먼저 보냄
 			$.ajax({ // 에이작스 열고
 				type : 'post', //타입은 get
-				url : "adoptlistdetail", // restFul 방식
+				url : "myadoptlistdetail", // restFul 방식
 				data : {dogid:dogid},
 				dataType : "json",
 
 				//서블릿이 성공하면 다시 돌아오는것
 				success : function(data) {
 					console.log("모달에 나올 data",data);
-					console.log(data.phase);
-					 if(data.phase==2){   //시험 시작
+					 if(data.phase==1){
+						 var $p1=$('#adoptBtn').text("신청서 검토중")
+						 $p1.on("click",function(){
+				        	 console.log("1단계"+data.phase);
+				              location.href="./testpaper?dogid="+data.dogid
+						 })
+					 }else if(data.phase==2){   //시험 시작
 				         var $p2=$('#adoptBtn').text("적격성 평가 시작")
 				         $p2.on("click",function(){
 				        	 console.log("2단계"+data.phase);
@@ -320,10 +325,14 @@
 				    console.log("페이즈페이지에서 아이디"+data.dogid);
 				    $p5.on("click",function(){
 				              location.href="./finalsook?dogid="+data.dogid
-				            
+				   		 })
+				    }else if(data.phase==6){
+				    var $p6=$('#adoptBtn').text("설문지작성")
+				    console.log("6단계"+data.dogid);
+				    $p6.on("click",function(){
+				              location.href="./finalcaresheet?dogid="+data.dogid
 				   		 })
 				    }
-					
 					
 					var $uls=$('.carousel-indicators').empty();
 					var $items=$('.carousel-inner').empty();
@@ -346,12 +355,9 @@
 					$('#sex').text(data.sex==0?"남":"여");
 					$('#special').text(data.dogspecial);
 
-
-
 				} , error : function(error) {
 					console.log(error);
 				}
-
 			});
 	 });
 	 $('#closeModalBtn').on('click', function(e){

@@ -5,12 +5,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.type.Alias;
+import org.springframework.stereotype.Repository;
 
 import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Auction;
 import com.itcia.itgoo.dto.BidUpdate;
 
+import lombok.Data;
 
+@Repository("adao")
 public interface IAuctionDao {
 	/*
 	 * 진행 예정인 경매 : 경매 시작 시간>현재 시간
@@ -19,17 +24,17 @@ public interface IAuctionDao {
 	 * 경매는 한시간동안 이루어진다.
 	 */
 	@Select("select auctionnum,auctionname,auctionexplain,auctionpic,\r\n" + 
-			"to_char(auctionstart,'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
+			"to_char(auctionstart,'MM/DD/YYYY HH:MI:SS AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
 			"as auctionstart,owner,lowprice\r\n" + 
-			"from auction where auctionstart>systimestamp")
+			"from auction where status=0")
 	List<Auction> expectedAuctionList();
 	@Select("select auctionnum,auctionname,auctionexplain,auctionpic,\r\n" + 
-			"to_char(auctionstart,'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
-			"as auctionstart,owner,lowprice from auction where systimestamp between auctionstart and AUCTIONSTART + (interval '1' hour)")
+			"to_char(auctionstart,'MM/DD/YYYY HH:MI:SS AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
+			"as auctionstart,owner,lowprice from auction where status=1")
 	List<Auction> proceedingAuctionList();
 	@Select("select auctionnum,auctionname,auctionexplain,auctionpic,\r\n" + 
-			"to_char(auctionstart,'MM/DD/YYYY HH:MI AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
-			"as auctionstart,owner,lowprice from auction where AUCTIONSTART + (interval '1' hour)<systimestamp")
+			"to_char(auctionstart,'MM/DD/YYYY HH:MI:SS AM', 'NLS_DATE_LANGUAGE = AMERICAN') \r\n" + 
+			"as auctionstart,owner,lowprice from auction where status=2")
 	List<Auction> completeAuctionListts();
 	//매퍼
 	void addAuction(Auction a);
@@ -47,5 +52,13 @@ public interface IAuctionDao {
 	void insertBid(BidUpdate b);
 	@Select("select * from bidupdate where auctionnum=#{auctionnum}")
 	List<BidUpdate> bids(int auctionnum);
+	@Update("update auction set status=1 where auctionnum=#{auctionnum}")
+	void startAuction(Auction a);
+	@Update("update auction set status=2 where auctionnum=#{auctionnum}")
+	void endAuction(Auction a);
+	@Select("select count(*) from bidupdate where auctionnum=#{auctionnum}")
+	int biderCnt(Auction a);
+	//매퍼
+	void updateAuctionBider(Auction a);
 
 }
