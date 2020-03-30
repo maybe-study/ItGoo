@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Auction;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.SmallMeeting;
@@ -103,8 +105,13 @@ public class Client2Controller {
 	@RequestMapping(value = "/mysmallmeeting", method = RequestMethod.GET)
 	public ModelAndView mysmallmeeting(Principal p,SmallMeeting sm) {
 		ModelAndView mav = new ModelAndView();
-		mav = cm.myappliedsmall(p,sm);
 		mav = cm.myrecruitsmall(p,sm);
+		return mav;
+	}
+	@RequestMapping(value = "/myenrollsmallmeeting", method = RequestMethod.GET)
+	public ModelAndView myenrollsmallmeeting(Principal p,SmallMeeting sm) {
+		ModelAndView mav = new ModelAndView();
+		mav = cm.myenrollsmall(p,sm);
 		return mav;
 	}
 	@RequestMapping(value = "/joinsmallmeeting", method = RequestMethod.GET)
@@ -113,4 +120,13 @@ public class Client2Controller {
 		mav= cm.joinsmallmeeting(p, sm);
 		return mav;
 	}
+	@RequestMapping(value = "/delmysmallmeeting")
+	public ModelAndView delmysmallmeeting(Principal p,SmallMeeting sm, RedirectAttributes attr) {
+		ModelAndView mav = new ModelAndView();
+		mav= cm.delmysmallmeeting(p, sm, attr);
+		attr.addFlashAttribute("sm",sm);
+		return mav;
+	}
+	
+	
 }

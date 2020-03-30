@@ -69,6 +69,12 @@ public interface IClientDao {
 
 	void updatesmallmeeting(SmallMeeting sm);
 
+	boolean delmysmallmeeting(SmallMeeting sm);
+
+	void updatemeetparticipatecnt(SmallMeeting sm);
+
+	SmallMeeting myenrollsmalldetail(Integer smallnumber);
+
 
 
 }

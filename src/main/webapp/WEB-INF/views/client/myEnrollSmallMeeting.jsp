@@ -53,6 +53,10 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
 		<!--header start-->
+		<div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
 		<header class="header black-bg">
 			<div class="sidebar-toggle-box">
 				<div class="fa fa-bars tooltips" data-placement="right"
@@ -85,34 +89,31 @@
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
 		<section id="main-content">
-		<section class="wrapper">
-	
-        <h3><i class="fa fa-angle-right"></i> 내가 신청한 소모임</h3>
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 내가 모집하는 소모임</h3>
         <div class="row">
           
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
-            	<form action="delmysmallmeeting?${_csrf.parameterName}=${_csrf.token}" id="delmysmallmeeting" name="delmysmallmeeting" method="post"
-							enctype="multipart/form-data">
               <table class="table table-hover">
-                <h4><i class="fa fa-angle-right"></i> 내가 신청한 소모임 목록을 볼수 있습니다.</h4>
+                <h4><i class="fa fa-angle-right"></i> 내가 모집하는 소모임 목록입니다.</h4>
                 <hr>
                 <thead>
                   <tr>
                     <th>그룹 이름</th>
                     <th>주최자</th>
                     <th>소모임 위치 </th>
-                    <th>신청한 강아지수</th>
+                    <th>현재 총 강아지 마릿 수</th>
                     <th>소모임 시작 날짜</th>
                     <th>소모임 시작 시간</th>
                     </tr>
                 </thead>
-                <tbody id="myappliedsmall">
+                <tbody id="myrecruitsmall">
                   
                 </tbody>
               </table>
-              </form>
+              
             </div>
             <div class="pagingdiv"></div>
           </div>
@@ -150,35 +151,60 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 		
 	<script>
-	
-    let container = $('.pagingdiv');
+	let container = $('.pagingdiv');
     container.pagination({
       
-        dataSource:${asList} ,   //받아온 데이터
+        dataSource:${rsList} ,  //받아온 데이터
         pageSize: 10,
         callback: function (data, pagination) { //데이터 찍어주는 부분
            console.log("data=",data);
            temp=data;
-           $("#myappliedsmall").empty();
+           $("#myrecruitsmall").empty();
            $.each(data,function(idx, data){
-        		var $body = $("#myappliedsmall");
+        		var $body = $("#myrecruitsmall");
         		
         		var $tr = $("<tr>").appendTo($body);
-        		$("<td>").text(data.meetingname).appendTo($tr);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.smallnumber+')').text(data.meetingname)).appendTo($tr);
         		$("<td>").text(data.id).appendTo($tr);
         		$("<td>").text(data.smalllocation).appendTo($tr);
-        		$("<td>").text(data.smalldogcnt).appendTo($tr);
+        		$("<td>").text(data.meetparticipatecnt).appendTo($tr);
         		$("<td>").text(data.meetingdate).appendTo($tr);
         		$("<td>").text(data.time).appendTo($tr);
-        		$("<td> <input type='submit' value='소모임 예약 취소' />").appendTo($tr);
-        		$("<td><input type='hidden' name='smalldogcnt' value='"+data.smalldogcnt+"' />").appendTo($tr);
-        		$("<td><input type='hidden' name='smallnumber' value='"+data.smallnumber+"' />").appendTo($tr);
-        		$("<td><input type='hidden' name='meetparticipatecnt' value='"+data.meetparticipatecnt+"' />").appendTo($tr);
         		
         		});
         }
     
     });
+    function articleView(smallnumber){
+		var esdetail= ${esdetail}
+		$("#articleView_layer").addClass('open');
+		
+		$.ajax({
+			type:'get',
+			url:"myenrollsmalldetail",
+			data:{smallnumber:smallnumber},
+			dataType:'html',
+			success:function(data){
+			
+				$("#contents_layer").html(data);
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
+	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	}); 
   </script>
 </body>
 

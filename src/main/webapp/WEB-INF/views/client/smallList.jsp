@@ -239,7 +239,7 @@
         		});
         }
     
-    })
+    });
     function articleView(smallnumber){
 		var sldetail= ${sldetail}
 		$("#articleView_layer").addClass('open');

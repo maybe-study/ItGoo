@@ -42,7 +42,7 @@ select * from caresheet
 
 	<select id="myappliedsmall" parameterType="SmallMeeting"
 		resultType="SmallMeeting">
-	select sm.meetingname, sm.id, sm.smalllocation, sp.smalldogcnt, sm.meetingdate, sm.time from smallmeeting sm , smallparticipate sp where sm.smallnumber=sp.smallnumber and sp.id=#{id}
+	select sm.smallnumber,sm.meetingname, sm.id, sm.smalllocation, sp.smalldogcnt,sm.meetparticipatecnt, sm.meetingdate, sm.time from smallmeeting sm , smallparticipate sp where sm.smallnumber=sp.smallnumber and sp.id=#{id}
 	</select>
 
 	<select id="myrecruitsmall" parameterType="SmallMeeting"
@@ -58,7 +58,16 @@ select * from caresheet
 	</insert>
 
 	<update id="updatesmallmeeting" parameterType="SmallMeeting">
-	update smallmeeting set meetparticiparecnt = (#{meetparticipatecnt}+#{smalldogcnt}) where smallnumber = #{smallnumber}
+	update smallmeeting set meetparticipatecnt = (#{meetparticipatecnt}+#{smalldogcnt}) where smallnumber = #{smallnumber}
 	</update>
-
+	<delete id="delmysmallmeeting" parameterType="SmallMeeting">
+	delete from smallparticipate where id=#{id} and smallnumber = #{smallnumber}
+	</delete>
+	<update id="updatemeetparticipatecnt" parameterType="SmallMeeting">
+	update smallmeeting set meetparticipatecnt = #{meetparticipatecnt}-#{smalldogcnt} where smallnumber = #{smallnumber}
+	</update>
+	<select id="myenrollsmalldetail" parameterType="int"
+		resultType="SmallMeeting">
+	select * from smallmeeting where smallnumber=#{smallnumber}
+	</select>
 </mapper>
