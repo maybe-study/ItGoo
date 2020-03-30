@@ -24,6 +24,7 @@ import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.Test;
+import com.itcia.itgoo.dto.VirtualAdopt;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.MemberManagement;
 
@@ -99,6 +100,30 @@ public class ClientController {
 		System.out.println("시트 제출!");
 		System.out.println(dogid);
 		mav=cm.submitSheet(dogid,aJson,p);
+		return mav;
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/virtualadoptapply", method = RequestMethod.GET)
+	public ModelAndView virtualadoptapply(int dogid,VirtualAdopt va,Principal p) {
+		System.out.println("시트 제출!");
+		System.out.println(dogid);
+		mav=cm.virtualadoptapply(dogid,va,p);
+		return mav;
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/applyAdopt", method = RequestMethod.GET)
+	public String applyAdopt() {
+		return "applyAdopt";
+	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/virtualadopt", method = RequestMethod.GET)
+	public ModelAndView virtualadopt(int dogid,VirtualAdopt va,Principal p) {
+		System.out.println("가상입양할 강아지번호 나옵니다 이제 기대하세요");
+		System.out.println(dogid);
+		mav.addObject("dogid",dogid);
+		mav.setViewName("virtualadopt");
 		return mav;
 	}
 

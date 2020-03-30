@@ -131,7 +131,7 @@
 				</div>
 				<div class="col-xl-4 col-lg-5">
 					<div class="featured-text text-center text-lg-left">
-						<h4>Shoreline</h4>
+						<h4>입양하러가기</h4>
 						<p class="text-black-50 mb-0">Grayscale is open source and MIT
 							licensed. This means you can use it for any project - even
 							commercial projects! Download it, customize it, and publish your

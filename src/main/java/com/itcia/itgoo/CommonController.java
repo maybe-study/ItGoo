@@ -43,7 +43,7 @@ public class CommonController {
 	}
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
-	public String findaccount(Member mb) {
+	public  String findaccount(Member mb) {
 		return "findid";
 	}
 	
