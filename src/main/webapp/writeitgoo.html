@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+#main1 {
+	margin: auto;
+}
+
+#logo {
+	padding: 10px;
+	margin-left: 15px;
+	width: 300px;
+	height: 150px;
+	width: 300px;
+}
+
+#topMenu {
+	margin-top: 50px;
+	height: 40px;
+	width: 300px;
+	margin-left: 40px;
+	padding-right: 20px;
+}
+
+#topMenu ul li {
+	/* 	list-style: none; */
+	color: white;
+	background-color: #2d2d2d;
+	/* 	float: left; */
+	line-height: 50px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#topMenu .menuLink {
+	text-decoration: none;
+	color: white;
+	display: block;
+	width: 260px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Dotum, Arial;
+}
+
+#topMenu .menuLink:hover {
+	color: red;
+	background-color: #4d4d4d;
+}
+
+#aside {
+	float: left;
+	width: 25%;
+}
+
+#section {
+	padding: 20px;
+	width: 60%;
+	float: left;
+	border: 1px solid black;
+	min-height: 700px;
+	text-align: center;
+	display: block;
+}
+
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+
+#btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	user-select: none;
+	color: #fff;
+	background-color: #228B22;
+	border-color: #398439;
+	width: 100px;
+	margin-top: 100px;
+	text-decoration: none;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+
+
+
+</script>
+<body>
+	<header>
+		<div id="logo">
+			<a href="index.jsp"><img id="logo"
+				src="img/portfolio/itgoo1004.png"> </a>
+				<h3>Write</h3>
+		</div>
+	</header>
+	<div id="main1">
+		<aside id="aside">
+			<nav id="topMenu">
+				<ul>
+					<li><a class="menuLink" href="introduce.jsp">ITGOO소개</a></li>
+					<li><a class="menuLink" href="companyjoinform.jsp">업체회원가입</a></li>
+					<li><a class="menuLink" href="list.html">커뮤니티</a></li>
+					<li><a class="menuLink" href="adoptList.jsp">입양공고</a></li>
+					<li><a class="menuLink" href="ItGoostar.html">ITGOOSTAR</a></li>
+				</ul>
+			</nav>
+		</aside>
+
+
+
+		<section id="section">
+			<div id="table">
+				<table id="boards" class="table table-hover">
+					<colgroup>
+						<!-- 열너비 지정 -->
+						<col width="10%">
+						<col width="10%">
+						<col width="40%">
+						<col width="10%">
+						<col width="25%">
+						<col width="10%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>글번호</th>
+							<th>첨부</th>
+							<th>제목</th>
+							<th>글쓴이</th>
+							<th>날짜</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+			<!-- 글나오는곳 -->
+			<div style="text-align: center">
+				<ul id="pagination" class="pagination"></ul>
+			</div>
+
+			<!-- 글쓰기 버튼 -->
+			<div>
+				<button class="btn">완료</button>
+			</div>
+		</section>
+	</div>
+</body>
+<script>
+
+
+
+</script>
+</html>

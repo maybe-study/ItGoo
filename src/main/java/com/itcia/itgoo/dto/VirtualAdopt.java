@@ -15,24 +15,16 @@ import lombok.experimental.Accessors;
 //@Getter@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("auction")
+@Alias("virtualadopt")
 @Data
 @Accessors(chain=true)
-public class Auction {
-	private Map<String,WebSocketSession> users;
-	private int auctionnum;
-	private String auctionname;
-	private String auctionpic;
-	private int lowprice;
-	private String auctionexplain;
-	private String auctionstart;
-	private String owner;
-	private String buyer;
-	private int  realprice;
-	private String auctionend;
-	private int status;
-	private int currentprice;
+public class VirtualAdopt {
 	private String id;
-	
-	
+	private int dogid;
+	private int donation;
+	private String payday;
+	private String dogname;
+	private int dogage;
+	private String dogspecial;
+	private int sex;	
 }

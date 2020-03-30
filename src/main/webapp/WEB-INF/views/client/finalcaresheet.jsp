@@ -71,7 +71,6 @@
         <input type="hidden" name="aJson">
         <input type="hidden" name="dogid" value="${dogid}">
         <div class="row">
-          
           <!-- /col-md-12 -->
           <div class="col-md-12 mt">
             <div class="content-panel">
@@ -112,27 +111,36 @@
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
  <script>
- 	var cList=${care};
+ console.log(${dogid});
+ console.log("질문번호",${cr});
+ 	var cList=${cr};
  	console.log("왜안나올까잉",cList);
  	 $.each(cList, function(idx,data){
  		var $tr=$('<tr>');
  		$('<td>').text(data.questionnum).appendTo($tr);
  		$('<td>').text(data.question).appendTo($tr);
- 		$("<input id='answer' class='answer' name='answer'>").appendTo($tr);
+ 		$("<input id='answer' class='answer' name='answer' data-questionnum="+data.questionnum+">").appendTo($tr);
  	 	$('#careList').append($tr);
  	}); 
  	
  	function makeJson(){
  		var arr=new Array();
+ 		var obj;
  		$.each($(".answer"),function(idx,data){
- 			arr.push(data.value);
+ 			console.log(data);
+ 			console.log(data.dataset.questionnum);
+ 			obj={
+ 				questionnum:data.dataset.questionnum,
+ 				answer:data.value
+ 			}
+ 			arr.push(obj);
  		})
+
  		console.log("arr",arr);
  		document.frm.aJson.value=JSON.stringify(arr);
- 		console.log(JSON.stringify(arr));
+ 		console.log("이거 나와야하는데 시바"+JSON.stringify(arr));
  		return true;
- 	}
- 	
+ 	};
  </script>
 </body>
 </html>

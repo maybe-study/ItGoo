@@ -251,6 +251,8 @@ public class ShelterManagement {
 		return mav;
 	}
 
+
+
 	public ModelAndView updatecompanyemail(Principal p, Company cp) {
 		cp.setCompanyid(p.getName());
 		sDao.updatecompanyemail(cp);

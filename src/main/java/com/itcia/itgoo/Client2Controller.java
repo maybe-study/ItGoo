@@ -41,7 +41,7 @@ public class Client2Controller {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/testpaper")
 	public ModelAndView testPaper(int dogid) {
-		
+
 		mav = tm.testPaper(dogid);
 		return mav;
 	}
@@ -51,9 +51,9 @@ public class Client2Controller {
 		System.out.println("===================test====================");
 		System.out.println(test);
 		mav=tm.testPaperSubmit(test,p);
-		
-		
-		
+
+
+
 		return mav;
 	}
 	@PreAuthorize("isAuthenticated()")
@@ -62,7 +62,7 @@ public class Client2Controller {
 		mav.setViewName("client/AuctionFrm");
 		return mav;
 	}
-	
+
 	@PostMapping("/addauction")
 	public ModelAndView addAuction(Principal p,Auction a,MultipartFile f,String srcJson) {
 		mav=am.addAuction(p,a,f,srcJson);
@@ -100,7 +100,7 @@ public class Client2Controller {
 	public String regipuppysmall(Locale locale, Model model) {
 		return "client/regiPuppySmall";
 	}
-	
+
 
 	@RequestMapping(value = "/mysmallmeeting", method = RequestMethod.GET)
 	public ModelAndView mysmallmeeting(Principal p,SmallMeeting sm) {
@@ -120,6 +120,7 @@ public class Client2Controller {
 		mav= cm.joinsmallmeeting(p, sm);
 		return mav;
 	}
+
 	@RequestMapping(value = "/delmysmallmeeting")
 	public ModelAndView delmysmallmeeting(Principal p,SmallMeeting sm, RedirectAttributes attr) {
 		ModelAndView mav = new ModelAndView();
@@ -127,6 +128,20 @@ public class Client2Controller {
 		attr.addFlashAttribute("sm",sm);
 		return mav;
 	}
-	
-	
+
+
+
+	@RequestMapping(value = "/myvirtualadopt", method = RequestMethod.GET)
+	public ModelAndView myvirtualadopt(Principal p) {
+		ModelAndView mav = new ModelAndView();
+		mav= cm.myvirtualadopt();
+		return mav;
+	}
+	@RequestMapping(value = "/myauction", method = RequestMethod.GET)
+	public ModelAndView myauction(Principal p) {
+		ModelAndView mav = new ModelAndView();
+		mav= cm.myauction(p.getName());
+		return mav;
+	}
+
 }

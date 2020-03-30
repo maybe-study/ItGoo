@@ -32,7 +32,7 @@ select * from dog where dogid=#{dogid}
 
 
 <select id="showcaresheet" resultType="CareSheet">
-select * from caresheet
+select * from caresheet where toggle=1
 	</select>
 
 	<insert id="regismallmeeting" parameterType="SmallMeeting">

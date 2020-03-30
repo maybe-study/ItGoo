@@ -241,6 +241,7 @@ body {
 
 
                   <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" id="VirtualadoptBtn">가상입양</button>
                      <button type="button" class="btn btn-primary" id="adoptBtn">입양</button>
                      <button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
                   </div>
@@ -332,9 +333,12 @@ body {
                     
                   
                   $("#adoptBtn").on("click",function(){
-                     location.href="applyAdopt.jsp?dogid="+data.dogid
+                     location.href="./applyAdopt?dogid="+data.dogid
                   })
-                   
+                 
+                  $("#VirtualadoptBtn").on("click",function(){
+                     location.href="./virtualadopt?dogid="+data.dogid
+                  })
                /* var swiper = new Swiper('.swiper-container', {
                      navigation: {
                        nextEl: '.swiper-button-next',

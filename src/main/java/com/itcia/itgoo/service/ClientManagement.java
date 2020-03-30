@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itcia.itgoo.dao.IAuctionDao;
 import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
 import com.itcia.itgoo.dto.Adopt;
@@ -21,6 +22,7 @@ import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.SmallMeeting;
+import com.itcia.itgoo.dto.VirtualAdopt;
 import com.itcia.itgoo.share.UploadFile;
 
 @Service
@@ -29,6 +31,8 @@ public class ClientManagement {
 	private IClientDao cDao;
 	@Autowired
 	private IMemberDao mDao;
+	@Autowired
+	private IAuctionDao aDao;
 
 	private ModelAndView mav = new ModelAndView();
 
@@ -163,7 +167,8 @@ public class ClientManagement {
 		System.out.println("cs의 값은 "+cs);
 		List<CareSheet> cr =cDao.showcaresheet();
 		System.out.println("cr의 값은 "+cr);
-		mav.addObject("care",new Gson().toJson(cr));
+		System.out.println("cr의 값은 "+cr);
+		mav.addObject("cr",new Gson().toJson(cr));
 		mav.addObject("dogid",dogid);
 		mav.setViewName("client/finalcaresheet");
 		return mav;
@@ -174,12 +179,22 @@ public class ClientManagement {
 		CareSheet cs=new CareSheet();
 		cs.setId(p.getName());
 		cs.setDogid(dogid);
-		List<String> aList= new Gson().fromJson(aJson, new TypeToken<List<String>>() {}.getType());
-		for(String a: aList){
-			cDao.submitSheet(a,cs);
+		System.out.println("강아지아이디를 "+dogid);
+		System.out.println("사라진아이디를 찾아라"+p.getName());
+		System.out.println(cs.getDogid());
+		//System.out.println(cs.getId());
+		//System.out.println(cs.getQuestionnum());
+		mav.setViewName("clentMyPage");
+		mav.addObject("dogid",dogid);
+		List<CareSheet> aList= new Gson().fromJson(aJson, new TypeToken<List<CareSheet>>() {}.getType());
+		for(CareSheet a: aList){
+			cs.setQuestionnum(a.getQuestionnum());
+			cs.setAnswer(a.getAnswer());
+			System.out.println("번호:"+a.getQuestionnum());
+			System.out.println(cs.getAnswer());
+			cDao.submitSheet(cs);
 		}
 		return mav;
-
 	}
 
 	public ModelAndView smalllist(SmallMeeting sm) {
@@ -188,7 +203,7 @@ public class ClientManagement {
 		List<SmallMeeting> smList = cDao.smalllist(sm);
 		mav.addObject("smList", new Gson().toJson(smList));
 		mav.setViewName("client/smallList");
-		
+
 		return mav;
 	}
 
@@ -213,7 +228,7 @@ public class ClientManagement {
 		mav.addObject("sldetail",new Gson().toJson(sldetail));
 		view="client/smallListDetail";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
 
@@ -268,4 +283,33 @@ public class ClientManagement {
 		
 		return mav;
 	}
-}
+
+	public ModelAndView myvirtualadopt() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ModelAndView myauction(String id) {
+		// TODO Auto-generated method stub
+		mav.addObject("attendedList",new Gson().toJson(aDao.myAttended(id)));
+		mav.addObject("myauctionList",new Gson().toJson(aDao.myUploadAuction(id)));
+		mav.setViewName("client/MyAuction");
+		return mav;
+	}
+
+
+	public ModelAndView virtualadoptapply(int dogid, VirtualAdopt va, Principal p) {
+		System.out.println(p.getName());
+		System.out.println(dogid);
+		va.setDogid(dogid);
+		System.out.println(va.getDogid());
+		va.setId(p.getName());
+		va.setPayday("15");
+		cDao.virtualadoptapply(va);
+		List<VirtualAdopt> vaList = cDao.myvirtual(va);
+		mav.addObject("dogid",dogid);
+		mav.addObject("vaList",new Gson().toJson(vaList));
+		System.out.println("vaList는"+vaList);
+		mav.setViewName("./client/MyVirtualAdopt");
+		return mav;
+	}
