@@ -113,4 +113,16 @@ public class Client2Controller {
 		mav= cm.joinsmallmeeting(p, sm);
 		return mav;
 	}
+	@RequestMapping(value = "/myvirtualadopt", method = RequestMethod.GET)
+	public ModelAndView myvirtualadopt(Principal p) {
+		ModelAndView mav = new ModelAndView();
+		mav= cm.myvirtualadopt();
+		return mav;
+	}
+	@RequestMapping(value = "/myauction", method = RequestMethod.GET)
+	public ModelAndView myauction(Principal p) {
+		ModelAndView mav = new ModelAndView();
+		mav= cm.myauction(p.getName());
+		return mav;
+	}
 }

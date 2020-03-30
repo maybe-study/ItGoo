@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itcia.itgoo.dao.IAuctionDao;
 import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
 import com.itcia.itgoo.dto.Adopt;
@@ -28,6 +29,8 @@ public class ClientManagement {
 	private IClientDao cDao;
 	@Autowired
 	private IMemberDao mDao;
+	@Autowired
+	private IAuctionDao aDao;
 
 	private ModelAndView mav = new ModelAndView();
 
@@ -234,6 +237,19 @@ public class ClientManagement {
 		cDao.updatesmallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("smalllist");
+		return mav;
+	}
+
+	public ModelAndView myvirtualadopt() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ModelAndView myauction(String id) {
+		// TODO Auto-generated method stub
+		mav.addObject("attendedList",new Gson().toJson(aDao.myAttended(id)));
+		mav.addObject("myauctionList",new Gson().toJson(aDao.myUploadAuction(id)));
+		mav.setViewName("client/MyAuction");
 		return mav;
 	}
 }

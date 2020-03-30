@@ -22,11 +22,9 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
-  <head>
   <!-- datetimepicker -->
   <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
   
-  </head>
 
   <!-- =======================================================
     Template Name: Dashio

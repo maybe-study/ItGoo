@@ -31,5 +31,8 @@ public class Auction {
 	private int  realprice;
 	private String auctionend;
 	private int status;
+	private int currentprice;
+	private String id;
+	
 	
 }

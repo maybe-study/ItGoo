@@ -60,5 +60,11 @@ public interface IAuctionDao {
 	int biderCnt(Auction a);
 	//매퍼
 	void updateAuctionBider(Auction a);
+	@Select("select id,max(bidupdate.currentprice) currentprice,auction.auctionnum,auction.auctionname,auction.auctionstart \r\n" + 
+			"from bidupdate join auction on bidupdate.auctionnum=auction.auctionnum \r\n" + 
+			"where id=#{id} group by id, auction.auctionnum, auction.auctionname, auction.auctionstart")
+	List<Auction> myAttended(String id);
+	@Select("select * from auction where owner=#{id}")
+	List<Auction> myUploadAuction(String id);
 
 }

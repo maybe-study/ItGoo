@@ -122,7 +122,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">소모임</a></li>
+						href="#">소모임</a></li>
 					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
@@ -153,7 +153,7 @@
 				</div>
 				<div class="col-lg-8 align-self-baseline">
 					<p class="text-white-75 font-weight-light mb-5">원하는 물품을 싸고 빠르게 찾아보세요!</p>
-					 <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nav">진행예정경매</a> 
+					 <a class="btn btn-primary btn-xl js-scroll-trigger" href="#nav" onclick="document.getElementById('expected').click()">진행예정경매</a> 
 					
 				</div>
 			</div>
