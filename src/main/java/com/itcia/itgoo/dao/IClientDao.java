@@ -14,6 +14,7 @@ import com.itcia.itgoo.dto.CareSheet;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.SmallMeeting;
+import com.itcia.itgoo.dto.VirtualAdopt;
 
 public interface IClientDao {
 	@Select("select max(dogpics.dogpic) dogpic,dog.dogid,dog.DOGAGE,dog.dogname,dog.dogspecial,dog.sex,dog.shelterid,dog.status "
@@ -51,8 +52,8 @@ public interface IClientDao {
 
 	List<CareSheet> showcaresheet();
 
-	@Insert("insert into answercaresheet values(${id},${dogid},${questionnum},${answer})")
-	void submitSheet(String a,CareSheet cs);
+	@Insert("insert into answercaresheet values(#{id},#{dogid},#{questionnum},#{answer})")
+	void submitSheet(CareSheet cs);
 
 	void regismallmeeting(SmallMeeting sm);
 
@@ -68,6 +69,12 @@ public interface IClientDao {
 	void insertsmallmeeting(SmallMeeting sm);
 
 	void updatesmallmeeting(SmallMeeting sm);
+
+	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday})")
+	void virtualadoptapply(VirtualAdopt va);
+
+	@Select("SELECT * FROM virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
+	List<VirtualAdopt> myvirtual(VirtualAdopt va);
 
 
 
