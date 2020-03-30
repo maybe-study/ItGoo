@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itcia.itgoo.dao.IAuctionDao;
 import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
 import com.itcia.itgoo.dto.Adopt;
@@ -29,6 +30,8 @@ public class ClientManagement {
 	private IClientDao cDao;
 	@Autowired
 	private IMemberDao mDao;
+	@Autowired
+	private IAuctionDao aDao;
 
 	private ModelAndView mav = new ModelAndView();
 
@@ -199,10 +202,10 @@ public class ClientManagement {
 		List<SmallMeeting> smList = cDao.smalllist(sm);
 		mav.addObject("smList", new Gson().toJson(smList));
 		mav.setViewName("client/smallList");
-		
+
 		return mav;
 	}
-	
+
 	public ModelAndView myappliedsmall(Principal p,SmallMeeting sm) {
 		mav= new ModelAndView();
 		String view = null;
@@ -231,7 +234,7 @@ public class ClientManagement {
 		mav.addObject("sldetail",new Gson().toJson(sldetail));
 		view="client/smallListDetail";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
 
@@ -249,6 +252,20 @@ public class ClientManagement {
 		return mav;
 	}
 
+	public ModelAndView myvirtualadopt() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ModelAndView myauction(String id) {
+		// TODO Auto-generated method stub
+		mav.addObject("attendedList",new Gson().toJson(aDao.myAttended(id)));
+		mav.addObject("myauctionList",new Gson().toJson(aDao.myUploadAuction(id)));
+		mav.setViewName("client/MyAuction");
+		return mav;
+	}
+
+
 	public ModelAndView virtualadoptapply(int dogid, VirtualAdopt va, Principal p) {
 		System.out.println(p.getName());
 		System.out.println(dogid);
@@ -264,4 +281,3 @@ public class ClientManagement {
 		mav.setViewName("./client/MyVirtualAdopt");
 		return mav;
 	}
-}

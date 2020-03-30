@@ -102,7 +102,7 @@
 
 						<h4 class="title">회원님들의 개인정보 보호에 힘쓰겠습니다.</h4>
 						<div id="message"></div>
-						
+
 					</div>
 					<!-- /row -->
 				</div>
@@ -142,7 +142,7 @@
                 .append($('<h4 class="text-uppercase m-0">').text("성별 : "+data.sex))
                 .append($('<h4 class="small text-black-50">').text("기부금액 :  "+data.donation))
                 .append($('<h4 class="small text-black-50">').text("후원결재일 :  "+data.payday+"일"));
-		
+
 		 $div3.append($img);
 		 $h4.append($div3);
 		 $div2.append($h4);
