@@ -35,6 +35,15 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style>
+	.content-panel{
+		height:auto;
+	}
+	.dataTables_wrapper{
+		margin-left:10px;
+	}
+  	
+  </style>
 </head>
 
 <body>
@@ -171,91 +180,36 @@
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
 		<section id="main-content">
-			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> 업체 정보
-				</h3>
-				<!-- BASIC FORM ELELEMNTS -->
-				<div class="row mt">
-					<div class="col-lg-6 col-md-6 col-sm-6">
-
-						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
-						<div id="message"></div>
-						<form class="contact-form php-mail-form" role="form"
-							onsubmit="return makeTestJson()"
-							action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
-							method="POST">
-
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-
-										<tr>
-											<td>업체명:</td>
-											<td><input id="sheltername"></td>
-											<td><input type="button" id="shname" value="변경"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>대표자:</td>
-											<td><input id="shelterboss"></td>
-											<td><input type="button" id="shboss" value="변경"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>휴대폰:</td>
-											<td><input id="shelterphone" maxlength="11"></td>
-											<td><input type="button" id="shphone" value="변경"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>주소:</td>
-											<td  id="shelteraddr"></td>
-											</tr>
-									</table>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>이메일:</td>
-											<td><input id="shelteremail"></td>
-											<td><input type="button" id="shemail" value="변경"></td>
-										</tr>
-
-									</table>
-								</div>
-							</div>
-						</form>
-
-					</div>
-					<!-- /row -->
-
-
-					<!-- /row -->
-			</section>
-			<!-- /wrapper -->
-		</section>
-		<!-- /MAIN CONTENT -->
-		<!--main content end-->
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 가상입양 근황 </h3>
+        <div class="row">
+          
+          <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
+            <div class="content-panel">
+            <h4><i class="fa fa-angle-right"></i> 가상입양 리스트 </h4>
+                <hr>
+              <table id="table2" class="table table-hover">
+              
+                
+                <thead>
+                  <tr>
+                    <th>사용자 아이디</th>
+                    <th>강아지 이름</th>
+                    <th>후원 시작 일시</th>
+                    <th>금액</th>
+                    <th>총 금액</th>
+                  </tr>
+                </thead>
+                <tbody id="virtualList">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- row -->
+        </section>
+      </section>
 		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
@@ -281,6 +235,7 @@
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript"
 		src="lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -294,146 +249,29 @@
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 	<script>
-
-	var shelter = ${shelter}
-	console.log(shelter);
-	$('#sheltername').val(shelter.companyname);
-	$('#shelterboss').val(shelter.companyboss);
-	$('#shelterphone').val(shelter.companyphone);
-	$('#shelteraddr').text(shelter.companylocation);
-	$('#shelteremail').val(shelter.companyemail);
-		
-		//업체이름 변경
-		var sheltername = $("#sheltername").val();
-		$("#shname").on("click", function(data){
-			var param={
-					_method:"patch",
-					companyname:$("#sheltername").val(),
-			}
-			$.ajax({
-				url: "updatesheltername",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("업체명변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-		
-			})
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
+		console.log(${virtualList});
+		$.each(${virtualList},function(idx,data){
+			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href="./recentfrm"});
+			$('<td>').append(data.id).appendTo($tr);
+			$('<td>').append(data.dogname).appendTo($tr);
+			$('<td>').append(data.donationstart).appendTo($tr);
+			$('<td>').append(data.donation).appendTo($tr);
+			$('<td>').append(data.totaldonation).appendTo($tr);
+			$('#virtualList').append($tr);
 		});
+	
 		
+        jQuery(function($){
+            $("#table1").DataTable({info: false});
+        });
+        jQuery(function($){
+            $("#table2").DataTable({info: false});
+        });
+        
+        
+    </script>
 
- 	//업체대표이름변경
-		var shelterboss = $("#shelterboss").val();
-		$("#shboss").on("click",function(data){
-			var param={
-					_method:"patch",
-					companyboss:$("#shelterboss").val(),
-			}
-			$.ajax({
-				url:"updateshelterboss",
-				method:"get",
-				data:param,
-				dataType:"JSON"
-			}).don((result)=>{
-				toastr.success("이름변경에 성공했습니다.",'서버 메세지');
-				console.log("result=",result);
-				
-			} )
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "이름변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			} );
-			
-		} );
-		
-		
-		//보호소 전화번호 변경
-		var shelterphone = $("#shelterphone").val();
-		$("#shphone").on("click", function(data){
-			var param={
-					_method:"patch",
-					companyphone:$("#shelterphone").val(),
-			}
-			$.ajax({
-				url: "updateshelterphone",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("전화번호 변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-			
-			} )
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "전화번호 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		});
-		
-		
-		/* //보호소 주소 변경
-		var shelteraddr = $("#shelteraddr").val();
-		$("#shaddr").on("click", function(data){
-			var param={
-					_method:"patch",
-					companylocation:$("#shelteraddr").val(),
-			}
-			$.ajax({
-				url: "updateshelteraddr",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("주소 변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-			
-			
-			} )
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "주소 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		}); */
-
-		//보호소 이메일 변경
-	    var shelteremails = $("#shelteremail").val();
-		$("#shemail").on("click", function(data){
-			var param={
-					_method:"patch",
-					companyemail:$("#shelteremail").val(),
-			}
-			$.ajax({
-				url: "updateshelteremail",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-			
-			} )
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		});
- 
-	</script>
 </body>
 
 </html>

@@ -281,3 +281,4 @@ public class ClientManagement {
 		mav.setViewName("./client/MyVirtualAdopt");
 		return mav;
 	}
+}

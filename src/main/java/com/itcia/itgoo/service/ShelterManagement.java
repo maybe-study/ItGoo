@@ -259,4 +259,13 @@ public class ShelterManagement {
 		return mav;
 	}
 
+	public ModelAndView virtualAdoptList(String companyid) {
+		mav.setViewName("shelter/virtualAdoptList");
+		
+		mav.addObject("virtualList",new Gson().toJson(sDao.virtualAdoptList(companyid)));
+		System.out.println("==========================리스트=====================================");
+		System.out.println(new Gson().toJson(sDao.virtualAdoptList(companyid)));
+		return mav;
+	}
+
 }

@@ -158,4 +158,10 @@ public class ShelterController {
 	public String page7() {
 		return "shelter/sheltercard";
 	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/virtualadoptlist")
+	public ModelAndView virtualAdoptList(Principal p) {
+		
+		return smm.virtualAdoptList(p.getName());
+	}
 }

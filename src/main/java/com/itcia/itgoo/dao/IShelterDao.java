@@ -7,11 +7,13 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.VirtualAdopt;
 
 public interface IShelterDao {
 
@@ -80,7 +82,10 @@ public interface IShelterDao {
 	void updatecompanyphone(Company cp);
 
 	void updatecompanyemail(Company cp);
-
+	@Select("select * from dog join virtualadopt on virtualadopt.dogid = dog.dogid where shelterid=#{companyid}")
+	List<VirtualAdopt> virtualAdoptList(String companyid);
+	
+	
 
 
 
