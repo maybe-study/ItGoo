@@ -29,5 +29,8 @@ public class VirtualAdopt {
 	private int sex;
 	private String shelterid;
 	private String donationstart;
+	private String message;
+	private String title;
+	private String recentpic;
 	private int totaldonation;
 }

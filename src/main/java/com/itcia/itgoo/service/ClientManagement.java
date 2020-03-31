@@ -38,7 +38,6 @@ public class ClientManagement {
 
 	public ModelAndView adoplist() {
 		List<Dog> d = cDao.adoplist();
-
 		System.out.println(d);
 		mav.addObject("dogList", new Gson().toJson(d));
 		mav.setViewName("adoptList");
@@ -310,14 +309,25 @@ public class ClientManagement {
 		return mav;
 	}
 
+
+	
+	
 	/*
-	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) {
-	 *
-	 * mav.addObject("dogid",dogid); mav.setViewName("MyVirtualRecent"); return mav;
-	 * }
-	 *
-	 * public ModelAndView recentvirtualadopt(Principal p) {
-	 *
-	 * mav.setViewName("./client/MyVirtualDogs"); return mav; }
+	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) { VirtualAdopt
+	 * va= new VirtualAdopt(); va.setDogid(dogid); va.setId(p.getName());
+	 * List<VirtualAdopt> vList=cDao.showvirtualdog(va);
+	 * mav.addObject("dogid",dogid); mav.addObject("vList",vList);
+	 * mav.setViewName("MyVirtualRecent"); return mav; }
 	 */
+	
+	
+	
+	public ModelAndView recentvirtualadopt(Principal p) {
+		
+	List<VirtualAdopt> va=cDao.showmyvirtualadopt(p.getName());
+	System.out.println(va);
+	mav.addObject("va",new Gson().toJson(va));
+	mav.setViewName("./client/MyVirtualDogs");
+	return mav; 
+	}
 }

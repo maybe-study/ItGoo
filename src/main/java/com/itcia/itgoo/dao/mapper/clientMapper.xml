@@ -70,4 +70,6 @@ select * from caresheet where toggle=1
 		resultType="SmallMeeting">
 	select * from smallmeeting where smallnumber=#{smallnumber}
 	</select>
+	
+	
 </mapper>
