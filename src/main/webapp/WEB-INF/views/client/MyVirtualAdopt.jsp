@@ -47,7 +47,7 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="main2.js?ver"></script>
 <script>
-
+	
 </script>
 <!--script for this page-->
 <!-- =======================================================
@@ -101,8 +101,10 @@
 					<div class="col-lg-6 col-md-6 col-sm-6">
 
 						<h4 class="title">회원님들의 개인정보 보호에 힘쓰겠습니다.</h4>
-						<div id="message"></div>
-
+						<form action="showmyvirtualdog?"${_csrf.parameterName}=${_csrf.token}>
+						 <input type="hidden" name="dogid" value="${dogid}">
+							<div id="message"></div>
+						</form>
 					</div>
 					<!-- /row -->
 				</div>
@@ -125,30 +127,41 @@
 		<!--footer end-->
 	</section>
 	<script>
-	var vaList=${vaList};
-	 $.each(vaList,function(idx,data){
-		 console.log("가상입양 스트 만드는중");
-		 console.log("data값은 ",data);
-		 var $vaList = $("#message");
-		var $div1 = $('<div class="col-lg-4">')
-		var $div2=$('<div class="form-panel">');
-		var $h4=$('<h4 class="mb">').append($('<i class="fa fa-angle-right">'))
-		var $div3 = $('<div class="card-body text-center">')
-                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-                .append($('<h4 class="text-uppercase m-0">').text("이름 : "+data.id))
-                .append($('<h4 class="text-uppercase m-0">').text("강아지이름 : "+data.dogname))
-                .append($('<h4 class="text-uppercase m-0">').text("나이 : "+data.dogage))
-                .append($('<h4 class="text-uppercase m-0">').text("특이사항 : "+data.dogspecial))
-                .append($('<h4 class="text-uppercase m-0">').text("성별 : "+data.sex))
-                .append($('<h4 class="small text-black-50">').text("기부금액 :  "+data.donation))
-                .append($('<h4 class="small text-black-50">').text("후원결재일 :  "+data.payday+"일"));
+		var vaList = ${vaList};
+		$.each(vaList, function(idx, data) {
+			console.log("가상입양 스트 만드는중");
+			console.log("data값은 ", data);
+			var $vaList = $("#message");
+			var $div1 = $('<div class="col-lg-4">')
+			var $div2 = $('<div class="form-panel">');
+			var $h4 = $('<h4 class="mb">').append(
+					$('<i class="fa fa-angle-right">'));
+			var money;
+			if (data.donation == 30000) {
+				money = "3만원"
+			}
+			if (data.donation == 60000) {
+				money = "6만원"
+			}
+			if (data.donation == 110000) {
+				money = "11만원"
+			}
+			var $div3 = $('<div class="form-panel">').append(
+					$('<i class="fas fa-mobile-alt text-primary mb-2">'))
+					.append($('<h4 class="text-uppercase m-0" name="id">').text("사용자아이디 : " + data.id))
+					.append($('<h4 class="text-uppercase m-0" name="dogid">').text("강아지이름 : " + data.dogname))
+					.append($('<h4 class="text-uppercase m-0">').text("나이 : " + data.dogage))
+					.append($('<h4 class="text-uppercase m-0">').text("특이사항 : " + data.dogspecial))
+					.append($('<h4 class="text-uppercase m-0">').text("성별 : " + data.sex == 0 ?+"남" : "여"))
+					.append($('<h4 class="small text-black-50 id="donation"">').text("기부금액 :  " + money))
+					.append($('<h4 class="small text-black-50">').text("후원결재일 :  " + data.payday + "일"))
+					.append($('<button type="submit">').text("근항보러가기"));
 
-		 $div3.append($img);
-		 $h4.append($div3);
-		 $div2.append($h4);
-		 $div1.append($div2);
-		 $qList.append($div1);
-	 });
+			$h4.append($div3);
+			$div2.append($h4);
+			$div1.append($div2);
+			$vaList.append($div1);
+		});
 	</script>
 </body>
 </html>

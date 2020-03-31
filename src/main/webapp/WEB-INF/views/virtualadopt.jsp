@@ -102,7 +102,7 @@
                   <li>미용</li>
                   <li>매월 15일 결제</li>
                 </ul>
-               <button class="btn btn-theme" type="button" onclick="submit(1)">후원하기</button>
+               <button class="btn btn-theme" type="button" onclick="submit(30000)">후원하기</button>
               </div>
               <!-- end custombox -->
             </div>
@@ -125,7 +125,7 @@
                   <li>미용</li>
                   <li>매월 15일 결제</li>
                 </ul>
-               <button class="btn btn-theme" type="submit"  onclick="submit(2)">후원하기</button>
+               <button class="btn btn-theme" type="submit"  onclick="submit(60000)">후원하기</button>
               </div>
               <!-- end custombox -->
             </div>
@@ -148,7 +148,7 @@
                   <li>미용</li>
                   <li>매월 15일 결제</li>
                 </ul>
-                <button class="btn btn-theme" type="button" onclick="submit(3)">후원하기</button>
+                <button class="btn btn-theme" type="button" onclick="submit(110000)">후원하기</button>
               </div>
               <!-- end custombox -->
             </div>
@@ -197,7 +197,6 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <script>
-  console.log("제발 쉽가가자 친구야",${dogid});
   function submit(a){
 	document.frm.donation.value=a;
 	document.frm.submit();

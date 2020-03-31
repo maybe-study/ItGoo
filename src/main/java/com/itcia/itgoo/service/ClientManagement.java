@@ -284,10 +284,6 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView myvirtualadopt() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public ModelAndView myauction(String id) {
 		// TODO Auto-generated method stub
@@ -313,3 +309,15 @@ public class ClientManagement {
 		mav.setViewName("./client/MyVirtualAdopt");
 		return mav;
 	}
+
+	/*
+	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) {
+	 * 
+	 * mav.addObject("dogid",dogid); mav.setViewName("MyVirtualRecent"); return mav;
+	 * }
+	 * 
+	 * public ModelAndView recentvirtualadopt(Principal p) {
+	 * 
+	 * mav.setViewName("./client/MyVirtualDogs"); return mav; }
+	 */
+}

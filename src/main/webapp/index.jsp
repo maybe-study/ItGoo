@@ -64,7 +64,6 @@
 
             <a href="joinform">회원가입</a>
          </sec:authorize>
-
          <sec:authorize access="isAuthenticated()">
             <form method="post" action="logout">
                <input type="submit" value="로그아웃" id="logout"> <input
