@@ -127,19 +127,24 @@ public class ClientController {
 		return mav;
 	}
 	
+	
 	/*
 	 * @PreAuthorize("isAuthenticated()")
 	 * 
 	 * @RequestMapping(value = "/showmyvirtualdog", method = RequestMethod.GET)
 	 * public ModelAndView showmyvirtualdog(int dogid,Principal p) {
 	 * System.out.println("가상입양 강아지를 보여드리죠"); System.out.println("내가상입양"+dogid);
-	 * mav=cm.showmyvirtualdog(dogid,p); return mav; }
+	 * cm.showmyvirtualdog(dogid,p);
 	 * 
-	 * @PreAuthorize("isAuthenticated()")
-	 * 
-	 * @RequestMapping(value = "/recentvirtualadopt", method = RequestMethod.GET)
-	 * public ModelAndView recentvirtualadopt(Principal p) {
-	 * System.out.println("가상입양강아지 보기"); mav=cm.recentvirtualadopt(p); return mav; }
+	 * return mav; }
 	 */
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/recentvirtualadopt", method = RequestMethod.GET)
+	public ModelAndView recentvirtualadopt(Principal p) {
+	System.out.println("가상입양강아지 보기");  
+	mav=cm.recentvirtualadopt(p); 
+	return mav; }
+	
 
 }

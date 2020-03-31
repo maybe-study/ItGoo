@@ -45,10 +45,6 @@
 <body>
 	
 		<section id="container">
-			<!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
-        *********************************************************************************************************************************************************** -->
-			<!--header start-->
 		<header class="header black-bg">
 			<div class="sidebar-toggle-box">
 				<div class="fa fa-bars tooltips" data-placement="right"
@@ -189,6 +185,101 @@
 	<script src="main2.js?ver"></script>
 
 	<script>
+	 var $dogList = $("#addogList");
+	$.each(${va},function(idx,data){
+	      console.log("vavavava값",data);
+	        var $img=$('<img style="width:100%">').attr('src',data.recentpic);
+	        makeModalBtn($img);
+	        $img[0].dataset.dogid=data.dogid; 
+	        //$img[0].dataset.
+	          var $div3 = $('<div class="card-body text-center">')
+	                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+	                .append($('<h4 class="text-uppercase m-0">').text(data.tltle))
+	                .append($('<hr class="my-4">')).append($img)
+	                .append($('<div class="small text-black-50">').text(data.donation+" 원"))
+	                .append($('<div class="small text-black-50">').text("결제일 : "+data.payday))
+	                .append($('<div class="small text-black-50">').text("총 후원액 : "+data.totaldonation));
+	          console.log("인덱스는!!!"+idx);
+	          console.log(idx);
+	          var $div2 = $('<div class="card py-4 h-100">').append($div3);
+	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
+	           $dogList.append($div1);
+	           
+	     });
+	
+    function makeModalBtn($img){
+   	 $img.on('click', function(e){
+         //console.log(e.target.dataset.dogid);
+         var dogid=e.target.dataset.dogid;
+         console.log("dogid:dddd",dogid);
+         $.ajaxSetup({
+              beforeSend : function(xhr) {
+                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+              }
+           });//먼저 보냄
+           console.log(dogid);
+           $.ajax({ // 에이작스 열고
+              type : 'post', //타입은 get 
+              url : "adoptlistdetail", // restFul 방식
+              data : {"dogid":dogid},
+              dataType : "json",
+              //서블릿이 성공하면 다시 돌아오는것
+              success : function(data) {
+                 
+                 console.log("data",data);
+                 var $uls=$('.carousel-indicators').empty();
+                 var $items=$('.carousel-inner').empty();
+                 //사진 리스트
+                 $.each(data.dogpics,function(idx,pic){
+                    if(idx==0){
+                       $('<li data-target="#demo" data-slide-to="0" class="active">').appendTo($uls);
+                       var $div=$('<div class="carousel-item active">').appendTo($items);
+                       $('<img class="dog">').attr('src',pic).appendTo($div);
+                    }else{
+                       var $li=$('<li data-target="#demo">').appendTo($uls);
+                       $li[0].dataset.slideTo=idx;
+                       var $div=$('<div class="carousel-item">').appendTo($items);
+                       $('<img class="dog">').attr('src',pic).appendTo($div);
+                    }
+                    
+                 });
+                 //강아지 정보
+                 $('#name').text(data.dogname);
+                 $('#age').text(data.dogage+" 살");
+                 $('#dogjungsung').text(data.dogjungsung==0?"O":"X");
+                 $('#sex').text(data.sex==0?"남":"여");
+                 $('#special').text(data.dogspecial);
+                 
+                   
+                 
+                 $("#adoptBtn").on("click",function(){
+                    location.href="./applyAdopt?dogid="+data.dogid
+                 })
+                
+                 $("#VirtualadoptBtn").on("click",function(){
+                    location.href="./virtualadopt?dogid="+data.dogid
+                 })
+              /* var swiper = new Swiper('.swiper-container', {
+                    navigation: {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                    },
+                  }); */
+              }
+              ,
+              error : function(error) {
+                 console.log(error);
+                 var $uls=$('.carousel-indicators').empty();
+                 var $items=$('.carousel-inner').empty();
+              }
+           });
+           $('#modalBox').modal('show'); 
+        });
+      }
+           // 모달 안의 취소 버튼에 이벤트를 건다.
+           $('#closeModalBtn').on('click', function(){
+           $('#modalBox').modal('hide');
+     });
 
   </script>
 </body>

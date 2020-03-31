@@ -135,5 +135,16 @@ public class Client2Controller {
 		mav= cm.myauction(p.getName());
 		return mav;
 	}
-
+	@RequestMapping(value = "/completesmall" )
+	public ModelAndView completesmall(SmallMeeting sm,RedirectAttributes attr) {	//null 값도 받으려고
+		mav= cm.completesmall(sm,attr);
+		attr.addFlashAttribute("sm",sm);
+		return mav;
+	}
+	@RequestMapping(value = "/cancelsmall" )
+	public ModelAndView cancelsmall(SmallMeeting sm,RedirectAttributes attr) {	//null 값도 받으려고
+		mav= cm.cancelsmall(sm,attr);
+		attr.addFlashAttribute("sm",sm);
+		return mav;
+	}
 }

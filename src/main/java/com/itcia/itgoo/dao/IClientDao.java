@@ -1,5 +1,6 @@
 package com.itcia.itgoo.dao;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.CareSheet;
@@ -84,6 +86,23 @@ public interface IClientDao {
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
 
 
+	@Select("SELECT * FROM recentthumb join recent on recentthumb.recentid=recent.recentid join virtualadopt on virtualadopt.id=recent.id where recent.id=#{id}")
+	List<VirtualAdopt> showmyvirtualadopt(@Param("id")String String);
 
+	void completesmall(SmallMeeting sm);
+
+	void cancelsmall(SmallMeeting sm);
+
+	SmallMeeting mysmallmeetingdetail(Integer smallnumber);
+
+
+
+	/*
+	 * @Select("SELECT * FROM recentpics join recent on recentpics.recentid = recent.recentid \r\n"
+	 * + "join virtualadopt on virtualadopt.dogid=recent.dogid \r\n" +
+	 * "join dog on dog.dogid=virtualadopt.dogid \r\n" +
+	 * "where virtualadopt.id=#{id}") List<VirtualAdopt> showvirtualdog(VirtualAdopt
+	 * va);
+	 */
 
 }

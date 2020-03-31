@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>ITGOO - COMPANY MYPAGE</title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -124,7 +124,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/portfolio/itgoo2.PNG" class="img-circle" width="80"></a></p>
-          <h5 class="centered">ACTIVITY MANAGER</h5>
+          <h5 class="centered" id="userid">ACTIVITY MANAGER</h5>
           <li class="mt"><a href="/ItGoo/"> <i
 							class="fa fa-dashboard"></i> <span>메인 페이지로</span>
 					</a></li>
@@ -252,7 +252,10 @@
            $.each(data,function(idx, data){
         		var $body = $("#activitydelbody");
         		
+        		
         		var $tr = $("<tr>").appendTo($body);
+        		var $userid = $("#username");
+        		$("<div>").text(data.companyid).appendTo($userid);
         		$("<td>").text(data.companyname).appendTo($tr);
         		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.activitynum+')').text(data.activityname)).appendTo($tr);
         		$("<td>").text(data.activitydate).appendTo($tr);
@@ -263,7 +266,7 @@
         		});
         }
     
-    })
+    });
 	
 	function articleView(activitynum){
 		var detail= ${detail}
