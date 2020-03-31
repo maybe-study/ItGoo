@@ -139,7 +139,7 @@ public class ClientManagement {
 		sm.setId((String) p.getName());
 		cDao.regismallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("activitymyinfo");
+		redirectView.setUrl("myenrollsmallmeeting");
 		mav.setView(redirectView);
 		return mav;
 	}
@@ -242,7 +242,7 @@ public class ClientManagement {
 		cDao.insertsmallmeeting(sm);
 		cDao.updatesmallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("smalllist");
+		redirectView.setUrl("mysmallmeeting");
 		 mav.setView(redirectView);
 		return mav;
 	}
@@ -313,3 +313,32 @@ public class ClientManagement {
 		mav.setViewName("./client/MyVirtualAdopt");
 		return mav;
 	}
+
+	public ModelAndView completesmall(SmallMeeting sm, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		cDao.completesmall(sm);
+		attr.addFlashAttribute("sm",sm);
+		mav.setViewName("redirect:myenrollsmallmeeting");
+		return mav;
+	}
+
+	public ModelAndView cancelsmall(SmallMeeting sm, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		cDao.cancelsmall(sm);
+		attr.addFlashAttribute("sm",sm);
+		mav.setViewName("redirect:myenrollsmallmeeting");
+		return mav;
+	}
+
+	public ModelAndView mysmallmeetingdetail(Integer smallnumber) {
+		mav = new ModelAndView();
+		String view=null;
+		SmallMeeting msmdetail = cDao.mysmallmeetingdetail(smallnumber);
+		msmdetail.setSmallnumber(smallnumber);
+		mav.addObject("msmdetail",new Gson().toJson(msmdetail));
+		view="client/mySmallMeetingDetail";
+		mav.setViewName(view);
+		
+		return mav;
+	}
+}

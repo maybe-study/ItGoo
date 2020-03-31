@@ -9,9 +9,9 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<title>Dashio - Bootstrap Admin Template</title>
+<title>ITGOO - CLIENT MYPAGE</title>
 
-<!-- Favicons -->`
+<!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 <!-- Bootstrap core CSS -->
@@ -53,17 +53,14 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
 		<!--header start-->
-		<div id="articleView_layer">
-	<div id="bg_layer"></div>
-	<div id="contents_layer"></div>
-</div>
+		
 		<header class="header black-bg">
 			<div class="sidebar-toggle-box">
 				<div class="fa fa-bars tooltips" data-placement="right"
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -107,6 +104,7 @@
                     <th>현재 총 강아지 마릿 수</th>
                     <th>소모임 시작 날짜</th>
                     <th>소모임 시작 시간</th>
+                    <th>소모임 진행상황</th>
                     </tr>
                 </thead>
                 <tbody id="myrecruitsmall">
@@ -142,6 +140,10 @@
 				</a>
 			</div>
 		</footer>
+		<div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
@@ -170,7 +172,13 @@
         		$("<td>").text(data.meetparticipatecnt).appendTo($tr);
         		$("<td>").text(data.meetingdate).appendTo($tr);
         		$("<td>").text(data.time).appendTo($tr);
-        		
+        		if(data.status == 0){
+        			$("<td>").text("시작 전").appendTo($tr);
+        		}else if(data.status == 1){
+        			$("<td>").text("완료 후 해산").appendTo($tr);
+        		}else{
+        			$("<td>").text("소모임 취소").appendTo($tr);
+        		}
         		});
         }
     
