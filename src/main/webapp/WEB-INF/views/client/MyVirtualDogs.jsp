@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 <meta charset="utf-8">
@@ -81,7 +81,7 @@
 	<section id="main-content">
 		<section class="wrapper">
 			<h3>
-				<i class="fa fa-angle-right"></i> 나의입양 진행상황
+				<i class="fa fa-angle-right"></i> 나의가상입양
 			</h3>
 			<form action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
 				onsubmit="return makeTestJson()" name=frm id="frm" method="post">
@@ -146,20 +146,6 @@
 									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>
-								<!-- <div id="demo" class="carousel slide" data-ride="carousel">
-										<ul class="carousel-indicators">
-										</ul>
-										The slideshow
-										<div class="carousel-inner"></div>
-										Left and right controls
-										<a class="carousel-control-prev" href="#demo"
-											data-slide="prev"> <span
-											class="carousel-control-prev-icon"></span>
-										</a> <a class="carousel-control-next" href="#demo"
-											data-slide="next"> <span
-											class="carousel-control-next-icon"></span>
-										</a>
-									</div> -->
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary" id="adoptBtn"></button>
@@ -204,170 +190,6 @@
 
 	<script>
 
-/* 	 $.each(${phase},function(idx,data){
-		 var $phaselist = $("$phaselist");
-		 var $div1=$('<div>').append(data.phase);
-		 $phaselist.append($div1);
-
-	 }); */
-	 $.each(${aList},function(idx,data){
-		 console.log("피리스트 만드는중");
-		 console.log("data값은 ",data);
-		 var $qList = $("#addogList");
-		 var $img=$('<img id="openModalBtn" style="width:100%">').attr('src',data.thum);
-		  $img[0].dataset.dogid=data.dogid;
-		var $div1 = $('<div class="col-lg-4">')
-		var $div2=$('<div class="form-panel">');
-		var $h4=$('<h4 class="mb">').append($('<i class="fa fa-angle-right">'))
-		var $div3 = $('<div class="card-body text-center">')
-                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-                .append($('<h4 class="text-uppercase m-0">').text("이름 : "+data.dogname))
-                .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
-                .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
-                .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
-		
-		 $div3.append($img);
-		 $h4.append($div3);
-		 $div2.append($h4);
-		 $div1.append($div2);
-		 $qList.append($div1);
-		 
-		});
-
-	
-		/* if(data.phase==0){
-        	var $p0=$('#adoptBtn').text("입양");
-        	$p0.on("click", function(){
-        		location.href="./adoptList";
-        	})
-        }else if(data.phase==1){
-        	var $p1=$('#adoptBtn').text("서류심사 대기")
-        	$p1.on("click",function(){
-        		location.href="#"
-        	})
-        }else if(data.phase==2){
-        	var $p2=$('#adoptBtn').text("테스트 시작")
-        	$p2.on("click",function(){
-        		location.href="./testpaper?dogid="+data.dogid
-        	})
-        }else if(data.phase==3){
-        	var $p3=$('#adoptBtn').text("액티비티")
-        	$p3.on("click",function(){
-        		location.href="./"
-        	})
-        }  if(data.phase==4){
-        	var $p4=$('#adoptBtn').text("액티비티 예약확인")
-        	$p4.on("click".function(){
-        		$p4.on("click",function(){
-        		}
-            		location.href="./showmyactivity?dogid="+data.dogid
-        	})
-        }  else if(data.phase==5){
-        	var $p4=$('#adoptBtn').text("숙려기간")
-        	$p5.on("click".function(){
-        		$p5.on("click",function(){
-            		location.href="./"
-        	})
-        }else if(data.phase==6){
-        	var $p6=$('#adoptBtn').text("설문지 작성")
-        	$p6.on("click".function(){
-            		location.href="./"
-        	})
-        }else(data.phase==7){
-        	var $p7=$('#adoptBtn').text("입양 감사합니다.")
-        	$p7.on("click".function(){
-            		location.href="./"
-        	})
-         };
-	  */
-	 $(document).on('click','#openModalBtn', function(e){
-		 $('#modalBox').modal('show');
-	 console.log(e.target.dataset);
-		  var dogid=e.target.dataset.dogid;
-		  var phase=e.target.dataset.phase;
-		 console.log("클릭한 모달의 dogid:"+dogid);
-		 console.log("클릭한 모달의 phase:"+phase);
-		 $.ajaxSetup({
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-				}
-			});//먼저 보냄
-			$.ajax({ // 에이작스 열고
-				type : 'post', //타입은 get
-				url : "myadoptlistdetail", // restFul 방식
-				data : {dogid:dogid},
-				dataType : "json",
-
-				//서블릿이 성공하면 다시 돌아오는것
-				success : function(data) {
-					console.log("모달에 나올 data",data);
-					 if(data.phase==1){
-						 var $p1=$('#adoptBtn').text("신청서 검토중")
-						 $p1.on("click",function(){
-				        	 console.log("1단계"+data.phase);
-				              location.href="./testpaper?dogid="+data.dogid
-						 })
-					 }else if(data.phase==2){   //시험 시작
-				         var $p2=$('#adoptBtn').text("적격성 평가 시작")
-				         $p2.on("click",function(){
-				        	 console.log("2단계"+data.phase);
-				              location.href="./testpaper?dogid="+data.dogid
-				          })   
-				      }else if(data.phase==3){   //액티비티 예약
-				         var $p3=$('#adoptBtn').text("액티비티 예약")
-				         console.log("3단계"+data.phase);
-				         $p3.on("click",function(){
-				              location.href="./activitylist?dogid="+data.dogid
-				          })   
-				      }else if(data.phase==4){
-				         var $p4=$('#adoptBtn').text("액티비티 예약확인")
-				         console.log("4단계"+data.phase);
-				          $p4.on("click",function(){
-				              location.href="./showmyactivity?dogid="+data.dogid
-				       })
-				    }else if(data.phase==5){
-				    var $p5=$('#adoptBtn').text("숙려기간")
-				    console.log("페이즈페이지에서 아이디"+data.dogid);
-				    $p5.on("click",function(){
-				              location.href="./finalsook?dogid="+data.dogid
-				   		 })
-				    }else if(data.phase==6){
-				    var $p6=$('#adoptBtn').text("설문지작성")
-				    console.log("6단계"+data.dogid);
-				    $p6.on("click",function(){
-				              location.href="./finalcaresheet?dogid="+data.dogid
-				   		 })
-				    }
-					
-					var $uls=$('.carousel-indicators').empty();
-					var $items=$('.carousel-inner').empty();
-					$.each(data.dogpics,function(idx,pic){
-						if(idx==0){
-							$('<li data-target="#productCarousel" data-slide-to="0" class="active">').appendTo($uls);
-							var $div=$('<div class="item active">').appendTo($items);
-							$('<img class="dog" style="width: 700px">').attr('src',pic).appendTo($div);
-						}else{
-							var $li=$('<li data-target="#productCarousel">').appendTo($uls);
-							$li[0].dataset.slideTo=idx;
-							var $div=$('<div class="item">').appendTo($items);
-							$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
-						}
-
-					});
-					$('#name').text(data.dogname);
-					$('#age').text(data.dogage+" 살");
-					$('#dogjungsung').text(data.dogjungsung==0?"O":"X");
-					$('#sex').text(data.sex==0?"남":"여");
-					$('#special').text(data.dogspecial);
-
-				} , error : function(error) {
-					console.log(error);
-				}
-			});
-	 });
-	 $('#closeModalBtn').on('click', function(e){
-			 $('#modalBox').modal('hide');
-	});
   </script>
 </body>
 
