@@ -70,11 +70,19 @@ public interface IClientDao {
 
 	void updatesmallmeeting(SmallMeeting sm);
 
-	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday})")
+
+	boolean delmysmallmeeting(SmallMeeting sm);
+
+	void updatemeetparticipatecnt(SmallMeeting sm);
+
+	SmallMeeting myenrollsmalldetail(Integer smallnumber);
+
+	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday},sysdate,0)")
 	void virtualadoptapply(VirtualAdopt va);
 
 	@Select("SELECT * FROM virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
+
 
 
 

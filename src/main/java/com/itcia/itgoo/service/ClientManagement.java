@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
@@ -206,22 +207,15 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView myappliedsmall(Principal p,SmallMeeting sm) {
-		mav= new ModelAndView();
-		String view = null;
-		sm.setId((String) p.getName());
-		List<SmallMeeting> asList = cDao.myappliedsmall(sm);
-		mav.addObject("asList", new Gson().toJson(asList));
-		mav.setViewName("client/mySmallMeeting");
-		return mav;
-	}
-
 	public ModelAndView myrecruitsmall(Principal p,SmallMeeting sm) {
 		mav= new ModelAndView();
 		String view = null;
 		sm.setId((String) p.getName());
-		List<SmallMeeting> rsList = cDao.myrecruitsmall(sm);
-		mav.addObject("rsList", new Gson().toJson(rsList));
+
+		List<SmallMeeting> asList = cDao.myappliedsmall(sm);
+		System.out.println("asList="+asList);
+		mav.addObject("asList", new Gson().toJson(asList));
+
 		mav.setViewName("client/mySmallMeeting");
 		return mav;
 	}
@@ -249,13 +243,47 @@ public class ClientManagement {
 		cDao.updatesmallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("smalllist");
+		 mav.setView(redirectView);
 		return mav;
 	}
 
-	public ModelAndView myvirtualadopt() {
-		// TODO Auto-generated method stub
-		return null;
+	public ModelAndView myenrollsmall(Principal p, SmallMeeting sm) {
+		mav= new ModelAndView();
+		String view = null;
+		sm.setId((String) p.getName());
+		List<SmallMeeting> rsList = cDao.myrecruitsmall(sm);
+		System.out.println("rsList="+rsList);
+		mav.addObject("rsList", new Gson().toJson(rsList));
+		mav.setViewName("client/myEnrollSmallMeeting");
+		return mav;
 	}
+
+	public ModelAndView delmysmallmeeting(Principal p, SmallMeeting sm,RedirectAttributes attr) {
+		mav= new ModelAndView();
+		sm.setId((String) p.getName());
+		boolean dsm = cDao.delmysmallmeeting(sm);
+		if(dsm) {
+			System.out.println("글 존재시 삭제 트랜잭션 성공");
+			attr.addFlashAttribute("sm",sm);
+		}else {
+			System.out.println("삭제 트랜잭션 실패");
+		}
+		cDao.updatemeetparticipatecnt(sm);
+		mav.setViewName("redirect:mysmallmeeting");
+		return mav;
+	}
+	public ModelAndView myenrollsmalldetail(Integer smallnumber) {
+		mav = new ModelAndView();
+		String view=null;
+		SmallMeeting esdetail = cDao.myenrollsmalldetail(smallnumber);
+		esdetail.setSmallnumber(smallnumber);
+		mav.addObject("esdetail",new Gson().toJson(esdetail));
+		view="client/myEnrollSmallDetail";
+		mav.setViewName(view);
+
+		return mav;
+	}
+
 
 	public ModelAndView myauction(String id) {
 		// TODO Auto-generated method stub
@@ -281,4 +309,15 @@ public class ClientManagement {
 		mav.setViewName("./client/MyVirtualAdopt");
 		return mav;
 	}
+
+	/*
+	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) {
+	 *
+	 * mav.addObject("dogid",dogid); mav.setViewName("MyVirtualRecent"); return mav;
+	 * }
+	 *
+	 * public ModelAndView recentvirtualadopt(Principal p) {
+	 *
+	 * mav.setViewName("./client/MyVirtualDogs"); return mav; }
+	 */
 }
