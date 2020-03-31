@@ -5,13 +5,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.VirtualAdopt;
+import com.itcia.itgoo.dto.VirtualAdoptRecent;
 
 public interface IShelterDao {
 
@@ -80,7 +84,15 @@ public interface IShelterDao {
 	void updatecompanyphone(Company cp);
 
 	void updatecompanyemail(Company cp);
-
+	@Select("select * from dog join virtualadopt on virtualadopt.dogid = dog.dogid where shelterid=#{companyid}")
+	List<VirtualAdopt> virtualAdoptList(String companyid);
+	@Insert("insert into recentpics values(#{param2},#{param1})")
+	void insertRecentPic(int recentid, String s);
+	@SelectKey(statement="select max(recentid) from recent",keyProperty = "recentid", before = false, resultType = Integer.class)
+	@Insert("insert into recent values(recent_seq.nextval,#{id},#{dogid},#{message},#{title})")
+	void insertRecent(VirtualAdoptRecent r);
+	
+	
 
 
 

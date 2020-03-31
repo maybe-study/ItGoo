@@ -211,11 +211,11 @@ public class ClientManagement {
 		mav= new ModelAndView();
 		String view = null;
 		sm.setId((String) p.getName());
-		
+
 		List<SmallMeeting> asList = cDao.myappliedsmall(sm);
 		System.out.println("asList="+asList);
 		mav.addObject("asList", new Gson().toJson(asList));
-		
+
 		mav.setViewName("client/mySmallMeeting");
 		return mav;
 	}
@@ -280,14 +280,10 @@ public class ClientManagement {
 		mav.addObject("esdetail",new Gson().toJson(esdetail));
 		view="client/myEnrollSmallDetail";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
 
-	public ModelAndView myvirtualadopt() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public ModelAndView myauction(String id) {
 		// TODO Auto-generated method stub
@@ -314,6 +310,7 @@ public class ClientManagement {
 		return mav;
 	}
 
+
 	public ModelAndView completesmall(SmallMeeting sm, RedirectAttributes attr) {
 		mav= new ModelAndView();
 		cDao.completesmall(sm);
@@ -338,7 +335,19 @@ public class ClientManagement {
 		mav.addObject("msmdetail",new Gson().toJson(msmdetail));
 		view="client/mySmallMeetingDetail";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
+}
+
+	/*
+	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) {
+	 *
+	 * mav.addObject("dogid",dogid); mav.setViewName("MyVirtualRecent"); return mav;
+	 * }
+	 *
+	 * public ModelAndView recentvirtualadopt(Principal p) {
+	 *
+	 * mav.setViewName("./client/MyVirtualDogs"); return mav; }
+	 */
 }

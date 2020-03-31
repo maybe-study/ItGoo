@@ -43,31 +43,36 @@
 </head>
 
 <body>
-	<header>
+	
 		<section id="container">
 			<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
 			<!--header start-->
+		<header class="header black-bg">
+			<div class="sidebar-toggle-box">
+				<div class="fa fa-bars tooltips" data-placement="right"
+					data-original-title="Toggle Navigation"></div>
+			</div>
+			<!--logo start-->
+			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<!--logo end-->
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="#"
-						onclick="document.getElementById('logout').submit();"> Logout</a>
-						<form id="logout" action="logout" method="POST">
-							<input name="${_csrf.parameterName}" type="hidden"
-								value="${_csrf.token}" />
-						</form></li>
+					<li><a class="logout" href="login.html"
+						name="${_csrf.parameterName}" value="${_csrf.token}">Logout</a></li>
 				</ul>
 			</div>
+		</header>
 		</section>
-	</header>
+
 	<!--header end-->
 	<!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 	<!--sidebar start-->
-
+<aside></aside>
 	<!--sidebar end-->
 	<!-- **********************************************************************************************************************************************************
         MAIN CONTENT

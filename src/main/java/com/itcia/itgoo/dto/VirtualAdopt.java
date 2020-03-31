@@ -26,5 +26,8 @@ public class VirtualAdopt {
 	private String dogname;
 	private int dogage;
 	private String dogspecial;
-	private int sex;	
+	private int sex;
+	private String shelterid;
+	private String donationstart;
+	private int totaldonation;
 }

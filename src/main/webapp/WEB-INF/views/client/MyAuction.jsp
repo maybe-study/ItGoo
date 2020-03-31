@@ -144,13 +144,13 @@
 	<!-- js placed at the end of the document so the pages load faster -->
 		<!-- js placed at the end of the document so the pages load faster -->
   <script src="lib/jquery/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script src="lib/jquery.scrollTo.min.js"></script>
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
-		<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     
 	<script>
 	
@@ -176,140 +176,7 @@
 		$('#myauctionList').append($tr);
 	});
 	
-	/* let data= undefined;
-  	
-
 	
-	
-	
-	var usernamae = $("#usernameval1").val();
-	$("#changename").on("click", function(data){
-		var param={
-				_method:"patch",
-				username:$("#usernameval1").val(),
-		}
-		console.log("companyname=" ,usernamae);
-		$.ajax({
-			url: "updateusername",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("이름변경에 성공했습니다.", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	
-	var useremails = $("#useremailval1").val();
-	$("#changeemail").on("click", function(data){
-		var param={
-				_method:"patch",
-				useremail:$("#useremailval1").val(),
-		}
-		$.ajax({
-			url: "updateuseremail",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	
-	
-	
-	
-
-	var userphone = $("#userphoneval1").val();
-	$("#changephone").on("click", function(data){
-		var param={
-				_method:"patch",
-				phone:$("#userphoneval1").val(),
-		}
-		$.ajax({
-			url: "updateuserphone",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("전화번호 변경에 성공했습니다.", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "전화번호 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	
-	
-	var userphone = $("#userbirthdayval1").val();
-	$("#changebirth").on("click", function(data){
-		var param={
-				_method:"patch",
-				birthday:$("#userbirthdayval1").val(),
-		}
-		$.ajax({
-			url: "updateuserbirth",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("생일 변경에 성공했습니다.", '서버메시지');
-			console.log("result=",result);
-		})
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "생일 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	});
-	
-	var useraddr = $("#useraddrressval1").val();
-	$("#changeaddress").on("click", function(data){
-		var param={
-				_method:"patch",
-				useraddress:$("#useraddrressval1").val(),
-		}
-		$.ajax({
-			url: "updateuseraddress",
-			method: "get",
-			data:param,
-			dataType: "JSON"
-		}).done((result)=>{
-			toastr.success("주소 변경에 성공했습니다.", '서버메시지');
-			console.log("result=",result);
-		
-		
-		} )
-		
-		.fail((xhr)=>{
-			(xhr)=>printError(xhr, "주소 변경에 실패하였습니다.")
-			console.log("xhr=",xhr);
-		});
-		
-	}); */
 	
   </script>
   <script>

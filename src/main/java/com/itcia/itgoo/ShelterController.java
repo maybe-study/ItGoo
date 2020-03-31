@@ -2,6 +2,7 @@ package com.itcia.itgoo;
 
 import java.security.Principal;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -20,10 +21,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
+import com.itcia.itgoo.dto.VirtualAdopt;
+import com.itcia.itgoo.dto.VirtualAdoptRecent;
 import com.itcia.itgoo.service.ShelterManagement;
 import com.itcia.itgoo.share.UploadFile;
 
@@ -157,5 +162,23 @@ public class ShelterController {
 	@GetMapping(value = "/sheltercard")
 	public String page7() {
 		return "shelter/sheltercard";
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/virtualadoptlist")
+	public ModelAndView virtualAdoptList(Principal p) {
+		
+		return smm.virtualAdoptList(p.getName());
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/recentfrm")
+	public ModelAndView recentFrm(Principal p,VirtualAdopt va) {
+		
+		return smm.recentFrm(p,va);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/insertrecent")
+	public ModelAndView insertRecent(Principal p,VirtualAdoptRecent r,String srcJson) {
+		
+		return smm.insertRecent(p,r,srcJson);
 	}
 }

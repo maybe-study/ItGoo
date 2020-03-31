@@ -143,7 +143,14 @@
 							<li><a href="shelterregiste">등록</a></li>
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
-
+						
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class="fa fa-th"></i> <span>가상입양 관리</span>
+					</a>
+						<ul class="sub">
+							<li><a href="virtualadoptlist">근황 입력</a></li>
+							<li><a href="recentdelete">근황 삭제</a></li>
+						</ul></li>
 
 
 
