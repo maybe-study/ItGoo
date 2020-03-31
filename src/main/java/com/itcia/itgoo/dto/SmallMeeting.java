@@ -24,6 +24,6 @@ public class SmallMeeting {
 	private String time;
 	private int smalldogcnt;
 	private String meetingdate;
-	
+	private int status;
 	
 }

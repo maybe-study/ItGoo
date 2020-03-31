@@ -138,7 +138,7 @@ public class ClientManagement {
 		sm.setId((String) p.getName());
 		cDao.regismallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("activitymyinfo");
+		redirectView.setUrl("myenrollsmallmeeting");
 		mav.setView(redirectView);
 		return mav;
 	}
@@ -241,7 +241,7 @@ public class ClientManagement {
 		cDao.insertsmallmeeting(sm);
 		cDao.updatesmallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("smalllist");
+		redirectView.setUrl("mysmallmeeting");
 		 mav.setView(redirectView);
 		return mav;
 	}
@@ -310,8 +310,35 @@ public class ClientManagement {
 	}
 
 
-	
-	
+	public ModelAndView completesmall(SmallMeeting sm, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		cDao.completesmall(sm);
+		attr.addFlashAttribute("sm",sm);
+		mav.setViewName("redirect:myenrollsmallmeeting");
+		return mav;
+	}
+
+	public ModelAndView cancelsmall(SmallMeeting sm, RedirectAttributes attr) {
+		mav= new ModelAndView();
+		cDao.cancelsmall(sm);
+		attr.addFlashAttribute("sm",sm);
+		mav.setViewName("redirect:myenrollsmallmeeting");
+		return mav;
+	}
+
+	public ModelAndView mysmallmeetingdetail(Integer smallnumber) {
+		mav = new ModelAndView();
+		String view=null;
+		SmallMeeting msmdetail = cDao.mysmallmeetingdetail(smallnumber);
+		msmdetail.setSmallnumber(smallnumber);
+		mav.addObject("msmdetail",new Gson().toJson(msmdetail));
+		view="client/mySmallMeetingDetail";
+		mav.setViewName(view);
+
+		return mav;
+	}
+}
+
 	/*
 	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) { VirtualAdopt
 	 * va= new VirtualAdopt(); va.setDogid(dogid); va.setId(p.getName());
@@ -319,15 +346,15 @@ public class ClientManagement {
 	 * mav.addObject("dogid",dogid); mav.addObject("vList",vList);
 	 * mav.setViewName("MyVirtualRecent"); return mav; }
 	 */
-	
-	
-	
+
+
+
 	public ModelAndView recentvirtualadopt(Principal p) {
-		
+
 	List<VirtualAdopt> va=cDao.showmyvirtualadopt(p.getName());
 	System.out.println(va);
 	mav.addObject("va",new Gson().toJson(va));
 	mav.setViewName("./client/MyVirtualDogs");
-	return mav; 
+	return mav;
 	}
 }
