@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
@@ -91,6 +92,11 @@ public interface IShelterDao {
 	@SelectKey(statement="select max(recentid) from recent",keyProperty = "recentid", before = false, resultType = Integer.class)
 	@Insert("insert into recent values(recent_seq.nextval,#{id},#{dogid},#{message},#{title})")
 	void insertRecent(VirtualAdoptRecent r);
+	@Select("select * from recent where id=#{id} and dogid=#{dogid}")
+	List<VirtualAdoptRecent> recentList(VirtualAdopt r);
+	@Select("select * from recent where recentid=#{re}")
+	VirtualAdoptRecent recentDetail(VirtualAdoptRecent r);
+
 	
 	
 

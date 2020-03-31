@@ -217,7 +217,6 @@ public class ShelterManagement {
 	}
 	public ModelAndView updatecompanycardpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
 		mav= new ModelAndView();
-		RedirectView redirectView = new RedirectView();
 
 		cp.setCompanyid((String) p.getName());
 		UploadFile up = new UploadFile();
@@ -226,7 +225,9 @@ public class ShelterManagement {
 			System.out.println("cp="+cp);
 			System.out.println("num="+cp.getCompanyid());
 			sDao.updateCompanyCardPic(picPath, cp.getCompanyid());
-		}redirectView.setExposeModelAttributes(false);
+		}
+		RedirectView redirectView = new RedirectView();
+		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("sheltermyinfo");
 		mav.setView(redirectView);
 		return mav;
@@ -263,25 +264,24 @@ public class ShelterManagement {
 		return mav;
 	}
 
-	public ModelAndView virtualAdoptList(String companyid) {
+	public ModelAndView virtualAdoptList(String companyid, int input) {
 		mav.setViewName("shelter/virtualAdoptList");
-		
-		mav.addObject("virtualList",new Gson().toJson(sDao.virtualAdoptList(companyid)));
-		System.out.println("==========================리스트=====================================");
+		List<VirtualAdopt> vList = sDao.virtualAdoptList(companyid);
+		mav.addObject("virtualList",new Gson().toJson(vList));
+		mav.addObject("input",input);
+		System.out.println("==========================리스트============================");
 		System.out.println(new Gson().toJson(sDao.virtualAdoptList(companyid)));
 		return mav;
 	}
 
-	public ModelAndView recentFrm(Principal p, VirtualAdopt va) {
+	public ModelAndView recentFrm(VirtualAdopt va) {
 		System.out.println(va);
-		va.setId(p.getName());
 		mav.addObject("virtualAdopt", new Gson().toJson(va));
 		mav.setViewName("shelter/RecentFrm");
 		return mav;
 	}
-	public ModelAndView insertRecent(Principal p,VirtualAdoptRecent r,String srcJson) {
+	public ModelAndView insertRecent(VirtualAdoptRecent r,String srcJson) {
 		List<String> srcList=new Gson().fromJson(srcJson,new TypeToken<ArrayList<String>>() {}.getType());
-		r.setId(p.getName());
 		System.out.println(r);
 		//근황 넣기
 		sDao.insertRecent(r);
@@ -290,7 +290,39 @@ public class ShelterManagement {
 			System.out.println(s);
 			sDao.insertRecentPic(r.getRecentid(),s);
 		}
+		VirtualAdopt va=new VirtualAdopt();
+		va.setDogid(r.getDogid());
+		va.setId(r.getId());
+		mav.addObject("recentList",new Gson().toJson(sDao.recentList(va)));
+		//해당 가상입양의 근황 리스트
+		mav.setViewName("shelter/RecentList");
+		
 		return mav;
 	}
+
+
+	public ModelAndView recentDelete(int recentid) {
+		return null;
+	}
+
+	public ModelAndView recentList(VirtualAdopt va) {
+		mav.addObject("recentList",new Gson().toJson(sDao.recentList(va)));
+		//해당 가상입양의 근황리스트
+		mav.setViewName("shelter/RecentList");
+		return mav;
+	}
+
+	public ModelAndView recentDetail(VirtualAdoptRecent r) {
+		mav.addObject("recentDetail",new Gson().toJson(sDao.recentDetail(r)));
+		//해당 가상입양의 근황리스트
+		mav.setViewName("shelter/RecentList");
+		return mav;
+	}
+
+	public ModelAndView recentDetail(int recentid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
 

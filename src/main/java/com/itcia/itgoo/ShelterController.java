@@ -165,20 +165,38 @@ public class ShelterController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/virtualadoptlist")
-	public ModelAndView virtualAdoptList(Principal p) {
+	public ModelAndView virtualAdoptList(Principal p,int input) {
 		
-		return smm.virtualAdoptList(p.getName());
+		return smm.virtualAdoptList(p.getName(),input);
 	}
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/recentfrm")
-	public ModelAndView recentFrm(Principal p,VirtualAdopt va) {
+	public ModelAndView recentFrm(VirtualAdopt va) {
 		
-		return smm.recentFrm(p,va);
+		return smm.recentFrm(va);
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/insertrecent")
-	public ModelAndView insertRecent(Principal p,VirtualAdoptRecent r,String srcJson) {
+	public ModelAndView insertRecent(VirtualAdoptRecent r,String srcJson) {
 		
-		return smm.insertRecent(p,r,srcJson);
+		return smm.insertRecent(r,srcJson);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/recentlist")
+	public ModelAndView recentList(VirtualAdopt va) {
+		
+		return smm.recentList(va);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/recentdetail")
+	public ModelAndView recentDetail(int recentid) {
+		
+		return smm.recentDetail(recentid);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/recentdelete")
+	public ModelAndView recentDelete(int recentid) {
+		
+		return smm.recentDelete(recentid);
 	}
 }

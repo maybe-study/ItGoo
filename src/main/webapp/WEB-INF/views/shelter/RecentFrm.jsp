@@ -197,6 +197,7 @@
               onsubmit="return check()" name="auctionfrm">
                 <input type="hidden" name="srcJson">
                 <input type="hidden" name="dogid">
+                <input type="hidden" name="id">
                 <div class="form-group">
                   <label class="col-sm-2  control-label">근황 이름</label>
                   <div class="col-sm-10">
@@ -249,6 +250,7 @@
 	console.log(va);
 	frm=document.auctionfrm;
 	frm.dogid.value=va.dogid;
+	frm.id.value=va.id;
 	let myeditor
 	ClassicEditor
 	    .create( document.querySelector( '#editor' ),{

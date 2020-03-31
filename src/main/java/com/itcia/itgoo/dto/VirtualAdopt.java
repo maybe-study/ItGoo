@@ -30,4 +30,5 @@ public class VirtualAdopt {
 	private String shelterid;
 	private String donationstart;
 	private int totaldonation;
+	private int input;
 }
