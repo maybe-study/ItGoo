@@ -35,6 +35,20 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style>
+	.content-panel{
+		height:auto;
+	}
+	.dataTables_wrapper{
+		margin-left:10px;
+	}
+	.ck-editor{
+    	min-height: 600px;
+	}
+
+	
+  	
+  </style>
 </head>
 
 <body>
@@ -148,8 +162,8 @@
 							class="fa fa-th"></i> <span>가상입양 관리</span>
 					</a>
 						<ul class="sub">
-							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
-							<li><a href="virtualadoptlist?input=0">근황 삭제</a></li>
+							<li><a href="virtualadoptlist">근황 입력</a></li>
+							<li><a href="recentdelete">근황 삭제</a></li>
 						</ul></li>
 
 
@@ -171,116 +185,53 @@
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
 		<section id="main-content">
-			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> 업체 정보
-				</h3>
-				<!-- BASIC FORM ELELEMNTS -->
-				<div class="row mt">
-					<div class="col-lg-6 col-md-6 col-sm-6">
-
-						<h4 class="title">정보보호를 위해 최선을 다하겠습니다.</h4>
-						<div id="message"></div>
-						<form class="contact-form php-mail-form" role="form"
-							onsubmit="return makeTestJson()"
-							action="testpapersubmit?${_csrf.parameterName}=${_csrf.token}"
-							method="POST">
-
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-
-										<tr>
-											<td>업체명:</td>
-											<td><input id="sheltername"></td>
-											<td><input type="button" id="shname" value="변경"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>대표자:</td>
-											<td><input id="shelterboss"></td>
-											<td><input type="button" id="shboss" value="변경"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>휴대폰:</td>
-											<td><input id="shelterphone" maxlength="11"></td>
-											<td><input type="button" id="shphone" value="변경"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>주소:</td>
-											<td  id="shelteraddr"></td>
-											</tr>
-									</table>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="main-p-tag">
-									<table>
-										<tr>
-											<td>이메일:</td>
-											<td><input id="shelteremail"></td>
-											<td><input type="button" id="shemail" value="변경"></td>
-										</tr>
-
-									</table>
-								</div>
-							</div>
-						</form>
-
-					</div>
-					<!-- /row -->
-
-
-					<!-- /row -->
-			</section>
-			<!-- /wrapper -->
-		</section>
-		<!-- /MAIN CONTENT -->
-		<!--main content end-->
-		<!--footer start-->
-		<footer class="site-footer">
-			<div class="text-center">
-				<p>
-					<a href="index.html"><img class="footerimg"
-						src="img/mainlogo.png" alt="mainlogo" /></a>
-				</p>
-				<div class="credits">
-					<!--
-            You are NOT allowed to delete the credit link to TemplateMag with free version.
-            You can delete the credit link only if you bought the pro version.
-            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-            Licensing information: https://templatemag.com/license/
-          -->
-					@2020 ITGOO Korea Corporation All Rights Reserved.
-				</div>
-				<a href="advanced_form_components.html#" class="go-top"> <i
-					class="fa fa-angle-up"></i>
-				</a>
-			</div>
-		</footer>
-		<!--footer end-->
-	</section>
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i>강아지 근황</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+          <div class="col-lg-11">
+            <div class="form-panel">
+              <h4 class="mb"><i class="fa fa-angle-right"></i> 근황 입력</h4>
+              <form class="form-horizontal style-form" method="post" 
+              action="insertrecent?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data"
+              onsubmit="return check()" name="auctionfrm">
+                <input type="hidden" name="srcJson">
+                <input type="hidden" name="dogid">
+                <input type="hidden" name="id">
+                <div class="form-group">
+                  <label class="col-sm-2  control-label">근황 이름</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="title" required>
+                    <span class="help-block">등록할 근황 이름을 입력하세요</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-2  control-label" >강아지 근황</label>
+                  <div class="col-sm-10">
+                    <textarea id="editor" name="message">
+                      
+                  </textarea>
+                  </div>
+              </div>
+                <div class="form-group" style="text-align: center">
+                    <button class="btn btn-theme" type="submit">근황 등록</button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+          <!-- col-lg-12-->
+        </div>
+      <div>
+      
+      </div>
+      </section>
+      <!-- /wrapper -->
+    </section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript"
 		src="lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -290,150 +241,55 @@
 	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-
+	<script src="ckeditor/ckeditor.js"></script>
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 	<script>
+	var va=${virtualAdopt};
+	console.log(va);
+	frm=document.auctionfrm;
+	frm.dogid.value=va.dogid;
+	frm.id.value=va.id;
+	let myeditor
+	ClassicEditor
+	    .create( document.querySelector( '#editor' ),{
+	        ckfinder: {
+	            uploadUrl: './ck/upload?${_csrf.parameterName}=${_csrf.token}', // 내가 지정한 업로드 url (post로 요청감)
+	            
+	    	
+	        }
+	    } )
+	    .then( editor => {
+	    	//대입
+	    	myeditor=editor;
+	        console.log( editor );
+	    } )
+	    .catch( error => {
+	        console.error( error );
+	    } );
+	
+	
+	
+	
+	function check(){
+	  const data = myeditor.getData();
+	  //디비에 저장할 이미지 리스트
+	  var imgList=[];
+	  console.log(data);
+	  $(data).find('img').each(function(){
+	  	  imgList.push($(this).attr('src'));
+	  });
 
-	var shelter = ${shelter}
-	console.log(shelter);
-	$('#sheltername').val(shelter.companyname);
-	$('#shelterboss').val(shelter.companyboss);
-	$('#shelterphone').val(shelter.companyphone);
-	$('#shelteraddr').text(shelter.companylocation);
-	$('#shelteremail').val(shelter.companyemail);
-		
-		//업체이름 변경
-		var sheltername = $("#sheltername").val();
-		$("#shname").on("click", function(data){
-			var param={
-					_method:"patch",
-					companyname:$("#sheltername").val(),
-			}
-			$.ajax({
-				url: "updatesheltername",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("업체명변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-		
-			})
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "회사명 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		});
-		
+	  var frm=document.auctionfrm
+	  
+	  frm.srcJson.value=JSON.stringify(imgList);
+	  console.log(JSON.stringify(imgList));
+	  return true;
+    }
+       
+    </script>
 
- 	//업체대표이름변경
-		var shelterboss = $("#shelterboss").val();
-		$("#shboss").on("click",function(data){
-			var param={
-					_method:"patch",
-					companyboss:$("#shelterboss").val(),
-			}
-			$.ajax({
-				url:"updateshelterboss",
-				method:"get",
-				data:param,
-				dataType:"JSON"
-			}).don((result)=>{
-				toastr.success("이름변경에 성공했습니다.",'서버 메세지');
-				console.log("result=",result);
-				
-			} )
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "이름변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			} );
-			
-		} );
-		
-		
-		//보호소 전화번호 변경
-		var shelterphone = $("#shelterphone").val();
-		$("#shphone").on("click", function(data){
-			var param={
-					_method:"patch",
-					companyphone:$("#shelterphone").val(),
-			}
-			$.ajax({
-				url: "updateshelterphone",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("전화번호 변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-			
-			} )
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "전화번호 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		});
-		
-		
-		/* //보호소 주소 변경
-		var shelteraddr = $("#shelteraddr").val();
-		$("#shaddr").on("click", function(data){
-			var param={
-					_method:"patch",
-					companylocation:$("#shelteraddr").val(),
-			}
-			$.ajax({
-				url: "updateshelteraddr",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("주소 변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-			
-			
-			} )
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "주소 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		}); */
-
-		//보호소 이메일 변경
-	    var shelteremails = $("#shelteremail").val();
-		$("#shemail").on("click", function(data){
-			var param={
-					_method:"patch",
-					companyemail:$("#shelteremail").val(),
-			}
-			$.ajax({
-				url: "updateshelteremail",
-				method: "get",
-				data:param,
-				dataType: "JSON"
-			}).done((result)=>{
-				toastr.success("이메일 변경에 성공했습니다.", '서버메시지');
-				console.log("result=",result);
-			
-			} )
-			
-			.fail((xhr)=>{
-				(xhr)=>printError(xhr, "이메일 변경에 실패하였습니다.")
-				console.log("xhr=",xhr);
-			});
-			
-		});
- 
-	</script>
 </body>
 
 </html>

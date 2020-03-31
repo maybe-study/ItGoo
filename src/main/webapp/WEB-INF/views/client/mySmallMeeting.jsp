@@ -9,9 +9,9 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<title>Dashio - Bootstrap Admin Template</title>
+<title>ITGOO - CLIENT MYPAGE</title>
 
-<!-- Favicons -->`
+<!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 <!-- Bootstrap core CSS -->
@@ -59,7 +59,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -141,6 +141,10 @@
 				</a>
 			</div>
 		</footer>
+		<div id="articleView_layer">
+	<div id="bg_layer"></div>
+	<div id="contents_layer"></div>
+</div>
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
@@ -164,7 +168,7 @@
         		var $body = $("#myappliedsmall");
         		
         		var $tr = $("<tr>").appendTo($body);
-        		$("<td>").text(data.meetingname).appendTo($tr);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.smallnumber+')').text(data.meetingname)).appendTo($tr);
         		$("<td>").text(data.id).appendTo($tr);
         		$("<td>").text(data.smalllocation).appendTo($tr);
         		$("<td>").text(data.smalldogcnt).appendTo($tr);
@@ -179,6 +183,36 @@
         }
     
     });
+    function articleView(smallnumber){
+		var esdetail= ${esdetail}
+		$("#articleView_layer").addClass('open');
+		
+		$.ajax({
+			type:'get',
+			url:"mysmallmeetingdetail",
+			data:{smallnumber:smallnumber},
+			dataType:'html',
+			success:function(data){
+			
+				$("#contents_layer").html(data);
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
+	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	}); 
   </script>
 </body>
 

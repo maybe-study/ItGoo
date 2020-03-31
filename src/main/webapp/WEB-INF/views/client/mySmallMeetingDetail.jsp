@@ -77,27 +77,10 @@ html, body {
 	<div id="hiddendiv"></div>
 				<table class= "form-table">
 					<tr  id="meetingnametr">
-						<td>그룹이름:</td>
 					</tr>
-					<tr  id="idtr">
-						<td>주최자:</td>
+					<tr id="roadtr">
+					
 					</tr>
-					<tr id="maximumtr">
-					<td>최대 참여 마릿 수:</td>
-					</tr>
-					<tr id="meetparticipatecnttr">
-					<td>현재 참여 마릿 수:</td>
-					</tr>
-					<tr  id="meetingdatetr">
-						<td>소모임 시작 날짜:</td>
-					</tr>
-					<tr id="timetr">
-						<td>소모임 시작 시간:</td>
-					</tr>
-					<tr id="statustr">
-					<td>소모임 진행 상황:</td>
-					</tr>
-					<tr id="hiddentr">
 					
 					</tr>
 				</table>
@@ -105,7 +88,10 @@ html, body {
 				
 				
 			</div>
-			
+			<div id="map" style="width: 100%; height: 350px;"></div>
+									<script type="text/javascript"
+										src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+								</div>
 </div>
 		
 		</div>
@@ -114,37 +100,24 @@ html, body {
 	<script src="js/swiper.min.js"></script>
 	<script>
 	 
-	var esdetail= ${esdetail}
-	console.log ("esdetail=",esdetail);
+	var msmdetail= ${msmdetail}
+	console.log ("msmdetail=",msmdetail);
 		
 		var $trmn = $("#meetingnametr");
-		var $trid = $("#idtr");
-		var $trmx = $("#maximumtr");
-		var $trmp = $("#meetparticipatecnttr");
-		var $trmd = $("#meetingdatetr");
-		var $trtime = $("#timetr");
-		var $trstatus = $("#statustr");
-		var $hiddendiv = $("#hiddendiv");
-		var $delclass = $(".deletebtnclass");
-		$("<td>").text(esdetail.meetingname).appendTo($trmn);
-		$("<td>").text(esdetail.id).appendTo($trid);
-		$("<td>").text(esdetail.maximumdog+"마리").appendTo($trmx);
-		$("<td>").text(esdetail.meetparticipatecnt+"마리").appendTo($trmp);
-		$("<td>").text(esdetail.meetingdate).appendTo($trmd);
+		$("<td>").append($("<input type='text' name='smalllocation' id='roadAddress' value='"+msmdetail.smalllocation+"' />")).appendTo($trmn);
 		
-		$("<td>").text(esdetail.time).appendTo($trtime);
-		$(hiddendiv).append($("<input type='hidden' name='smallnumber' value='"+esdetail.smallnumber+"' />"));
-		$(hiddendiv).append($("<input type='hidden' name='meetparticipatecnt' value='"+esdetail.meetparticipatecnt+"' />"));
-		var $btn=$("<input type='submit' id='acceptbtn' class='acceptbtn' value='소모임 완료' />");
-		var $btn1= $("<input type='submit' id='rejectbtn' class='rejectbtn' value='소모임 취소' />");
-		$btn.click(function(){
+		$(hiddendiv).append($("<input type='hidden' name='smallnumber' value='"+msmdetail.smallnumber+"' />"));
+		$(hiddendiv).append($("<input type='hidden' name='meetparticipatecnt' value='"+msmdetail.meetparticipatecnt+"' />"));
+		/* var $btn=$("<input type='submit' id='acceptbtn' class='acceptbtn' value='소모임 완료' />");
+		var $btn1= $("<input type='submit' id='rejectbtn' class='rejectbtn' value='소모임 취소' />"); */
+		/* $btn.click(function(){
 			$("form").attr("action","completesmall?${_csrf.parameterName}=${_csrf.token}");	
 		});
 		$btn1.click(function(){
 			$("form").attr("action","cancelsmall?${_csrf.parameterName}=${_csrf.token}");
 		});
-		
-		if(esdetail.status == 0){
+		 */
+		/* if(esdetail.status == 0){
 			$("<td>").text("시작 전").appendTo($trstatus);
 			$btn.appendTo($delclass);
 			$btn1.appendTo($delclass);
@@ -152,7 +125,43 @@ html, body {
 			$("<td>").text("완료 후 해산").appendTo($trstatus);
 		}else {
 			$("<td>").text("소모임 취소").appendTo($trstatus);
-		}
+		} */
+		function mapCreate(roadAddr) {
+		       
+		       
+		       var container = document.getElementById('map');
+		      var options = {
+		         center: new kakao.maps.LatLng(latitude, longitude),
+		         level: 3
+		      };
+		      
+		      var coords = new kakao.maps.LatLng(
+		            latitude,
+		            longitude);
+		      
+		      
+		      var map = new kakao.maps.Map(container, options);
+		      
+		      // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">' +
+		                roadAddr +
+		                '</div>'
+		        });
+		        infowindow
+		            .open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords); 
+		   }	 
+		 
+		 
 	</script>
 </body>
 </html>

@@ -112,7 +112,6 @@ public class AuctionManagement {
 			aList=aDao.proceedingAuctionList();
 		if(kind.equals("완료"))
 			aList=aDao.completeAuctionListts();
-		
 		return aList;
 	}
 }

@@ -32,6 +32,5 @@ public class Adopt {
 	private int status;
 	private String sex;
 	private String thum;
-	
 }
 

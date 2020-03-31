@@ -2,6 +2,7 @@ package com.itcia.itgoo;
 
 import java.security.Principal;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -20,10 +21,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
+import com.itcia.itgoo.dto.VirtualAdopt;
+import com.itcia.itgoo.dto.VirtualAdoptRecent;
 import com.itcia.itgoo.service.ShelterManagement;
 import com.itcia.itgoo.share.UploadFile;
 
@@ -160,8 +165,38 @@ public class ShelterController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/virtualadoptlist")
-	public ModelAndView virtualAdoptList(Principal p) {
+	public ModelAndView virtualAdoptList(Principal p,int input) {
 		
-		return smm.virtualAdoptList(p.getName());
+		return smm.virtualAdoptList(p.getName(),input);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/recentfrm")
+	public ModelAndView recentFrm(VirtualAdopt va) {
+		
+		return smm.recentFrm(va);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/insertrecent")
+	public ModelAndView insertRecent(VirtualAdoptRecent r,String srcJson) {
+		
+		return smm.insertRecent(r,srcJson);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/recentlist")
+	public ModelAndView recentList(VirtualAdopt va) {
+		
+		return smm.recentList(va);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/recentdetail")
+	public ModelAndView recentDetail(int recentid) {
+		
+		return smm.recentDetail(recentid);
+	}
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/recentdelete")
+	public ModelAndView recentDelete(int recentid) {
+		
+		return smm.recentDelete(recentid);
 	}
 }

@@ -1,6 +1,7 @@
 package com.itcia.itgoo.service;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Cfile;
@@ -21,6 +23,8 @@ import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.VirtualAdopt;
+import com.itcia.itgoo.dto.VirtualAdoptRecent;
 import com.itcia.itgoo.share.UploadFile;
 import com.itcia.itgoo.userclass.Paging;
 
@@ -213,7 +217,6 @@ public class ShelterManagement {
 	}
 	public ModelAndView updatecompanycardpic(Principal p, MultipartHttpServletRequest multi, Company cp) {
 		mav= new ModelAndView();
-		RedirectView redirectView = new RedirectView();
 
 		cp.setCompanyid((String) p.getName());
 		UploadFile up = new UploadFile();
@@ -222,7 +225,9 @@ public class ShelterManagement {
 			System.out.println("cp="+cp);
 			System.out.println("num="+cp.getCompanyid());
 			sDao.updateCompanyCardPic(picPath, cp.getCompanyid());
-		}redirectView.setExposeModelAttributes(false);
+		}
+		RedirectView redirectView = new RedirectView();
+		redirectView.setExposeModelAttributes(false);
 		redirectView.setUrl("sheltermyinfo");
 		mav.setView(redirectView);
 		return mav;
@@ -259,13 +264,65 @@ public class ShelterManagement {
 		return mav;
 	}
 
-	public ModelAndView virtualAdoptList(String companyid) {
+	public ModelAndView virtualAdoptList(String companyid, int input) {
 		mav.setViewName("shelter/virtualAdoptList");
-		
-		mav.addObject("virtualList",new Gson().toJson(sDao.virtualAdoptList(companyid)));
-		System.out.println("==========================리스트=====================================");
+		List<VirtualAdopt> vList = sDao.virtualAdoptList(companyid);
+		mav.addObject("virtualList",new Gson().toJson(vList));
+		mav.addObject("input",input);
+		System.out.println("==========================리스트============================");
 		System.out.println(new Gson().toJson(sDao.virtualAdoptList(companyid)));
 		return mav;
 	}
 
+	public ModelAndView recentFrm(VirtualAdopt va) {
+		System.out.println(va);
+		mav.addObject("virtualAdopt", new Gson().toJson(va));
+		mav.setViewName("shelter/RecentFrm");
+		return mav;
+	}
+	public ModelAndView insertRecent(VirtualAdoptRecent r,String srcJson) {
+		List<String> srcList=new Gson().fromJson(srcJson,new TypeToken<ArrayList<String>>() {}.getType());
+		System.out.println(r);
+		//근황 넣기
+		sDao.insertRecent(r);
+		for(String s:srcList) {
+			//근황 사진 넣기
+			System.out.println(s);
+			sDao.insertRecentPic(r.getRecentid(),s);
+		}
+		VirtualAdopt va=new VirtualAdopt();
+		va.setDogid(r.getDogid());
+		va.setId(r.getId());
+		mav.addObject("recentList",new Gson().toJson(sDao.recentList(va)));
+		//해당 가상입양의 근황 리스트
+		mav.setViewName("shelter/RecentList");
+		
+		return mav;
+	}
+
+
+	public ModelAndView recentDelete(int recentid) {
+		return null;
+	}
+
+	public ModelAndView recentList(VirtualAdopt va) {
+		mav.addObject("recentList",new Gson().toJson(sDao.recentList(va)));
+		//해당 가상입양의 근황리스트
+		mav.setViewName("shelter/RecentList");
+		return mav;
+	}
+
+	public ModelAndView recentDetail(VirtualAdoptRecent r) {
+		mav.addObject("recentDetail",new Gson().toJson(sDao.recentDetail(r)));
+		//해당 가상입양의 근황리스트
+		mav.setViewName("shelter/RecentList");
+		return mav;
+	}
+
+	public ModelAndView recentDetail(int recentid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
+
