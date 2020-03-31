@@ -42,6 +42,11 @@
 	.dataTables_wrapper{
 		margin-left:10px;
 	}
+	.ck-editor{
+    	min-height: 600px;
+	}
+
+	
   	
   </style>
 </head>
@@ -181,58 +186,48 @@
 		<!--main content start-->
 		<section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 가상입양 근황 </h3>
-        <div class="row">
-          
-          <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i> 가상입양 리스트 </h4>
-                <hr>
-              <table id="table2" class="table table-hover">
-              
+        <h3><i class="fa fa-angle-right"></i>강아지 근황</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+          <div class="col-lg-11">
+            <div class="form-panel">
+              <h4 class="mb"><i class="fa fa-angle-right"></i> 근황 입력</h4>
+              <form class="form-horizontal style-form" method="post" 
+              action="insertrecent?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data"
+              onsubmit="return check()" name="auctionfrm">
+                <input type="hidden" name="srcJson">
+                <input type="hidden" name="dogid">
+                <div class="form-group">
+                  <label class="col-sm-2  control-label">근황 이름</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="title" required>
+                    <span class="help-block">등록할 근황 이름을 입력하세요</span>
+                  </div>
+                </div>
                 
-                <thead>
-                  <tr>
-                    <th>사용자 아이디</th>
-                    <th>강아지 이름</th>
-                    <th>후원 시작 일시</th>
-                    <th>금액</th>
-                    <th>총 금액</th>
-                  </tr>
-                </thead>
-                <tbody id="virtualList">
-                </tbody>
-              </table>
+                <div class="form-group">
+                  <label class="col-sm-2  control-label" >강아지 근황</label>
+                  <div class="col-sm-10">
+                    <textarea id="editor" name="message">
+                      
+                  </textarea>
+                  </div>
+              </div>
+                <div class="form-group" style="text-align: center">
+                    <button class="btn btn-theme" type="submit">근황 등록</button>
+                </div>
+                
+              </form>
             </div>
           </div>
+          <!-- col-lg-12-->
         </div>
-        <!-- row -->
-        </section>
+      <div>
+      
+      </div>
       </section>
-		<!--footer start-->
-		<footer class="site-footer">
-			<div class="text-center">
-				<p>
-					<a href="index.html"><img class="footerimg"
-						src="img/mainlogo.png" alt="mainlogo" /></a>
-				</p>
-				<div class="credits">
-					<!--
-            You are NOT allowed to delete the credit link to TemplateMag with free version.
-            You can delete the credit link only if you bought the pro version.
-            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-            Licensing information: https://templatemag.com/license/
-          -->
-					@2020 ITGOO Korea Corporation All Rights Reserved.
-				</div>
-				<a href="advanced_form_components.html#" class="go-top"> <i
-					class="fa fa-angle-up"></i>
-				</a>
-			</div>
-		</footer>
-		<!--footer end-->
-	</section>
+      <!-- /wrapper -->
+    </section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="lib/jquery/jquery.min.js"></script>
 	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
@@ -245,31 +240,52 @@
 	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-
+	<script src="ckeditor/ckeditor.js"></script>
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
-		console.log(${virtualList});
-		$.each(${virtualList},function(idx,data){
-			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href="./recentfrm?dogid="+data.dogid});
-			$('<td>').append(data.id).appendTo($tr);
-			$('<td>').append(data.dogname).appendTo($tr);
-			$('<td>').append(data.donationstart).appendTo($tr);
-			$('<td>').append(data.donation).appendTo($tr);
-			$('<td>').append(data.totaldonation).appendTo($tr);
-			$('#virtualList').append($tr);
-		});
+	var va=${virtualAdopt};
+	console.log(va);
+	frm=document.auctionfrm;
+	frm.dogid.value=va.dogid;
+	let myeditor
+	ClassicEditor
+	    .create( document.querySelector( '#editor' ),{
+	        ckfinder: {
+	            uploadUrl: './ck/upload?${_csrf.parameterName}=${_csrf.token}', // 내가 지정한 업로드 url (post로 요청감)
+	            
+	    	
+	        }
+	    } )
+	    .then( editor => {
+	    	//대입
+	    	myeditor=editor;
+	        console.log( editor );
+	    } )
+	    .catch( error => {
+	        console.error( error );
+	    } );
 	
-		
-        jQuery(function($){
-            $("#table1").DataTable({info: false});
-        });
-        jQuery(function($){
-            $("#table2").DataTable({info: false});
-        });
-        
-        
+	
+	
+	
+	function check(){
+	  const data = myeditor.getData();
+	  //디비에 저장할 이미지 리스트
+	  var imgList=[];
+	  console.log(data);
+	  $(data).find('img').each(function(){
+	  	  imgList.push($(this).attr('src'));
+	  });
+
+	  var frm=document.auctionfrm
+	  
+	  frm.srcJson.value=JSON.stringify(imgList);
+	  console.log(JSON.stringify(imgList));
+	  return true;
+    }
+       
     </script>
 
 </body>

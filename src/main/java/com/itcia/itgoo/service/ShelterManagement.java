@@ -1,6 +1,7 @@
 package com.itcia.itgoo.service;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Cfile;
@@ -21,6 +23,8 @@ import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dfile;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.dto.VirtualAdopt;
+import com.itcia.itgoo.dto.VirtualAdoptRecent;
 import com.itcia.itgoo.share.UploadFile;
 import com.itcia.itgoo.userclass.Paging;
 
@@ -268,4 +272,25 @@ public class ShelterManagement {
 		return mav;
 	}
 
+	public ModelAndView recentFrm(Principal p, VirtualAdopt va) {
+		System.out.println(va);
+		va.setId(p.getName());
+		mav.addObject("virtualAdopt", new Gson().toJson(va));
+		mav.setViewName("shelter/RecentFrm");
+		return mav;
+	}
+	public ModelAndView insertRecent(Principal p,VirtualAdoptRecent r,String srcJson) {
+		List<String> srcList=new Gson().fromJson(srcJson,new TypeToken<ArrayList<String>>() {}.getType());
+		r.setId(p.getName());
+		System.out.println(r);
+		//근황 넣기
+		sDao.insertRecent(r);
+		for(String s:srcList) {
+			//근황 사진 넣기
+			System.out.println(s);
+			sDao.insertRecentPic(r.getRecentid(),s);
+		}
+		return mav;
+	}
 }
+
