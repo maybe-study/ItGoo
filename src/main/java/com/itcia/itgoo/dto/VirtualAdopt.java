@@ -31,4 +31,5 @@ public class VirtualAdopt {
 	private String recentpic;
 	private int totaldonation;
 	private int input;
+	private int recentid;
 }

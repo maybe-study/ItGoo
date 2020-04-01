@@ -348,13 +348,25 @@ public class ClientManagement {
 	 */
 
 
-
 	public ModelAndView recentvirtualadopt(Principal p) {
 
 	List<VirtualAdopt> va=cDao.showmyvirtualadopt(p.getName());
 	System.out.println(va);
 	mav.addObject("va",new Gson().toJson(va));
 	mav.setViewName("./client/MyVirtualDogs");
+	return mav;
+	}
+
+	
+	public ModelAndView clentrecentdetail(int dogid, Principal p) {
+	VirtualAdopt boyoung=new VirtualAdopt();
+	System.out.println("ok계획대로 가고있어");
+	boyoung.setId(p.getName());
+	boyoung.setDogid(dogid);
+	List<VirtualAdopt> va=cDao.clentrecentdetail(boyoung);
+	System.out.println("내가 뿌릴 리스트"+va);
+	mav.addObject("cdList",new Gson().toJson(va));
+	mav.setViewName("./client/RecentDetail");
 	return mav;
 	}
 }

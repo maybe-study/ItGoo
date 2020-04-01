@@ -128,25 +128,29 @@
 	 var $dogList = $("#addogList");
 	$.each(${va},function(idx,data){
 	      console.log("vavavava값",data);
-	        var $img=$('<a href=""><img style="width:100%"></a>').attr('src',data.recentpic);
-	        //makeModalBtn($img);
-	        $img[0].dataset.dogid=data.dogid; 
-	        //$img[0].dataset.
-	          var $div3 = $('<div class="card-body text-center">')
+	      console.log("va의 dogid값",data.dogid);
+	        var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+	          var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
 	                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-	                .append($('<h4 class="text-uppercase m-0">').text(data.tltle))
-	                .append($('<hr class="my-4">')).append($img)
-	                .append($('<div class="small text-black-50">').text(data.donation+" 원"))
-	                .append($('<div class="small text-black-50">').text("결제일 : "+data.payday))
-	                .append($('<div class="small text-black-50">').text("총 후원액 : "+data.totaldonation));
+	                .append($('<h4 class="text-uppercase m-0">').text("강아지이름 :"+data.dogname))
+	                .append($('<h4 class="text-uppercase m-0">').text(data.dogage+" 살"))
+	                .append($('<h4 class="text-uppercase m-0">').text("특이사항 :"+data.dogspecial))
+	                .append($('<div class="text-uppercase m-0">').text(data.donation+" 원"))
+	                .append($('<div class="text-uppercase m-0">').text("결제일 : "+data.payday))
+	                .append($('<div class="text-uppercase m-0">').text("총 후원액 : "+data.totaldonation))
+	                .append("<a href='./clentrecentdetail?dogid="+data.dogid+"'>근황보기</a>");
+
 	          console.log("인덱스는!!!"+idx);
 	          console.log(idx);
-	          var $div2 = $('<div class="card py-4 h-100">').append($div3);
+	          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+	          $div2.append($div3);
 	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
 	           $dogList.append($div1);
-	           
 	     });
 	
+
+	        	  
+	        	  
    /*  function makeModalBtn($img){
    	 $img.on('click', function(e){
          //console.log(e.target.dataset.dogid);

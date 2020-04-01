@@ -86,7 +86,7 @@ public interface IClientDao {
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
 
 
-	@Select("select recentthumb.recentpic,recent.title,recentthumb.recentid from recentthumb join recent on recentthumb.recentid=recent.recentid where id=#{id}"")
+	@Select("select * from virtualadopt join recent on recent.id=virtualadopt.id join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
 	List<VirtualAdopt> showmyvirtualadopt(@Param("id")String String);
 
 	void completesmall(SmallMeeting sm);
@@ -95,6 +95,11 @@ public interface IClientDao {
 
 	SmallMeeting mysmallmeetingdetail(Integer smallnumber);
 
+	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" + 
+			"join virtualadopt on recent.id=virtualadopt.id \r\n" + 
+			"join dog on dog.dogid=virtualadopt.dogid \r\n" + 
+			"where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
+	List<VirtualAdopt> clentrecentdetail(VirtualAdopt boyoung);
 
 
 	/*
