@@ -326,18 +326,8 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView mysmallmeetingdetail(Integer smallnumber) {
-		mav = new ModelAndView();
-		String view=null;
-		SmallMeeting msmdetail = cDao.mysmallmeetingdetail(smallnumber);
-		msmdetail.setSmallnumber(smallnumber);
-		mav.addObject("msmdetail",new Gson().toJson(msmdetail));
-		view="client/mySmallMeetingDetail";
-		mav.setViewName(view);
+	
 
-		return mav;
-	}
-}
 
 	/*
 	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) { VirtualAdopt
@@ -356,5 +346,17 @@ public class ClientManagement {
 	mav.addObject("va",new Gson().toJson(va));
 	mav.setViewName("./client/MyVirtualDogs");
 	return mav;
+	}
+
+	public ModelAndView mysmallmeetingdetail(Principal p, SmallMeeting sm,int smallnumber) {
+		mav= new ModelAndView();
+		String view = null;
+		System.out.println("smallnum="+sm.getSmallnumber());
+		List<SmallMeeting> msmdList = cDao.mysmallmeetingdetail(p,sm,smallnumber);
+		System.out.println("msmdList="+msmdList);
+		mav.addObject("msmdList", new Gson().toJson(msmdList));
+
+		mav.setViewName("client/mySmallMeetingDetail");
+		return mav;
 	}
 }

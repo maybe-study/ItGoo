@@ -141,10 +141,6 @@
 				</a>
 			</div>
 		</footer>
-		<div id="articleView_layer">
-	<div id="bg_layer"></div>
-	<div id="contents_layer"></div>
-</div>
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
@@ -168,7 +164,8 @@
         		var $body = $("#myappliedsmall");
         		
         		var $tr = $("<tr>").appendTo($body);
-        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.smallnumber+')').text(data.meetingname)).appendTo($tr);
+        		
+        		$("<td>").append($("<a>").attr("href","mysmallmeetingdetail?smallnumber="+data.smallnumber).text(data.meetingname)).appendTo($tr);
         		$("<td>").text(data.id).appendTo($tr);
         		$("<td>").text(data.smalllocation).appendTo($tr);
         		$("<td>").text(data.smalldogcnt).appendTo($tr);
@@ -182,37 +179,7 @@
         		});
         }
     
-    });
-    function articleView(smallnumber){
-		var esdetail= ${esdetail}
-		$("#articleView_layer").addClass('open');
-		
-		$.ajax({
-			type:'get',
-			url:"mysmallmeetingdetail",
-			data:{smallnumber:smallnumber},
-			dataType:'html',
-			success:function(data){
-			
-				$("#contents_layer").html(data);
-			},
-			error:function(error){
-				console.log(error);
-			}
-			})
-	}
-	var $layerWindow=$("#articleView_layer");
-	$layerWindow.find('#bg_layer').on('mousedown',function(event){
-		console.log(event);
-		$layerWindow.removeClass('open');
-	});
-	$(document).keydown(function(event){
-		console.log(event);
-		if(event.keyCode!=27)
-			return;
-		else if($layerWindow.hasClass('open'))
-			$layerWindow.removeClass('open');
-	}); 
+    }); 
   </script>
 </body>
 

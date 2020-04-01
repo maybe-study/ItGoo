@@ -76,8 +76,5 @@ select * from caresheet where toggle=1
 	<update id="cancelsmall" parameterType="SmallMeeting">
 	update smallmeeting set status = 2 where smallnumber = #{smallnumber}
 	</update>
-	<select id="mysmallmeetingdetail" parameterType="int"
-		resultType="SmallMeeting">
-	select * from smallmeeting where smallnumber=#{smallnumber}
-	</select>
+	
 </mapper>
