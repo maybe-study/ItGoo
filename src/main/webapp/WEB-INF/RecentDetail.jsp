@@ -181,27 +181,20 @@
 		<!--main content start-->
 		<section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right" id="title"></i> 가상입양 근황 </h3>
+        <h3><i class="fa fa-angle-right"></i> 가상입양 근황 </h3>
         <div class="row">
           
           <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
+          <div class="col-md-11 mt">
             <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i> 가상입양 근황 리스트 </h4>
+            <h4 id="title"><i class="fa fa-angle-right"></i> </h4>
                 <hr>
-              <table id="table2" class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>근황 번호</th>
-                    <th>근황 제목</th>
-                    <th>사용자 아이디</th>
-                  </tr>
-                </thead>
-                <tbody id="recentList">
-                </tbody>
-              </table>
-            </div>
+                <div class="content-panel" id="contents" style="width:1000px;margin:auto">
+              		
+                </div>
           </div>
+              
+            </div>
         </div>
         <!-- row -->
         </section>
@@ -246,26 +239,13 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
-		console.log(${recentList});
-		var url;
+		console.log(${recent});
+		var r=${recent};
+		$('#title').append(r.title);
+		$('#contents').append(r.message);
 		
-		$.each(${recentList},function(idx,data){
-			url="./recentdetail?recentid="+data.recentid;
-			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
-			$('<td>').append(data.recentid).appendTo($tr);
-			$('<td>').append(data.title).appendTo($tr);
-			$('<td>').append(data.id).appendTo($tr);
-			
-			$('#recentList').append($tr);
-		});
-	
 		
-        jQuery(function($){
-            $("#table1").DataTable({info: false});
-        });
-        jQuery(function($){
-            $("#table2").DataTable({info: false});
-        });
+		
         
         
     </script>
