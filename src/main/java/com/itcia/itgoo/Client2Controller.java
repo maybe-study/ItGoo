@@ -27,7 +27,7 @@ import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.TestManagement;
-
+@Secure("ROLE_USER")
 @Controller
 public class Client2Controller {
 	ModelAndView mav = new ModelAndView();

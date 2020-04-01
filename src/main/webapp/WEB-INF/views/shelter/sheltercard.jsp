@@ -158,34 +158,26 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index2.html"> <i
+					<li class="mt"><a href="index2"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-desktop"></i> <span>정보보기</span>
+					<li class="sub-menu"><a href="javascript:;">
+							<i class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shletermyinfo">보호소 정보보기</a></li>
-
+							<li><a href="sheltermyinfo">보호소 정보보기</a></li>
 						</ul></li>
 
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-cogs"></i> <span>정보 수정</span>
+
+					<li class="sub-menu"><a href="javascript:;"  class="active"> <i
+							class="fa fa-book"></i> <span>보호소 사진</span>
 					</a>
 						<ul class="sub">
-							<li><a href="shelterchangeinfo">보호소정보 수정</a></li>
-						</ul></li>
-
-					<li class="sub-menu"><a class="active" href="javascript:;">
-							<i class="fa fa-book"></i> <span>보호소 사진</span>
-					</a>
-						<ul class="sub">
-
-							<li class="active"><a href="sheltercard">사업자등록증</a></li>
-
+							<li><a href="sheltercard">사업자등록증</a></li>
 							<li><a href="shelterpicinfo">시설사진</a></li>
-						</ul></li>
+						</ul>
+					</li>
 
 
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -195,14 +187,20 @@
 							<li><a href="shelterregiste">등록</a></li>
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
-
+						
+					<li class="sub-menu"><a href="javascript:;" > <i	class="fa fa-th"></i> <span>가상입양 관리</span>
+					</a>
+						<ul class="sub">
+							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
+							<li><a href="virtualadoptlist?input=0">근황 삭제</a></li>
+						</ul></li>
 
 
 
 					<li class=""><a href="javascript:;"><i
 							class="fa fa-map-marker"></i> <span>보호소위치</span> </a>
 						<ul class="sub">
-							<li><a href="shelterLocationInfo">위치 및 수정</a></li>
+							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
 

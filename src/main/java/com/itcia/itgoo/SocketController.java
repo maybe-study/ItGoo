@@ -4,11 +4,12 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 
 import com.itcia.itgoo.dto.BidUpdate;
 import com.itcia.itgoo.service.SocketService;
-
+@Secured("ROLE_USER")
 @Controller
 public class SocketController {
 	

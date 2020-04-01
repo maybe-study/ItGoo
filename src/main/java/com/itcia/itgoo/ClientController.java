@@ -44,7 +44,7 @@ public class ClientController {
 		mav = cm.adoplist();
 		return mav;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/applyadopt")
 	public ModelAndView applyadopt(MultipartHttpServletRequest multi,Adopt ad, Principal p) {
 		System.out.println("입양시작하는중");
