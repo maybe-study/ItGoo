@@ -17,7 +17,7 @@ import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
-@Secured("ROLE_CLIENT")
+
 @RestController
 public class RestClientController {
 	
@@ -27,14 +27,14 @@ public class RestClientController {
 	private AuctionManagement am;
 	
 	ModelAndView mav = new ModelAndView();
-	
+	@Secured("ROLE_USER")
 	@PostMapping(value = "/adoptlistdetail", produces="plain/text;charset=utf-8")
 	public String adoptlistdetail(String dogid) {
 		System.out.println("==============================controller=============================\ndogid:"+dogid);
 		String dogpics = cm.adoptlistdetail(dogid);
 		return dogpics;
 	}
-	
+	@Secured("ROLE_USER")
 	@PostMapping(value = "/myadoptlistdetail", produces="plain/text;charset=utf-8")
 	public String myadoptlistdetail(String dogid,Principal p) {
 		System.out.println("==============================controller=============================\ndogid:"+dogid);
@@ -42,7 +42,7 @@ public class RestClientController {
 		return dogpics;
 	}
 	
-
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/updateusername", produces="plain/text;charset=utf-8")
 	public String updateusername(Principal p,Member mb) {
 		System.out.println("==============================controller=============================\n:"+p.getName());
@@ -50,7 +50,7 @@ public class RestClientController {
 		
 		return "{\"a\":\"성공했습니다.\"}";
 	}
-	
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/updateuseremail", produces="plain/text;charset=utf-8")
 	public String updateuseremail(Principal p,Member mb) {
 		System.out.println("==============================controller=============================\n:"+p.getName());
@@ -58,7 +58,7 @@ public class RestClientController {
 		
 		return "{\"a\":\"성공했습니다.\"}";
 	}
-	
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/updateuserphone", produces="plain/text;charset=utf-8")
 	public String updateuserphone(Principal p,Member mb) {
 		System.out.println("==============================controller=============================\n:"+p.getName());
@@ -66,6 +66,7 @@ public class RestClientController {
 		
 		return "{\"a\":\"성공했습니다.\"}";
 	}
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/updateuserbirth", produces="plain/text;charset=utf-8")
 	public String updateuserbirth(Principal p,Member mb) {
 		System.out.println("==============================controller=============================\n:"+p.getName());
@@ -73,7 +74,7 @@ public class RestClientController {
 		
 		return "{\"a\":\"성공했습니다.\"}";
 	}
-	
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/updateuseraddress", produces="plain/text;charset=utf-8")
 	public String updateuseraddress(Principal p,Member mb) {
 		System.out.println("==============================controller=============================\n:"+p.getName());

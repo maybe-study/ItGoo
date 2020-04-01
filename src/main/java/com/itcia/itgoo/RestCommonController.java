@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.MemberManagement;
-@Secured("ROLE_USER")
+
 @RestController
 public class RestCommonController {
 	@Autowired

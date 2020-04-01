@@ -66,7 +66,6 @@ public class ShelterController {
 	}
 
 	// 회원가입
-	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/companyjoin")
 	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
 		mav = smm.companyJoin(multi, cMember);

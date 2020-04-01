@@ -23,7 +23,7 @@ import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.ShelterManagement;
-@Secured("ROLE_SHELTER")
+
 @RestController
 public class RestShelterController {
 
@@ -47,7 +47,7 @@ public class RestShelterController {
 
 		return "home";
 	}
-
+	
 	@PostMapping(value = "/xduplicateid", produces = "plain/text;charset=utf-8")
 	public String duplicateid(Member mb) {
 		System.out.println("=====**********+++++++username 제발나와주세요:" + mb.getUsername());
@@ -56,7 +56,7 @@ public class RestShelterController {
 		System.out.println("Gson().toJson(m)" + new Gson().toJson(m));
 		return new Gson().toJson(m);
 	}
-
+	@Secured("ROLE_SHELTER")
 	@PostMapping(value = "/updateshelterlocation")
 	public ModelAndView updateshelterlocation(Principal p, Company cp) {
 		ModelAndView mav = new ModelAndView();
@@ -64,7 +64,7 @@ public class RestShelterController {
 
 		return mav;
 	}
-
+	@Secured("ROLE_SHELTER")
 	@RequestMapping(value = "/shelterdeletedetail", method = RequestMethod.GET)
 	public ModelAndView shelterDeleteDetail(Integer dogid) { // null 값도 받으려고
 		ModelAndView mav = new ModelAndView();
@@ -74,7 +74,7 @@ public class RestShelterController {
 
 		return mav;
 	}
-
+	@Secured("ROLE_SHELTER")
 	@GetMapping(value = "/updatesheltername", produces = "plain/text;charset=utf-8")
 	public String updatesheltername(Principal p, Company cp) {
 		System.out.println("==============================controller=============================\n:" + p.getName());
@@ -82,7 +82,7 @@ public class RestShelterController {
 
 		return "{\"a\":\"성공했습니다.\"}";
 	}
-
+	@Secured("ROLE_SHELTER")
 	@GetMapping(value = "/updateshelterboss", produces = "plain/text;charset=utf-8")
 	public String updateshelterboss(Principal p, Company cp) {
 		System.out.println("==============================controller=============================\n:" + p.getName());
@@ -90,7 +90,7 @@ public class RestShelterController {
 
 		return "{\"a\":\"성공했습니다.\"}";
 	}
-
+	@Secured("ROLE_SHELTER")
 	@GetMapping(value = "/updateshelterphone", produces = "plain/text;charset=utf-8")
 	public String updateshelterphone(Principal p, Company cp) {
 		System.out.println("==============================controller=============================\n:" + p.getName());
@@ -100,7 +100,7 @@ public class RestShelterController {
 	}
 
 
-
+	@Secured("ROLE_SHELTER")
 	@GetMapping(value = "/updateshelteremail", produces = "plain/text;charset=utf-8")
 	public String updateshelteremail(Principal p, Company cp) {
 		System.out.println("==============================controller=============================\n:" + p.getName());
