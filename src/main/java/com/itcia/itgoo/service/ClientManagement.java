@@ -358,7 +358,7 @@ public class ClientManagement {
 
 		mav.setViewName("client/mySmallMeetingDetail");
 		return mav;
-
+	}
 
 	public ModelAndView clentrecentdetail(int dogid, Principal p) {
 	VirtualAdopt boyoung=new VirtualAdopt();
