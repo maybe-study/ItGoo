@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.TestManagement;
-
+@Secured("ROLE_USER")
 @Controller
 public class Client2Controller {
 	ModelAndView mav = new ModelAndView();

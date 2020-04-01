@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="">
+<html lang="kr">
 
 
 <head>
@@ -52,7 +52,6 @@
 </head>
 
 <body>
-	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -121,7 +120,7 @@
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
 		<aside>
-			<div id="sidebar" class="nav-collapse ">
+		<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
@@ -132,7 +131,7 @@
 					<li class="mt"><a href="index2"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
-					<li class="sub-menu"><a class="active" href="javascript:;">
+					<li class="sub-menu"><a href="javascript:;">
 							<i class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
@@ -147,7 +146,8 @@
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
 							<li><a href="shelterpicinfo">시설사진</a></li>
-						</ul></li>
+						</ul>
+					</li>
 
 
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -158,12 +158,11 @@
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 						
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>가상입양 관리</span>
+					<li class="sub-menu"><a class="active" href="javascript:;"> <i	class="fa fa-th"></i> <span>가상입양 관리</span>
 					</a>
 						<ul class="sub">
-							<li><a href="virtualadoptlist">근황 입력</a></li>
-							<li><a href="recentdelete">근황 삭제</a></li>
+							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
+							<li><a href="virtualadoptlist?input=0">근황 삭제</a></li>
 						</ul></li>
 
 
@@ -173,11 +172,8 @@
 						<ul class="sub">
 							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
-					<!-- a href="google_maps.html"-->
-
-
-					<!-- sidebar menu end-->
-			</div>
+				</ul>
+			</div>	
 		</aside>
 		<!--sidebar end-->
 		<!-- **********************************************************************************************************************************************************

@@ -1,10 +1,7 @@
 package com.itcia.itgoo.dto;
 
-import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.type.Alias;
-import org.springframework.web.socket.WebSocketSession;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +31,5 @@ public class VirtualAdopt {
 	private String recentpic;
 	private int totaldonation;
 	private int input;
+	private int recentid;
 }

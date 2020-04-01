@@ -2,14 +2,13 @@ package com.itcia.itgoo;
 
 import java.security.Principal;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +20,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.VirtualAdopt;
 import com.itcia.itgoo.dto.VirtualAdoptRecent;
 import com.itcia.itgoo.service.ShelterManagement;
-import com.itcia.itgoo.share.UploadFile;
+
+
+
 
 @Controller
 public class ShelterController {
@@ -55,7 +53,7 @@ public class ShelterController {
 	}
 
 	// 마이페이지
-
+	@Secured("ROLE_SHELTER")
 	@RequestMapping(value = "/sheltermyinfo", method = RequestMethod.GET)
 	public ModelAndView shelterMyInfo(Principal p,Company c) {
 		System.out.println("쉘터 마이 인포");
@@ -75,7 +73,7 @@ public class ShelterController {
 
 		return mav;
 	}
-
+	@Secured("ROLE_SHELTER")
 	// 유기견공고리스트 등록
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/shelterdogregi")
@@ -84,7 +82,7 @@ public class ShelterController {
 		return mav;
 
 	}
-
+	@Secured("ROLE_SHELTER")
 	// 공고리스트 삭제
 	@RequestMapping(value = "/shelterdelete", method = RequestMethod.GET)
 	public ModelAndView shelterdelete(Principal p, Dog dog, Integer pageNum) {
@@ -95,7 +93,7 @@ public class ShelterController {
 		mav = smm.shelterdelete1(p, dog, pageNum);
 		return mav;
 	}
-
+	@Secured("ROLE_SHELTER")
 	// 마이페이지 수정
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/shelterinfochange")
@@ -105,11 +103,12 @@ public class ShelterController {
 	}
 
 	// 페이지 보기만
-
+	@Secured("ROLE_SHELTER")
 	@GetMapping(value = "/shelterDelete")
 	public String shelterDelete() {
 		return "shelter/shelterDelete";
 	}
+	@Secured("ROLE_SHELTER")
 	@RequestMapping(value = "/dogdeletebtn")
 	public ModelAndView dogdeletebtn(Dog dog, RedirectAttributes attr) {
 
@@ -117,6 +116,7 @@ public class ShelterController {
 		attr.addFlashAttribute("dog", dog);
 		return mav;
 	}
+	@Secured({"ROLE_SHELTER","ROLE_ACTIVITY"})
 	@PostMapping(value = "/updatecompanylocpic")
 	public ModelAndView updatecompanylocpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
 		if(p!=null) {
@@ -127,6 +127,7 @@ public class ShelterController {
 
 		return mav;
 	}
+	@Secured({"ROLE_SHELTER","ROLE_ACTIVITY"})
 	@PostMapping(value = "/updatecompanycardpic")
 	public ModelAndView updatecompanycardpic (Principal p ,MultipartHttpServletRequest multi,Company cp) {
 		if(p!=null) {
@@ -139,62 +140,68 @@ public class ShelterController {
 	}
 
 	// 페이지 보기만
-
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/shelterlocationinfo")
 	public String page3() {
 		return "shelter/shelterLocationInfo";
 	}
-
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/shelterpicinfo")
 	public String page4() {
 		return "shelter/shelterPicInfo";
 	}
-
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/shelterregiste")
 	public String page5() {
 		return "shelter/shelterRegiste";
 	}
-
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/sheltercard")
 	public String page7() {
 		return "shelter/sheltercard";
 	}
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/virtualadoptlist")
 	public ModelAndView virtualAdoptList(Principal p,int input) {
 		
 		return smm.virtualAdoptList(p.getName(),input);
 	}
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/recentfrm")
 	public ModelAndView recentFrm(VirtualAdopt va) {
 		
 		return smm.recentFrm(va);
 	}
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/insertrecent")
 	public ModelAndView insertRecent(VirtualAdoptRecent r,String srcJson) {
 		
 		return smm.insertRecent(r,srcJson);
 	}
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/recentlist")
 	public ModelAndView recentList(VirtualAdopt va) {
 		
 		return smm.recentList(va);
 	}
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/recentdetail")
 	public ModelAndView recentDetail(int recentid) {
 		
 		return smm.recentDetail(recentid);
 	}
+	@Secured("ROLE_SHELTER")
 	@PreAuthorize("isAuthenticated()")
-	@PostMapping(value = "/recentdelete")
+	@GetMapping(value = "/recentdelete")
 	public ModelAndView recentDelete(int recentid) {
 		
 		return smm.recentDelete(recentid);

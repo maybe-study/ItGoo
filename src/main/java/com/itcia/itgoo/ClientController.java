@@ -44,7 +44,7 @@ public class ClientController {
 		mav = cm.adoplist();
 		return mav;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/applyadopt")
 	public ModelAndView applyadopt(MultipartHttpServletRequest multi,Adopt ad, Principal p) {
 		System.out.println("입양시작하는중");
@@ -60,6 +60,7 @@ public class ClientController {
 		mav = mm.myadoptphase(p,ad);
 		return mav;
 	}
+	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/showmyactivity", method = RequestMethod.GET)
 	public ModelAndView showmyactivity(Principal p, Reservation rs) {
@@ -85,6 +86,7 @@ public class ClientController {
 		mav = cm.updatedog(dogid,choice,p,rs);
 		return mav;
 	}
+	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/finalcaresheet", method = RequestMethod.GET)
 	public ModelAndView finalcaresheet(int dogid,CareSheet cs,Principal p) {
@@ -117,6 +119,7 @@ public class ClientController {
 	public String applyAdopt() {
 		return "applyAdopt";
 	}
+	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/virtualadopt", method = RequestMethod.GET)
 	public ModelAndView virtualadopt(int dogid,VirtualAdopt va,Principal p) {
@@ -127,24 +130,21 @@ public class ClientController {
 		return mav;
 	}
 	
-	
-	/*
-	 * @PreAuthorize("isAuthenticated()")
-	 * 
-	 * @RequestMapping(value = "/showmyvirtualdog", method = RequestMethod.GET)
-	 * public ModelAndView showmyvirtualdog(int dogid,Principal p) {
-	 * System.out.println("가상입양 강아지를 보여드리죠"); System.out.println("내가상입양"+dogid);
-	 * cm.showmyvirtualdog(dogid,p);
-	 * 
-	 * return mav; }
-	 */
-	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/recentvirtualadopt", method = RequestMethod.GET)
 	public ModelAndView recentvirtualadopt(Principal p) {
 	System.out.println("가상입양강아지 보기");  
 	mav=cm.recentvirtualadopt(p); 
-	return mav; }
+	return mav; 
+	}
 	
-
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/clentrecentdetail", method = RequestMethod.GET) public
+	ModelAndView clentrecentdetail(int dogid,Principal p) {
+	System.out.println("가상입양디테일하게  보기"); 
+	mav=cm.clentrecentdetail(dogid,p);
+	return mav; 
+	}
 }
+
+

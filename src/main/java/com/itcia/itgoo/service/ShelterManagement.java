@@ -310,7 +310,12 @@ public class ShelterManagement {
 
 
 	public ModelAndView recentDelete(int recentid) {
-		return null;
+		sDao.recentDelete(recentid);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("recentlist");
+		mav.setView(redirectView);
+		return mav;
 	}
 
 	public ModelAndView recentList(VirtualAdopt va) {
@@ -320,16 +325,13 @@ public class ShelterManagement {
 		return mav;
 	}
 
-	public ModelAndView recentDetail(VirtualAdoptRecent r) {
-		mav.addObject("recentDetail",new Gson().toJson(sDao.recentDetail(r)));
-		//해당 가상입양의 근황리스트
-		mav.setViewName("shelter/RecentList");
-		return mav;
-	}
 
 	public ModelAndView recentDetail(int recentid) {
-		// TODO Auto-generated method stub
-		return null;
+		mav.addObject("recent",new Gson().toJson(sDao.recentDetail(recentid)));
+		//해당 가상입양의 근황리스트
+		mav.setViewName("shelter/RecentDetail");
+		
+		return mav;
 	}
 	
 }

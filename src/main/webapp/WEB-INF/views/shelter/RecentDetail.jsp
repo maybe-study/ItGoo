@@ -65,8 +65,8 @@
 				<ul class="nav top-menu">
 					<!-- settings start -->
 					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="index.html#"> <i
-							class="fa fa-tasks"></i> <span class="badge bg-theme"></span>
+						class="dropdown-toggle" href="index.html#"> 
+						<i class="fa fa-tasks"></i> <span class="badge bg-theme"></span>
 					</a>
 						<ul class="dropdown-menu extended tasks-bar">
 							<div class="notify-arrow notify-arrow-green"></div>
@@ -168,8 +168,11 @@
 						<ul class="sub">
 							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
+					<!-- a href="google_maps.html"-->
 				</ul>
-			</div>	
+
+					<!-- sidebar menu end-->
+			</div>
 		</aside>
 		<!--sidebar end-->
 		<!-- **********************************************************************************************************************************************************
@@ -178,31 +181,24 @@
 		<!--main content start-->
 		<section id="main-content">
       <section class="wrapper">
-        <h3 id="title"><i class="fa fa-angle-right" ></i> 가상입양 근황 </h3>
+        <h3><i class="fa fa-angle-right"></i> 가상입양 근황 </h3>
         <div class="row">
           
           <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
+          <div class="col-md-11 mt">
             <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i> 가상입양 리스트 </h4>
+            <h4 id="title"><i class="fa fa-angle-right"></i> </h4>
                 <hr>
-              <table id="table2" class="table table-hover">
-              
+                <div class="content-panel" id="contents" style="width:1000px;margin:auto">
+              		
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <button class="btn btn-theme" type="button" onclick="deleteSend()">근황 삭제</button>
+                </div>
                 
-                <thead>
-                  <tr>
-                    <th>사용자 아이디</th>
-                    <th>강아지 이름</th>
-                    <th>후원 시작 일시</th>
-                    <th>금액</th>
-                    <th>총 금액</th>
-                  </tr>
-                </thead>
-                <tbody id="virtualList">
-                </tbody>
-              </table>
-            </div>
           </div>
+              
+            </div>
         </div>
         <!-- row -->
         </section>
@@ -246,36 +242,19 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="lib/common-scripts.js"></script>
-	<script>
-		console.log(${virtualList});
-		var url;
-		var vList=${virtualList};
-		var d= vList[0];
-		if(${input}==0) {
-			$('#title').append("삭제");
-			url="./recentlist?dogid="+d.dogid+"&id="+d.id+"&input="+0;
-		}
-		if(${input}==1) {
-			$('#title').append("추가")
-			url="./recentfrm?dogid="+d.dogid+"&id="+d.id+"&input="+1;
-		}
-		$.each(vList,function(idx,data){
-			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
-			$('<td>').append(data.id).appendTo($tr);
-			$('<td>').append(data.dogname).appendTo($tr);
-			$('<td>').append(data.donationstart).appendTo($tr);
-			$('<td>').append(data.donation).appendTo($tr);
-			$('<td>').append(data.totaldonation).appendTo($tr);
-			$('#virtualList').append($tr);
-		});
 	
+	<script>
+	
+	var r=${recent};
+	function deleteSend(){
+		location.href="recentdelete?recentid="+r.recentid;
+	}
+		console.log(${recent});
+		$('#title').append(r.title);
+		$('#contents').append(r.message);
 		
-        jQuery(function($){
-            $("#table1").DataTable({info: false});
-        });
-        jQuery(function($){
-            $("#table2").DataTable({info: false});
-        });
+		
+		
         
         
     </script>
