@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.service.AdminCompany;
 import com.itcia.itgoo.service.AdminTest;
+@Secured("ROLE_ADMIN")
 @RestController
 public class RestAdminController {
 	@Autowired

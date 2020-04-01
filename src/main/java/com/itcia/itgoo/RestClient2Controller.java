@@ -3,6 +3,7 @@ package com.itcia.itgoo;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.service.ClientManagement;
 
 @Controller
+@Secured("ROLE_ACTIVITY")
 public class RestClient2Controller {
 	ModelAndView mav = new ModelAndView();
 

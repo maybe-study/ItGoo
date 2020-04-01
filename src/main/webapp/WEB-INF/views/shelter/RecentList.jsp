@@ -65,8 +65,8 @@
 				<ul class="nav top-menu">
 					<!-- settings start -->
 					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="index.html#"> <i
-							class="fa fa-tasks"></i> <span class="badge bg-theme"></span>
+						class="dropdown-toggle" href="index.html#"> 
+						<i class="fa fa-tasks"></i> <span class="badge bg-theme"></span>
 					</a>
 						<ul class="dropdown-menu extended tasks-bar">
 							<div class="notify-arrow notify-arrow-green"></div>
@@ -127,7 +127,7 @@
 					<li class="mt"><a href="index2"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
-					<li class="sub-menu"><a class="active" href="javascript:;">
+					<li class="sub-menu"><a href="javascript:;">
 							<i class="fa fa-desktop"></i> <span>정보보기</span>
 					</a>
 						<ul class="sub">
@@ -142,10 +142,11 @@
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
 							<li><a href="shelterpicinfo">시설사진</a></li>
-						</ul></li>
+						</ul>
+					</li>
 
 
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a href="javascript:;" class="active" > <i
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
@@ -153,8 +154,7 @@
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 						
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>가상입양 관리</span>
+					<li class="sub-menu"><a href="javascript:;"> <i	class="fa fa-th"></i> <span>가상입양 관리</span>
 					</a>
 						<ul class="sub">
 							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
@@ -169,7 +169,7 @@
 							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
-
+				</ul>
 
 					<!-- sidebar menu end-->
 			</div>

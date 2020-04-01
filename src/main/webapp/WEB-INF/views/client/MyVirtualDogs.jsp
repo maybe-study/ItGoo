@@ -90,67 +90,7 @@
 
 					</div>
 				</div>
-
-				<!-- modal  -->
-				<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-
-							</div>
-							<div class="modal-body">
-								<div id="productCarousel" class="carousel slide"
-									data-ride="carousel" style="display: flex;">
-									<ol class="carousel-indicators">
-									</ol>
-									<div>
-										<div class="carousel-inner" role="listbox"></div>
-									</div>
-									<div style="margin-top: 100px; margin-left: 30px;">
-										<table style="margin: auto">
-											<tr>
-												<td>이름:</td>
-												<td id="name"></td>
-											</tr>
-											<tr>
-												<td>나이:</td>
-												<td id="age"></td>
-											</tr>
-											<tr>
-												<td>성별:</td>
-												<td id="sex"></td>
-											</tr>
-											<tr>
-												<td>특이사항:</td>
-												<td id="special"></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-								<a class="left carousel-control" href="#productCarousel"
-									role="button" data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a> <a class="right carousel-control" href="#productCarousel"
-									role="button" data-slide="next"> <span
-									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" id="adoptBtn"></button>
-								<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
+				
 			</form>
 
 		</section>
@@ -188,26 +128,30 @@
 	 var $dogList = $("#addogList");
 	$.each(${va},function(idx,data){
 	      console.log("vavavava값",data);
-	        var $img=$('<img style="width:100%">').attr('src',data.recentpic);
-	        makeModalBtn($img);
-	        $img[0].dataset.dogid=data.dogid; 
-	        //$img[0].dataset.
-	          var $div3 = $('<div class="card-body text-center">')
+	      console.log("va의 dogid값",data.dogid);
+	        var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+	          var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
 	                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-	                .append($('<h4 class="text-uppercase m-0">').text(data.tltle))
-	                .append($('<hr class="my-4">')).append($img)
-	                .append($('<div class="small text-black-50">').text(data.donation+" 원"))
-	                .append($('<div class="small text-black-50">').text("결제일 : "+data.payday))
-	                .append($('<div class="small text-black-50">').text("총 후원액 : "+data.totaldonation));
+	                .append($('<h4 class="text-uppercase m-0">').text("강아지이름 :"+data.dogname))
+	                .append($('<h4 class="text-uppercase m-0">').text(data.dogage+" 살"))
+	                .append($('<h4 class="text-uppercase m-0">').text("특이사항 :"+data.dogspecial))
+	                .append($('<div class="text-uppercase m-0">').text(data.donation+" 원"))
+	                .append($('<div class="text-uppercase m-0">').text("결제일 : "+data.payday))
+	                .append($('<div class="text-uppercase m-0">').text("총 후원액 : "+data.totaldonation))
+	                .append("<a href='./clentrecentdetail?dogid="+data.dogid+"'>근황보기</a>");
+
 	          console.log("인덱스는!!!"+idx);
 	          console.log(idx);
-	          var $div2 = $('<div class="card py-4 h-100">').append($div3);
+	          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+	          $div2.append($div3);
 	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
 	           $dogList.append($div1);
-	           
 	     });
 	
-    function makeModalBtn($img){
+
+	        	  
+	        	  
+   /*  function makeModalBtn($img){
    	 $img.on('click', function(e){
          //console.log(e.target.dataset.dogid);
          var dogid=e.target.dataset.dogid;
@@ -265,7 +209,7 @@
                       prevEl: '.swiper-button-prev',
                     },
                   }); */
-              }
+        /*       }
               ,
               error : function(error) {
                  console.log(error);
@@ -279,8 +223,8 @@
            // 모달 안의 취소 버튼에 이벤트를 건다.
            $('#closeModalBtn').on('click', function(){
            $('#modalBox').modal('hide');
-     });
-
+     }); */
+ 
   </script>
 </body>
 

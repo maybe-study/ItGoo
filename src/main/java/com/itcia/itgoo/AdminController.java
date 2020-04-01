@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import com.itcia.itgoo.dto.Ex;
 import com.itcia.itgoo.dto.Question;
 import com.itcia.itgoo.service.AdminCompany;
 import com.itcia.itgoo.share.UploadFile;
-
+@Secured("ROLE_ADMIN")
 @Controller
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
