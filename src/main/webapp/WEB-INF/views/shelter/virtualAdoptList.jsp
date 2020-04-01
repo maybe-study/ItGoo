@@ -181,7 +181,7 @@
 		<!--main content start-->
 		<section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right" id="title"></i> 가상입양 근황 </h3>
+        <h3 id="title"><i class="fa fa-angle-right" ></i> 가상입양 근황 </h3>
         <div class="row">
           
           <!-- /col-md-12 -->
@@ -252,16 +252,17 @@
 	<script>
 		console.log(${virtualList});
 		var url;
-		
-		$.each(${virtualList},function(idx,data){
-			if(${input}==0) {
-				$('#title').text("삭제")
-				url="./recentlist?dogid="+data.dogid+"&id="+data.id+"&input="+0;
-			}
-			if(${input}==1) {
-				$('#title').text("추가")
-				url="./recentfrm?dogid="+data.dogid+"&id="+data.id+"&input="+1;
-			}
+		var vList=${virtualList};
+		var d= vList[0];
+		if(${input}==0) {
+			$('#title').append("삭제");
+			url="./recentlist?dogid="+d.dogid+"&id="+d.id+"&input="+0;
+		}
+		if(${input}==1) {
+			$('#title').append("추가")
+			url="./recentfrm?dogid="+d.dogid+"&id="+d.id+"&input="+1;
+		}
+		$.each(vList,function(idx,data){
 			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
 			$('<td>').append(data.id).appendTo($tr);
 			$('<td>').append(data.dogname).appendTo($tr);
