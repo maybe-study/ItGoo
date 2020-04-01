@@ -337,7 +337,7 @@ public class ClientManagement {
 
 		return mav;
 	}
-}
+
 
 	/*
 	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) { VirtualAdopt
