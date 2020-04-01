@@ -26,10 +26,8 @@
 }
 
 #topMenu ul li {
-	/* 	list-style: none; */
 	color: white;
 	background-color: #2d2d2d;
-	/* 	float: left; */
 	line-height: 50px;
 	vertical-align: middle;
 	text-align: center;
@@ -93,6 +91,33 @@
 	margin-top: 100px;
 	text-decoration: none;
 }
+
+#title {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 60%;
+	height: 30px;
+	font-size: 20px;
+	width: 60%;
+}
+#title2{
+font-size: 20px;
+
+}
+
+#content {
+	width: 70%;
+	height: 700px;
+	font-size: 20px;
+}
+
+#pic {
+	margin-top: 20px;
+}
+
+#titlepic {
+	font-size: 20px;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -103,16 +128,14 @@
 
 
 <script>
-
-
-
+	
 </script>
 <body>
 	<header>
 		<div id="logo">
 			<a href="index.jsp"><img id="logo"
 				src="img/portfolio/itgoo1004.png"> </a>
-				<h3>Write</h3>
+			<h3>Write</h3>
 		</div>
 	</header>
 	<div id="main1">
@@ -131,34 +154,45 @@
 
 
 		<section id="section">
-			<div id="table">
-				<table id="boards" class="table">
-					
-					
-					
-					
-					
-					
-					
-					
-				</table>
-			</div>
+			<form action="writepage">
+				<div id="table">
+					<table id="boards" class="table">
 
-			<!-- 글나오는곳 -->
-			<div style="text-align: center">
-				<ul id="pagination" class="pagination"></ul>
-			</div>
+						<tbody>
+							<tr>
+								<td><span id="title">제목:</span><input type="text"
+									id="title" name="title" /></td>
+							</tr>
 
-			<!-- 글쓰기 버튼 -->
-			<div>
-				<button class="btn">완료</button>
-			</div>
+							<tr>
+								<td><span id="title2">내용</span> <textarea id="content"
+										name="content"></textarea></td>
+							</tr>
+
+							<tr>
+								<td><span id="titlepic">사진등록</span> <input id="pic"
+									type="file" name="files" multiple id="files"
+									accept=".jpg,.jpeg,.png,.gif,.bmp"> <input
+									type="hidden" id="fileCheck" name="file_Check" value="0" /></td>
+							</tr>
+
+
+
+							<tr>
+								<td>
+									<button type="submit" id="btn">작성</button>
+								</td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+			</form>
 		</section>
 	</div>
 </body>
 <script>
-
-
-
+	
 </script>
 </html>

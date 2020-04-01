@@ -140,8 +140,7 @@ input {
 		<h3 id="h3text">회원가입</h3>
 		<div id="join_background">
 			<form action="companyjoin?${_csrf.parameterName}=${_csrf.token}"
-				 name=frm id="frm" method="post"
-				enctype="multipart/form-data">
+				name=frm id="frm" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td>&nbsp;</td>
@@ -168,7 +167,7 @@ input {
 						<td><input type="text" name="companyid" maxlength="20"
 							id="id" required></td>
 						<td><input id="id_check" type="button" value="중복확인"></td>
-						
+
 					</tr>
 
 					<tr>
@@ -326,8 +325,8 @@ input {
 
 					<tr>
 						<td>사용자 생년월일</td>
-						<td><input type="text" name="birthday"
-               placeholder="YYMMDD" maxlength="6" required/>
+						<td><input type="text" name="birthday" placeholder="YYMMDD"
+							maxlength="6" required />
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -351,7 +350,6 @@ input {
 
 </body>
 <script>
-	
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function sample4_execDaumPostcode(addrid) {
 		new daum.Postcode({
@@ -365,84 +363,84 @@ input {
 	}
 
 	$("#id_check").on("click", function() {
-	      let formData = new FormData();
-	      formData.append("id", $("#id").val());
+		let formData = new FormData();
+		formData.append("id", $("#id").val());
 
-	      if ($("#id").val() == "") {
-	         $("#idcheck").html("아이디를 입력해주세요");
-	         $("#id").focus();
-	         return false;
-	      }
-	      $.ajaxSetup({
-	         beforeSend : function(xhr) {
-	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	         }
-	      });//먼저 보냄
-	      
-	      $.ajax({ // 에이작스 열고
-	         type : 'post', //타입은 get 
-	         url : "xduplicateid", // restFul 방식
-	         data : formData,
-	         processData : false,
-	         contentType : false,
+		if ($("#id").val() == "") {
+			$("#idcheck").html("아이디를 입력해주세요");
+			$("#id").focus();
+			return false;
+		}
+		$.ajaxSetup({
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			}
+		});//먼저 보냄
 
-	         //서블릿이 성공하면 다시 돌아오는것
-	         success : function(data) {
-	            console.log(data);
-	            if (data == "null") {
+		$.ajax({ // 에이작스 열고
+			type : 'post', //타입은 get 
+			url : "xduplicateid", // restFul 방식
+			data : formData,
+			processData : false,
+			contentType : false,
 
-	               console.log(data);
-	               $("#idcheck").html($("#id").val() + "는 사용가능한 아이디입니다.");
+			//서블릿이 성공하면 다시 돌아오는것
+			success : function(data) {
+				console.log(data);
+				if (data == "null") {
 
-	            } else {
+					console.log(data);
+					$("#idcheck").html($("#id").val() + "는 사용가능한 아이디입니다.");
 
-	               var result = JSON.parse(data);
-	               console.log("엘스로 빠지는중")
-	               console.log(typeof data)
-	               console.log(data);
-	               $("#idcheck").html(result.id + "는 사용할수 없는 아이디입니다.");
-	               $("#id").val("")
-	            }
+				} else {
 
-	         }
+					var result = JSON.parse(data);
+					console.log("엘스로 빠지는중")
+					console.log(typeof data)
+					console.log(data);
+					$("#idcheck").html(result.id + "는 사용할수 없는 아이디입니다.");
+					$("#id").val("")
+				}
 
-	         ,
-	         error : function(error) {
-	            console.log(error);
-	         }
+			}
 
-	      });
+			,
+			error : function(error) {
+				console.log(error);
+			}
 
-	   });
-	
+		});
+
+	});
+
 	$("#pw").keyup(function() {
-	      var pwd1 = $("#pw").val();
-	      var pwd2 = $("#pwcheck").val();
-	      if (pwd1 !== "" || pwd2 !== "") {
-	         if (pwd1 === pwd2) {
-	            $("#alert-success").css('display', 'inline-block');
-	            $("#alert-danger").css('display', 'none');
-	         } else {
-	            $("#alert-success").css('display', 'none');
-	            $("#alert-danger").css('display', 'inline-block');
-	         }
-	      }
+		var pwd1 = $("#pw").val();
+		var pwd2 = $("#pwcheck").val();
+		if (pwd1 !== "" || pwd2 !== "") {
+			if (pwd1 === pwd2) {
+				$("#alert-success").css('display', 'inline-block');
+				$("#alert-danger").css('display', 'none');
+			} else {
+				$("#alert-success").css('display', 'none');
+				$("#alert-danger").css('display', 'inline-block');
+			}
+		}
 
-	   });
+	});
 
-	   $("#pwcheck").keyup(function() {
-	      var pwd1 = $("#pw").val();
-	      var pwd2 = $("#pwcheck").val();
-	      if (pwd1 != "" || pwd2 != "") {
-	         if (pwd1 === pwd2) {
-	            $("#alert-success").css('display', 'inline-block');
-	            $("#alert-danger").css('display', 'none');
-	         } else {
-	            $("#alert-success").css('display', 'none');
-	            $("#alert-danger").css('display', 'inline-block');
-	         }
-	      }
-	   });
+	$("#pwcheck").keyup(function() {
+		var pwd1 = $("#pw").val();
+		var pwd2 = $("#pwcheck").val();
+		if (pwd1 != "" || pwd2 != "") {
+			if (pwd1 === pwd2) {
+				$("#alert-success").css('display', 'inline-block');
+				$("#alert-danger").css('display', 'none');
+			} else {
+				$("#alert-success").css('display', 'none');
+				$("#alert-danger").css('display', 'inline-block');
+			}
+		}
+	});
 </script>
 
 </html>

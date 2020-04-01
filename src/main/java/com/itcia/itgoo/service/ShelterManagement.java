@@ -48,6 +48,10 @@ public class ShelterManagement {
 	 *
 	 * mav.setViewName(view); return mav; }
 	 */
+	
+	
+	
+	
 	@Transactional
 	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
 		cMember.setEnabled(1);
@@ -90,6 +94,10 @@ public class ShelterManagement {
 		return mav;
 	}
 
+	
+	
+	
+	
 	@Transactional
 	public ModelAndView shelterregiste(MultipartHttpServletRequest multi, Dog dog, Principal p) {
 		UploadFile up = new UploadFile();
