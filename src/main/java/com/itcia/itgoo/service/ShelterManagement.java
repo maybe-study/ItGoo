@@ -302,7 +302,12 @@ public class ShelterManagement {
 
 
 	public ModelAndView recentDelete(int recentid) {
-		return null;
+		sDao.recentDelete(recentid);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("recentlist");
+		mav.setView(redirectView);
+		return mav;
 	}
 
 	public ModelAndView recentList(VirtualAdopt va) {
@@ -316,7 +321,7 @@ public class ShelterManagement {
 	public ModelAndView recentDetail(int recentid) {
 		mav.addObject("recent",new Gson().toJson(sDao.recentDetail(recentid)));
 		//해당 가상입양의 근황리스트
-		mav.setViewName("RecentDetail");
+		mav.setViewName("shelter/RecentDetail");
 		
 		return mav;
 	}

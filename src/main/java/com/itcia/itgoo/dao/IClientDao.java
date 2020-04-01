@@ -95,9 +95,9 @@ public interface IClientDao {
 
 	SmallMeeting mysmallmeetingdetail(Integer smallnumber);
 
-	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" + 
-			"join virtualadopt on recent.id=virtualadopt.id \r\n" + 
-			"join dog on dog.dogid=virtualadopt.dogid \r\n" + 
+	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
+			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
+			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
 			"where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
 	List<VirtualAdopt> clentrecentdetail(VirtualAdopt boyoung);
 

@@ -54,7 +54,7 @@
 	.dataTables_wrapper{
 		margin-left:10px;
 	}
-  	
+
   </style>
 </head>
 
@@ -96,17 +96,17 @@
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> 가상입양 근황 </h3>
         <div class="row">
-          
+
           <!-- /col-md-12 -->
           <div class="col-md-11 mt">
             <div class="content-panel">
             <h4 id="title"><i class="fa fa-angle-right"></i> </h4>
                 <hr>
                 <div class="content-panel" id="contents" style="width:1000px;margin:auto">
-              		
+
                 </div>
           </div>
-              
+
             </div>
         </div>
         <!-- row -->
@@ -156,7 +156,7 @@
 		var r=${cdList};
 		$('#title').append(r[0].title);
 		$('#contents').append(r[0].message);
-		
+
     </script>
 
 </body>

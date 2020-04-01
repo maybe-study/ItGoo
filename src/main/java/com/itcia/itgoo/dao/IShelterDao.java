@@ -96,6 +96,8 @@ public interface IShelterDao {
 	List<VirtualAdoptRecent> recentList(VirtualAdopt r);
 	@Select("select * from recent where recentid=#{recentid}")
 	VirtualAdoptRecent recentDetail(int recentid);
+	@Delete("delete recent where recentid=#{recentid}")
+	void recentDelete(int recentid);
 
 	
 	

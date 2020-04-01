@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="">
+<html lang="kr">
 
 
 <head>
@@ -133,7 +133,8 @@
 						<ul class="sub">
 							<li><a href="sheltercard">사업자등록증</a></li>
 							<li><a href="shelterpicinfo">시설사진</a></li>
-						</ul></li>
+						</ul>
+					</li>
 
 
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -144,8 +145,7 @@
 							<li><a href="shelterdelete">삭제</a></li>
 						</ul></li>
 						
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-th"></i> <span>가상입양 관리</span>
+					<li class="sub-menu"><a href="javascript:;"> <i	class="fa fa-th"></i> <span>가상입양 관리</span>
 					</a>
 						<ul class="sub">
 							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
@@ -160,7 +160,7 @@
 							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
 					<!-- a href="google_maps.html"-->
-
+				</ul>
 
 					<!-- sidebar menu end-->
 			</div>
@@ -281,20 +281,20 @@
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="lib/jquery/jquery.min.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="lib/jquery.scrollTo.min.js"></script>
-	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="lib/jquery.ui.touch-punch.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
 	<!--common script for all pages-->
-	<script src="lib/common-scripts.js"></script>
 	<!--script for this page-->
-	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
 
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 	<script>
 
 	var shelter = ${shelter}
