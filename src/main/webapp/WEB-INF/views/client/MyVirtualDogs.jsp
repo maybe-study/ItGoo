@@ -90,67 +90,7 @@
 
 					</div>
 				</div>
-
-				<!-- modal  -->
-				<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-
-							</div>
-							<div class="modal-body">
-								<div id="productCarousel" class="carousel slide"
-									data-ride="carousel" style="display: flex;">
-									<ol class="carousel-indicators">
-									</ol>
-									<div>
-										<div class="carousel-inner" role="listbox"></div>
-									</div>
-									<div style="margin-top: 100px; margin-left: 30px;">
-										<table style="margin: auto">
-											<tr>
-												<td>이름:</td>
-												<td id="name"></td>
-											</tr>
-											<tr>
-												<td>나이:</td>
-												<td id="age"></td>
-											</tr>
-											<tr>
-												<td>성별:</td>
-												<td id="sex"></td>
-											</tr>
-											<tr>
-												<td>특이사항:</td>
-												<td id="special"></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-								<a class="left carousel-control" href="#productCarousel"
-									role="button" data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a> <a class="right carousel-control" href="#productCarousel"
-									role="button" data-slide="next"> <span
-									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" id="adoptBtn"></button>
-								<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
+				
 			</form>
 
 		</section>
@@ -188,8 +128,8 @@
 	 var $dogList = $("#addogList");
 	$.each(${va},function(idx,data){
 	      console.log("vavavava값",data);
-	        var $img=$('<img style="width:100%">').attr('src',data.recentpic);
-	        makeModalBtn($img);
+	        var $img=$('<a href=""><img style="width:100%"></a>').attr('src',data.recentpic);
+	        //makeModalBtn($img);
 	        $img[0].dataset.dogid=data.dogid; 
 	        //$img[0].dataset.
 	          var $div3 = $('<div class="card-body text-center">')
@@ -207,7 +147,7 @@
 	           
 	     });
 	
-    function makeModalBtn($img){
+   /*  function makeModalBtn($img){
    	 $img.on('click', function(e){
          //console.log(e.target.dataset.dogid);
          var dogid=e.target.dataset.dogid;
@@ -265,7 +205,7 @@
                       prevEl: '.swiper-button-prev',
                     },
                   }); */
-              }
+        /*       }
               ,
               error : function(error) {
                  console.log(error);
@@ -279,8 +219,8 @@
            // 모달 안의 취소 버튼에 이벤트를 건다.
            $('#closeModalBtn').on('click', function(){
            $('#modalBox').modal('hide');
-     });
-
+     }); */
+ 
   </script>
 </body>
 
