@@ -102,6 +102,9 @@ public interface IClientDao {
 			"where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
 	List<VirtualAdopt> clentrecentdetail(VirtualAdopt boyoung);
 
+	@Update("update dog set status = 1 where dogid=#{dogid}")
+	void updatestatusdog(Adopt ad);
+
 	/*
 	 * @Select("SELECT * FROM recentpics join recent on recentpics.recentid = recent.recentid \r\n"
 	 * + "join virtualadopt on virtualadopt.dogid=recent.dogid \r\n" +

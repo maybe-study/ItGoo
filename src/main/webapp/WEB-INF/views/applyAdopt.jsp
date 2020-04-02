@@ -89,7 +89,6 @@ hr {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-
 	<div id="middle">
 		<form action="applyadopt?${_csrf.parameterName}=${_csrf.token}"
 			method="post" enctype="multipart/form-data" name="frm">
@@ -101,7 +100,6 @@ hr {
 			<div id="main">
 				<input type="hidden" value="0" name="dogid"> * 입양신청서 <br>
 				<hr>
-
 				* 신분증첨부파일 <br>
 				<br> <input type="file" id="idfile" class="box"
 					name="identifile" accept=".jpg,.jpeg,.png,.gif,.bmp" required>
@@ -109,7 +107,6 @@ hr {
 				* 반려견 키운경력<br> <br>
 				<textarea type="text" id="why" name="dogcareer"
 					placeholder="반려견을 키웠던 경험이나 다짐을 적어주세요" required=></textarea>
-
 				<hr>
 				* 직업<br> <br> <input type="text" name="job" id="job"
 					minlength="1" maxlength="20" placeholder="직업을 입력해주세요" required= />
@@ -121,7 +118,6 @@ hr {
 				* 적격성평가 희망일 <br> <br> <input type="text" name="teststart"
 					placeholder="yyyymmdd" required= />
 				<hr>
-
 				<DIV ID="boot">
 					<hr>
 					<button type="submit" id="apply" class="btn">제출</button>

@@ -50,6 +50,7 @@ public class ClientController {
 		System.out.println("입양시작하는중");
 		System.out.println("==================id==================="+p.getName());
 		mav = cm.applyadopt(multi,ad,p);
+		mav=cm.updatestatusdog(ad);
 		return mav;
 	}
 	

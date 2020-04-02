@@ -38,6 +38,7 @@ public interface IAdminDao {
 	List<Dog> adminDogs(String companyid);
 	@Insert("insert into question values(test_seq.nextval,#{question},#{correct},#{point},#{toggle})")
 	void addTest(Question question);
+	
 	void addEx(Ex ex);
 	@Select("select * from question where toggle=1")
 	List<Question> getTest();
