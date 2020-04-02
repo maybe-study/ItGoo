@@ -362,4 +362,10 @@ public class ClientManagement {
 	return mav;
 
 	}
+
+	public ModelAndView updatestatusdog(Adopt ad) {
+		System.out.println(ad.getDogid());
+		cDao.updatestatusdog(ad);
+		return mav;
+	}
 }

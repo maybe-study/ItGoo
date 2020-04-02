@@ -92,7 +92,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->
@@ -154,11 +154,11 @@
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<p class="centered">
-						<a href="shelterMyInfo"><img src="img/portfolio/itgoo2.PNG"
+						<a href="sheltermyinfo"><img src="img/portfolio/itgoo2.PNG"
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">SHELTER MANAGER</h5>
-					<li class="mt"><a href="index2"> <i
+					<li class="mt"><a href="/ItGoo/"> <i
 							class="fa fa-dashboard"></i> <span>홈으로 </span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;">
