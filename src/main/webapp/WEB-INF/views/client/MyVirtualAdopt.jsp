@@ -105,7 +105,7 @@
 					<div class="col-lg-6 col-md-6 col-sm-6">
 
 						<h4 class="title">회원님들의 개인정보 보호에 힘쓰겠습니다.</h4>
-						<form action="showmyvirtualdog?"${_csrf.parameterName}=${_csrf.token}>
+						<form action="clentrecentdetail"${_csrf.parameterName}=${_csrf.token}>
 						 <input type="hidden" name="dogid" value="${dogid}">
 							<div id="message"></div>
 						</form>

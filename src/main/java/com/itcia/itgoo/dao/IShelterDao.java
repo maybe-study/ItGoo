@@ -20,7 +20,6 @@ import com.itcia.itgoo.dto.VirtualAdoptRecent;
 
 public interface IShelterDao {
 
-
 	@Insert("INSERT INTO COMPANY VALUES(#{companyid},#{companyname},#{companyboss},#{companyphone},#{companyemail},"
 			+ "#{companylocation},#{companycard},#{companykind},#{enroll})")
 	void insertShelter(Commonmember cmb);
@@ -31,6 +30,7 @@ public interface IShelterDao {
 
 	@Insert("INSERT INTO COMPANYPIC  VALUES(#{param1},#{param2})")
 	void insertPic(String param1, String param2);
+
 //사진 다중으로 보냄 ↑
 //	@Insert("INSERT INTO COMPANY VALUES(#{companycard},#{companyid})")
 //	void insertPichture(String companyid,String companycard);
@@ -38,23 +38,19 @@ public interface IShelterDao {
 			+ "#{companylocation},#{companycard},#{companykind},#{enroll})")
 	void insertCompany(Commonmember cMember);
 
-	//@Select("SELECT * FROM CLIENT WHERE id=#{id}")
+	// @Select("SELECT * FROM CLIENT WHERE id=#{id}")
 	Member xduplicateid(Member mb);
 
 	@Insert("insert into role values(#{param1},#{param2})")
 	void insertRole(String id, String string);
 
-
 	@Insert("INSERT INTO DOG VALUES(dog_seq.nextval,#{dogname},#{dogage},#{dogspecial},#{dogjungsung},#{shelterid},#{sex},0)")
 	void insertDog(Dog dog);
 
-
 	void inserDogPics(Dfile df);
-
 
 	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid}")
 	List<Dog> shelterdelete(Dog dog);
-
 
 	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
 	Company shelterMyInfo(Company c);
@@ -71,7 +67,6 @@ public interface IShelterDao {
 
 	void insertCompanyLocPic(String param1, String param2);
 
-
 	void updateCompanyCardPic(String param1, String param2);
 
 	boolean deleteCompanyLocPic(Company cp);
@@ -85,26 +80,24 @@ public interface IShelterDao {
 	void updatecompanyphone(Company cp);
 
 	void updatecompanyemail(Company cp);
+
 	@Select("select * from dog join virtualadopt on virtualadopt.dogid = dog.dogid where shelterid=#{companyid}")
 	List<VirtualAdopt> virtualAdoptList(String companyid);
+
 	@Insert("insert into recentpics values(#{param2},#{param1})")
 	void insertRecentPic(int recentid, String s);
-	@SelectKey(statement="select max(recentid) from recent",keyProperty = "recentid", before = false, resultType = Integer.class)
+
+	@SelectKey(statement = "select max(recentid) from recent", keyProperty = "recentid", before = false, resultType = Integer.class)
 	@Insert("insert into recent values(recent_seq.nextval,#{id},#{dogid},#{message},#{title})")
 	void insertRecent(VirtualAdoptRecent r);
+
 	@Select("select * from recent where id=#{id} and dogid=#{dogid}")
 	List<VirtualAdoptRecent> recentList(VirtualAdopt r);
+
 	@Select("select * from recent where recentid=#{recentid}")
 	VirtualAdoptRecent recentDetail(int recentid);
+
 	@Delete("delete recent where recentid=#{recentid}")
 	void recentDelete(int recentid);
-
-	
-	
-
-
-
-
-
 
 }
