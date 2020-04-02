@@ -49,17 +49,14 @@ public class ShelterManagement {
 	 * mav.setViewName(view); return mav; }
 	 */
 	
-	
-	
-	
 	@Transactional
 	public ModelAndView companyJoin(MultipartHttpServletRequest multi, Commonmember cMember) {
 		cMember.setEnabled(1);
 		cMember.setId(cMember.getCompanyid());
 		/*
 		 * 파일 업로드 사용법 1. UploadFile 클래스 선언 2. 단일 파일 업로드일
-		 * 경우:fileUp(multi.getFile("넘긴 이름"),"종류") 여러개 파일 업로드일
-		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"종류") return 값을 db에 저장 parameter 구분 - 강아지
+		 * 경우:fileUp(multi.getFile("넘긴 이름"),"dto") 여러개 파일 업로드일
+		 * 경우:fileUp(multi.getFiles("넘긴 이름"),"dto") return 값을 db에 저장 parameter 구분 - 강아지
 		 * 사진:dog, 시설사진:company, 액티비티 사진:activity
 		 */
 
@@ -93,10 +90,6 @@ public class ShelterManagement {
 		mav.setViewName("login");
 		return mav;
 	}
-
-	
-	
-	
 	
 	@Transactional
 	public ModelAndView shelterregiste(MultipartHttpServletRequest multi, Dog dog, Principal p) {
@@ -139,14 +132,6 @@ public class ShelterManagement {
 		/* mav.setViewName("activitycompany/activityDelete"); */
 		return mav;
 	}
-	/*
-	 * private Object getPaging(int pNum,Company cp) { int maxNum= sDao.; int
-	 * listCount = 10; int pageCount = 2; String activity = "activitydelete"; Paging
-	 * paging = new Paging(maxNum, pNum, listCount, pageCount, activity); return
-	 * paging.makeHtmlPaging();
-	 *
-	 * }
-	 */
 
 	// 마이페이지
 	public ModelAndView shelterMyInfo(Principal p, Company c) {
