@@ -103,7 +103,7 @@
 				<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
+						<div class="modal-content" style="width: 1000px;">
 							<div class="modal-header">
 								<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
 								<button type="button" class="close" data-dismiss="modal"
@@ -121,22 +121,27 @@
 										<div class="carousel-inner" role="listbox"></div>
 									</div>
 									<div style="margin-top: 100px; margin-left: 30px;">
-										<table style="margin: auto">
+										<table style="margin: auto; float:left; display: flex;" >
 											<tr>
-												<td>이름:</td>
-												<td id="name"></td>
+												<td id="1" style="width:30px;">이름:</td>
+												<td id="name" style="display: flex;"></td>
 											</tr>
+											
 											<tr>
-												<td>나이:</td>
+												<td id="2" style="width:30px;">나이:</td>
 												<td id="age"></td>
 											</tr>
 											<tr>
-												<td>성별:</td>
+												<td id="3" style="width:30px;">성별:</td>
 												<td id="sex"></td>
 											</tr>
+											
 											<tr>
-												<td>특이사항:</td>
-												<td id="special"></td>
+												<td id="4" style="width:60px;">특이사항:</td>
+											</tr>
+											
+											<tr id="another" style="margin: auto; float:left; display: flex;">
+												<td id="special" style="width:200px;"></td>
 											</tr>
 										</table>
 									</div>
@@ -227,7 +232,7 @@
                 .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
                 .append($('<h4 class="text-uppercase m-0">').text("이름 : "+data.dogname))
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
-                .append($('<h4 class="small text-black-50">').text("특이사항 :  "+data.dogspecial))
+                .append($('<h4 class="text-uppercase m-0">').append("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
 		
 		 $div3.append($img);
@@ -284,6 +289,14 @@
         	})
          };
 	  */
+	  function empty() {
+		  $('#name').empty();
+			$('#age').empty();
+			$('#dogjungsung').empty();
+			$('#sex').empty();
+			$('#special').empty();
+	}
+	  
 	 $(document).on('click','#openModalBtn', function(e){
 		 $('#modalBox').modal('show');
 	 console.log(e.target.dataset);
@@ -305,6 +318,7 @@
 				//서블릿이 성공하면 다시 돌아오는것
 				success : function(data) {
 					console.log("모달에 나올 data",data);
+					empty();
 					 if(data.phase==1){
 						 var $p1=$('#adoptBtn').text("신청서 검토중")
 						 $p1.on("click",function(){
@@ -356,13 +370,12 @@
 							var $div=$('<div class="item">').appendTo($items);
 							$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
 						}
-
 					});
 					$('#name').text(data.dogname);
 					$('#age').text(data.dogage+" 살");
 					$('#dogjungsung').text(data.dogjungsung==0?"O":"X");
 					$('#sex').text(data.sex==0?"남":"여");
-					$('#special').text(data.dogspecial);
+					$('#special').append(data.dogspecial);
 
 				} , error : function(error) {
 					console.log(error);

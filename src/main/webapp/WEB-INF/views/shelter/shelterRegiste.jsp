@@ -41,12 +41,10 @@
 	width: 20%;
 	height: 20%;
 }
-.ck .ck-reset .ck-editor .ck-rounded-corners{
- width:1000px;
+.ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline{
+ width:466px;
 }
-#editor{
- width:1000px;
-}
+
 </style>
 <!-- =======================================================
     Template Name: Dashio
@@ -291,7 +289,8 @@
 											<tr>
 
 												<td>소개글</td>
-												<td><textarea id="editor" class="dogspecial"
+												<td style="width:466px">
+												<textarea id="editor" class="dogspecial"
 														name="dogspecial"
 														style="word-break: normal; height: 200px; width: 500px;"></textarea>
 												</td>
@@ -299,18 +298,13 @@
 										</table>
 									</div>
 								</div>
-
-
-
-
 							</section>
 						</div>
 						<div class="btn-div">
 
 							<input type="submit" id="insertdogbtn"
 								class="insertactivitybtn" value="액티비티 등록" />
-								<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
-
+							<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
 						</div>
 					</form>
 				</div>
@@ -371,12 +365,18 @@
 	<script src="ckeditor/ckeditor.js"></script>
 	<script>
 	ClassicEditor
-	    .create( document.querySelector( '#editor' ), {
-	        removePlugins: [ 'Heading', 'Link' ],
-	        toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
-	    } )
-	    .catch( error => {
-	        console.log( error );
+    .create( document.querySelector( '#editor' ), {
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .catch( error => {
+        console.log( error );
     } );
 	
 	</script>

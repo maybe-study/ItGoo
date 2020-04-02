@@ -50,6 +50,7 @@ public class ClientController {
 		System.out.println("입양시작하는중");
 		System.out.println("==================id==================="+p.getName());
 		mav = cm.applyadopt(multi,ad,p);
+		mav=cm.updatestatusdog(ad);
 		return mav;
 	}
 	
@@ -139,12 +140,13 @@ public class ClientController {
 	}
 	
 	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value = "/clentrecentdetail", method = RequestMethod.GET) public
-	ModelAndView clentrecentdetail(int dogid,Principal p) {
+	@RequestMapping(value = "/clentrecentdetail", method = RequestMethod.GET) 
+	public ModelAndView clentrecentdetail(int dogid,Principal p) {
 	System.out.println("가상입양디테일하게  보기"); 
 	mav=cm.clentrecentdetail(dogid,p);
 	return mav; 
 	}
+
 }
 
 

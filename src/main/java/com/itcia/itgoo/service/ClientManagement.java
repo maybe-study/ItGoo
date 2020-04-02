@@ -328,16 +328,6 @@ public class ClientManagement {
 
 
 
-
-	/*
-	 * public ModelAndView showmyvirtualdog(int dogid, Principal p) { VirtualAdopt
-	 * va= new VirtualAdopt(); va.setDogid(dogid); va.setId(p.getName());
-	 * List<VirtualAdopt> vList=cDao.showvirtualdog(va);
-	 * mav.addObject("dogid",dogid); mav.addObject("vList",vList);
-	 * mav.setViewName("MyVirtualRecent"); return mav; }
-	 */
-
-
 	public ModelAndView recentvirtualadopt(Principal p) {
 
 	List<VirtualAdopt> va=cDao.showmyvirtualadopt(p.getName());
@@ -371,5 +361,11 @@ public class ClientManagement {
 	mav.setViewName("./client/RecentDetail");
 	return mav;
 
+	}
+
+	public ModelAndView updatestatusdog(Adopt ad) {
+		System.out.println(ad.getDogid());
+		cDao.updatestatusdog(ad);
+		return mav;
 	}
 }
