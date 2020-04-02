@@ -13,7 +13,6 @@ import com.itcia.itgoo.dto.Communityfile;
 import com.itcia.itgoo.share.UploadFile;
 
 @Service
-@Transactional
 public class CommunityManagement {
 	@Autowired
 	private ICommunityDao iDao;

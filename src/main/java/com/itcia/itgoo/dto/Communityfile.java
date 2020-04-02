@@ -10,11 +10,9 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Alias("Communityfile")
+@Alias("communityfile")
 @Accessors(chain=true)
 public class Communityfile {
-
-	
 	private String communityfile;
 	private int communitynum;
 }

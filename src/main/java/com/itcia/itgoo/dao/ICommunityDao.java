@@ -4,11 +4,9 @@ import org.apache.ibatis.annotations.Insert;
 
 import com.itcia.itgoo.dto.Communityfile;
 
-public class ICommunityDao {
+public interface ICommunityDao {
 
 	@Insert("INSERT INTO COMMUNITYFILE VALUES(#{communityfile},#{communitynum})")
-	public void insertCommunityfile(String picPath, String communityfile) {
-
-	}
+	public void insertCommunityfile(String picPath, String communityfile);
 
 }
