@@ -63,6 +63,10 @@ html, body {
       -webkit-align-items: center;
       align-items: center;
     }
+    #activityimg{
+    width:600px;
+    height:600px;
+    }
 </style>
 </head>
 <body>

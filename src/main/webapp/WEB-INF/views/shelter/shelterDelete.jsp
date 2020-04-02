@@ -269,7 +269,7 @@
 
 	container.pagination({
         dataSource:${dogList} ,  //받아온 데이터
-        pageSize: 10,
+        pageSize: 7,
         callback: function (data, pagination) { //데이터 찍어주는 부분
            console.log("data=",data);
            temp=data;

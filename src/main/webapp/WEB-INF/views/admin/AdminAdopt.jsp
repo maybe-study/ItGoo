@@ -40,6 +40,13 @@
   ======================================================= -->
 <meta name="_csrf" th:content="${_csrf.token}" />
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<style>
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 5px;
+
+}
+
+</style>
 </head>
 
 <body>
@@ -163,7 +170,7 @@
     </script>
 	<script>
 		$.each(${adoptList}, function(idx, adopt){
-  	  		console.log(adopt.idfile);
+  	  		console.log(adopt);
 			var $adoptList=$("#adoptList");
   	  		var $tr=$("<tr>").appendTo($adoptList);
   	  		$("<td>").text(idx).appendTo($tr);
@@ -176,7 +183,7 @@
   	  		$("<td>").append($('<img style="width:200px">').attr('src',adopt.idfile)).appendTo($tr);
   	  		var $btn=$('<button type="button" id="passBtn">').text("서류 합격");
   	  		var $btn2=$('<button type="button" id="nonPassBtn">').text("탈락");
-  	  		$("<td>").append($btn).appendTo($tr);
+  	  		if(adopt.status==1){$("<td>").append($btn).appendTo($tr);}else{$("<td>").append('').appendTo($tr);}
   	  		$("<td>").append($btn2).appendTo($tr);
   	  		$btn.on("click",function(){
   	  			PassAjax(adopt.id,adopt.dogid,$phaseTd,$btn);

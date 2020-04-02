@@ -286,7 +286,13 @@ hr {
    <script src="js/swiper.min.js"></script>
 
    <script>
-      
+   function empty(){
+	   $('#name').empty();
+	   $('#age').empty();
+	   $('#dogjungsung').empty();
+	   $('#sex').empty();
+	   $('#special').empty();
+   }
    var $dogList = $("#dogList");
    $.each(${dogList},function(idx,data){
       console.log("data어돕트 값",data);
@@ -299,7 +305,7 @@ hr {
                 .append($('<h4 class="text-uppercase m-0"><hr>').text(data.dogname))
                 .append($('<hr class="my-4">')).append($img)
                 .append($('<div class="small text-black-50"><hr>').text(data.dogage+" 살"))
-                .append($('<div class="small text-black-50"><hr>').text(data.dogspecial))
+                .append($('<div class="small text-black-50"><hr>').append(data.dogspecial))
                 .append($('<div class="small text-black-50"><hr>').text("중성화 여부 : "+data.dogjungsung));
           console.log("인덱스는!!!"+idx);
           console.log(idx);
@@ -330,6 +336,7 @@ hr {
                   console.log("data",data);
                   var $uls=$('.carousel-indicators').empty();
                   var $items=$('.carousel-inner').empty();
+                  empty();
                   //사진 리스트
                   $.each(data.dogpics,function(idx,pic){
                      if(idx==0){
@@ -349,7 +356,7 @@ hr {
                   $('#age').text(data.dogage+" 살");
                   $('#dogjungsung').text(data.dogjungsung==0?"O":"X");
                   $('#sex').text(data.sex==0?"남":"여");
-                  $('#special').text(data.dogspecial);
+                  $('#special').append(data.dogspecial);
                   
                     
                   

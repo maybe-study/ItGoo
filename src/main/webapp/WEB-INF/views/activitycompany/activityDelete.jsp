@@ -244,7 +244,7 @@
     container.pagination({
       
         dataSource:${adList} ,  //받아온 데이터
-        pageSize: 10,
+        pageSize: 6,
         callback: function (data, pagination) { //데이터 찍어주는 부분
            console.log("data=",data);
            temp=data;

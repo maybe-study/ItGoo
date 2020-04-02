@@ -356,14 +356,12 @@
 							var $div=$('<div class="item">').appendTo($items);
 							$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
 						}
-
 					});
 					$('#name').text(data.dogname);
 					$('#age').text(data.dogage+" 살");
 					$('#dogjungsung').text(data.dogjungsung==0?"O":"X");
 					$('#sex').text(data.sex==0?"남":"여");
 					$('#special').text(data.dogspecial);
-
 				} , error : function(error) {
 					console.log(error);
 				}
