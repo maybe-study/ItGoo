@@ -75,6 +75,11 @@ body {
    height: 100%;
 }
 
+hr {
+	color: gray;
+	width: 400px;
+}
+
 .swiper-slide {
    text-align: center;
    font-size: 18px;
@@ -183,26 +188,42 @@ body {
                   </div>
                   <div class="modal-body">
                      <table style="margin: auto">
-                        <tr>
+                        <tr style="border-bottom: 1px solid #dddddd;" >
                            <td>이름</td>
-                           <td id="name"></td>
                         </tr>
-                        <tr>
+                        
+                 		 
+                          <tr id="name" style="border-bottom: 1px solid #dddddd;"></tr>
+                          
+                        <tr style="border-bottom: 1px solid #dddddd;">
                            <td>나이</td>
-                           <td id="age"></td>
                         </tr>
-                        <tr>
+                        
+                         
+                        <tr id="age" style="border-bottom: 1px solid #dddddd;"></tr>
+                        
+                        <tr style="border-bottom: 1px solid #dddddd;">
                            <td>중성화 여부</td>
-                           <td id="dogjungsung"></td>
+                       
                         </tr>
-                        <tr>
+                        
+                        
+                        <tr id="dogjungsung" style="border-bottom: 1px solid #dddddd;"></tr>
+                        
+                        <tr style="border-bottom: 1px solid #dddddd;">
                            <td>성별</td>
-                           <td id="sex"></td>
                         </tr>
-                        <tr>
+                        
+                        
+                        <tr id="sex" style="border-bottom: 1px solid #dddddd;"></tr>
+                        
+                        <tr style="border-bottom: 1px solid #dddddd;">
                            <td>특이사항</td>
-                           <td id="special"></td>
                         </tr>
+                        
+                         
+                         <tr id="special" style="border-bottom: 1px solid #dddddd;"></tr>
+                         
                      </table>
                      <div id="demo" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -275,11 +296,11 @@ body {
         //$img[0].dataset.
           var $div3 = $('<div class="card-body text-center">')
                 .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-                .append($('<h4 class="text-uppercase m-0">').text(data.dogname))
+                .append($('<h4 class="text-uppercase m-0"><hr>').text(data.dogname))
                 .append($('<hr class="my-4">')).append($img)
-                .append($('<div class="small text-black-50">').text(data.dogage+" 살"))
-                .append($('<div class="small text-black-50">').text("특이사항 : "+data.dogspecial))
-                .append($('<div class="small text-black-50">').text("중성화 여부 : "+data.dogjungsung));
+                .append($('<div class="small text-black-50"><hr>').text(data.dogage+" 살"))
+                .append($('<div class="small text-black-50"><hr>').text(data.dogspecial))
+                .append($('<div class="small text-black-50"><hr>').text("중성화 여부 : "+data.dogjungsung));
           console.log("인덱스는!!!"+idx);
           console.log(idx);
           var $div2 = $('<div class="card py-4 h-100">').append($div3);

@@ -95,13 +95,12 @@ public interface IClientDao {
 	
 	@Select("select * from smallmeeting where smallnumber=#{smallnumber}")
 	List<SmallMeeting> mysmallmeetingdetail(Principal p, SmallMeeting sm,@Param("smallnumber") int smallnumber);
-
+	
 	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
 			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
 			"where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
 	List<VirtualAdopt> clentrecentdetail(VirtualAdopt boyoung);
-
 
 	/*
 	 * @Select("SELECT * FROM recentpics join recent on recentpics.recentid = recent.recentid \r\n"
@@ -110,5 +109,4 @@ public interface IClientDao {
 	 * "where virtualadopt.id=#{id}") List<VirtualAdopt> showvirtualdog(VirtualAdopt
 	 * va);
 	 */
-
 }
