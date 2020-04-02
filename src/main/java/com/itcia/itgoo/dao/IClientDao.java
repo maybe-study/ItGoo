@@ -92,8 +92,9 @@ public interface IClientDao {
 	void completesmall(SmallMeeting sm);
 
 	void cancelsmall(SmallMeeting sm);
-
-	SmallMeeting mysmallmeetingdetail(Integer smallnumber);
+	
+	@Select("select * from smallmeeting where smallnumber=#{smallnumber}")
+	List<SmallMeeting> mysmallmeetingdetail(Principal p, SmallMeeting sm,@Param("smallnumber") int smallnumber);
 
 	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +

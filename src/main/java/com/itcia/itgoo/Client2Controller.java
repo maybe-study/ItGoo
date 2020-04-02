@@ -148,4 +148,10 @@ public class Client2Controller {
 		attr.addFlashAttribute("sm",sm);
 		return mav;
 	}
+	@RequestMapping(value = "/mysmallmeetingdetail" , method = RequestMethod.GET)
+	public ModelAndView mysmallmeetingdetail(Principal p, SmallMeeting sm, int smallnumber) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+		mav= cm.mysmallmeetingdetail(p,sm,smallnumber);
+		return mav;
+	}
 }

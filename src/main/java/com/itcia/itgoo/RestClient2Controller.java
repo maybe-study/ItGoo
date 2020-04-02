@@ -40,19 +40,12 @@ public class RestClient2Controller {
 		return mav;
 	}
 	@RequestMapping(value = "/myenrollsmalldetail" , method = RequestMethod.GET)
-	public ModelAndView myenrollsmalldetail(Integer smallnumber) {	//null 값도 받으려고
+	public ModelAndView myenrollsmalldetail( Integer smallnumber) {	//null 값도 받으려고
 		System.out.println("여기 있어요");
 
 		mav= cm.myenrollsmalldetail(smallnumber);
 
 		return mav;
 	}
-	@RequestMapping(value = "/mysmallmeetingdetail" , method = RequestMethod.GET)
-	public ModelAndView mysmallmeetingdetail(Integer smallnumber) {	//null 값도 받으려고
-		System.out.println("여기 있어요");
-
-		mav= cm.mysmallmeetingdetail(smallnumber);
-
-		return mav;
-	}
+	
 }

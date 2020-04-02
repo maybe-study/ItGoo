@@ -23,6 +23,7 @@
    border: 0;
    outline: 0;
    color: blue;
+   
 }
 
 #foot {
@@ -42,6 +43,9 @@
 
 #empty {
    height: 300px;
+}
+#logoutform{
+display: inline-block;
 }
 </style>
 </head>
@@ -65,11 +69,11 @@
             <a href="joinform">회원가입</a>
          </sec:authorize>
          <sec:authorize access="isAuthenticated()">
-            <form method="post" action="logout">
+            <form method="post" action="logout" id="logoutform">
                <input type="submit" value="로그아웃" id="logout"> <input
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
-            <form method="get" action="mypage">
+            <form method="get" action="mypage" id="logoutform">
             	<input type="submit" value="마이페이지" id="logout"> <input
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
