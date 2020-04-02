@@ -42,7 +42,7 @@
 	height: 20%;
 }
 .ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline{
- width:1000px;
+ width:466px;
 }
 
 </style>
@@ -289,7 +289,7 @@
 											<tr>
 
 												<td>소개글</td>
-												<td style="width:1000px">
+												<td style="width:466px">
 												<textarea id="editor" class="dogspecial"
 														name="dogspecial"
 														style="word-break: normal; height: 200px; width: 500px;"></textarea>
@@ -298,18 +298,13 @@
 										</table>
 									</div>
 								</div>
-
-
-
-
 							</section>
 						</div>
 						<div class="btn-div">
 
 							<input type="submit" id="insertdogbtn"
 								class="insertactivitybtn" value="액티비티 등록" />
-								<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
-
+							<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
 						</div>
 					</form>
 				</div>
