@@ -41,6 +41,12 @@
 	width: 20%;
 	height: 20%;
 }
+.ck .ck-reset .ck-editor .ck-rounded-corners{
+ width:1000px;
+}
+#editor{
+ width:1000px;
+}
 </style>
 <!-- =======================================================
     Template Name: Dashio
@@ -285,7 +291,7 @@
 											<tr>
 
 												<td>소개글</td>
-												<td><textarea id="dogspecial" class="dogspecial"
+												<td><textarea id="editor" class="dogspecial"
 														name="dogspecial"
 														style="word-break: normal; height: 200px; width: 500px;"></textarea>
 												</td>
@@ -362,7 +368,18 @@
 	<script src="lib/advanced-form-components.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="lib/common-scripts.js"></script>
-
+	<script src="ckeditor/ckeditor.js"></script>
+	<script>
+	ClassicEditor
+	    .create( document.querySelector( '#editor' ), {
+	        removePlugins: [ 'Heading', 'Link' ],
+	        toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
+	    } )
+	    .catch( error => {
+	        console.log( error );
+    } );
+	
+	</script>
 	<script>
 		$(function() {
 			$("#profile").on("change", loadImage)
