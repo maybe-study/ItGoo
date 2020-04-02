@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itcia.itgoo.dto.Activity;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.CareSheet;
 import com.itcia.itgoo.dto.Commonmember;
@@ -25,6 +26,7 @@ import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.dto.VirtualAdopt;
+import com.itcia.itgoo.service.ActivityManagement;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.MemberManagement;
 
@@ -36,6 +38,8 @@ public class ClientController {
 	@Autowired
 	private ClientManagement cm;
 	@Autowired MemberManagement mm;
+	@Autowired
+	private ActivityManagement am;
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/adoptlist")
@@ -54,6 +58,12 @@ public class ClientController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
+	public ModelAndView activityList( Activity ac,int dogid) {
+			System.out.println(dogid);
+		mav= am.activityList(ac,dogid);
+		return mav;
+	}
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/myadoptphase", method = RequestMethod.GET)
 	public ModelAndView myadoptphase(Principal p, Adopt ad) {

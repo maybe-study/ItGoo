@@ -88,12 +88,7 @@ public class ActivityController {
 		attr.addFlashAttribute("ac",ac);
 		return mav;
 	}
-	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
-	public ModelAndView activityList( Activity ac,int dogid) {
-			System.out.println(dogid);
-		mav= am.activityList(ac,dogid);
-		return mav;
-	}
+	
 	@RequestMapping(value = "/activityreservationbtn" )
 	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {	//null 값도 받으려고
 		if(p!= null) {
