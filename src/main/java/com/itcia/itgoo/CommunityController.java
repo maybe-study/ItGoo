@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itcia.itgoo.dto.Community;
+import com.itcia.itgoo.dto.Communityfile;
 import com.itcia.itgoo.service.CommunityManagement;
 
 @Controller
@@ -19,10 +19,9 @@ public class CommunityController {
 	private CommunityManagement cm;
 	ModelAndView mav = new ModelAndView();
 
-	
 	@PostMapping(value = "/writepage")
-	public ModelAndView writeList(MultipartHttpServletRequest multi, Community cMemmber) {
-		mav = cm.writeList(multi, cMemmber);
+	public ModelAndView writeList(MultipartHttpServletRequest multi, Communityfile cfile) {
+		mav = cm.writeList(multi, cfile);
 		return mav;
 
 	}

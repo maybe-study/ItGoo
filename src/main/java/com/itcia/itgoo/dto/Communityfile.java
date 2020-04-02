@@ -1,7 +1,5 @@
 package com.itcia.itgoo.dto;
 
-import java.util.List;
-
 import org.apache.ibatis.type.Alias;
 
 import lombok.AllArgsConstructor;
@@ -11,10 +9,12 @@ import lombok.experimental.Accessors;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias("cflie")
 @Data
+@Alias("Communityfile")
 @Accessors(chain=true)
-public class Cfile {
+public class Communityfile {
+
+	
 	private String communityfile;
 	private int communitynum;
 }
