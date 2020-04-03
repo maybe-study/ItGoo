@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -155,6 +156,17 @@ public class ClientController {
 	System.out.println("가상입양디테일하게  보기"); 
 	mav=cm.clentrecentdetail(dogid,p);
 	return mav; 
+	}
+	@RequestMapping(value = "/activityreservationbtn" )
+	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {	//null 값도 받으려고
+		if(p!= null) {
+			p.getName();
+			System.out.println("p="+p.getName());
+			System.out.println("액티비티에 필요한 강아지 번호는"+dogid);
+		}
+		mav= am.activityReservationBtn(p,rv,attr,dogid);
+		attr.addFlashAttribute("rv",rv);
+		return mav;
 	}
 
 }

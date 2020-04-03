@@ -1,11 +1,15 @@
 package com.itcia.itgoo;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
+import com.itcia.itgoo.service.ActivityManagement;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
 
@@ -25,6 +30,8 @@ public class RestClientController {
 	private ClientManagement cm;
 	@Autowired
 	private AuctionManagement am;
+	@Autowired
+	private ActivityManagement acm;
 	
 	ModelAndView mav = new ModelAndView();
 	@Secured("ROLE_USER")
@@ -88,5 +95,13 @@ public class RestClientController {
 		System.out.println("===================ckupload====================");
 		System.out.println(file.getOriginalFilename());
 		return am.ckUpload(file);
+	}
+	@RequestMapping(value = "/activitylistdetail" , method = RequestMethod.GET)
+	public ModelAndView activityListDetail(Integer activitynum,int dogid) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+		ModelAndView mav= new ModelAndView();
+		mav= acm.activityListDetail(activitynum,dogid);
+		
+		return mav;
 	}
 }

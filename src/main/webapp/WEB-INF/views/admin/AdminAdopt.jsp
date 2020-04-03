@@ -45,7 +45,9 @@
     padding: 5px;
 
 }
-
+.content-panel{
+	padding: 10px;
+}
 </style>
 </head>
 
@@ -103,11 +105,11 @@
                     <th>회원이름</th>
                     <th>휴대폰 번호</th>
                     <th>상태</th>
-                    <th>입양 신청한 강아지</th>
+                    <th>강아지</th>
                     <th>이유</th>
                     <th>반려견을 키운 경력</th>
                     <th>신분증</th>
-                    <th>테스트</th>
+                    <th>테스트, 설문지</th>
                     <th>관리</th>
                   </tr>
                 </thead>
@@ -147,25 +149,51 @@
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="lib/jquery/jquery.min.js"></script>
-
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="lib/jquery.scrollTo.min.js"></script>
-	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="lib/jquery.sparkline.js"></script>
-	<!--common script for all pages-->
-	<script src="lib/common-scripts.js"></script>
-	<script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript" src="lib/gritter-conf.js"></script>
-	<!--script for this page-->
-	<script src="lib/sparkline-chart.js"></script>
-	<script src="lib/zabuto_calendar.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="lib/jquery.ui.touch-punch.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
 	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <script>
         jQuery(function($){
-            $("#table1").DataTable({info: false});
-        });
+            $("#table1").DataTable({
+            	 "info" : true,
+                 "order": [[0, 'desc']], // asc 또는 desc
+                 "dom" : '<"top"il>t<"bottom"prf><"clear">',
+                 "language" : {
+                    "emptyTable" : "데이터가 없어요.",
+                    "info" : "현재 _START_ - _END_ / _TOTAL_건",
+                    "infoEmpty" : "데이터 없음",
+                    "zeroRecords": "일치하는 데이터가 없어요.",
+                      "loadingRecords": "로딩중...",
+                      "processing":     "잠시만 기다려 주세요...",
+                    "paginate" : {
+                       "next" : "다음",
+                       "previous" : "이전"
+                    }
+                 },
+                 "columnDefs": [
+                    { "width": "5%", "targets": 0 },
+                    { "width": "5%", "targets": 1 },
+                    { "width": "5%", "targets": 2 },
+                    { "width": "5%", "targets": 3 },
+                    { "width": "5%", "targets": 4 },
+                    { "width": "25%", "targets": 5 },
+                    { "width": "15%", "targets": 6 },
+                    { "width": "20%", "targets": 7 },
+                    { "width": "10%", "targets": 8 },
+                    { "width": "5%", "targets": 9 },
+                    
+                   ]
+                 
+              });
+
+            
+            });
         
     </script>
 	<script>
@@ -183,7 +211,17 @@
   	  		$("<td>").append($('<img style="width:200px">').attr('src',adopt.idfile)).appendTo($tr);
   	  		var $btn=$('<button type="button" id="passBtn">').text("서류 합격");
   	  		var $btn2=$('<button type="button" id="nonPassBtn">').text("탈락");
-  	  		if(adopt.status==1){$("<td>").append($btn).appendTo($tr);}else{$("<td>").append('').appendTo($tr);}
+  	  		var $careBtn=$('<button type="button" id="careBtn">').text("설문지 확인").click(function(){
+  	  			
+  	  		});
+  	  		if(adopt.phase==1){
+  	  			$("<td>").append($btn).appendTo($tr);
+  	  		}else if (adopt.phase==6){
+  	  			$("<td>").append($careBtn).appendTo($tr);
+  	  		}else{
+  	  			$("<td>").append('').appendTo($tr);
+  	  		}
+  	  		if(adopt.phase==6)
   	  		$("<td>").append($btn2).appendTo($tr);
   	  		$btn.on("click",function(){
   	  			PassAjax(adopt.id,adopt.dogid,$phaseTd,$btn);
@@ -228,7 +266,7 @@
 				$btn.attr('disabled','true')
 				
 			});
-		}
+		};
 		
 	</script>
 

@@ -89,17 +89,7 @@ public class ActivityController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/activityreservationbtn" )
-	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {	//null 값도 받으려고
-		if(p!= null) {
-			p.getName();
-			System.out.println("p="+p.getName());
-			System.out.println("액티비티에 필요한 강아지 번호는"+dogid);
-		}
-		mav= am.activityReservationBtn(p,rv,attr,dogid);
-		attr.addFlashAttribute("rv",rv);
-		return mav;
-	}
+	
 	@RequestMapping(value = "/activitypass", method = RequestMethod.GET)
 	public  ModelAndView activityPass (Principal p ,Company cp,Integer pageNum) {
 		if(p!=null) {
