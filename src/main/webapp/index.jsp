@@ -97,6 +97,7 @@ display: inline-block;
             <li class="nav-item"><a href="list.jsp" class="nav-link">커뮤니티</a></li>
             <li class="nav-item"><a href="adoptList.jsp" class="nav-link">입양공고</a></li>
             <li class="nav-item"><a href="ItGoostar.html" class="nav-link">ITGOO_STAR</a></li>
+            <li class="nav-item"><a href="dogkind.html" class="nav-link">강아지 백과사전</a></li>
          </ul>
       </div>
    </nav>
