@@ -69,12 +69,16 @@ display: inline-block;
             <a href="joinform">회원가입</a>
          </sec:authorize>
          <sec:authorize access="isAuthenticated()">
+         <a class="logout" href="#"
+						onclick="document.getElementById('logout').submit();"> Logout</a>
+		<a class="logout" href="#"
+						onclick="document.getElementById('mypage').submit();"> 마이페이지</a>
             <form method="post" action="logout" id="logoutform">
                <input type="submit" value="로그아웃" id="logout"> <input
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
             <form method="get" action="mypage" id="logoutform">
-            	<input type="submit" value="마이페이지" id="logout"> <input
+            	<input type="submit" value="마이페이지" id="mypage"> <input
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
          </sec:authorize>
