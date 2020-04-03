@@ -1,7 +1,5 @@
 package com.itcia.itgoo;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.service.ActivityManagement;
 import com.itcia.itgoo.service.AuctionManagement;
