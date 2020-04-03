@@ -30,6 +30,9 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <style>
+body{
+	font-size:20px;
+}
 .masthead {
    position: relative;
    width: 100%;
@@ -187,44 +190,36 @@ hr {
 
                   </div>
                   <div class="modal-body">
-                     <table style="margin: auto">
-                        <tr style="border-bottom: 1px solid #dddddd;" >
+                     <table >
+                        <tr>
                            <td>이름</td>
+                          <td id="name"></td>
                         </tr>
                         
                  		 
-                          <tr id="name" style="border-bottom: 1px solid #dddddd;"></tr>
                           
-                        <tr style="border-bottom: 1px solid #dddddd;">
+                        <tr>
                            <td>나이</td>
+                        <td id="age"></td>
                         </tr>
                         
                          
-                        <tr id="age" style="border-bottom: 1px solid #dddddd;"></tr>
                         
-                        <tr style="border-bottom: 1px solid #dddddd;">
+                        <tr>
                            <td>중성화 여부</td>
+                        <td id="dogjungsung" ></td>
                        
                         </tr>
                         
-                        
-                        <tr id="dogjungsung" style="border-bottom: 1px solid #dddddd;"></tr>
-                        
-                        <tr style="border-bottom: 1px solid #dddddd;">
+                        <tr>
                            <td>성별</td>
+                        <td id="sex"></td>
                         </tr>
-                        
-                        
-                        <tr id="sex" style="border-bottom: 1px solid #dddddd;"></tr>
-                        
-                        <tr style="border-bottom: 1px solid #dddddd;">
-                           <td>특이사항</td>
-                        </tr>
-                        
-                         
-                         <tr id="special" style="border-bottom: 1px solid #dddddd;"></tr>
-                         
                      </table>
+                        <div id="special" >
+                        
+                        </div>
+                        
                      <div id="demo" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
 
