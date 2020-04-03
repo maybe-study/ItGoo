@@ -171,16 +171,16 @@
 								<header class="panel-heading"> 액티비티 업체 위치 검색 및 변경 </header>
 
 								<div class="panel-body">
-									<input type="text" id="sample4_postcode" placeholder="우편번호">
+									<input type="text" id="sample4_postcode" placeholder="우편번호" required>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
-										onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+										onclick="sample4_execDaumPostcode()" value="우편번호 찾기" required>
 									<br> <input type="text" id="sample4_roadAddress"
-										placeholder="도로명주소" name="companylocation"> <input
-										type="text" id="sample4_jibunAddress" placeholder="지번주소">
+										placeholder="도로명주소" name="companylocation" required> <input
+										type="text" id="sample4_jibunAddress" placeholder="지번주소" required>
 									<br> <span id="guide" style="color: #999; display: none"></span>
 									<input type="text" id="sample4_detailAddress"
-										placeholder="상세주소"> <input type="text"
-										id="sample4_extraAddress" placeholder="참고항목"> <br>
+										placeholder="상세주소" required> <input type="text"
+										id="sample4_extraAddress" placeholder="참고항목" required> <br>
 									<div id="map" style="width: 100%; height: 350px;"></div>
 									<script type="text/javascript"
 										src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>

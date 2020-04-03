@@ -123,6 +123,33 @@
         
         </section>
       </section>
+		<!-- modal  -->
+				<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
+					role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content" style="width: 1000px;">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">설문지 답변</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+
+							</div>
+							<div class="modal-body">
+								<div>문제:</div>
+								<div>답</div>
+							
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
 
 		<!-- /row -->
 		<!--main content end-->
@@ -212,7 +239,7 @@
   	  		var $btn=$('<button type="button" id="passBtn">').text("서류 합격");
   	  		var $btn2=$('<button type="button" id="nonPassBtn">').text("탈락");
   	  		var $careBtn=$('<button type="button" id="careBtn">').text("설문지 확인").click(function(){
-  	  			
+  	  			$('#modalBox').modal('show');
   	  		});
   	  		if(adopt.phase==1){
   	  			$("<td>").append($btn).appendTo($tr);
@@ -221,7 +248,6 @@
   	  		}else{
   	  			$("<td>").append('').appendTo($tr);
   	  		}
-  	  		if(adopt.phase==6)
   	  		$("<td>").append($btn2).appendTo($tr);
   	  		$btn.on("click",function(){
   	  			PassAjax(adopt.id,adopt.dogid,$phaseTd,$btn);
@@ -246,7 +272,6 @@
 				console.log(data);
 				$phaseTd.text(data.status);
 				$btn.attr('disabled','true')
-				
 			});
 		}
 		function PassAjax(id,dogid,$phaseTd,$btn){
@@ -264,10 +289,25 @@
 				console.log(data);
 				$phaseTd.text(data.status);
 				$btn.attr('disabled','true')
-				
 			});
 		};
-		
+		function careSheet(id,dogid,$btn){
+			$.ajaxSetup({
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				}
+			});//먼저 보냄
+			$.ajax({ // 에이작스 열고
+				type : 'post', //타입은 get 
+				url : "usercaresheet", // restFul 방식
+				data : {id:id, dogid:dogid},
+				dataType:"json"
+			}).done((data)=>{
+				console.log(data);
+				//모달에 붙이기
+				$btn.attr('disabled','true')
+			});
+		};
 	</script>
 
 </body>
