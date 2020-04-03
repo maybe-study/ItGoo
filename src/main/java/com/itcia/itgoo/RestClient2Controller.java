@@ -14,7 +14,7 @@ import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.service.ClientManagement;
 
 @Controller
-@Secured("ROLE_ACTIVITY")
+@Secured("ROLE_USER")
 public class RestClient2Controller {
 	ModelAndView mav = new ModelAndView();
 
@@ -31,6 +31,7 @@ public class RestClient2Controller {
 
 		return mav;
 	}
+	
 	@RequestMapping(value = "/smalllistdetail" , method = RequestMethod.GET)
 	public ModelAndView smalllistdetail(Integer smallnumber) {	//null 값도 받으려고
 		System.out.println("여기 있어요");
@@ -39,6 +40,7 @@ public class RestClient2Controller {
 
 		return mav;
 	}
+	
 	@RequestMapping(value = "/myenrollsmalldetail" , method = RequestMethod.GET)
 	public ModelAndView myenrollsmalldetail( Integer smallnumber) {	//null 값도 받으려고
 		System.out.println("여기 있어요");
