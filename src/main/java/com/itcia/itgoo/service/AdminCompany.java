@@ -134,6 +134,8 @@ public class AdminCompany {
 	public ModelAndView adminAdoptList() {
 		List<Adopt> adoptList=aDao.adminAdoptList();
 		mav.addObject("adoptList",new Gson().toJson(adoptList));
+		List<Question> questionList = aDao.adminQuestionList();
+		mav.addObject("questionList",new Gson().toJson(questionList));
 		mav.setViewName("/admin/AdminAdopt");
 		return mav;
 	}
