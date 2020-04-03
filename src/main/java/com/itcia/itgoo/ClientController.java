@@ -127,7 +127,7 @@ public class ClientController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/virtualadoptapply", method = RequestMethod.GET)
 	public ModelAndView virtualadoptapply(int dogid,VirtualAdopt va,Principal p) {
-		System.out.println("시트 제출!");
+		System.out.println("가상입양 인서트!");
 		System.out.println(dogid);
 		mav=cm.virtualadoptapply(dogid,va,p);
 		return mav;
@@ -160,10 +160,20 @@ public class ClientController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/clentrecentdetail", method = RequestMethod.GET) 
 	public ModelAndView clentrecentdetail(int dogid,Principal p) {
-	System.out.println("가상입양디테일하게  보기"); 
+	System.out.println("근황 디테일 보기"+dogid); 
 	mav=cm.clentrecentdetail(dogid,p);
 	return mav; 
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/cancelvirtualadopt", method = RequestMethod.GET) 
+	public ModelAndView cancelvirtualadopt(int dogid,Principal p) {
+		System.out.println("가상입양 취소할 "+dogid);
+		System.out.println("가상입양 취소로 넘어가는중"); 
+		mav=cm.cancelvirtualadopt(dogid,p);
+		return mav; 
+	}
+	
 	@RequestMapping(value = "/activityreservationbtn" )
 	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {	//null 값도 받으려고
 		if(p!= null) {

@@ -32,4 +32,5 @@ public class VirtualAdopt {
 	private int totaldonation;
 	private int input;
 	private int recentid;
+	private int status;
 }

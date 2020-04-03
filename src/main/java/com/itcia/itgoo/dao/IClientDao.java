@@ -81,14 +81,14 @@ public interface IClientDao {
 
 	SmallMeeting myenrollsmalldetail(Integer smallnumber);
 
-	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday},sysdate,0)")
+	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday},sysdate,0,#{status})")
 	void virtualadoptapply(VirtualAdopt va);
 
 	@Select("SELECT * FROM virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
 
 
-	@Select("select * from virtualadopt join recent on recent.id=virtualadopt.id join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
+	@Select("select * from virtualadopt join recent on recent.id=virtualadopt.id join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id} and virtualadopt.status=1")
 	List<VirtualAdopt> showmyvirtualadopt(@Param("id")String String);
 
 	void completesmall(SmallMeeting sm);
@@ -101,7 +101,7 @@ public interface IClientDao {
 	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
 			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
-			"where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
+			"where recent.id=#{id} and recent.dogid=#{dogid}")
 	List<VirtualAdopt> clentrecentdetail(VirtualAdopt boyoung);
 
 	@Update("update dog set status = 1 where dogid=#{dogid}")
@@ -110,12 +110,10 @@ public interface IClientDao {
 	@Update("update adopt set phase = 7 where dogid=#{dogid}")
 	void finalupdate(int dogid);
 
+	@Update("update virtualadopt set status=2 where dogid=#{dogid} and id=#{id}")
+	void virtualdogupdate(@Param("dogid")int dogid,@Param("id")String name);
 
-	/*
-	 * @Select("SELECT * FROM recentpics join recent on recentpics.recentid = recent.recentid \r\n"
-	 * + "join virtualadopt on virtualadopt.dogid=recent.dogid \r\n" +
-	 * "join dog on dog.dogid=virtualadopt.dogid \r\n" +
-	 * "where virtualadopt.id=#{id}") List<VirtualAdopt> showvirtualdog(VirtualAdopt
-	 * va);
-	 */
+	@Delete("delete virtualadopt where dogid=#{dogid} and id=#{id}")
+	void deletevirtualadopt(@Param("dogid")int dogid, @Param("id")String name);
+
 }

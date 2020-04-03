@@ -146,13 +146,13 @@ public class ClientManagement {
 		System.out.println("마지막 선택 업데이트 중");
 		rs.setId(p.getName());
 		rs.setDogid(dogid);
-
+		System.out.println(choice);
 		if(choice.equals("go")){
 			System.out.println("사랑으로 키우기");
 			cDao.updateDog(rs);
+			cDao.virtualdogupdate(dogid,p.getName());
 			mav.setViewName("./clientMyPage");
-		}
-		if(choice.equals("stop")){
+		}else if(choice.equals("stop")){
 			System.out.println("강아지 입양해 좀!!!!!");
 			cDao.deleteadopt(rs);
 			cDao.deleteupdate(rs);
@@ -183,8 +183,6 @@ public class ClientManagement {
 		System.out.println("강아지아이디를 "+dogid);
 		System.out.println("사라진아이디를 찾아라"+p.getName());
 		System.out.println(cs.getDogid());
-		//System.out.println(cs.getId());
-		//System.out.println(cs.getQuestionnum());
 		mav.setViewName("clientMyPage");
 		mav.addObject("dogid",dogid);
 		List<CareSheet> aList= new Gson().fromJson(aJson, new TypeToken<List<CareSheet>>() {}.getType());
@@ -299,9 +297,10 @@ public class ClientManagement {
 		System.out.println(p.getName());
 		System.out.println(dogid);
 		va.setDogid(dogid);
-		System.out.println(va.getDogid());
 		va.setId(p.getName());
 		va.setPayday("15");
+		va.setStatus(1);
+		System.out.println(va.getStatus());
 		cDao.virtualadoptapply(va);
 		List<VirtualAdopt> vaList = cDao.myvirtual(va);
 		mav.addObject("dogid",dogid);
@@ -331,7 +330,6 @@ public class ClientManagement {
 
 
 	public ModelAndView recentvirtualadopt(Principal p) {
-
 	List<VirtualAdopt> va=cDao.showmyvirtualadopt(p.getName());
 	System.out.println(va);
 	mav.addObject("va",new Gson().toJson(va));
@@ -355,8 +353,10 @@ public class ClientManagement {
 	public ModelAndView clentrecentdetail(int dogid, Principal p) {
 	VirtualAdopt boyoung=new VirtualAdopt();
 	System.out.println("ok계획대로 가고있어");
+	System.out.println("내가 근황을 봐야할 강아지"+dogid);
 	boyoung.setId(p.getName());
 	boyoung.setDogid(dogid);
+	System.out.println("보영이가 갖고있는 도그아이디"+boyoung.getDogid());
 	List<VirtualAdopt> va=cDao.clentrecentdetail(boyoung);
 	System.out.println("내가 뿌릴 리스트"+va);
 	mav.addObject("cdList",new Gson().toJson(va));
@@ -368,6 +368,13 @@ public class ClientManagement {
 	public ModelAndView updatestatusdog(Adopt ad) {
 		System.out.println(ad.getDogid());
 		cDao.updatestatusdog(ad);
+		return mav;
+	}
+
+	public ModelAndView cancelvirtualadopt(int dogid, Principal p) {
+		System.out.println("매니지먼트 넘어온 취소할 강아지"+dogid);
+		cDao.deletevirtualadopt(dogid,p.getName());
+		mav.setViewName("/client/clientMyPage");
 		return mav;
 	}
 

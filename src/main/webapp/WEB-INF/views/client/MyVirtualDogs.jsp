@@ -131,26 +131,36 @@
 	<script>
 	 var $dogList = $("#addogList");
 	$.each(${va},function(idx,data){
+	if(data.status==0){
+		var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').text("현재 가상입양 중인 강아지가 없습니다.");
+		 $dogList.append($div1);
+	}else if(data.status==1){
 	      console.log("vavavava값",data);
 	      console.log("va의 dogid값",data.dogid);
 	        var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
-	          var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+	        var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
 	                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
 	                .append($('<h4 class="text-uppercase m-0">').text("강아지이름 :"+data.dogname))
 	                .append($('<h4 class="text-uppercase m-0">').text(data.dogage+" 살"))
-	                .append($('<h4 class="text-uppercase m-0">').text("특이사항 :"+data.dogspecial))
 	                .append($('<div class="text-uppercase m-0">').text(data.donation+" 원"))
 	                .append($('<div class="text-uppercase m-0">').text("결제일 : "+data.payday))
 	                .append($('<div class="text-uppercase m-0">').text("총 후원액 : "+data.totaldonation))
-	                .append("<a href='./clentrecentdetail?dogid="+data.dogid+"'>근황보기</a>");
-
-	          console.log("인덱스는!!!"+idx);
-	          console.log(idx);
+	                .append("<a href='./clentrecentdetail?dogid="+data.dogid+"'>근황보기</a><br>")
+	                .append("<a href='./cancelvirtualadopt?dogid="+data.dogid+"'>가상입양 취소</a>");
+				console.log("이제 나올 강아지 아이디",data.dogid);
 	          var $div2 = $('<div class="card py-4 h-100">').append($div4);
 	          $div2.append($div3);
-	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
+	          
+	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').append($div2);
 	           $dogList.append($div1);
-	     });
+	           }
+		else if(data.status==2){
+			 var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+             .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+             .append($('<h4 class="text-uppercase m-0">').text(data.dogname+"는 가상입양자님의 도움으로 입양이 되었습니다."))
+			$dogList.append($div1)
+		}
+	 });
 	
 
 	        	  
