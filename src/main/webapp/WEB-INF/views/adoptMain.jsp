@@ -132,10 +132,8 @@
 				<div class="col-xl-4 col-lg-5">
 					<div class="featured-text text-center text-lg-left">
 						<h4>입양하러가기</h4>
-						<p class="text-black-50 mb-0">Grayscale is open source and MIT
-							licensed. This means you can use it for any project - even
-							commercial projects! Download it, customize it, and publish your
-							website!</p>
+						<p class="text-black-50 mb-0">보호소가 세상의 전부인 아이들입니다. 넓은세상으로 이끌어주세요.
+						아이들은 언제든 사랑하고 사랑받을 준비가 되어있습니다. 용기내어 이 아이들의 가족이 되어주세요.</p>
 					</div>
 				</div>
 			</div>
@@ -150,10 +148,9 @@
 					<div class="bg-black text-center h-100 project">
 						<div class="d-flex h-100">
 							<div class="project-text w-100 my-auto text-center text-lg-left">
-								<h4 class="text-white">Misty</h4>
-								<p class="mb-0 text-white-50">An example of where you can
-									put an image of a project, or anything else, along with a
-									description.</p>
+								<h4 class="text-white">액티비티</h4>
+								<p class="mb-0 text-white-50">일반인 입양자들이 입양후 닥치는 문제를 해결하기 힘들어 재파양, 재유기 등의 문제가 있어서 이를 
+								해결하기 위해서 액티비티를 통해 유대감과 스트레스를 줄이고 입양자 집에서 빠르게 적응 할 수 있도록 도와줍니다.</p>
 								<hr class="d-none d-lg-block mb-0 ml-0">
 							</div>
 						</div>
@@ -171,10 +168,9 @@
 					<div class="bg-black text-center h-100 project">
 						<div class="d-flex h-100">
 							<div class="project-text w-100 my-auto text-center text-lg-right">
-								<h4 class="text-white">Mountains</h4>
-								<p class="mb-0 text-white-50">Another example of a project
-									with its respective description. These sections work well
-									responsively as well, try this theme on a small screen!</p>
+								<h4 class="text-white">가상입양</h4>
+								<p class="mb-0 text-white-50"> 가상입양 매칭을 통해 강아지의 근황과 후원금의 투명한 사용내역을 보여주는 ITGOO의 가상입양 시스템입니다.
+								높은 입양의 벽으로 고민하신다면 가상입양을 통해 아이들을 도와주세요.</p>
 								<hr class="d-none d-lg-block mb-0 mr-0">
 							</div>
 						</div>

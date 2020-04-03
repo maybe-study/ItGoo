@@ -20,7 +20,7 @@ import com.itcia.itgoo.dto.VirtualAdopt;
 
 public interface IClientDao {
 	@Select("select max(dogpics.dogpic) dogpic,dog.dogid,dog.DOGAGE,dog.dogname,dog.dogspecial,dog.sex,dog.shelterid,dog.status "
-			+ "from dog join dogpics on dog.DOGID=dogpics.DOGID GROUP BY "
+			+ "from dog join dogpics on dog.DOGID=dogpics.DOGID where dog.status=0 GROUP BY "
 			+ "dog.dogid, dog.dogid, dog.DOGAGE, dog.dogname, dog.dogspecial, "
 			+ "dog.sex, dog.shelterid, dog.status")
 	List<Dog> adoplist();

@@ -65,7 +65,7 @@
 		a.activitydate,
 		a.activitystart,a.activitytime, a.activitydogcnt ,ado.phase
 		from company c,activity a,activityreserve ar ,adopt ado
-		where c.companyid=a.companyid and a.activitynum = ar.activitynum and ado.phase=4
+		where c.companyid=a.companyid and a.activitynum = ar.activitynum and ado.phase=4 and c.companyid = #{companyid}
 	</select>
 	<select id="passDetail" parameterType="int"
 		resultType="Reservation">
