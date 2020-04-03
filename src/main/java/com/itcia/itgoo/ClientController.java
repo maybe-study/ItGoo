@@ -116,6 +116,13 @@ public class ClientController {
 		mav=cm.submitSheet(dogid,aJson,p);
 		return mav;
 	}
+
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/chang", method = RequestMethod.GET)
+	public String chang() {
+		System.out.println("입양 감사드립니다.");
+		return "./client/chang";
+	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/virtualadoptapply", method = RequestMethod.GET)

@@ -51,6 +51,8 @@ public interface IClientDao {
 	@Delete("delete from adopt where dogid=#{dogid}")
 	void deleteadopt(Reservation rs);
 
+	@Update("update dog set status=0 WHERE dogid=#{dogid}")
+	void deleteupdate(Reservation rs);
 
 	List<CareSheet> showcaresheet();
 
@@ -104,6 +106,10 @@ public interface IClientDao {
 
 	@Update("update dog set status = 1 where dogid=#{dogid}")
 	void updatestatusdog(Adopt ad);
+
+	@Update("update adopt set phase = 7 where dogid=#{dogid}")
+	void finalupdate(int dogid);
+
 
 	/*
 	 * @Select("SELECT * FROM recentpics join recent on recentpics.recentid = recent.recentid \r\n"
