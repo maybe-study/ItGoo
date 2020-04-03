@@ -155,7 +155,7 @@
 					.append($('<h4 class="text-uppercase m-0" name="id">').text("사용자아이디 : " + data.id))
 					.append($('<h4 class="text-uppercase m-0" name="dogid">').text("강아지이름 : " + data.dogname))
 					.append($('<h4 class="text-uppercase m-0">').text("나이 : " + data.dogage))
-					.append($('<h4 class="text-uppercase m-0">').text("특이사항 : " + data.dogspecial))
+					.append($('<h4 class="text-uppercase m-0">').append("특이사항 : " + data.dogspecial))
 					.append($('<h4 class="text-uppercase m-0">').text("성별 : " + data.sex == 0 ?+"남" : "여"))
 					.append($('<h4 class="small text-black-50 id="donation"">').text("기부금액 :  " + money))
 					.append($('<h4 class="small text-black-50">').text("후원결재일 :  " + data.payday + "일"))
