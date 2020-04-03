@@ -73,7 +73,7 @@
 		join activityreserve on adopt.id=activityreserve.id 
 		join activity on activity.activitynum=activityreserve.activitynum 
 		join client on client.id=adopt.id
-		where adopt.phase=4 and adopt.dogid=activityreserve.dogid
+		where adopt.phase=4 and adopt.dogid=activityreserve.dogid and activityreserve.activitynum = #{activitynum}
 	</select>
 	<update id="updateReservationPhase" parameterType="Reservation">
 		update adopt set phase = 4 where dogid=#{dogid} and id=#{id}

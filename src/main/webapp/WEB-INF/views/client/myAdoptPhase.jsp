@@ -40,6 +40,14 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style>
+body{
+font-size:20px;
+}
+  tr:first-child{
+  	width:20px;
+  }
+  </style>
 </head>
 
 <body>
@@ -103,7 +111,7 @@
 				<div id="modalBox" class="modal fade" id="myModal" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content" style="width: 1000px;">
+						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title" id="myModalLabel">입양을 기다려요</h4>
 								<button type="button" class="close" data-dismiss="modal"
@@ -114,37 +122,13 @@
 							</div>
 							<div class="modal-body">
 								<div id="productCarousel" class="carousel slide"
-									data-ride="carousel" style="display: flex;">
+									data-ride="carousel">
 									<ol class="carousel-indicators">
 									</ol>
 									<div>
 										<div class="carousel-inner" role="listbox"></div>
 									</div>
-									<div style="margin-top: 100px; margin-left: 30px;">
-										<table style="margin: auto; float:left; display: flex;" >
-											<tr>
-												<td id="1" style="width:30px;">이름:</td>
-												<td id="name" style="display: flex;"></td>
-											</tr>
-
-											<tr>
-												<td id="2" style="width:30px;">나이:</td>
-												<td id="age"></td>
-											</tr>
-											<tr>
-												<td id="3" style="width:30px;">성별:</td>
-												<td id="sex"></td>
-											</tr>
-
-											<tr>
-												<td id="4" style="width:60px;">특이사항:</td>
-											</tr>
-
-											<tr id="another" style="margin: auto; float:left; display: flex;">
-												<td id="special" style="width:200px;"></td>
-											</tr>
-										</table>
-									</div>
+									
 								</div>
 								<a class="left carousel-control" href="#productCarousel"
 									role="button" data-slide="prev"> <span
@@ -155,20 +139,25 @@
 									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>
-								<!-- <div id="demo" class="carousel slide" data-ride="carousel">
-										<ul class="carousel-indicators">
-										</ul>
-										The slideshow
-										<div class="carousel-inner"></div>
-										Left and right controls
-										<a class="carousel-control-prev" href="#demo"
-											data-slide="prev"> <span
-											class="carousel-control-prev-icon"></span>
-										</a> <a class="carousel-control-next" href="#demo"
-											data-slide="next"> <span
-											class="carousel-control-next-icon"></span>
-										</a>
-									</div> -->
+								<div style="margin-left: 30px;"><br>
+										<table style=" font-size: 20px" >
+											<tr>
+												<td id="1" >이름:</td>
+												<td id="name"></td>
+											</tr>
+
+											<tr>
+												<td id="2">나이:</td>
+												<td id="age"></td>
+											</tr>
+											<tr>
+												<td id="3">성별:</td>
+												<td id="sex"></td>
+											</tr>
+										</table>
+										<hr>
+												<div id="special" style="font-size:20px"></div>
+									</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary" id="adoptBtn"></button>
@@ -177,7 +166,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- /row -->
+									
 			</form>
 
 		</section>
@@ -232,7 +221,6 @@
                 .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
                 .append($('<h4 class="text-uppercase m-0">').text("이름 : "+data.dogname))
                 .append($('<h4 class="small text-black-50">').text("나이 : "+data.dogage))
-                .append($('<h4 class="text-uppercase m-0">').append("특이사항 :  "+data.dogspecial))
                 .append($('<h4 class="small text-black-50">').text("진행상황 :  "+data.phase+" 단계"));
 
 		 $div3.append($img);
@@ -321,10 +309,6 @@
 					empty();
 					 if(data.phase==1){
 						 var $p1=$('#adoptBtn').text("신청서 검토중")
-						 $p1.on("click",function(){
-				        	 console.log("1단계"+data.phase);
-				              location.href="./testpaper?dogid="+data.dogid
-						 })
 					 }else if(data.phase==2){   //시험 시작
 				         var $p2=$('#adoptBtn').text("적격성 평가 시작")
 				         $p2.on("click",function(){
@@ -372,12 +356,12 @@
 						if(idx==0){
 							$('<li data-target="#productCarousel" data-slide-to="0" class="active">').appendTo($uls);
 							var $div=$('<div class="item active">').appendTo($items);
-							$('<img class="dog" style="width: 700px">').attr('src',pic).appendTo($div);
+							$('<img class="dog" style="width: 100%">').attr('src',pic).appendTo($div);
 						}else{
 							var $li=$('<li data-target="#productCarousel">').appendTo($uls);
 							$li[0].dataset.slideTo=idx;
 							var $div=$('<div class="item">').appendTo($items);
-							$('<img class="dog" style="width: 450px">').attr('src',pic).appendTo($div);
+							$('<img class="dog" style="width:100%">').attr('src',pic).appendTo($div);
 						}
 					});
 					$('#name').text(data.dogname);

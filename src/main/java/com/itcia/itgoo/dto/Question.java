@@ -20,5 +20,6 @@ public class Question {
 	private int correct;
 	private String point;
 	private int toggle;
+	private String answer;
 	private List<Ex> exList;
 }
