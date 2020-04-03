@@ -131,6 +131,8 @@
 	<script>
 	 var $dogList = $("#addogList");
 	$.each(${va},function(idx,data){
+		console.log(data);
+		console.log("도그아이디"+data.dogid);
 	if(data.status==0){
 		var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').text("현재 가상입양 중인 강아지가 없습니다.");
 		 $dogList.append($div1);
@@ -155,10 +157,17 @@
 	           $dogList.append($div1);
 	           }
 		else if(data.status==2){
-			 var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
-             .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
-             .append($('<h4 class="text-uppercase m-0">').text(data.dogname+"는 가상입양자님의 도움으로 입양이 되었습니다."))
-			$dogList.append($div1)
+			console.log("입양되어서 취소된 가상입양 나오는 것",data.dogname);
+			 var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+		        var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+		                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+		                .append($('<h4 class="text-uppercase m-0">').text(data.dogname+" 가상입양자님의 도움으로 새로운 가족품으로 입양되었습니다."))
+					console.log("이제 나올 강아지 아이디",data.dogid);
+		          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+		          $div2.append($div3);
+		          
+		          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').append($div2);
+		           $dogList.append($div1);
 		}
 	 });
 	
