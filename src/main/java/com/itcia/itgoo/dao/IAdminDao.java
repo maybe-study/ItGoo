@@ -69,6 +69,9 @@ public interface IAdminDao {
 	@Select("select * from companypic where companyid=#{companyid}")
 	List<String> adminCompanyPics(String companyid);
 	
+	@Select("select acs.answer, cs.questionnum, cs.question from answercaresheet acs, caresheet cs,adopt ad where acs.questionnum = cs.questionnum ")
+	List<Question> adminQuestionList();
+	
 
 
 }

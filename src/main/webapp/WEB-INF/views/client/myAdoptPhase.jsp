@@ -339,7 +339,16 @@ font-size:20px;
 				    $p6.on("click",function(){
 				              location.href="./finalcaresheet?dogid="+data.dogid
 				   		 })
+				    }else if(data.phase==7){
+				    var $p6=$('#adoptBtn').text("입양절차 종료")
+				    console.log("7단계"+data.dogid);
+				    $p6.on("click",function(){
+				              location.href="./chang"
+				   		 })
 				    }
+					 
+					 
+					 
 
 					var $uls=$('.carousel-indicators').empty();
 					var $items=$('.carousel-inner').empty();

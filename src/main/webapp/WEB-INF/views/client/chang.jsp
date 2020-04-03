@@ -153,8 +153,8 @@ body
 </style>
 <body>
 <div class="container">
-<a href="virtualadopt.jsp?dogid=">
-  Virtual Adopt</a>
+<a href="index.jsp" style="padding: 40px;">
+Thank you for adoption</a>
 </div>
 </body>
 <script type="text/javascript">

@@ -137,8 +137,10 @@
 
 							</div>
 							<div class="modal-body">
-								<div>문제:</div>
-								<div>답</div>
+								<table id="questiontable">
+								
+								
+								</table>
 							
 							</div>
 							<div class="modal-footer">
@@ -308,6 +310,16 @@
 				$btn.attr('disabled','true')
 			});
 		};
+		$.each(${questionList}, function(idx, question){
+  	  		console.log(question);
+  	  	var $questiontable=$("#questiontable");
+  	  var $tr=$("<tr>").appendTo(questiontable);
+			$("<td>").text("문제:").appendTo($tr);
+  	  		$("<td>").text(question.question).appendTo($tr);
+  	  		$("<td>").text("답:").appendTo($tr);
+  	  		$("<td>").text(question.answer).appendTo($tr);
+  	  		
+  	  		});
 	</script>
 
 </body>

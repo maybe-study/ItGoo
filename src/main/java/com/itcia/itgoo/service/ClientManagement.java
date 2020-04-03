@@ -155,6 +155,7 @@ public class ClientManagement {
 		if(choice.equals("stop")){
 			System.out.println("강아지 입양해 좀!!!!!");
 			cDao.deleteadopt(rs);
+			cDao.deleteupdate(rs);
 			mav.setViewName("adoptList");
 		}
 		return mav;
@@ -176,6 +177,7 @@ public class ClientManagement {
 
 	public ModelAndView submitSheet(int dogid,String aJson, Principal p) {
 		CareSheet cs=new CareSheet();
+		cDao.finalupdate(dogid);
 		cs.setId(p.getName());
 		cs.setDogid(dogid);
 		System.out.println("강아지아이디를 "+dogid);
@@ -183,7 +185,7 @@ public class ClientManagement {
 		System.out.println(cs.getDogid());
 		//System.out.println(cs.getId());
 		//System.out.println(cs.getQuestionnum());
-		mav.setViewName("clentMyPage");
+		mav.setViewName("clientMyPage");
 		mav.addObject("dogid",dogid);
 		List<CareSheet> aList= new Gson().fromJson(aJson, new TypeToken<List<CareSheet>>() {}.getType());
 		for(CareSheet a: aList){
@@ -368,4 +370,6 @@ public class ClientManagement {
 		cDao.updatestatusdog(ad);
 		return mav;
 	}
+
+	
 }
