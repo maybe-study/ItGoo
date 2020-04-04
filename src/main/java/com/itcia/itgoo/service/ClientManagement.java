@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -301,12 +302,18 @@ public class ClientManagement {
 		va.setPayday("15");
 		va.setStatus(1);
 		System.out.println(va.getStatus());
-		cDao.virtualadoptapply(va);
-		List<VirtualAdopt> vaList = cDao.myvirtual(va);
-		mav.addObject("dogid",dogid);
-		mav.addObject("vaList",new Gson().toJson(vaList));
-		System.out.println("vaList는"+vaList);
-		mav.setViewName("./client/MyVirtualAdopt");
+		try {
+			cDao.virtualadoptapply(va);
+			List<VirtualAdopt> vaList = cDao.myvirtual(va);
+			mav.addObject("dogid",dogid);
+			mav.addObject("vaList",new Gson().toJson(vaList));
+			System.out.println("vaList는"+vaList);
+			mav.setViewName("./client/MyVirtualAdopt");
+		}catch(DuplicateKeyException e) {
+			//이미 가상입양 한 경우
+			mav.addObject("errMsg","이미 가상입양된 강아지입니다");
+			mav.setViewName("error/error");;
+		}
 		return mav;
 	}
 
