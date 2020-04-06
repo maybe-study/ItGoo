@@ -98,7 +98,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">소모임</a></li>
+						href="#small_div">소모임</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
@@ -252,10 +252,11 @@
 	</section>
 
 	<!-- Call to Action Section -->
-	<section class="page-section bg-dark text-white">
+	<section class="page-section bg-dark text-white" id="small_div">
 		<div class="container text-center">
 			<h2 class="mb-4">강아지 소모임</h2>
-			<a class="btn btn-light btn-xl" href="puppysmall">강아지 소모임 둘러보기</a>
+			<a class="btn btn-light btn-xl" href="smalllist">강아지 소모임 리스트 확인</a>
+			<a class="btn btn-light btn-xl" href="regipuppysmall">강아지 소모임 등록하기</a>
 		</div>
 	</section>
 

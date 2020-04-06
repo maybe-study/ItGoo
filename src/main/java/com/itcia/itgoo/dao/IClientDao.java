@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -82,7 +83,7 @@ public interface IClientDao {
 	SmallMeeting myenrollsmalldetail(Integer smallnumber);
 
 	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday},sysdate,0,#{status})")
-	void virtualadoptapply(VirtualAdopt va);
+	void virtualadoptapply(VirtualAdopt va) throws DuplicateKeyException;
 
 	@Select("select * from virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
@@ -115,5 +116,8 @@ public interface IClientDao {
 
 	@Delete("delete virtualadopt where dogid=#{dogid} and id=#{id}")
 	void deletevirtualadopt(@Param("dogid")int dogid, @Param("id")String name);
+	
+	@Select("select * from answercaresheet join caresheet on caresheet.questionnum = answercaresheet.questionnum where id=#{id} and dogid=#{dogid}")
+	List<CareSheet> usercaresheet(Adopt ad);
 
 }
