@@ -549,12 +549,16 @@ html, body, .wrapper {
 }
 </style>
 <body>
-<button class='btn btn-like'>
+
+<button class='btn btn-like' type="button" onclick="homemove()">
   <div class='heart'></div>
 </button>
-<button class='btn btn-dislike'>
-  <div class='heart'></div>
+<button class='btn btn-dislike' type="button" onclick="homemove()">
+  <div class='heart' ></div>
 </button>
+
+<form action="thanksadopt" id="thanks">
+</form>
 <div class='wrapper'>
   <div class='card-container'>
 <div id="id"><i>ITGOO의 입양시스템에 만족하시나요?</i></div>
@@ -578,5 +582,11 @@ html, body, .wrapper {
     </div>
   </div>
 </div>
+<script type="text/javascript">
+function homemove() {
+	location.href="index.jsp";
+}
+
+</script>
 </body>
 </html>

@@ -147,11 +147,13 @@ public class ClientManagement {
 		System.out.println("마지막 선택 업데이트 중");
 		rs.setId(p.getName());
 		rs.setDogid(dogid);
+		System.out.println(rs+"rs에 다 들어있으면 그냥 rs 넘기면 되는 부분이니깐 보자");
 		System.out.println(choice);
+		System.out.println(p.getName());
 		if(choice.equals("go")){
 			System.out.println("사랑으로 키우기");
 			cDao.updateDog(rs);
-			cDao.virtualdogupdate(dogid,p.getName());
+			cDao.virtualdogupdate(dogid);
 			mav.setViewName("./clientMyPage");
 		}else if(choice.equals("stop")){
 			System.out.println("강아지 입양해 좀!!!!!");

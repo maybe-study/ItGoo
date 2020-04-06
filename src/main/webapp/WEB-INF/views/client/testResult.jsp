@@ -64,14 +64,17 @@
         <div class="row mt">
           <div class="col-lg-10">
           <div class="row mt" id="questionList">
-          				
-				          
+          			
           </div>
           
         </div>
+        
         </div>
         <!-- /row -->
         </form>
+        <div class="form-group" style="text-align: center">
+                       <button class="btn btn-theme" type="button" onclick="gotohome();">제출완료</button>
+                   </div>
       </section>
       <!-- /wrapper -->
     </section>
@@ -183,6 +186,10 @@
 	    }
 	    return b;
     }
+	
+	function gotohome() {
+		location.href="index.jsp";
+	}
   </script>
 	
 </body>

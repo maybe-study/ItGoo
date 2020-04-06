@@ -38,7 +38,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
       <!--logo end-->
       
       <div class="top-menu">
@@ -98,9 +98,6 @@
                		<div class="form-group" style="text-align: center">
                        <button class="btn btn-theme" type="submit">설문지 제출</button>
                    </div>
-                   <div class="form-group" style="text-align: center">
-                       <button class="btn btn-theme" type="button" onclick="makeJson()">테스트</button>
-                   </div>
                </div>
         </div>
         </form>
@@ -119,7 +116,7 @@
  		var $tr=$('<tr>');
  		$('<td>').text(data.questionnum).appendTo($tr);
  		$('<td>').text(data.question).appendTo($tr);
- 		$("<input id='answer' class='answer' name='answer' data-questionnum="+data.questionnum+">").appendTo($tr);
+ 		$("<textarea id='answer' class='answer' name='answer' style='width:300px; height:100px; display:invisible;' data-questionnum="+data.questionnum+">").appendTo($tr);
  	 	$('#careList').append($tr);
  	}); 
  	

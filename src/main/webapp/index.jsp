@@ -68,12 +68,13 @@ display: inline-block;
       <h1>ITGOO Main</h1>
       <p>(주)ITGOO 소속 유기견 보호 관리 사이트</p>
       <div style="text-align: right;">
+       
          <sec:authorize access="isAnonymous()">
-
             <a href="login" id="login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
             <a href="joinform">회원가입</a>
          </sec:authorize>
+         
+         
          <sec:authorize access="isAuthenticated()">
             <form method="post" action="logout" id="logoutform">
                <input type="submit" value="로그아웃" id="logout"> <input
@@ -102,7 +103,7 @@ display: inline-block;
             <li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">업체 회원가입</a></li>
             <li class="nav-item"><a href="auctionlist" class="nav-link">커뮤니티</a></li>
             <li class="nav-item"><a href="adoptlist" class="nav-link">입양공고</a></li>
-            <li class="nav-item"><a href="ItGoostar.html" class="nav-link">ITGOO_STAR</a></li>
+            <li class="nav-item"><a href="ItGoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
             <li class="nav-item"><a href="dogkind.html" class="nav-link">강아지 백과사전</a></li>
          </ul>
       </div>
