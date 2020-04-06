@@ -111,8 +111,8 @@ public interface IClientDao {
 	@Update("update adopt set phase = 7 where dogid=#{dogid}")
 	void finalupdate(int dogid);
 
-	@Update("update virtualadopt set status=2 where dogid=#{dogid} and id=#{id}")
-	void virtualdogupdate(@Param("dogid")int dogid,@Param("id")String name);
+	@Update("update virtualadopt set status=2 where dogid=#{dogid}")
+	void virtualdogupdate(@Param("dogid")int dogid);
 
 	@Delete("delete virtualadopt where dogid=#{dogid} and id=#{id}")
 	void deletevirtualadopt(@Param("dogid")int dogid, @Param("id")String name);

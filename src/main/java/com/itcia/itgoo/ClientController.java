@@ -116,6 +116,13 @@ public class ClientController {
 		mav=cm.submitSheet(dogid,aJson,p);
 		return mav;
 	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/thanksadopt", method = RequestMethod.GET)
+	public ModelAndView thanksadopt() {
+		System.out.println("입양을 진심으로 감사드립니다.");
+		mav.setViewName("index");
+		return mav;
+	}
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/chang", method = RequestMethod.GET)
