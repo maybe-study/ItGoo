@@ -226,7 +226,7 @@ public class ClientManagement {
 		SmallMeeting sldetail = cDao.smalllistdetail(smallnumber);
 		sldetail.setSmallnumber(smallnumber);
 		mav.addObject("sldetail",new Gson().toJson(sldetail));
-		view="client/smallListDetail";
+		view="client/smallDetail";
 		mav.setViewName(view);
 
 		return mav;

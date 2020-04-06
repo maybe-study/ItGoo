@@ -9,6 +9,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 
 import com.itcia.itgoo.dto.BidUpdate;
+import com.itcia.itgoo.dto.Chat;
 import com.itcia.itgoo.service.SocketService;
 
 
@@ -27,5 +28,9 @@ public class SocketController {
 	@MessageMapping("/bid")
 	public void bid(BidUpdate b, Principal p) {
 		ss.bidCast(b, p);
+	}
+	@MessageMapping("/smallmeetingchat")
+	public void chat(Chat c) {
+		ss.chatCast(c);
 	}
 }

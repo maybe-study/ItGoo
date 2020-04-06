@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.itcia.itgoo.dao.IAuctionDao;
 import com.itcia.itgoo.dto.Auction;
 import com.itcia.itgoo.dto.BidUpdate;
+import com.itcia.itgoo.dto.Chat;
 
 @Service("socketservice")
 public class SocketService {
@@ -48,5 +49,11 @@ public class SocketService {
 	}
 	public void auctionEndCountDown(Auction a, int i) {
 		template.convertAndSend("/topic/auctoinEndCountDown/"+a.getAuctionnum(), i);
+	}
+
+
+	public void chatCast(Chat c) {
+		// TODO Auto-generated method stub
+		template.convertAndSend("/topic/smallmeetingchat/"+c.getSmallnumber(), new Gson().toJson(c));
 	}
 }

@@ -240,8 +240,10 @@
 						
 					</div>
 					<div class="col-lg-12 btn-div" id="button" style="text-align: center">
+						<form onsubmit="return sendBid()">
 						<input type="text" id="bid">
-						<button class="btn btn-primary" id="bid" onclick="sendBid()"><i class="fas fa-plus"></i> 참가</button>
+						<button class="btn btn-primary" id="bid"><i class="fas fa-plus"></i> 참가</button>
+						</form>
 					</div>
 					
 					</div>
@@ -269,6 +271,7 @@
 	function sendBid(){
 		var bid=$('#bid').val();
 		stompClient.send("/bid",{},JSON.stringify({auctionnum:a.auctionnum, currentprice:bid}))
+		return false;
 	}
 	
 	
