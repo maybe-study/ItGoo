@@ -385,5 +385,10 @@ public class ClientManagement {
 		return mav;
 	}
 
+	public List<CareSheet> usercaresheet(Adopt ad) {
+		
+		return cDao.usercaresheet(ad);
+	}
+
 	
 }

@@ -48,6 +48,13 @@
 .content-panel{
 	padding: 10px;
 }
+.modal-body {
+    position: relative;
+    padding: 0;
+}
+.answer{
+	margin-left: 30px;
+}
 </style>
 </head>
 
@@ -134,13 +141,24 @@
 									aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
-
 							</div>
 							<div class="modal-body">
-								<table id="questiontable">
-								
-								
-								</table>
+								<div class="row">
+							          <div class="col-lg-10">
+							          <div class="row" id="questionList">
+							          				<div class="col-lg-12">
+											            <div class="form-panel">
+											              <h4 class="mb"><i class="fa fa-angle-right"></i> 밥은 잘 주고 계십니가?</h4>
+											                <label class="answer">
+											                  	네 밥 잘 주고 잇습니다.
+											                </label>
+											          </div>
+									  				</div>
+											          
+							          </div>
+							         
+							        </div>
+							        </div>
 							
 							</div>
 							<div class="modal-footer">
@@ -241,11 +259,12 @@
   	  		var $btn=$('<button type="button" id="passBtn">').text("서류 합격");
   	  		var $btn2=$('<button type="button" id="nonPassBtn">').text("탈락");
   	  		var $careBtn=$('<button type="button" id="careBtn">').text("설문지 확인").click(function(){
+  	  			careSheet(adopt.id,adopt.dogid,$careBtn)
   	  			$('#modalBox').modal('show');
   	  		});
   	  		if(adopt.phase==1){
   	  			$("<td>").append($btn).appendTo($tr);
-  	  		}else if (adopt.phase==6){
+  	  		}else if (adopt.phase==7){
   	  			$("<td>").append($careBtn).appendTo($tr);
   	  		}else{
   	  			$("<td>").append('').appendTo($tr);
@@ -293,7 +312,7 @@
 				$btn.attr('disabled','true')
 			});
 		};
-		function careSheet(id,dogid,$btn){
+		function careSheet(id,dogid){
 			$.ajaxSetup({
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -307,10 +326,18 @@
 			}).done((data)=>{
 				console.log(data);
 				//모달에 붙이기
-				$btn.attr('disabled','true')
+				$('#questionList').empty();
+				$.each(data,function(idx,item){
+					$div1= $('<div class="col-lg-12">')
+		            $div2=$('<div class="form-panel">').appendTo($div1);
+		            $('<h4 class="mb">').append($('<i class="fa fa-angle-right"></i>')).append(item.question).appendTo($div2);
+		            $('<label class="answer">').append(item.answer).appendTo($div2);
+		            $div1.appendTo($('#questionList'));
+					
+				});
 			});
 		};
-		$.each(${questionList}, function(idx, question){
+		/* $.each(${questionList}, function(idx, question){
   	  		console.log(question);
   	  	var $questiontable=$("#questiontable");
   	  var $tr=$("<tr>").appendTo(questiontable);
@@ -319,7 +346,7 @@
   	  		$("<td>").text("답:").appendTo($tr);
   	  		$("<td>").text(question.answer).appendTo($tr);
   	  		
-  	  		});
+  	  		}); */
 	</script>
 
 </body>

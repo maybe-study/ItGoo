@@ -116,5 +116,8 @@ public interface IClientDao {
 
 	@Delete("delete virtualadopt where dogid=#{dogid} and id=#{id}")
 	void deletevirtualadopt(@Param("dogid")int dogid, @Param("id")String name);
+	
+	@Select("select * from answercaresheet join caresheet on caresheet.questionnum = answercaresheet.questionnum where id=#{id} and dogid=#{dogid}")
+	List<CareSheet> usercaresheet(Adopt ad);
 
 }
