@@ -84,11 +84,11 @@ public interface IClientDao {
 	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday},sysdate,0,#{status})")
 	void virtualadoptapply(VirtualAdopt va);
 
-	@Select("SELECT * FROM virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
+	@Select("select * from virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
 
 
-	@Select("select * from virtualadopt join recent on recent.id=virtualadopt.id join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
+	@Select("select * from virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
 	List<VirtualAdopt> showmyvirtualadopt(@Param("id")String String);
 
 	void completesmall(SmallMeeting sm);

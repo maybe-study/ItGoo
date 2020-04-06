@@ -70,7 +70,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -131,6 +131,7 @@
 		<!--footer end-->
 	</section>
 	<script>
+	//여기는 가상입양 하면 바로 나오는 jsp 여기는 수정 안해도 될거같음
 		var vaList = ${vaList};
 		$.each(vaList, function(idx, data) {
 			console.log("가상입양 스트 만드는중");

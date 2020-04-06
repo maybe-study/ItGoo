@@ -22,10 +22,16 @@
 #logout {
    border: 0;
    outline: 0;
-   color: blue;
+   color: #007bff;
    
 }
 
+#mypage {
+   border: 0;
+   outline: 0;
+   color: #007bff;
+   
+}
 #foot {
    background-color: rgba(255, 255, 255, .7);
    margin-top: 10%;
@@ -69,10 +75,6 @@ display: inline-block;
             <a href="joinform">회원가입</a>
          </sec:authorize>
          <sec:authorize access="isAuthenticated()">
-         <a class="logout" href="#"
-						onclick="document.getElementById('logout').submit();"> Logout</a>
-		<a class="logout" href="#"
-						onclick="document.getElementById('mypage').submit();"> 마이페이지</a>
             <form method="post" action="logout" id="logoutform">
                <input type="submit" value="로그아웃" id="logout"> <input
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

@@ -70,7 +70,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">

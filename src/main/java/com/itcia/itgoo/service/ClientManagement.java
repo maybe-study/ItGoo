@@ -374,7 +374,7 @@ public class ClientManagement {
 	public ModelAndView cancelvirtualadopt(int dogid, Principal p) {
 		System.out.println("매니지먼트 넘어온 취소할 강아지"+dogid);
 		cDao.deletevirtualadopt(dogid,p.getName());
-		mav.setViewName("/client/clientMyPage");
+		mav.setViewName("clientMyPage");
 		return mav;
 	}
 
