@@ -154,7 +154,7 @@
     let container = $('.pagingdiv');
     container.pagination({
       
-        dataSource:${asList} ,   //받아온 데이터
+        dataSource:${asList},
         pageSize: 10,
         callback: function (data, pagination) { //데이터 찍어주는 부분
            console.log("data=",data);

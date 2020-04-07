@@ -111,9 +111,7 @@
 	.pagingdiv{
 	margin-left: 45%;
 	}
-	.card{
-	height: 350px;
-	}
+	
 	#contents_layer{
 	}
 
@@ -167,27 +165,86 @@
 	<section class="h-100">
 		<div class="container-fluid" id="bg">
 			<div class="container row" style="margin:auto">
-				<div class="card col-lg-12">
-					<div class="card-body" id="auctionname" style="font-size:14px">
-					 <table class="table table-hover">
-      
-                <thead>
-                  <tr>
-                    <th>그룹이름</th>
-                    <th>주최자</th>
-                    <th>위치 </th>
-                    <th>최대 참여 강아지수</th>
-                    <th>소모임 시작날짜</th>
-                    <th>소모임 시작시간</th>
-                    </tr>
-                </thead>
-                <tbody id="smallmeetinglist">
-                  
-                </tbody>
-              </table>
+				<div class="card col-lg-6">
+					<div class="card-body" id="auctionname">
+						<h5 class="card-title">지도</h5>
+							<div id="map" style="width: 100%; height: 350px;"></div>
+							<br>
+							<br>
+						<h5 class="card-title">소모임 정보</h5>
+						<div>
+							<table>
+								<tr>
+								<td style="width:150px;">
+									신청자
+								</td>
+								<td id="id">
+								</td>
+								</tr>
+								<tr>
+								<td>
+								위치
+								</td>
+								<td id="smalllocation">
+								</td>
+								</tr>
+								<tr>
+								<td>
+								이름
+								</td>
+								<td id="meetingname">
+								</td>
+								</tr>
+								<tr>
+								<td>
+								참여 강아지
+								</td>
+								<td id="smalldogcnt">
+								</td>
+								
+								</tr>
+								<tr>
+								<td>
+								날짜
+								</td>
+								<td id="meetingdate">
+								</td>
+								</tr>
+								<tr>
+								<td>
+								시간
+								</td>
+								<td id="time">
+								</td>
+								</tr>
+							</table>
+						
+						</div>
 					</div>
-					<div class="pagingdiv"></div>
 				</div>
+				<div class="card col-lg-6" >
+					<div class="card-body" >
+					<h5 class="card-title">채팅</h5>
+					<div style="height:500px; overflow: auto;" id="chat">
+						
+						
+					</div>
+						<form onsubmit="return ajChat()">
+						<div class="row" style="text-align: center">
+							<div class="col-lg-9 col-sm-10" style="padding:5px">
+								<input type="text" id="input" style="height:30px;width:100%;" />
+							</div>
+							<div class="col-lg-3 col-sm-2">
+								<button class="btn btn-primary" type="button" onclick="ajChat()">전송</button>
+							</div>
+						</div>
+						</form>
+					
+					</div>
+				</div>
+				
+				
+				
 			</div>
 		</div>
 	</section>
@@ -214,60 +271,96 @@
 	<script src="js/creative.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-	
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+		<!-- Custom scripts for this template -->
+	<script src="js/stomp.js"></script>
+	<script src="js/sockjs.js"></script>
 	<script>
-	let container = $('.pagingdiv');
-    container.pagination({
-        dataSource:${smList},  //받아온 데이터
-        pageSize: 10,
-        callback: function (data, pagination) { //데이터 찍어주는 부분
-           console.log("data=",data);
-           temp=data;
-           $("#smallmeetinglist").empty();
-           $.each(data,function(idx, data){
-        		var $body = $("#smallmeetinglist");
-        		var $tr = $("<tr>").appendTo($body).css('cursor','pointer').click(function(){
-        			location.href='smalllistdetail?smallnumber='+data.smallnumber;
-        		});
-        		$("<td>").text(data.meetingname).appendTo($tr);
-        		$("<td>").text(data.id).appendTo($tr);
-        		$("<td>").text(data.smalllocation).appendTo($tr);
-        		$("<td>").text(data.maximumdog).appendTo($tr);
-        		$("<td>").text(data.meetingdate).appendTo($tr);
-        		$("<td>").text(data.time).appendTo($tr);
-        		
-        		});
-        }
-    
-    });
+	
+	
+	console.log(${sldetail});
+	var sDetail=${sldetail};
+	$('#id').append(sDetail.id);
+	$('#smalllocation').append(sDetail.smalllocation);
+	$('#meetingname').append(sDetail.meetingname);
+	$('#smalldogcnt').append(sDetail.smalldogcnt+"/"+sDetail.maximumdog);
+	$('#time').append(sDetail.time);
+	$('#meetingdate').append(sDetail.meetingdate);
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
 
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch((sDetail.smalllocation), function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+sDetail.smalllocation+'<br></div>'
+	        });
+	        infowindow.open(map, marker);
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	
+	
+	</script>
+	<script>
+		//소켓 통신
+		//소켓
+	var socket = new SockJS("./auction");
+	var stompClient = Stomp.over(socket);
+	stompClient.connect({}, function(frame) {
+		console.log("연결")
+		//채팅 구독
+		stompClient.subscribe('/topic/smallmeetingchat/'+sDetail.smallnumber,function(msg){
+			console.log("토픽에서 전송된 메시지"+msg.body);
+			var chat=JSON.parse(msg.body);
+			$('#chat').append(chat.id+":"+chat.chat+"<br>");
+		});
 		
-	function ajSmallList(){
-		$.ajax({
-			type:'get',
-			url:"smalllistdetail",
-			data:{smallnumber:smallnumber},
-			dataType:'html',
-			success:function(data){
-				$("#contents_layer").html(data);
-			},
-			error:function(error){
-				console.log(error);
-			}
-			})
-	}	
-	var $layerWindow=$("#articleView_layer");
-	$layerWindow.find('#bg_layer').on('mousedown',function(event){
-		console.log(event);
-		$layerWindow.removeClass('open');
+		
 	});
-	$(document).keydown(function(event){
-		console.log(event);
-		if(event.keyCode!=27)
-			return;
-		else if($layerWindow.hasClass('open'))
-			$layerWindow.removeClass('open');
-	}); 
+	function disconnect(){
+		if(stompClient!=null){
+			stompClient.disconnect();;
+
+			console.log("Disconnected");
+		}
+	}
+	
+	window.onbeforeunload = function (e) {
+		disconnect();
+	};
+		
+	function ajChat(){
+		var chat=$('#input').val();
+		stompClient.send("/smallmeetingchat",{},JSON.stringify({smallnumber:sDetail.smallnumber, id:sDetail.id,chat:chat}));
+		$('#input').val("");
+		return false;
+	};
 	</script>
 	</body>
 
