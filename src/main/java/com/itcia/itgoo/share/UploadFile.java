@@ -72,6 +72,7 @@ public class UploadFile {
 		if (!dir.isDirectory()) { // upload폴더 없다면
 			dir.mkdirs(); // upload폴더 생성
 		}
+		
 		for (int i = 0; i < fList.size(); i++) {
 			MultipartFile mf = fList.get(i); // 실제파일
 			String oriFileName = mf.getOriginalFilename(); // a.txt

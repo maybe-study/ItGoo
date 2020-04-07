@@ -41,7 +41,7 @@
 </head>
 
 <body>
-	<section id="container">
+	<section id="container" style="height: 100%;">
 		<!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -184,7 +184,7 @@
 
 					<!-- /col-md-12 -->
 					<div class="col-md-12 mt">
-						<div class="content-panel">
+						<div class="content-panel" style="height: 1100px;">
 						<form action="dogdeletebtn?${_csrf.parameterName}=${_csrf.token}"
 						name="dogdeletebtn" method="post" id="dogdeletebtn">
 							<table class="table table-hover">
@@ -285,7 +285,7 @@
         		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.dogid+')').text("사진보기")).appendTo($tr);
         		$("<td>").text(data.dogid).appendTo($tr);
         		$("<td>").text(data.dogname).appendTo($tr);
-        		$("<td>").text(data.dogage).appendTo($tr);
+        		$("<td>").append(data.dogage).appendTo($tr);
         		if(sex == 0 ){
         			$("<td>").text("암컷").appendTo($tr);
         		}else{
@@ -297,7 +297,7 @@
         			$("<td>").text("중성화 했음").appendTo($tr);
         		}
 
-        		$("<td>").text(data.dogspecial).appendTo($tr);
+        		$("<td>").append(data.dogspecial).appendTo($tr);
         		$("<td> <input type='hidden' name='dogid' id='dogid' class='dogid' value='"+data.dogid+"' />").appendTo($tr);
         		$("<td> <input type='submit' name='dogdeletebtn' id='deletebtn' class='deletebtn' value='삭제' />").appendTo($tr);
            });
