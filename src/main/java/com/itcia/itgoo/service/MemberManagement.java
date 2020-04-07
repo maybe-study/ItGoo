@@ -77,7 +77,7 @@ public class MemberManagement {
 		
 		String url="/";
 		switch(userDetails.getAuthorities().toString()) {
-		case "[ROLE_ACTIVITY, ROLE_ADMIN, ROLE_SHELTER, ROLE_UNCOMPANY, ROLE_USER]":	//관리자
+		case "[ROLE_ADMIN, ROLE_UNCOMPANY, ROLE_USER]":	//관리자
 			url="redirect:/adminactivity";
 			break;
 		case "[ROLE_USER]":

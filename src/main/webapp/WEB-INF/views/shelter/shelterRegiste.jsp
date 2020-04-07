@@ -193,7 +193,7 @@
 		<section id="main-content">
 			<section class="wrapper">
 				<h3>
-					<i class="fa fa-angle-right"></i> 반려견 등록
+					<i class="fa fa-angle-right"></i> 유기견 등록
 				</h3>
 				<!-- BASIC FORM ELELEMNTS -->
 				<div class="row mt">
@@ -304,7 +304,7 @@
 						<div class="btn-div">
 
 							<input type="submit" id="insertdogbtn"
-								class="insertactivitybtn" value="액티비티 등록" />
+								class="insertactivitybtn" value="유기견 등록" />
 							<input type="button" id="canceldogbtn" class="cancelactivitybtn" value="취소" />
 						</div>
 					</form>

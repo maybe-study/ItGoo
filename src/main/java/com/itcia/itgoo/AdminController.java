@@ -22,7 +22,6 @@ import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Ex;
 import com.itcia.itgoo.dto.Question;
 import com.itcia.itgoo.service.AdminCompany;
-import com.itcia.itgoo.share.UploadFile;
 @Secured("ROLE_ADMIN")
 @Controller
 public class AdminController {
@@ -77,11 +76,7 @@ public class AdminController {
 	
 
 	
-	@RequestMapping(value = "/uploadtest", method = RequestMethod.POST)
-	public String uploadTest(MultipartHttpServletRequest multi, Commonmember cMember) {
-		UploadFile up= new UploadFile();
-		return null;
-	}
+	
 	@RequestMapping(value = "/adminupdatecompany", method = RequestMethod.GET)
 	public ModelAndView adminUpdateCompany(String select,String companyid,int companykind,Locale locale, Model model) {
 		

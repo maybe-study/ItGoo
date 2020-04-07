@@ -85,6 +85,24 @@ display: inline-block;
                   type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
          </sec:authorize>
+         <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <form method="get" action="adminactivity" id="logoutform">
+               <input type="submit" value="어드민 페이지" id="logout"> <input
+                  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            </form>
+         </sec:authorize>
+         <sec:authorize access="hasRole('ROLE_SHELTER')">
+            <form method="get" action="sheltermyinfo" id="logoutform">
+               <input type="submit" value="보호소 마이페이지" id="logout"> <input
+                  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            </form>
+         </sec:authorize>
+         <sec:authorize access="hasRole('ROLE_ACTIVITY')">
+            <form method="get" action="activitymyinfo" id="logoutform">
+               <input type="submit" value="업체 마이페이지" id="logout"> <input
+                  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            </form>
+         </sec:authorize>
       </div>
 
    </div>

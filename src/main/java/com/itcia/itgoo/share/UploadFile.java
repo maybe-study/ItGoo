@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itcia.itgoo.dao.IFileDao;
-
+@Service
 public class UploadFile {
 	private static final String ROOT_PATH = "C:/ItGoo/fileupload/";
 	/*
@@ -76,15 +76,20 @@ public class UploadFile {
 			MultipartFile mf = fList.get(i); // 실제파일
 			String oriFileName = mf.getOriginalFilename(); // a.txt
 			//저장될 파일 이름 생성 a.txt ==>112323242424.txt
-			String sysFileName = System.currentTimeMillis() + "."
-					+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);	//확장자 붙임
-			filePathList.add("/fileupload/"+kind+"/"+sysFileName);
+			String sysFileName = System.currentTimeMillis()+i+ "."
+					+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);	//확장자 붙임	//요기이이이이 인덱스를 붙여서 절대 안겹치게
 			//메모리->실제 파일 업로드
 			try {
+				
 				mf.transferTo(new File(path, sysFileName)); // 서버에 파일 저장
+				filePathList.add("/fileupload/"+kind+"/"+sysFileName);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		System.out.println("---------------------------------사진---------------------------------------");
+		for(String v : filePathList) {
+			System.out.println("사진 : " + v);
 		}
 		
 		return filePathList;

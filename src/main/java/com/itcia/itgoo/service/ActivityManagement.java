@@ -29,7 +29,8 @@ import com.itcia.itgoo.userclass.Paging;
 public class ActivityManagement {
 	@Autowired
 	private IActivityDao aDao;
-
+	@Autowired
+	private UploadFile up;
 	private ModelAndView mav ;
 
 	public ModelAndView regiActivity(Principal p, MultipartHttpServletRequest multi,Activity ac) {
@@ -37,7 +38,7 @@ public class ActivityManagement {
 		RedirectView redirectView = new RedirectView();
 
 		ac.setCompanyid((String) p.getName());
-		UploadFile up = new UploadFile();
+		
 		aDao.regiActivity(ac);
 
 		List<String> paths = up.fileUp(multi.getFiles("files"), "activity");
@@ -57,7 +58,7 @@ public class ActivityManagement {
 		RedirectView redirectView = new RedirectView();
 
 		cp.setCompanyid((String) p.getName());
-		UploadFile up = new UploadFile();
+		
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
 		for (String picPath : paths) {
 			System.out.println("cp="+cp);
