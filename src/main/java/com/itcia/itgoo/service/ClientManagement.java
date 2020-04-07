@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IAuctionDao;
+import com.itcia.itgoo.dao.IChatDao;
 import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
 import com.itcia.itgoo.dto.Adopt;
@@ -34,6 +35,8 @@ public class ClientManagement {
 	private IMemberDao mDao;
 	@Autowired
 	private IAuctionDao aDao;
+	@Autowired
+	private IChatDao chDao;
 
 	private ModelAndView mav = new ModelAndView();
 
@@ -223,12 +226,13 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView smalllistdetail(Integer smallnumber) {
+	public ModelAndView smalldetail(Integer smallnumber) {
 		mav = new ModelAndView();
 		String view=null;
 		SmallMeeting sldetail = cDao.smalllistdetail(smallnumber);
 		sldetail.setSmallnumber(smallnumber);
 		mav.addObject("sldetail",new Gson().toJson(sldetail));
+		mav.addObject("scList",new Gson().toJson(chDao.smallChatList(smallnumber)));
 		view="client/smallDetail";
 		mav.setViewName(view);
 
