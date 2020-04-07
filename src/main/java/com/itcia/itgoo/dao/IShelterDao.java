@@ -51,7 +51,7 @@ public interface IShelterDao {
 
 	void inserDogPics(Dfile df);
 
-	@Select("SELECT * FROM DOG WHERE SHELTERID=#{companyid} and (status=0 or status=1)")
+	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid} and (status=0 or status=1)")
 	List<Dog> shelterdelete(Dog dog);
 
 	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
@@ -102,7 +102,7 @@ public interface IShelterDao {
 	@Delete("delete recent where recentid=#{recentid}")
 	void recentDelete(int recentid);
 
-	@Select("select * from dog where status=2 and shelterid=#{companyid}")
-	List<Dog> aleadyAdopt(@Param("companyid")String name);
+	@Select("select * from dog where status=2 and shelterid=#{shelterid}")
+	List<Dog> aleadyAdopt(@Param("shelterid")String name);
 
 }

@@ -146,6 +146,7 @@
 						<ul class="sub">
 							<li><a href="shelterregiste">등록</a></li>
 							<li><a href="shelterdelete">삭제</a></li>
+							<li><a href="aleadyadopt">입양 확정</a></li>
 						</ul></li>
 						
 					<li class="sub-menu"><a href="javascript:;" > <i	class="fa fa-th"></i> <span>가상입양 관리</span>
@@ -201,7 +202,6 @@
 										<th>중성화</th>
 										<th>특이사항</th>
 										<th></th>
-										<th>삭제</th>
 									</tr>
 								</thead>
 
@@ -296,9 +296,8 @@
         			$("<td>").text("중성화 했음").appendTo($tr);
         		}
 
-        		$("<td>").text(data.dogspecial).appendTo($tr);
+        		$("<td>").append(data.dogspecial).appendTo($tr);
         		$("<td> <input type='hidden' name='dogid' id='dogid' class='dogid' value='"+data.dogid+"' />").appendTo($tr);
-        		$("<td> <input type='submit' name='dogdeletebtn' id='deletebtn' class='deletebtn' value='삭제' />").appendTo($tr);
            });
         }
 
