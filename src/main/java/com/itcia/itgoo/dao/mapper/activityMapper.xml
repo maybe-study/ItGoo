@@ -59,6 +59,7 @@
 	<insert id="activityReservationBtn">
 		insert into activityreserve values(#{activitynum},#{id},#{dogid})
 	</insert>
+	
 	<select id="activityPass" parameterType="Activity"
 		resultType="Activity">
 		select distinct c.companyname,a.activitynum,a.activityname,
@@ -67,6 +68,7 @@
 		from company c,activity a,activityreserve ar ,adopt ado
 		where c.companyid=a.companyid and a.activitynum = ar.activitynum and ado.phase=4 and c.companyid = #{companyid}
 	</select>
+	
 	<select id="passDetail" parameterType="int"
 		resultType="Reservation">
 		select client.username,client.useremail,client.phone,adopt.id,activity.activityname,dog.dogname,dog.dogid from dog join adopt on dog.dogid=adopt.dogid 

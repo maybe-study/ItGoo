@@ -3,145 +3,124 @@
 <!DOCTYPE html>
 <html>
 
-<title>Find MyAccount</title>
-
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <!--
+<title>My Awesome Login Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+	integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+	crossorigin="anonymous">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
--->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <!--
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+body, html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	/* background: #60a3bc !important; */
+	background-image: url('img/dog_g.jpg');
+	background-size: cover;	
+	color:white;
+}
+
+.user_card {
+	height: 400px;
+	width: 350px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background-color:black;
+	background-color: rgba(0, 0, 0, 0.4);
 	
--->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #60a3bc !important;
-        }
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+}
 
-        .user_card {
-            height: 400px;
-            width: 1000px;
-            margin-top: auto;
-            margin-bottom: auto;
-            background: #f39c12;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 5px;
-        }
+.brand_logo_container {
+	position: absolute;
+	height: 170px;
+	width: 170px;
+	top: -75px;
+	border-radius: 50%;
+	padding: 10px;
+	text-align: center;
+}
 
-        .brand_logo_container {
-            position: absolute;
-            height: 170px;
-            width: 170px;
-            top: -75px;
-            border-radius: 50%;
-            background: #60a3bc;
-            padding: 10px;
-            text-align: center;
-        }
+.brand_logo {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
 
-        .brand_logo {
-            height: 150px;
-            width: 150px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
+.form_container {
+	margin-top: 100px;
+}
 
-        .form_container {
-            margin-top: 100px;
-        }
+.login_btn {
+	width: 100%;
+	/* background: #c0392b !important; */
+	color: black !important;
+}
 
-        .login_btn {
-            width: 100%;
-            background: #c0392b !important;
-            color: white !important;
-        }
+.login_btn:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
 
-        .login_btn1 {
-            width: 100%;
-            background: #c0392b !important;
-            color: white !important;
-        }
+.login_container {
+	padding: 0 2rem;
+}
 
-        .login_btn:focus {
-            box-shadow: none !important;
-            outline: 0px !important;
-        }
+.input-group-text {
+	/* background: #c0392b !important; */
+	color: white !important;
+	border: 0 !important;
+	border-radius: 0.25rem 0 0 0.25rem !important;
+}
 
-        .login_container {
-            padding: 0 2rem;
-        }
+.input_user, .input_pass:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
 
-        .input-group-text {
-            background: #c0392b !important;
-            color: white !important;
-            border: 0 !important;
-            border-radius: 0.25rem 0 0 0.25rem !important;
-        }
+.custom-checkbox .custom-control-input:checked ~.custom-control-label::before
+	{
+	background-color: #c0392b !important;
+}
+.fas{
+	color:black;
+}
+.row{
+	height:100%
+}
+.d-flex justify-content-center{
+	background-color:white;
+	opacity: 10%
+}
 
-        .input_user,
-        .input_pass {
-            box-shadow: none !important;
-            outline: 0px !important;
-            width: 1600px;
-        }
-
-        #inputId {
-            width: 800px;
-        }
-
-        #p1 {
-            font-weight: 900;
-            font-family: "Font Awesome 5 Free";
-            color: white !important;
-            display: table-cell;
-            -webkit-font-smoothing: antialiased;
-        }
-        #all{
-        margin-top: 200px;
-        }
-        a {
-		    color: #f8f9fa;
-		    text-decoration: none;
-		    background-color: transparent;
-		}
-		a:hover {
-		    color: #f8f9fa;
-		    text-decoration: underline;
-		}
-		.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-		    color: #f8f9fa;
-		    background-color: #c0392b;
-		    border-color: #c0392b #c0392b #c0392b;
-		}
-    </style>
+</style>
 </head>
 <!--Coded with love by Mutiullah Samim-->
-
 <body>
     <ul id="ui" class="nav nav-tabs">
         <li class="menu-kind">
@@ -156,7 +135,7 @@
     <div class="tab-content px-1 pt-2">
        
            <div class="tab-pane active" id="tab1">
-            <div class="container h-100">
+            <div class="container h-100" style="margin-top: 12%; float:left;">
                 <div class="d-flex justify-content-center h-100">
                     <div class="user_card">
                         <div class="d-flex justify-content-center">
@@ -200,7 +179,7 @@
        
            
              <div class="tab-pane" id="tab2">
-            <div class="container h-100">
+            <div class="container h-100" style="margin-top: 12%; float:left;">
                 <div class="d-flex justify-content-center h-100">
                     <div class="user_card">
                         <div class="d-flex justify-content-center">

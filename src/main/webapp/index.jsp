@@ -23,14 +23,14 @@
    border: 0;
    outline: 0;
    color: #007bff;
-   
+
 }
 
 #mypage {
    border: 0;
    outline: 0;
    color: #007bff;
-   
+
 }
 #foot {
    background-color: rgba(255, 255, 255, .7);
@@ -53,6 +53,16 @@
 #logoutform{
 display: inline-block;
 }
+
+h2{
+font-size: 40px;
+font-weight: bold;
+}
+
+#ss{
+font-size: 23px;
+font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -68,13 +78,13 @@ display: inline-block;
       <h1>ITGOO Main</h1>
       <p>(주)ITGOO 소속 유기견 보호 관리 사이트</p>
       <div style="text-align: right;">
-       
+
          <sec:authorize access="isAnonymous()">
             <a href="login" id="login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="joinform">회원가입</a>
          </sec:authorize>
-         
-         
+
+
          <sec:authorize access="isAuthenticated()">
             <form method="post" action="logout" id="logoutform">
                <input type="submit" value="로그아웃" id="logout"> <input
@@ -143,7 +153,7 @@ display: inline-block;
             <!-- left content -->
             <div class="col-md-6">
                <h2>About itgoo</h2>
-               <p>경매와 소모임 커뮤니티가 있는 itgoo</p>
+               <p id="ss">경매와 소모임이 있는 itgoo</p>
                <a href="itgoo1main"><img id="itgoo1"
                   src="img/portfolio/itgoo1.png" class="img-fluid"></a>
             </div>
@@ -151,7 +161,7 @@ display: inline-block;
             <!-- right content -->
             <div class="col-md-6">
                <h2>About ITGOO</h2>
-               <p>유기견 입양</p>
+               <p id="ss">유기견 입양 ITGOO</p>
                <a href="adoptMain"><img id="ibyang"
                   src="img/portfolio/balba.png" class="img-fluid"></a>
             </div>
@@ -170,7 +180,7 @@ display: inline-block;
 
 </body>
 <script>
-   
+
 </script>
 
 </html>
