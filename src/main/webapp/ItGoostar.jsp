@@ -390,7 +390,7 @@ display: inline-block;
       </button>
 
 
-     <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
          <ul class="navbar-nav">
             <li class="nav-item"><a href="introduce.jsp" class="nav-link">ITGOO소개</a></li>
             <li class="nav-item"><a href="companyjoinform.jsp" class="nav-link">업체 회원가입</a></li>
@@ -398,6 +398,7 @@ display: inline-block;
             <li class="nav-item"><a href="adoptlist" class="nav-link">입양공고</a></li>
             <li class="nav-item"><a href="ItGoostar.jsp" class="nav-link">ITGOO_STAR</a></li>
             <li class="nav-item"><a href="dogkind.html" class="nav-link">강아지 백과사전</a></li>
+            <li class="nav-item"><a href="article.jsp" class="nav-link">ITGOO Article</a></li>
          </ul>
       </div>
    </nav>
