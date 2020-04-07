@@ -100,6 +100,15 @@ public class ShelterController {
 		mav = smm.shelterinfochange(p);
 		return mav;
 	}
+	
+	@Secured("ROLE_SHELTER")
+	// 마이페이지 수정
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/aleadyadopt")
+	public ModelAndView aleadyadopt(Principal p) {
+		mav = smm.aleadyadopt(p);
+		return mav;
+	}
 
 	// 페이지 보기만
 	@Secured("ROLE_SHELTER")

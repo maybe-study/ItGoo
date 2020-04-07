@@ -119,5 +119,8 @@ public interface IClientDao {
 	
 	@Select("select * from answercaresheet join caresheet on caresheet.questionnum = answercaresheet.questionnum where id=#{id} and dogid=#{dogid}")
 	List<CareSheet> usercaresheet(Adopt ad);
+	
+	@Update("update dog set status=2 where dogid=#{dogid}")
+	void updateShelterdog(int dogid);
 
 }

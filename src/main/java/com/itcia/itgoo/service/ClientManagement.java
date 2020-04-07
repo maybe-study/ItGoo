@@ -153,6 +153,7 @@ public class ClientManagement {
 		if(choice.equals("go")){
 			System.out.println("사랑으로 키우기");
 			cDao.updateDog(rs);
+			cDao.updateShelterdog(dogid);
 			cDao.virtualdogupdate(dogid);
 			mav.setViewName("./clientMyPage");
 		}else if(choice.equals("stop")){

@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IShelterDao;
 import com.itcia.itgoo.dto.Activity;
+import com.itcia.itgoo.dto.CareSheet;
 import com.itcia.itgoo.dto.Cfile;
 import com.itcia.itgoo.dto.Commonmember;
 import com.itcia.itgoo.dto.Company;
@@ -316,6 +318,13 @@ public class ShelterManagement {
 		//해당 가상입양의 근황리스트
 		mav.setViewName("shelter/RecentDetail");
 		
+		return mav;
+	}
+
+	public ModelAndView aleadyadopt(Principal p) {
+		List<Dog> dList=sDao.aleadyAdopt(p.getName());
+		mav.addObject("aleadyList", new Gson().toJson(dList));
+		mav.setViewName("shelter/AleadyAdopt");
 		return mav;
 	}
 	
