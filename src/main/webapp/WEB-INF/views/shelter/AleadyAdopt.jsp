@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="">
-
+<html lang="UTF-8">
 
 <head>
 <meta charset="utf-8">
@@ -18,32 +17,27 @@
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Bootstrap core CSS -->
-<link href="lib/bootstrap/css/bootstrap1.min.css" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--external css-->
 <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap-fileupload/bootstrap-fileupload.css" />
-
 <!-- Custom styles for this template -->
 <link href="css/activitystyle/activitystyle.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css/activitystyle/timepicker-addon.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
 <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-  <style>
-	.content-panel{
-		height:auto;
-	}
-	.dataTables_wrapper{
-		margin-left:10px;
-	}
-  	
-  </style>
 </head>
 
 <body>
@@ -101,12 +95,12 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="#"
-						onclick="document.getElementById('logout-form').submit();">Logout</a>
-						<form id="logout-form" action='logout' method="POST">
-							<input name="${_csrf.parameterName}" type="hidden"
-								value="${_csrf.token}" />
-						</form></li>
+					<li>
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' method="POST">
+					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+					</form>
+					</li>
 				</ul>
 			</div>
 		</header>
@@ -115,7 +109,7 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
 		<!--sidebar start-->
-		<aside>
+	<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
@@ -146,7 +140,7 @@
 					</li>
 
 
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a href="javascript:;"  class="active"> <i
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
@@ -155,7 +149,7 @@
 							<li><a href="aleadyadopt">입양 확정</a></li>
 						</ul></li>
 						
-					<li class="sub-menu"><a class="active" href="javascript:;"> <i	class="fa fa-th"></i> <span>가상입양 관리</span>
+					<li class="sub-menu"><a href="javascript:;" > <i	class="fa fa-th"></i> <span>가상입양 관리</span>
 					</a>
 						<ul class="sub">
 							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
@@ -169,45 +163,66 @@
 						<ul class="sub">
 							<li><a href="shelterlocationinfo">위치 및 수정</a></li>
 						</ul></li>
-				</ul>
-			</div>	
+					<!-- a href="google_maps.html"-->
+
+
+					<!-- sidebar menu end-->
+			</div>
 		</aside>
+
 		<!--sidebar end-->
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
 		<!--main content start-->
 		<section id="main-content">
-      <section class="wrapper">
-        <h3 id="title"><i class="fa fa-angle-right" ></i> 가상입양 근황 </h3>
-        <div class="row">
-          
-          <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i> 가상입양 리스트 </h4>
-                <hr>
-              <table id="table2" class="table table-hover">
-              
-                
-                <thead>
-                  <tr>
-                    <th>사용자 아이디</th>
-                    <th>강아지 이름</th>
-                    <th>후원 시작 일시</th>
-                    <th>금액</th>
-                    <th>총 금액</th>
-                  </tr>
-                </thead>
-                <tbody id="virtualList">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <!-- row -->
-        </section>
-      </section>
+			<section class="wrapper">
+				<h3>
+					<i class="fa fa-angle-right"></i> 리스트삭제
+				</h3>
+				<div class="row">
+
+					<!-- /col-md-12 -->
+					<div class="col-md-12 mt">
+						<div class="content-panel">
+						<form action="dogdeletebtn?${_csrf.parameterName}=${_csrf.token}"
+						name="dogdeletebtn" method="post" id="dogdeletebtn">
+							<table class="table table-hover">
+								<h4>
+									<i class="fa fa-angle-right"></i> 현재 등록되어있는 강아지 목록
+								</h4>
+								<hr>
+								<thead>
+									<tr>
+										<th>사진</th>
+										<th>고유번호</th>
+										<th>이름</th>
+										<th>나이</th>
+										<th>성별</th>
+										<th>중성화</th>
+										<th>특이사항</th>
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody id="shelterlist">
+
+								</tbody>
+
+							</table>
+							</form>
+						</div>
+						   <div class="pagingdiv"></div>
+					</div>
+					<!-- /col-md-12 -->
+				</div>
+				<!-- row -->
+
+				<!-- /row -->
+			</section>
+		</section>
+		<!-- /MAIN CONTENT -->
+		<!--main content end-->
 		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
@@ -216,6 +231,11 @@
 						src="img/mainlogo.png" alt="mainlogo" /></a>
 				</p>
 				<div class="credits">
+
+					<div id="articleView_layer">
+						<div id="bg_layer"></div>
+						<div id="contents_layer"></div>
+					</div>
 					<!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
@@ -232,55 +252,98 @@
 		<!--footer end-->
 	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="lib/jquery/jquery.min.js"></script>
-	<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="lib/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="lib/jquery.scrollTo.min.js"></script>
-	<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-	<!--common script for all pages-->
+	 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="lib/time-select/timepicker-addon.js"></script>
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 	<!--script for this page-->
-	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
 
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<script src="lib/common-scripts.js"></script>
 	<script>
-		console.log(${virtualList});
-		var url;
-		var vList=${virtualList};
-		var d= vList[0];
-		if(${input}==0) {
-			$('#title').append("삭제");
-			url="./recentlist?dogid="+d.dogid+"&id="+d.id+"&input="+0;
-		}
-		if(${input}==1) {
-			$('#title').append("추가")
-			url="./recentfrm?dogid="+d.dogid+"&id="+d.id+"&input="+1;
-		}
-		$.each(vList,function(idx,data){
-			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
-			$('<td>').append(data.id).appendTo($tr);
-			$('<td>').append(data.dogname).appendTo($tr);
-			$('<td>').append(data.donationstart).appendTo($tr);
-			$('<td>').append(data.donation).appendTo($tr);
-			$('<td>').append(data.totaldonation).appendTo($tr);
-			$('#virtualList').append($tr);
-		});
-	
-		
-        jQuery(function($){
-            $("#table1").DataTable({info: false});
-        });
-        jQuery(function($){
-            $("#table2").DataTable({info: false});
-        });
-        
-        
-    </script>
+	let container = $('.pagingdiv');
 
+	container.pagination({
+        dataSource:${aleadyList} ,  //받아온 데이터
+        pageSize: 7,
+        callback: function (data, pagination) { //데이터 찍어주는 부분
+           console.log("data=",data);
+           temp=data;
+           $("#shelterlist").empty();
+           $.each(data,function(idx, data){
+        		var $body = $("#shelterlist");
+        		var $form = $("#dogdeletebtn");
+        		var sex = data.sex
+        		var jungsung = data.dogjungsung
+        		console.log("sex="+sex);
+        		var $tr = $("<tr>").appendTo($body);
+        		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.dogid+')').text("사진보기")).appendTo($tr);
+        		$("<td>").text(data.dogid).appendTo($tr);
+        		$("<td>").text(data.dogname).appendTo($tr);
+        		$("<td>").text(data.dogage).appendTo($tr);
+        		if(sex == 0 ){
+        			$("<td>").text("암컷").appendTo($tr);
+        		}else{
+        			$("<td>").text("수컷").appendTo($tr);
+        		}
+        		if(jungsung == 0 ){
+        			$("<td>").text("중성화 안함").appendTo($tr);
+        		}else{
+        			$("<td>").text("중성화 했음").appendTo($tr);
+        		}
+
+        		$("<td>").append(data.dogspecial).appendTo($tr);
+        		$("<td> <input type='hidden' name='dogid' id='dogid' class='dogid' value='"+data.dogid+"' />").appendTo($tr);
+           });
+        }
+
+    })
+    function articleView(dogid){
+		var detail= ${detail}
+		$("#articleView_layer").addClass('open');
+
+		$.ajax({
+			type:'get',
+			url:"shelterdeletedetail",
+			data:{dogid:dogid},
+			dataType:'html',
+			success:function(data){
+
+				$("#contents_layer").html(data);
+
+				/* $.each(detail,function(idx,data){
+	                  console.log("stst="+data);
+	                  var $activityPic = $("#activitypics");
+	                  var $li = $('<li>')
+	                  var $img = $("<img class='recoimg' src="+detail.activitypics[idx]+" alt='imgslide' />");
+	                  $li.append($img);
+	                  $activityPic.append($li);
+	               }) */
+			},
+			error:function(error){
+				console.log(error);
+			}
+			})
+	}
+	var $layerWindow=$("#articleView_layer");
+	$layerWindow.find('#bg_layer').on('mousedown',function(event){
+		console.log(event);
+		$layerWindow.removeClass('open');
+	});
+	$(document).keydown(function(event){
+		console.log(event);
+		if(event.keyCode!=27)
+			return;
+		else if($layerWindow.hasClass('open'))
+			$layerWindow.removeClass('open');
+	});
+
+
+	</script>
 </body>
 
 </html>

@@ -51,7 +51,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -130,7 +130,24 @@
 
 	<script>
 	 var $dogList = $("#addogList");
+	 var flag=0;
 	$.each(${va},function(idx,data){
+		flag++;
+		console.dir(data);
+		if(data===""){
+			console.log("이게 지금 배열이 비어있다!!")
+			var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+	        var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+	                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+	                .append($('<h4 class="text-uppercase m-0">').text("현재 진행중인 가상입양이 없습니다."))
+				console.log("이제 나올 강아지 아이디",data.dogid);
+	          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+	          $div2.append($div3);
+	          
+	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').append($div2);
+	           $dogList.append($div1);
+			
+		}
 		console.log(data);
 		console.log("도그아이디"+data.dogid);
 	if(data.status==0){
@@ -170,6 +187,19 @@
 		           $dogList.append($div1);
 		}
 	 });
+	
+	if(flag==0){
+		console.log("이게 지금 배열이 비어있다!!")
+		var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+        var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+                .append($('<h4 class="text-uppercase m-0">').text("현재 진행중인 가상입양이 없습니다."))
+          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+          $div2.append($div3);
+          
+          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').append($div2);
+           $dogList.append($div1);
+	};
 	
 
 	        	  

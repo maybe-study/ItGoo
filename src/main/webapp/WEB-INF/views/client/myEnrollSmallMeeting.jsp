@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,7 +60,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">

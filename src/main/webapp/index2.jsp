@@ -63,7 +63,7 @@ body:after {
 </style>
 <body>
    <h2 id="quote">
-      Thank you for visiting our site.</br>Don't buy it. Adopt it.</br><a href="index2.jsp">I.T.G.O.O</a>
+      Thank you for visiting our site.</br>Don't buy it. Adopt it.</br><a href="index.jsp">I.T.G.O.O</a>
    </h2>
 </body>
 <script type="text/javascript">

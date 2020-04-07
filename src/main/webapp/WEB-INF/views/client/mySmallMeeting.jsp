@@ -59,7 +59,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -154,7 +154,7 @@
     let container = $('.pagingdiv');
     container.pagination({
       
-        dataSource:${asList} ,   //받아온 데이터
+        dataSource:${asList},
         pageSize: 10,
         callback: function (data, pagination) { //데이터 찍어주는 부분
            console.log("data=",data);

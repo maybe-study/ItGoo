@@ -70,12 +70,17 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html"name="${_csrf.parameterName}" value="${_csrf.token}">Logout</a></li>
+					<li><a class="logout" href="#"
+						onclick="document.getElementById('logout').submit();"> Logout</a>
+						<form id="logout" action="logout" method="POST">
+							<input name="${_csrf.parameterName}" type="hidden"
+								value="${_csrf.token}" />
+						</form></li>
 				</ul>
 			</div>
 		</header>

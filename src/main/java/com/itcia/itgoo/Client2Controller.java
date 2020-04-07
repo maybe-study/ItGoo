@@ -104,7 +104,14 @@ public class Client2Controller {
 		mav = cm.smalllist(sm);
 		return mav;
 	}
+	@RequestMapping(value = "/smalldetail" , method = RequestMethod.GET)
+	public ModelAndView smalldetail(Integer smallnumber) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
 
+		mav= cm.smalldetail(smallnumber);
+
+		return mav;
+	}
 	@RequestMapping(value = "/regipuppysmall", method = RequestMethod.GET)
 	public String regipuppysmall(Locale locale, Model model) {
 		return "client/regiPuppySmall";

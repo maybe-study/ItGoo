@@ -12,8 +12,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.CareSheet;
+import com.itcia.itgoo.dto.Chat;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.SmallMeeting;
@@ -85,20 +87,20 @@ public interface IClientDao {
 	@Insert("insert into virtualadopt values(#{id},#{dogid},#{donation},#{payday},sysdate,0,#{status})")
 	void virtualadoptapply(VirtualAdopt va) throws DuplicateKeyException;
 
-	@Select("SELECT * FROM virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id} and virtualadopt.dogid=#{dogid}")
+	@Select("select * from virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
 	List<VirtualAdopt> myvirtual(VirtualAdopt va);
 
 
-	@Select("select * from virtualadopt join recent on recent.id=virtualadopt.id join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
+	@Select("select * from virtualadopt join dog on dog.dogid=virtualadopt.dogid where virtualadopt.id=#{id}")
 	List<VirtualAdopt> showmyvirtualadopt(@Param("id")String String);
 
 	void completesmall(SmallMeeting sm);
 
 	void cancelsmall(SmallMeeting sm);
-	
+
 	@Select("select * from smallmeeting where smallnumber=#{smallnumber}")
 	List<SmallMeeting> mysmallmeetingdetail(Principal p, SmallMeeting sm,@Param("smallnumber") int smallnumber);
-	
+
 	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
 			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
@@ -111,10 +113,16 @@ public interface IClientDao {
 	@Update("update adopt set phase = 7 where dogid=#{dogid}")
 	void finalupdate(int dogid);
 
-	@Update("update virtualadopt set status=2 where dogid=#{dogid} and id=#{id}")
-	void virtualdogupdate(@Param("dogid")int dogid,@Param("id")String name);
+	@Update("update virtualadopt set status=2 where dogid=#{dogid}")
+	void virtualdogupdate(@Param("dogid")int dogid);
 
 	@Delete("delete virtualadopt where dogid=#{dogid} and id=#{id}")
 	void deletevirtualadopt(@Param("dogid")int dogid, @Param("id")String name);
+
+	@Select("select * from answercaresheet join caresheet on caresheet.questionnum = answercaresheet.questionnum where id=#{id} and dogid=#{dogid}")
+	List<CareSheet> usercaresheet(Adopt ad);
+
+	@Update("update dog set status=2 where dogid=#{dogid}")
+	void updateShelterdog(int dogid);
 
 }

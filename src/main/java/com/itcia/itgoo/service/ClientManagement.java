@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.IAuctionDao;
+import com.itcia.itgoo.dao.IChatDao;
 import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
 import com.itcia.itgoo.dto.Adopt;
@@ -34,6 +35,8 @@ public class ClientManagement {
 	private IMemberDao mDao;
 	@Autowired
 	private IAuctionDao aDao;
+	@Autowired
+	private IChatDao chDao;
 
 	private ModelAndView mav = new ModelAndView();
 
@@ -147,11 +150,14 @@ public class ClientManagement {
 		System.out.println("마지막 선택 업데이트 중");
 		rs.setId(p.getName());
 		rs.setDogid(dogid);
+		System.out.println(rs+"rs에 다 들어있으면 그냥 rs 넘기면 되는 부분이니깐 보자");
 		System.out.println(choice);
+		System.out.println(p.getName());
 		if(choice.equals("go")){
 			System.out.println("사랑으로 키우기");
 			cDao.updateDog(rs);
-			cDao.virtualdogupdate(dogid,p.getName());
+			cDao.updateShelterdog(dogid);
+			cDao.virtualdogupdate(dogid);
 			mav.setViewName("./clientMyPage");
 		}else if(choice.equals("stop")){
 			System.out.println("강아지 입양해 좀!!!!!");
@@ -220,13 +226,14 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView smalllistdetail(Integer smallnumber) {
+	public ModelAndView smalldetail(Integer smallnumber) {
 		mav = new ModelAndView();
 		String view=null;
 		SmallMeeting sldetail = cDao.smalllistdetail(smallnumber);
 		sldetail.setSmallnumber(smallnumber);
 		mav.addObject("sldetail",new Gson().toJson(sldetail));
-		view="client/smallListDetail";
+		mav.addObject("scList",new Gson().toJson(chDao.smallChatList(smallnumber)));
+		view="client/smallDetail";
 		mav.setViewName(view);
 
 		return mav;
@@ -381,8 +388,13 @@ public class ClientManagement {
 	public ModelAndView cancelvirtualadopt(int dogid, Principal p) {
 		System.out.println("매니지먼트 넘어온 취소할 강아지"+dogid);
 		cDao.deletevirtualadopt(dogid,p.getName());
-		mav.setViewName("/client/clientMyPage");
+		mav.setViewName("clientMyPage");
 		return mav;
+	}
+
+	public List<CareSheet> usercaresheet(Adopt ad) {
+		
+		return cDao.usercaresheet(ad);
 	}
 
 	
