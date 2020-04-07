@@ -97,10 +97,10 @@ public interface IClientDao {
 	void completesmall(SmallMeeting sm);
 
 	void cancelsmall(SmallMeeting sm);
-	
+
 	@Select("select * from smallmeeting where smallnumber=#{smallnumber}")
 	List<SmallMeeting> mysmallmeetingdetail(Principal p, SmallMeeting sm,@Param("smallnumber") int smallnumber);
-	
+
 	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
 			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
@@ -118,9 +118,11 @@ public interface IClientDao {
 
 	@Delete("delete virtualadopt where dogid=#{dogid} and id=#{id}")
 	void deletevirtualadopt(@Param("dogid")int dogid, @Param("id")String name);
-	
+
 	@Select("select * from answercaresheet join caresheet on caresheet.questionnum = answercaresheet.questionnum where id=#{id} and dogid=#{dogid}")
 	List<CareSheet> usercaresheet(Adopt ad);
-	
+
+	@Update("update dog set status=2 where dogid=#{dogid}")
+	void updateShelterdog(int dogid);
 
 }
