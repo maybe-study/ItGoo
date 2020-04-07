@@ -12,8 +12,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.CareSheet;
+import com.itcia.itgoo.dto.Chat;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Reservation;
 import com.itcia.itgoo.dto.SmallMeeting;
@@ -119,5 +121,6 @@ public interface IClientDao {
 	
 	@Select("select * from answercaresheet join caresheet on caresheet.questionnum = answercaresheet.questionnum where id=#{id} and dogid=#{dogid}")
 	List<CareSheet> usercaresheet(Adopt ad);
+	
 
 }
