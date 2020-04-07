@@ -33,7 +33,8 @@ public class SocketController {
 		ss.bidCast(b, p);
 	}
 	@MessageMapping("/smallmeetingchat")
-	public void chat(Chat c) {
+	public void chat(Chat c,Principal p) {
+		c.setId(p.getName());
 		cDao.insertChat(c);
 		ss.chatCast(c);
 	}

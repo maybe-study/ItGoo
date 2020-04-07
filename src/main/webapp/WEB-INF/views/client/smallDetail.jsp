@@ -366,6 +366,8 @@
 	console.log("before:",beforeChat);
 	$.each(beforeChat,function(idx,chat){
 		addChat(chat);
+		
+
 	})
 	
 	
@@ -373,6 +375,8 @@
 	function addChat(chat){
 		
 		$('#chat').append(chat.id+":"+chat.chat+"<br>");
+		var chatDiv=document.getElementById("chat");
+		chatDiv.scrollTop=chatDiv.scrollHeight;
 	};
 	</script>
 	</body>

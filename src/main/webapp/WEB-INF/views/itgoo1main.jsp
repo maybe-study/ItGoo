@@ -308,6 +308,10 @@
 	if(${flag.equals("small")}){
 		document.getElementById("small_scroll").click();
 	}
+	
+	
+	
+	
 	</script>
 
 </body>
