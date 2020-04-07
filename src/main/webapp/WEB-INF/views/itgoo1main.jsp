@@ -97,8 +97,9 @@
 						href="#about">경매</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">SERVICE</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#small_div">소모임</a></li>
+					<li class="nav-item">
+					<a class="nav-link js-scroll-trigger"
+						href="#small_div" id="small_scroll">소모임</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>
 						<form id="logout" action="logout" method="POST">
@@ -303,6 +304,15 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="js/creative.min.js"></script>
+	<script>
+	if(${flag.equals("small")}){
+		document.getElementById("small_scroll").click();
+	}
+	
+	
+	
+	
+	</script>
 
 </body>
 

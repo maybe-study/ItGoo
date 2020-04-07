@@ -277,8 +277,7 @@
 	<script src="js/stomp.js"></script>
 	<script src="js/sockjs.js"></script>
 	<script>
-	
-	
+	var beforeChat=${scList};
 	console.log(${sldetail});
 	var sDetail=${sldetail};
 	$('#id').append(sDetail.id);
@@ -338,7 +337,7 @@
 		stompClient.subscribe('/topic/smallmeetingchat/'+sDetail.smallnumber,function(msg){
 			console.log("토픽에서 전송된 메시지"+msg.body);
 			var chat=JSON.parse(msg.body);
-			$('#chat').append(chat.id+":"+chat.chat+"<br>");
+			addChat(chat);
 		});
 		
 		
@@ -360,6 +359,24 @@
 		stompClient.send("/smallmeetingchat",{},JSON.stringify({smallnumber:sDetail.smallnumber, id:sDetail.id,chat:chat}));
 		$('#input').val("");
 		return false;
+	};
+		
+	
+	//이전 채팅
+	console.log("before:",beforeChat);
+	$.each(beforeChat,function(idx,chat){
+		addChat(chat);
+		
+
+	})
+	
+	
+	//채팅 추가 메소드
+	function addChat(chat){
+		
+		$('#chat').append(chat.id+":"+chat.chat+"<br>");
+		var chatDiv=document.getElementById("chat");
+		chatDiv.scrollTop=chatDiv.scrollHeight;
 	};
 	</script>
 	</body>

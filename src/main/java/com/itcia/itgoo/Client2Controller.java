@@ -28,6 +28,7 @@ import com.itcia.itgoo.dto.Test;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
 import com.itcia.itgoo.service.TestManagement;
+
 @Secured("ROLE_USER")
 @Controller
 public class Client2Controller {
@@ -39,6 +40,7 @@ public class Client2Controller {
 	private AuctionManagement am;
 	@Autowired
 	private ClientManagement cm;
+
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/testpaper")
 	public ModelAndView testPaper(int dogid) {
@@ -46,17 +48,17 @@ public class Client2Controller {
 		mav = tm.testPaper(dogid);
 		return mav;
 	}
+
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/testpapersubmit")
-	public ModelAndView testPaperSubmit(String test,Principal p) {
+	public ModelAndView testPaperSubmit(String test, Principal p) {
 		System.out.println("===================test====================");
 		System.out.println(test);
-		mav=tm.testPaperSubmit(test,p);
-
-
+		mav = tm.testPaperSubmit(test, p);
 
 		return mav;
 	}
+
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/auctionfrm")
 	public ModelAndView auctionFrm() {
@@ -65,36 +67,49 @@ public class Client2Controller {
 	}
 
 	@PostMapping("/addauction")
-	public ModelAndView addAuction(Principal p,Auction a,MultipartFile f,String srcJson) {
-		mav=am.addAuction(p,a,f,srcJson);
+	public ModelAndView addAuction(Principal p, Auction a, MultipartFile f, String srcJson) {
+		mav = am.addAuction(p, a, f, srcJson);
 		return mav;
 	}
+
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/auctionlist", method = RequestMethod.GET)
 	public ModelAndView auctionList() {
 		mav = am.auctionList();
 		return mav;
 	}
+
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/auctionattend", method = RequestMethod.GET)
-	public ModelAndView auctionAttend(int auctionnum,Principal p) {
-		mav = am.auctionAttend(auctionnum,p);
+	public ModelAndView auctionAttend(int auctionnum, Principal p) {
+		mav = am.auctionAttend(auctionnum, p);
 		return mav;
 	}
+
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/auctiondetail", method = RequestMethod.GET)
 	public ModelAndView auctionDetail(int auctionnum) {
 		mav = am.auctionDetail(auctionnum);
 		return mav;
 	}
+
 	@RequestMapping(value = "/puppysmall", method = RequestMethod.GET)
 	public String puppysmall(Locale locale, Model model) {
 		return "client/puppySmall";
 	}
+
 	@RequestMapping(value = "/smalllist", method = RequestMethod.GET)
 	public ModelAndView smalllist(SmallMeeting sm) {
 		ModelAndView mav = new ModelAndView();
 		mav = cm.smalllist(sm);
+		return mav;
+	}
+	@RequestMapping(value = "/smalldetail" , method = RequestMethod.GET)
+	public ModelAndView smalldetail(Integer smallnumber) {	//null 값도 받으려고
+		System.out.println("여기 있어요");
+
+		mav= cm.smalldetail(smallnumber);
+
 		return mav;
 	}
 	@RequestMapping(value = "/regipuppysmall", method = RequestMethod.GET)
@@ -102,56 +117,60 @@ public class Client2Controller {
 		return "client/regiPuppySmall";
 	}
 
-
 	@RequestMapping(value = "/mysmallmeeting", method = RequestMethod.GET)
-	public ModelAndView mysmallmeeting(Principal p,SmallMeeting sm) {
+	public ModelAndView mysmallmeeting(Principal p, SmallMeeting sm) {
 		ModelAndView mav = new ModelAndView();
-		mav = cm.myrecruitsmall(p,sm);
+		mav = cm.myrecruitsmall(p, sm);
 		return mav;
 	}
+
 	@RequestMapping(value = "/myenrollsmallmeeting", method = RequestMethod.GET)
-	public ModelAndView myenrollsmallmeeting(Principal p,SmallMeeting sm) {
+	public ModelAndView myenrollsmallmeeting(Principal p, SmallMeeting sm) {
 		ModelAndView mav = new ModelAndView();
-		mav = cm.myenrollsmall(p,sm);
+		mav = cm.myenrollsmall(p, sm);
 		return mav;
 	}
+
 	@RequestMapping(value = "/joinsmallmeeting", method = RequestMethod.GET)
-	public ModelAndView joinsmallmeeting(Principal p,SmallMeeting sm) {
+	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
 		ModelAndView mav = new ModelAndView();
-		mav= cm.joinsmallmeeting(p, sm);
+		mav = cm.joinsmallmeeting(p, sm);
 		return mav;
 	}
 
 	@RequestMapping(value = "/delmysmallmeeting")
-	public ModelAndView delmysmallmeeting(Principal p,SmallMeeting sm, RedirectAttributes attr) {
+	public ModelAndView delmysmallmeeting(Principal p, SmallMeeting sm, RedirectAttributes attr) {
 		ModelAndView mav = new ModelAndView();
-		mav= cm.delmysmallmeeting(p, sm, attr);
-		attr.addFlashAttribute("sm",sm);
+		mav = cm.delmysmallmeeting(p, sm, attr);
+		attr.addFlashAttribute("sm", sm);
 		return mav;
 	}
 
 	@RequestMapping(value = "/myauction", method = RequestMethod.GET)
 	public ModelAndView myauction(Principal p) {
 		ModelAndView mav = new ModelAndView();
-		mav= cm.myauction(p.getName());
+		mav = cm.myauction(p.getName());
 		return mav;
 	}
-	@RequestMapping(value = "/completesmall" )
-	public ModelAndView completesmall(SmallMeeting sm,RedirectAttributes attr) {	//null 값도 받으려고
-		mav= cm.completesmall(sm,attr);
-		attr.addFlashAttribute("sm",sm);
+
+	@RequestMapping(value = "/completesmall")
+	public ModelAndView completesmall(SmallMeeting sm, RedirectAttributes attr) { // null 값도 받으려고
+		mav = cm.completesmall(sm, attr);
+		attr.addFlashAttribute("sm", sm);
 		return mav;
 	}
-	@RequestMapping(value = "/cancelsmall" )
-	public ModelAndView cancelsmall(SmallMeeting sm,RedirectAttributes attr) {	//null 값도 받으려고
-		mav= cm.cancelsmall(sm,attr);
-		attr.addFlashAttribute("sm",sm);
+
+	@RequestMapping(value = "/cancelsmall")
+	public ModelAndView cancelsmall(SmallMeeting sm, RedirectAttributes attr) { // null 값도 받으려고
+		mav = cm.cancelsmall(sm, attr);
+		attr.addFlashAttribute("sm", sm);
 		return mav;
 	}
-	@RequestMapping(value = "/mysmallmeetingdetail" , method = RequestMethod.GET)
-	public ModelAndView mysmallmeetingdetail(Principal p, SmallMeeting sm, int smallnumber) {	//null 값도 받으려고
+
+	@RequestMapping(value = "/mysmallmeetingdetail", method = RequestMethod.GET)
+	public ModelAndView mysmallmeetingdetail(Principal p, SmallMeeting sm, int smallnumber) { // null 값도 받으려고
 		System.out.println("여기 있어요");
-		mav= cm.mysmallmeetingdetail(p,sm,smallnumber);
+		mav = cm.mysmallmeetingdetail(p, sm, smallnumber);
 		return mav;
 	}
 }

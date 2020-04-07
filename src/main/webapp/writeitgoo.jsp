@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,13 +103,13 @@
 	width: 60%;
 }
 
-#title2 {
+#title1 {
 	font-size: 20px;
 }
 
-#content {
-	width: 70%;
-	height: 700px;
+#main {
+	/* 	width: 600px;
+	height: 700px; */
 	font-size: 20px;
 }
 
@@ -118,6 +120,11 @@
 #titlepic {
 	font-size: 20px;
 }
+
+/* .ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline
+	{
+	width: 1000px;
+} */
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -125,13 +132,23 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<script src="ckeditor/ckeditor.js"></script>
 
 <script>
+	/* $("btn").click(function)(){
+	var title = $("title")
+	var main = $("main")
+	var pic = $("pic")
+			
+
+	}
+	 */
+	
 	
 </script>
 <body>
-	<header>s
+	<header>
+		s
 		<div id="logo">
 			<a href="index.jsp"><img id="logo"
 				src="img/portfolio/itgoo1004.png"> </a>
@@ -154,28 +171,22 @@
 
 
 		<section id="section">
-			<form action="writepage">
+			<form action="writepage?${_csrf.parameterName}=${_csrf.token}"
+				enctype="multipart/form-data" onsubmit="return check()"
+				name="auctionfrm">
 				<div id="table">
 					<table id="boards" class="table">
 
 						<tbody>
 							<tr>
-								<td><span id="title">제목:</span><input type="text"
-									id="title" name="title" /></td>
+								<td><span id="title"></span><input type="text" id="title"
+									name="title" placeholder="제목을 작성해주세요." /></td>
 							</tr>
 
 							<tr>
-								<td><span id="title2">내용</span> <textarea id="content"
-										name="content"></textarea></td>
+								<td><textarea id="main" name="content"
+										placeholder="내용작성해주세요."></textarea></td>
 							</tr>
-
-							<tr>
-								<td><span id="titlepic">사진등록</span> <input id="pic"
-									type="file" name="files" multiple id="files"
-									accept=".jpg,.jpeg,.png,.gif,.bmp"> <input
-									type="hidden" id="fileCheck" name="file_Check" value="0" /></td>
-							</tr>
-
 
 
 							<tr>
@@ -193,6 +204,62 @@
 	</div>
 </body>
 <script>
-	
+let myeditor
+ClassicEditor
+    .create( document.querySelector( '#main' ),{
+        ckfinder: {
+            uploadUrl: './ck/communityload?${_csrf.parameterName}=${_csrf.token}' // 내가 지정한 업로드 url (post로 요청감)
+            
+    		
+        }
+    } )
+    .then( editor => {
+    	//대입
+    	myeditor=editor;
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+    
+  
+  function check(){
+	  const data = myeditor.getData();
+	  //디비에 저장할 이미지 리스트
+	  var imgList=[];
+	  console.log(data);
+	  $(data).find('img').each(function(){
+	  	  imgList.push($(this).attr('src'));
+	  });
+
+	  var frm=document.auctionfrm
+	  
+	  frm.srcJson.value=JSON.stringify(imgList);
+	  console.log(JSON.stringify(imgList));
+	  return true;
+  }
+  function demo(){
+	  console.log("데모");
+	  const data = myeditor.getData();
+	  //디비에 저장할 이미지 리스트
+	  var imgList=[];
+	  console.log(data);
+	  $(data).find('img').each(function(){
+	  	  imgList.push($(this).attr('src'));
+	  });
+
+	  var frm=document.auctionfrm
+	  
+	  frm.srcJson.value=JSON.stringify(imgList);
+	  frm.auctionstart.value=moment().add(5,'s').format('MM/DD/YYYY h:mm:ss A')
+	  frm.auctionend.value=moment().add(35,'s').format('MM/DD/YYYY h:mm:ss A')
+	  
+	  console.log(frm.auctionstart.value);
+	  
+	  console.log(JSON.stringify(imgList));
+	  return true;
+  }
+
+
 </script>
 </html>

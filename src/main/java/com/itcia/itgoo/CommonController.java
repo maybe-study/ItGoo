@@ -49,8 +49,11 @@ public class CommonController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/itgoo1main", method = RequestMethod.GET)
-	public String itgoo1main() {
-		return "itgoo1main";
+	public ModelAndView itgoo1main(String flag) {
+		if(flag==null)flag="none";
+		mav.addObject("flag",flag);
+		mav.setViewName("itgoo1main");
+		return mav;
 	}
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)

@@ -227,7 +227,7 @@
            $.each(data,function(idx, data){
         		var $body = $("#smallmeetinglist");
         		var $tr = $("<tr>").appendTo($body).css('cursor','pointer').click(function(){
-        			location.href='smalllistdetail?smallnumber='+data.smallnumber;
+        			location.href='smalldetail?smallnumber='+data.smallnumber;
         		});
         		$("<td>").text(data.meetingname).appendTo($tr);
         		$("<td>").text(data.id).appendTo($tr);

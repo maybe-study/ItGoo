@@ -122,7 +122,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#services">SERVICE</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#">소모임</a></li>
+						href="itgoo1main?flag=small">소모임</a></li>
 					<sec:authorize access="isAuthenticated()">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#" onclick="document.getElementById('logout').submit();">로그아웃</a>

@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonElement;
 import com.itcia.itgoo.dto.Adopt;
@@ -49,7 +51,7 @@ public interface IShelterDao {
 
 	void inserDogPics(Dfile df);
 
-	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid}")
+	@Select("SELECT * FROM DOG WHERE SHELTERID=#{shelterid} and (status=0 or status=1)")
 	List<Dog> shelterdelete(Dog dog);
 
 	@Select("SELECT * FROM COMPANY WHERE companyid=#{companyid}")
@@ -99,5 +101,8 @@ public interface IShelterDao {
 
 	@Delete("delete recent where recentid=#{recentid}")
 	void recentDelete(int recentid);
+
+	@Select("select * from dog where status=2 and shelterid=#{shelterid}")
+	List<Dog> aleadyAdopt(@Param("shelterid")String name);
 
 }
