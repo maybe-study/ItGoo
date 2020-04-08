@@ -130,7 +130,6 @@
   	  	
   	  	$div2.append($h4);
   	  	
-  	  	
   	  	$.each(question.exList,function(i,ex){
   	  		
 	  	  	var $input=$('<input type="radio" name="q'+question.questionnum+'" id="optionsRadios1" value="'+ex.exnum+'" required>').attr('disabled',true)
@@ -139,16 +138,15 @@
 	  	  	}
 	  	  	var $label=$('<label>').append($input).append(ex.exnum+". ");
 	  	  	$label.append(ex.excontent);
+	  	  	
 	  	  	if(i+1==rList[idx].correct){
 	  	  		$label.attr('style','background-color:blue; color:white');
 	  	  	}
+	  	  	
 	  	  	var $div3=$('<div class="radio">').append($label);
 	  	  	$div2.append($div3);
 	  	  	
   	  	})
-  	  	
-  	  	
-  	  	
   	  	$div1.append($div2);
   	  	$qList.append($div1);
   	})
