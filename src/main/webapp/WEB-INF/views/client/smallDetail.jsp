@@ -218,14 +218,17 @@
 								</td>
 								</tr>
 							</table>
-						
+						<div style="text-align:center;padding:20px;">
+								<button class="btn btn-primary" type="button" onclick="ajChat()">신청</button>
+							</div>
 						</div>
+						
 					</div>
 				</div>
 				<div class="card col-lg-6" >
 					<div class="card-body" >
 					<h5 class="card-title">채팅</h5>
-					<div style="height:500px; overflow: auto;" id="chat">
+					<div style="height:600px; overflow:auto;" id="chat">
 						
 						
 					</div>
@@ -287,7 +290,7 @@
 	$('#time').append(sDetail.time);
 	$('#meetingdate').append(sDetail.meetingdate);
 	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨

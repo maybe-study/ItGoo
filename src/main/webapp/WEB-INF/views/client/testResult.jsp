@@ -113,8 +113,8 @@
   	var $qList=$('#questionList');
   	$qList.empty();
   	$.each(qList,function(idx,question){
-  		
-  		console.log(question)
+  		console.log(idx);
+  		console.log(question);
   		console.log(rList[idx]);
   		var $div1=$('<div class="col-lg-4">');
   	  	var $div2=$('<div class="form-panel">');
@@ -125,7 +125,7 @@
 		}else{
 			$icon.attr('class','fas fa-slash').attr('style','color:red');
 		}
-  	  	var $h4=$('<h4 class="mb">').append($icon).append(" "+question.question);
+  	  	var $h4=$('<h4 class="mb">').append($icon).append(" "+rList[idx].question);
   	  	
   	  	
   	  	$div2.append($h4);

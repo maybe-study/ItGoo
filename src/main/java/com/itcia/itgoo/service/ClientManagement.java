@@ -19,7 +19,6 @@ import com.itcia.itgoo.dao.IClientDao;
 import com.itcia.itgoo.dao.IMemberDao;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.CareSheet;
-import com.itcia.itgoo.dto.Company;
 import com.itcia.itgoo.dto.Dog;
 import com.itcia.itgoo.dto.Member;
 import com.itcia.itgoo.dto.Reservation;
@@ -37,7 +36,10 @@ public class ClientManagement {
 	private IAuctionDao aDao;
 	@Autowired
 	private IChatDao chDao;
-
+	@Autowired
+	private UploadFile up;
+	
+	
 	private ModelAndView mav = new ModelAndView();
 
 	public ModelAndView adoplist() {
@@ -68,7 +70,7 @@ public class ClientManagement {
 		ad.setId(p.getName());
 		System.out.println("111111111111111111"+ad.getId());
 		ad.setScore(0);
-		UploadFile up = new UploadFile();
+
 		String path = up.fileUp(multi.getFile("identifile"), "idfile");
 		ad.setIdfile(path);
 		cDao.insertapplyadopt(ad);

@@ -16,10 +16,12 @@ import com.itcia.itgoo.share.UploadFile;
 public class CommunityManagement {
 	@Autowired
 	private ICommunityDao iDao;
+	@Autowired
+	private UploadFile up;
 	private ModelAndView mav = new ModelAndView();
 
 	public ModelAndView writeList(MultipartHttpServletRequest multi, Communityfile cfile) {
-		UploadFile up = new UploadFile();
+		
 		List<String> paths = up.fileUp(multi.getFiles("files"), "communityfile");
 		for (String picPath : paths) {
 			iDao.insertCommunityfile(picPath, cfile.getCommunityfile());

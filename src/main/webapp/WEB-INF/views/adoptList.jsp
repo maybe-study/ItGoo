@@ -291,7 +291,7 @@ hr {
    var $dogList = $("#dogList");
    $.each(${dogList},function(idx,data){
       console.log("data어돕트 값",data);
-        var $img=$('<img style="width:100%">').attr('src',data.dogpic);
+        var $img=$('<img style="width:100%; height:300px">').attr('src',data.dogpic);
         makeModalBtn($img);
         $img[0].dataset.dogid=data.dogid;
         //$img[0].dataset.
@@ -300,12 +300,12 @@ hr {
                 .append($('<h4 class="text-uppercase m-0"><hr>').text(data.dogname))
                 .append($('<hr class="my-4">')).append($img)
                 .append($('<div class="small text-black-50"><hr>').text(data.dogage+" 살"))
-                .append($('<div class="small text-black-50"><hr>').append(data.dogspecial))
+                
                 .append($('<div class="small text-black-50"><hr>').text("중성화 여부 : "+data.dogjungsung));
           console.log("인덱스는!!!"+idx);
           console.log(idx);
           var $div2 = $('<div class="card py-4 h-100">').append($div3);
-          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0">').append($div2);
+          var $div1 = $('<div class="col-md-4 col-sm-12 ">').append($div2);
            $dogList.append($div1);
            
      });
@@ -317,8 +317,8 @@ hr {
           $.ajaxSetup({
                beforeSend : function(xhr) {
                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-               }
-            });//먼저 보냄
+             }
+          });//먼저 보냄
             console.log(dogid);
             $.ajax({ // 에이작스 열고
                type : 'post', //타입은 get 

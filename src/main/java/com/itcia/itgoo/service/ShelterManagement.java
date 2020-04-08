@@ -35,7 +35,8 @@ import com.itcia.itgoo.userclass.Paging;
 public class ShelterManagement {
 	@Autowired
 	private IShelterDao sDao;
-
+	@Autowired
+	private UploadFile up;
 	private ModelAndView mav = new ModelAndView();
 
 	/*
@@ -70,7 +71,7 @@ public class ShelterManagement {
 		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
 		cMember.setPassword(pwdEncoder.encode(cMember.getPassword()));
 
-		UploadFile up = new UploadFile();
+	
 		// 파일 업로드 (시설 등록증)
 		String path = up.fileUp(multi.getFile("companycardfile"), "companycard");
 		cMember.setCompanycard(path); // 시설 등록증 설정
@@ -95,7 +96,6 @@ public class ShelterManagement {
 	
 	@Transactional
 	public ModelAndView shelterregiste(MultipartHttpServletRequest multi, Dog dog, Principal p) {
-		UploadFile up = new UploadFile();
 
 		List<String> paths = up.fileUp(multi.getFiles("dogpicby"), "dogpics");
 		dog.setShelterid(p.getName());
@@ -197,7 +197,7 @@ public class ShelterManagement {
 		RedirectView redirectView = new RedirectView();
 
 		cp.setCompanyid(p.getName());
-		UploadFile up = new UploadFile();
+
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
 		boolean lp = sDao.deleteCompanyLocPic(cp);
 		for (String picPath : paths) {
@@ -214,7 +214,6 @@ public class ShelterManagement {
 		mav= new ModelAndView();
 
 		cp.setCompanyid((String) p.getName());
-		UploadFile up = new UploadFile();
 		List<String> paths = up.fileUp(multi.getFiles("files"), "company");
 		for (String picPath : paths) {
 			System.out.println("cp="+cp);

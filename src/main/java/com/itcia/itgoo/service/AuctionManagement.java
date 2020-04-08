@@ -27,7 +27,10 @@ import com.itcia.itgoo.userclass.AuctionThread;
 @Service
 public class AuctionManagement {
 	private ModelAndView mav = new ModelAndView();
-	private final SimpMessagingTemplate template;
+	private final SimpMessagingTemplate  template;
+
+	@Autowired
+	private UploadFile up;
 	@Autowired
 	private IAuctionDao aDao;
 
@@ -37,8 +40,7 @@ public class AuctionManagement {
 	}
 
 	public String ckUpload(MultipartFile file) {
-		UploadFile up = new UploadFile();
-		String path = up.fileUp(file, "auction");
+		String path = up.fileUp(file , "auction");
 
 		System.out.println("==============multi====================");
 		System.out.println(path);
@@ -57,8 +59,7 @@ public class AuctionManagement {
 	}
 
 	@Transactional
-	public ModelAndView addAuction(Principal p, Auction a, MultipartFile f, String srcJson) {
-		UploadFile up = new UploadFile();
+	public ModelAndView addAuction(Principal p, Auction a,MultipartFile f, String srcJson) {
 		a.setOwner(p.getName());
 		a.setAuctionpic(up.fileUp(f, "auctionthumb"));
 		List<String> srcList = new Gson().fromJson(srcJson, new TypeToken<ArrayList<String>>() {

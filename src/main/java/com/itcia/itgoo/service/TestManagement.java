@@ -60,17 +60,21 @@ public class TestManagement {
 		List<TestResult> rList=tDao.getTestResult(test);
 		mav.addObject("rList",new Gson().toJson(rList));
 		
-		List<Question> qList=tDao.qList();
+		List<Question> qList=tDao.getResultQuestion(test);
 		for(Question q: qList) {
 			List<Ex> exList=tDao.exList(q);
 			q.setExList(exList);
 		}
-		//점수 합계
 		for(TestResult t: rList) {
-			if(t.getCorrect()==t.getAnswer());
+			if(t.getCorrect()==t.getAnswer())
 				pointSum+=t.getPoint();
 		}
-		//50점 이상이면 단계 상승 -> 3단계
+		test.setPointSum(pointSum);
+		tDao.updateScore(test);
+		//60점 이상이면 단계 상승 -> 3단계
+		
+		System.out.println("------------------------------점수 출력------------------------------");
+		System.out.println(pointSum);
 		if(pointSum>60)tDao.upgrade(test);
 		//단계 하락 ->0단계
 		else tDao.downgrade(test);

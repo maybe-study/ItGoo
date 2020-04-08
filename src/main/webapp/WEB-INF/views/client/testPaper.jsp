@@ -155,7 +155,7 @@
   	  	
   	  	$.each(question.exList,function(i,ex){
 	  	  	var $label=$('<label>').append('<input type="radio" name="q'+question.questionnum+'" id="optionsRadios1" value="'+ex.exnum+'" required>').append(ex.exnum+". ");
-	  	  	$label.append(ex.excontent)
+	  	  	$label.append(ex.excontent);
 	  	  	var $div3=$('<div class="radio">').append($label);
 	  	  	$div2.append($div3);
   	  	})
