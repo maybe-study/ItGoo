@@ -5,10 +5,42 @@
 <title>Insert title here</title>
 </head>
 <style>
+ #menudiv{
+  display: inline-block;
+  }
+  #buttondiv{
+  display: inline-block;
+  float: right;
+  margin-top: 25px;
+  }
 html {
   background:#E7FFF4;
   font-family: 'Open Sans Condensed', sans-serif;
   color: #5A626F;
+}
+.myButton {
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #e9e9e9 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #ffe0ff;
+	display:inline-block;
+	cursor:pointer;
+	color:#615f61;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:5px 25px;
+	text-decoration:none;
+	text-shadow:6px 4px 3px #c9c9c9;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #ffffff 100%);
+	background-color:#e9e9e9;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }
 
 a{
@@ -210,10 +242,17 @@ b, .product{
   .product>.details>p {
     font-size: 1.6vw;
   }
+  
+ 
 }
 </style>
 <body>
+<div id="menudiv">
 <h1>강아지 대백과 사전</h1>
+</div>
+<div id="buttondiv">
+<input type="button" value="뒤로가기" class="myButton" onclick="history.back()" />
+</div>
 <ul id="productGrid">
   <li class="product">
     <div class="details">
@@ -527,8 +566,8 @@ b, .product{
   </li>
   <li class="product">
     <div class="details">
-      <h2>부유한 솜털 곱슬머리,아몬드형 눈,처진 귀,굵고위로향한 꼬리가 특징입니다.</h2>
-      <p class="price">스탠다드 푸들</p>
+      <h2>배 모양의 촘촘한 머리와 곱슬 털, 구부러진 등, 유연한 몸, 우아하고 탄력 있는 걸음걸이를 자랑한다. </h2>
+      <p class="price">베들링턴테리어</p>
     </div>
     <div class="logo">
       <img src='img/portfolio/logo1.png' alt='' />
@@ -988,8 +1027,8 @@ b, .product{
   </li>
   <li class="product">
     <div class="details">
-      <h2>부유한 솜털 곱슬머리,아몬드형 눈,처진 귀,굵고위로향한 꼬리가 특징입니다.</h2>
-      <p class="price">스탠다드 푸들</p>
+      <h2>배 모양의 촘촘한 머리와 곱슬 털, 구부러진 등, 유연한 몸, 우아하고 탄력 있는 걸음걸이를 자랑한다.</h2>
+      <p class="price">베들링턴테리어</p>
     </div>
     <div class="logo">
       <img src='img/portfolio/logo3.png' alt='' />

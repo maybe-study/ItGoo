@@ -104,11 +104,20 @@ public class Client2Controller {
 		mav = cm.smalllist(sm);
 		return mav;
 	}
+	@RequestMapping(value = "/joinsmallmeeting", method = RequestMethod.GET)
+	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
+		mav=cm.joinsmallmeeting(p,sm);
+		return mav;
+	}
+	@RequestMapping(value = "/smalljoincancle", method = RequestMethod.GET)
+	public ModelAndView smalljoincancle(Principal p, int smallnumber) {
+		mav=cm.smalljoincancle(p,smallnumber);
+		return mav;
+	}
 	@RequestMapping(value = "/smalldetail" , method = RequestMethod.GET)
-	public ModelAndView smalldetail(Integer smallnumber) {	//null 값도 받으려고
-		System.out.println("여기 있어요");
+	public ModelAndView smalldetail(Principal p,Integer smallnumber) {	//null 값도 받으려고
 
-		mav= cm.smalldetail(smallnumber);
+		mav= cm.smalldetail(smallnumber,p);
 
 		return mav;
 	}
@@ -131,12 +140,6 @@ public class Client2Controller {
 		return mav;
 	}
 
-	@RequestMapping(value = "/joinsmallmeeting", method = RequestMethod.GET)
-	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
-		ModelAndView mav = new ModelAndView();
-		mav = cm.joinsmallmeeting(p, sm);
-		return mav;
-	}
 
 	@RequestMapping(value = "/delmysmallmeeting")
 	public ModelAndView delmysmallmeeting(Principal p, SmallMeeting sm, RedirectAttributes attr) {

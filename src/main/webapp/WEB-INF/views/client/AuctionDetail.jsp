@@ -258,7 +258,7 @@
 		$('.expired').css('display','flex');
 		$('#buyer').append(a.buyer);
 		$('#realprice').append(a.realprice);
-	}
+	};
 	
 	</script>
 	</body>

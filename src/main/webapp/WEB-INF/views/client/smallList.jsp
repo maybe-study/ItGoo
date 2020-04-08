@@ -216,6 +216,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 	
 	<script>
+	
 	let container = $('.pagingdiv');
     container.pagination({
         dataSource:${smList},  //받아온 데이터

@@ -32,6 +32,7 @@
 <link href="css/creative.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>  
 
+<link rel="stylesheet" href="css/animate.css">
 </head>
 <style>
 	#logout {
@@ -114,7 +115,14 @@
 	
 	#contents_layer{
 	}
-
+	.modal.fade{
+	  opacity:1;
+	}
+	.modal.fade .modal-dialog {
+	   -webkit-transform: translate(0);
+	   -moz-transform: translate(0);
+	   transform: translate(0);
+	}
 </style>
 <body id="page-top">
 
@@ -217,9 +225,24 @@
 								<td id="time">
 								</td>
 								</tr>
+								<tr>
+								<td>
+								 	참여 강아지 수
+								</td>
+								<td>
+								<form action="joinsmallmeeting" name="joinFrm">
+									<select name="smalldogcnt" id="dogCntSelect">
+										
+									</select>마리
+									<input type="hidden" name="smallnumber">
+									<input type="hidden" name="meetparticipatecnt">
+									
+								</form>
+								</td>
+								</tr>
 							</table>
 						<div style="text-align:center;padding:20px;">
-								<button class="btn btn-primary" type="button" onclick="ajChat()">신청</button>
+								<button id="partBtn" class="btn btn-primary" type="button" onclick="smallJoin()">신청</button>
 							</div>
 						</div>
 						
@@ -229,7 +252,7 @@
 					<div class="card-body" >
 					<h5 class="card-title">채팅</h5>
 					<div style="height:600px; overflow:auto;" id="chat">
-						
+						이 소모임에 참여하지 않았습니다.
 						
 					</div>
 						<form onsubmit="return ajChat()">
@@ -238,7 +261,7 @@
 								<input type="text" id="input" style="height:30px;width:100%;" />
 							</div>
 							<div class="col-lg-3 col-sm-2">
-								<button class="btn btn-primary" type="button" onclick="ajChat()">전송</button>
+								<button id="chatBtn" class="btn btn-primary" type="button" onclick="ajChat()" disabled>전송</button>
 							</div>
 						</div>
 						</form>
@@ -251,8 +274,6 @@
 			</div>
 		</div>
 	</section>
-
-	
 
 	
 
@@ -286,7 +307,7 @@
 	$('#id').append(sDetail.id);
 	$('#smalllocation').append(sDetail.smalllocation);
 	$('#meetingname').append(sDetail.meetingname);
-	$('#smalldogcnt').append(sDetail.smalldogcnt+"/"+sDetail.maximumdog);
+	$('#smalldogcnt').append(sDetail.meetparticipatecnt+"/"+sDetail.maximumdog);
 	$('#time').append(sDetail.time);
 	$('#meetingdate').append(sDetail.meetingdate);
 	
@@ -329,33 +350,81 @@
 	
 	
 	</script>
+	
 	<script>
-		//소켓 통신
-		//소켓
-	var socket = new SockJS("./auction");
-	var stompClient = Stomp.over(socket);
-	stompClient.connect({}, function(frame) {
-		console.log("연결")
-		//채팅 구독
-		stompClient.subscribe('/topic/smallmeetingchat/'+sDetail.smallnumber,function(msg){
-			console.log("토픽에서 전송된 메시지"+msg.body);
-			var chat=JSON.parse(msg.body);
+	function smallJoin(){
+		document.joinFrm.smallnumber.value=sDetail.smallnumber;
+		document.joinFrm.meetparticipatecnt.value=sDetail.meetparticipatecnt;
+		document.joinFrm.submit();
+	};
+	
+	
+	</script>
+	
+	
+	<script>
+	
+	
+	
+	
+	if(${pflag}!=null){
+		//소모임에 신청 한 경우 채팅에 참여
+		var socket = new SockJS("./auction");
+		var stompClient = Stomp.over(socket);
+		stompClient.connect({}, function(frame) {
+			console.log("연결")
+			//채팅 구독
+			stompClient.subscribe('/topic/smallmeetingchat/'+sDetail.smallnumber,function(msg){
+				console.log("토픽에서 전송된 메시지"+msg.body);
+				var chat=JSON.parse(msg.body);
+				addChat(chat);
+			});
+		});
+		function disconnect(){
+			if(stompClient!=null){
+				stompClient.disconnect();;
+				console.log("Disconnected");
+			}
+		}
+		
+		window.onbeforeunload = function (e) {
+			disconnect();
+		};
+		//채팅 영역 비우기
+		$('#chat').empty();
+		//전송 버튼 활성화
+		$('#chatBtn').attr('disabled',false);
+		//이전 채팅
+		console.log("before:",beforeChat);
+		$.each(beforeChat,function(idx,chat){
 			addChat(chat);
 		});
+		//내가 신청한 강아지 수
+		var p=${pflag};
+		$('#dogCntSelect').attr('disabled',true).append($('<option>').append(p.smalldogcnt));
+		//취소 버튼으로 변경
+		document.getElementById("partBtn").onclick = function(){
+			location.href="smalljoincancle?smallnumber="+sDetail.smallnumber;
+		};
+		document.getElementById("partBtn").innerHTML="취소";
 		
 		
-	});
-	function disconnect(){
-		if(stompClient!=null){
-			stompClient.disconnect();;
-
-			console.log("Disconnected");
-		}
+	}else{//소모임 참여 안한 경우
+		//신청 버튼 활성화
+		$('#partBtn').attr('disabled',false);
+		var dogcnt=document.joinFrm.smalldogcnt;
+		console.log("dogcnt",dogcnt);
+		//남은 자리
+		var maxMyDog=sDetail.maximumdog-sDetail.meetparticipatecnt;
+		for(var i=1;i<=maxMyDog;i++){
+			var $op=$('<option>').val(i).append(i);
+			$('#dogCntSelect').append($op);
+			console.log("강아지 수 옵션")
+		};
+		
 	}
 	
-	window.onbeforeunload = function (e) {
-		disconnect();
-	};
+	
 		
 	function ajChat(){
 		var chat=$('#input').val();
@@ -365,13 +434,6 @@
 	};
 		
 	
-	//이전 채팅
-	console.log("before:",beforeChat);
-	$.each(beforeChat,function(idx,chat){
-		addChat(chat);
-		
-
-	})
 	
 	
 	//채팅 추가 메소드
@@ -382,6 +444,9 @@
 		chatDiv.scrollTop=chatDiv.scrollHeight;
 	};
 	</script>
+	
+
 	</body>
+
 
 </html>
