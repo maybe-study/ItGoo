@@ -18,5 +18,6 @@ public class Test {
 	private String id;
 	private int dogid;
 	private int answer;
+	private int pointSum;
 
 }

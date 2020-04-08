@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -31,13 +32,16 @@ public interface ITestDao {
 			"        question.question, test.answer" + 
 			"        from test join question on" + 
 			"        test.questionnum = question.questionnum"
-			+ " where test.id='${id}' and test.dogid=${dogid}")
+			+ " where test.id='${id}' and test.dogid=${dogid} order by question.questionnum")
 	List<TestResult> getTestResult(Test test);
+	
+	@Select("select test.questionnum from question join test on question.questionnum=test.questionnum where test.id='${id}' and test.dogid=${dogid} order by test.questionnum")
+	List<Question> getResultQuestion(Test test);
 	
 	@Update("update adopt set phase=2 where id='${id}' and dogid=${dogid}")
 	void documentPass(Adopt adopt);
 
-	@Delete("delete adopt where id='${id}' and dogid=${dogid}")
+	@Delete("delete adopt where dogid=${dogid}")
 	void adoptOut(Adopt adopt);
 
 	
@@ -46,6 +50,16 @@ public interface ITestDao {
 	
 	@Update("update adopt set phase=0 where id='${id}' and dogid=${dogid}")
 	void downgrade(Test test);
+	@Update("update adopt set score=#{pointSum} where id=#{id} and dogid=${dogid}")
+	void updateScore(Test test);
+	
+	@Update("update dog set status=0 where dogid=#{dogid}")
+	void dogUpdate(Adopt adopt);
+
+	@Delete("delete test where dogid=#{dogid}")
+	void testOut(Adopt adopt);
+
+	List<Question> qTestList();
 	
 	
 
