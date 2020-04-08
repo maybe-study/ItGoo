@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -140,7 +141,6 @@ public class ClientManagement {
 	public ModelAndView regismallmeeting(Principal p, SmallMeeting sm) {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
-		String view = null;
 		sm.setId((String) p.getName());
 		cDao.regismallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
@@ -228,33 +228,21 @@ public class ClientManagement {
 		return mav;
 	}
 
-	public ModelAndView smalldetail(Integer smallnumber) {
+	public ModelAndView smalldetail(Integer smallnumber, Principal p) {
 		mav = new ModelAndView();
 		String view=null;
 		SmallMeeting sldetail = cDao.smalllistdetail(smallnumber);
 		sldetail.setSmallnumber(smallnumber);
 		mav.addObject("sldetail",new Gson().toJson(sldetail));
 		mav.addObject("scList",new Gson().toJson(chDao.smallChatList(smallnumber)));
+		mav.addObject("pflag",new Gson().toJson(chDao.isparticipate(p.getName(),smallnumber)));
 		view="client/smallDetail";
 		mav.setViewName(view);
 
 		return mav;
 	}
 
-	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
-		mav= new ModelAndView();
-		System.out.println("smallnumber="+sm.getSmallnumber());
-		System.out.println("smalldogcnt="+sm.getSmalldogcnt());
-		System.out.println("meetparticipatecnt="+sm.getMeetparticipatecnt());
-		RedirectView redirectView= new RedirectView();
-		sm.setId((String) p.getName());
-		cDao.insertsmallmeeting(sm);
-		cDao.updatesmallmeeting(sm);
-		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("mysmallmeeting");
-		 mav.setView(redirectView);
-		return mav;
-	}
+	
 
 	public ModelAndView myenrollsmall(Principal p, SmallMeeting sm) {
 		mav= new ModelAndView();
@@ -397,6 +385,28 @@ public class ClientManagement {
 	public List<CareSheet> usercaresheet(Adopt ad) {
 		
 		return cDao.usercaresheet(ad);
+	}
+	@Transactional
+	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
+		sm.setId(p.getName());
+		cDao.insertsmallmeeting(sm);
+		cDao.updatesmallmeeting(sm);
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("smalldetail?smallnumber="+sm.getSmallnumber());
+		mav.setView(redirectView);
+		return mav;
+	}
+
+	public ModelAndView smalljoincancle(Principal p, int smallnumber) {
+		// TODO Auto-generated method stub
+		
+		cDao.deletesmallmeeting(p.getName(),smallnumber);
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("smalldetail?smallnumber="+smallnumber);
+		mav.setView(redirectView);
+		return mav;
 	}
 
 	

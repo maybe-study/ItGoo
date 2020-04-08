@@ -28,6 +28,7 @@ public class RestClientController {
 	@Autowired
 	private ActivityManagement acm;
 	
+	
 	ModelAndView mav = new ModelAndView();
 	@Secured("ROLE_USER")
 	@PostMapping(value = "/adoptlistdetail", produces="plain/text;charset=utf-8")

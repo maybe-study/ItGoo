@@ -124,5 +124,7 @@ public interface IClientDao {
 
 	@Update("update dog set status=2 where dogid=#{dogid}")
 	void updateShelterdog(int dogid);
+	@Delete("delete smallparticipate where smallnumber=#{smallnumber} and id=#{name}")
+	void deletesmallmeeting(@Param("name")String name, @Param("smallnumber")int smallnumber);
 
 }

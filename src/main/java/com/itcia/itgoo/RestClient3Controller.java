@@ -1,5 +1,6 @@
 package com.itcia.itgoo;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +8,14 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Auction;
 import com.itcia.itgoo.dto.CareSheet;
+import com.itcia.itgoo.dto.SmallMeeting;
 import com.itcia.itgoo.service.AuctionManagement;
 import com.itcia.itgoo.service.ClientManagement;
 @Secured("ROLE_USER")
@@ -21,6 +25,7 @@ public class RestClient3Controller {
 	private AuctionManagement am;
 	@Autowired
 	private ClientManagement cm;
+	
 	@RequestMapping(value = "/ajauctionlist", method = RequestMethod.POST, produces="application/json")
 	public List<Auction> auctionListAJ(String type) {
 		System.out.println("type:"+type);
@@ -33,4 +38,5 @@ public class RestClient3Controller {
 		List<CareSheet> cList=cm.usercaresheet(ad);
 		return cList;
 	}
+	
 }
