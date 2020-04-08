@@ -114,6 +114,8 @@
   	$qList.empty();
   	$.each(qList,function(idx,question){
   		console.log(idx);
+  		
+  		
   		console.log(question);
   		console.log(rList[idx]);
   		var $div1=$('<div class="col-lg-4">');
