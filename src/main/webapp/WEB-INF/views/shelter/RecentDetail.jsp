@@ -253,6 +253,7 @@
 	function deleteSend(){
 		location.href="recentdelete?recentid="+r.recentid;
 	}
+	
 		console.log(${recent});
 		$('#title').append(r.title);
 		$('#contents').append(r.message);
