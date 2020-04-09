@@ -103,11 +103,14 @@
     	background-attachment: scroll;
     	background-size: cover;
 	}
-	.card-label{
-		width:200px;
+	/* .card-label{
+		width:300px;
+	} */
+	#auctionexplain{
+		text-align: center;
 	}
 	#auctionexplain img{
-		width:100%
+		max-width: 100%;
 	}
 	.expired{
 		display:none;
@@ -167,8 +170,8 @@
 		<div class="container-fluid" id="bg">
 			<div class="container row" style="margin:auto">
 				<div class="card col-lg-12">
-					<div class="card-body" id="auctionname" style="font-size:20px">
-					<label class="card-label" >제목</label>
+					<div class="card-body row" id="auctionname" style="font-size:20px">
+					<label class="card-label col-xs-12 col-sm-2 col-lg-2" >제목</label>
 					</div>
 				</div>
 				<div class="card col-lg-12">
@@ -235,12 +238,12 @@
 	var $btn=$('<button class="btn btn-primary">')
 	
 	
-	$('#owner').append(a.owner);
-	$('#auctionstart').append(a.auctionstart);
-	$('#auctionend').append(a.auctionend);
-	$('#auctionname').append(a.auctionname);
-	$('#lowprice').append(a.lowprice);
-	$('#auctionexplain').append(a.auctionexplain);
+	$('#owner').append($('<label class="card-body col-xs-12 col-sm-10 col-lg-10" >').append(a.owner));
+	$('#auctionstart').append($('<label class="card-body col-xs-12 col-sm-10 col-lg-10" >').append(a.auctionstart));
+	$('#auctionend').append($('<label class="card-body col-xs-12 col-sm-10 col-lg-10" >').append(a.auctionend));
+	$('#auctionname').append($('<label class="card-label col-xs-12 col-sm-10 col-lg-10" >').append(a.auctionname));
+	$('#lowprice').append($('<label class="card-body col-xs-12 col-sm-10 col-lg-10" >').append(a.lowprice));
+	$('#auctionexplain').append($('<label class="card-body col-xs-12 col-sm-10 col-lg-10" >').append(a.auctionexplain));
 	//버튼 추가
 	if(a.status==1){
 		$btn.text('경매참여').click(function() {

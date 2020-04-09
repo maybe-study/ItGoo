@@ -296,7 +296,7 @@
 			$aList.empty();
 			$.each(aList,function(idx,a){
 				console.log(a);
-				var $contaier=$('<div class="col-lg-2 col-sm-3">').appendTo($aList);
+				var $contaier=$('<div class="col-lg-3 col-sm-6">').appendTo($aList);
 				var $a=$('<a class="portfolio-box">').attr('href','auctiondetail?auctionnum='+a.auctionnum).appendTo($contaier);
 				var $title=$('<div class="auction-title">').text(a.auctionname).appendTo($a);
 				var $img=$('<img class="img-fluid">').attr('src',a.auctionpic).appendTo($a);
