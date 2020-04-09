@@ -264,7 +264,7 @@
 			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
 			$('<td>').append(data.id).appendTo($tr);
 			$('<td>').append(data.dogname).appendTo($tr);
-			$('<td>').append(data.donationstart).appendTo($tr);
+			$('<td>').append(data.startdonaiton).appendTo($tr);
 			$('<td>').append(data.donation).appendTo($tr);
 			$('<td>').append(data.totaldonation).appendTo($tr);
 			$('#virtualList').append($tr);

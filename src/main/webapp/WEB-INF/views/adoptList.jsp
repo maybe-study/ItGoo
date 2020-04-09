@@ -143,7 +143,7 @@ hr {
             <h1 class="mx-auto my-0 text-uppercase">ADOPT LIST</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Don't buy it. Adopt
                it.</h2>
-            <a href="#about" class="btn btn-primary js-scroll-trigger">Get
+            <a href="#dogList" class="btn btn-primary js-scroll-trigger">Get
                Started</a>
          </div>
       </div>

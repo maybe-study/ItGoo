@@ -65,7 +65,7 @@
 		$.each(atList,function(idx, data) {
 							console.log("data=" + data);
 							var $activitydetailbtn = $("<input type='button' id='activitydetailbtn' class='myButton' onclick=\"articleView("
-									+ data.activitynum + ")\" value='예약하기' />")
+									+ data.activitynum + ")\" value='상세보기' />")
 							var $h3tag = $("<h3 class='card-title'>").text(
 									data.activityname);
 							var $explanation = $("<p class='card-text'>").text(
@@ -82,7 +82,6 @@
 									$classcarddiv);
 							var $classrowdiv = $("#row");
 							$classcoldiv.appendTo($classrowdiv);
-
 						})
 						
 		function articleView(activitynum) {
