@@ -59,6 +59,7 @@ public class ClientController {
 		return mav;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/activitylist", method = RequestMethod.GET)
 	public ModelAndView activityList( Activity ac,int dogid) {
 			System.out.println(dogid);
