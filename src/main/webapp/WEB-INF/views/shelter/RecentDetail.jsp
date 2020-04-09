@@ -190,10 +190,10 @@
             <div class="content-panel">
             <h4 id="title"><i class="fa fa-angle-right"></i> </h4>
                 <hr>
-                <div class="content-panel" id="contents" style="width:1000px;margin:auto">
+                <div class="content-panel" id="contents" style="width:100%;text-align: center;">
               		
                 </div>
-                <div class="form-group" style="text-align: center">
+                <div class="form-group" style="text-align:center">
                     <button class="btn btn-theme" type="button" onclick="deleteSend()">근황 삭제</button>
                 </div>
                 

@@ -37,7 +37,7 @@ public interface IClientDao {
 	@Select("SELECT * FROM dog join adopt on dog.dogid=adopt.dogid where dog.dogid=#{param1} and adopt.id=#{param2}"
 	) Adopt AdoptDetail(String dogid,String id);
 
-	@Insert("insert into adopt values(#{id},#{dogid},#{phase},#{score},#{idfile},#{dogcareer},#{job},#{why},#{teststart})")
+	@Insert("insert into adopt values(#{id},#{dogid},#{phase},#{score},#{idfile},#{dogcareer},#{job},#{why})")
 	void insertapplyadopt(Adopt ad);
 
 	List<Adopt> myPhasedogList(Adopt ad);

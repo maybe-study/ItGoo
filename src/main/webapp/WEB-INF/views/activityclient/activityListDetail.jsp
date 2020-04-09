@@ -23,7 +23,7 @@
 			<form action="activityreservationbtn?${_csrf.parameterName}=${_csrf.token}&dogid=${dogid}"
 				name="activityreservationbtn" method="post" id="modalform">
 				<input type="hidden" id="activitynum" name="activitynum" value="0" />
-				<table class="form-table">
+				<table class="form-table" style="margin:auto;">
 					<tr id="activitynametr">
 						<td>액티비티명:</td>
 					</tr>
@@ -63,8 +63,8 @@
 					<td>업체 이메일:</td>
 					</tr>
 				</table>
-				<div class="activityreservationclass">
-					<input type="submit" id="reservationcativity"
+				<div class="activityreservationclass" style="text-align: center">
+					<input type="submit" id="reservationcativity" 
 						class="myButton" value="액티비티 예약" />
 				</div>
 
@@ -90,9 +90,9 @@
 		var $trcp = $("#companyphonetr");
 		var $trce = $("#companyemailtr");
 
-		$("<td>").append(
-				$("<input name='activityname'>").val(listdetail.activityname))
-				.appendTo($tran);
+		$("<td>").append($("<input type='hidden' name='activityname'>").val(listdetail.activityname))
+		.text(listdetail.activityname)
+		.appendTo($tran);
 		$("<td>").text(listdetail.activityexplanation).appendTo($trae);
 		$("<td>").text(listdetail.activitydate).appendTo($trdate);
 		$("<td>").text(listdetail.activitystart).appendTo($trstart);

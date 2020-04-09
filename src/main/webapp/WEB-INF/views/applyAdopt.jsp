@@ -114,10 +114,10 @@ hr {
 				* 이유 <br> <br>
 				<textarea type="text" id="why" name="why" placeholder="입양을 결심한 이유"
 					required=></textarea>
-				<hr>
-				* 적격성평가 희망일 <br> <br> <input type="text" name="teststart"
+				<!--<hr>
+				 * 적격성평가 희망일 <br> <br> <input type="text" name="teststart"
 					placeholder="yyyymmdd" required= />
-				<hr>
+				<hr> -->
 				<DIV ID="boot">
 					<hr>
 					<button type="submit" id="apply" class="btn">제출</button>

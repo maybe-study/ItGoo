@@ -19,9 +19,10 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain=true)
 public class VirtualAdoptRecent {
-	int recentid;
-	String title;
-	String id;
-	int dogid;
-	String message;
+	private int recentid;
+	private String title;
+	private String id;
+	private int dogid;
+	private String startdonation;
+	private String message;
 }
