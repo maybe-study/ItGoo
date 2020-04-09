@@ -39,9 +39,11 @@
 	<update id="updatecompanylocation" parameterType="Company">
 		update company set companylocation=#{companylocation} where companyid=#{companyid} and companykind=1
 	</update>
-	<select id="activityDelete" parameterType="Activity" resultType="Activity">
-	select c.companyname,c.companyid,a.activitynum,a.activityname,a.activitydate,a.activitystart,a.activitytime, a.activitydogcnt from company c,activity a where c.companyid=a.companyid
-	</select>
+	
+	<!-- <select id="activityDelete" >
+	
+	</select> -->
+	
 	<select id="deleteDetail" parameterType="int" resultType="Activity">
 		select activitynum,activityname,activityprice,activitydate, activitystart from activity where activitynum=#{activitynum}
 	</select>

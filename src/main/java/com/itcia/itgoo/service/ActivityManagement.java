@@ -155,7 +155,6 @@ public class ActivityManagement {
 	}
 
 	public ModelAndView activityDelete1(Principal p, Company cp, Integer pageNum) {
-		
 		//모달안에서 데이터 긁어오는거
 		mav= new ModelAndView();
 		String view = null;
@@ -164,9 +163,9 @@ public class ActivityManagement {
 			System.out.println("페이지 정보가 잘못되었습니다.");
 		}
 			System.out.println("pNum="+ pNum);
-		cp.setCompanyid((String) p.getName());
+		cp.setCompanyid(p.getName());
 
-		List<Company> adList = aDao.activityDelete(cp);
+		List<Activity> adList = aDao.activityDelete(cp);
 		mav.addObject("adList",new Gson().toJson(adList));
 		mav.addObject("paging", getPaging(pNum,cp));
 		mav.setViewName("activitycompany/activityDelete");

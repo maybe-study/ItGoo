@@ -28,7 +28,8 @@ public interface IActivityDao {
 
 	public int updatecompanylocation(Company cp);
 
-	public List<Company> activityDelete(Company cp);
+	@Select("SELECT * FROM ACTIVITY join company on activity.companyid=company.companyid where company.companyid=#{companyid}")
+	public List<Activity> activityDelete(Company cp);
 
 	public Activity deleteDetail(Integer activitynum);
 
