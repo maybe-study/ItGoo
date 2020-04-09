@@ -59,7 +59,6 @@ public interface ITestDao {
 	@Delete("delete test where dogid=#{dogid}")
 	void testOut(Adopt adopt);
 
-	List<Question> qTestList();
 	
 	
 

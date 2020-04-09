@@ -48,7 +48,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+			<a href="index.jsp" class="logo"><b>DASH<span>IO</span></b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -100,7 +100,7 @@
 								<div class="form-group">
 									<label class="col-sm-2  control-label">최저가</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="lowprice">
+										<input type="number" class="form-control" name="lowprice">
 									</div>
 									<label class="col-sm-2  control-label">원</label>
 								</div>
@@ -132,7 +132,7 @@
 									<label class="col-sm-2  control-label">썸네일</label>
 									<div class="col-sm-10">
 										<input type="file" class="box" name="f"
-											accept=".jpg,.jpeg,.png,.gif,.bmp">
+											accept=".jpg,.jpeg,.png,.gif,.bmp" required>
 									</div>
 								</div>
 								<div class="form-group">

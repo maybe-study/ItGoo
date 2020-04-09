@@ -187,9 +187,34 @@ hr {
                         aria-label="Close">
                         <span aria-hidden="true">×</span>
                      </button>
-
                   </div>
                   <div class="modal-body">
+                     <div id="demo" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                           <!-- <li data-target="#demo" data-slide-to="0" class="active"></li>
+                            <li data-target="#demo" data-slide-to="1"></li>
+                            <li data-target="#demo" data-slide-to="2"></li> -->
+                        </ul>
+                        <!-- The slideshow -->
+                        <div class="carousel-inner">
+                           <!-- <div class="carousel-item active">
+                              <img src="/fileupload/dog/1.jpg" class="dog" alt="Los Angeles">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="/fileupload/dog/2.jpg" class="dog" alt="Chicago">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="/fileupload/dog/3.jpg" class="dog" alt="New York">
+                            </div> -->
+                        </div>
+                        <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                           <span class="carousel-control-prev-icon"></span>
+                        </a> <a class="carousel-control-next" href="#demo" data-slide="next">
+                           <span class="carousel-control-next-icon"></span>
+                        </a>
+                     </div>
                      <table >
                         <tr>
                            <td>이름</td>
@@ -219,38 +244,6 @@ hr {
                         <div id="special" >
                         
                         </div>
-                        
-                     <div id="demo" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-
-
-                        <ul class="carousel-indicators">
-                           <!-- <li data-target="#demo" data-slide-to="0" class="active"></li>
-                            <li data-target="#demo" data-slide-to="1"></li>
-                            <li data-target="#demo" data-slide-to="2"></li> -->
-                        </ul>
-
-                        <!-- The slideshow -->
-                        <div class="carousel-inner">
-                           <!-- <div class="carousel-item active">
-                              <img src="/fileupload/dog/1.jpg" class="dog" alt="Los Angeles">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="/fileupload/dog/2.jpg" class="dog" alt="Chicago">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="/fileupload/dog/3.jpg" class="dog" alt="New York">
-                            </div> -->
-                        </div>
-                        <!-- Left and right controls -->
-                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                           <span class="carousel-control-prev-icon"></span>
-                        </a> <a class="carousel-control-next" href="#demo" data-slide="next">
-                           <span class="carousel-control-next-icon"></span>
-                        </a>
-
-
-                     </div>
 
 
                   </div>

@@ -42,6 +42,9 @@
 	.dataTables_wrapper{
 		margin-left:10px;
 	}
+	.content-panel img{
+  	width:500px;
+  }
   	
   </style>
 </head>
@@ -58,7 +61,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->

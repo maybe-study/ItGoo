@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itcia.itgoo.dao.ITestDao;
+import com.itcia.itgoo.dto.Adopt;
 import com.itcia.itgoo.dto.Ex;
 import com.itcia.itgoo.dto.Question;
 import com.itcia.itgoo.dto.Test;
@@ -77,7 +78,15 @@ public class TestManagement {
 		System.out.println(pointSum);
 		if(pointSum>60)tDao.upgrade(test);
 		//단계 하락 ->0단계
-		else tDao.downgrade(test);
+		else {
+			Adopt adopt= new Adopt();
+			adopt.setId(test.getId());
+			adopt.setDogid(test.getDogid());
+			tDao.adoptOut(adopt);
+			tDao.dogUpdate(adopt);
+			tDao.testOut(adopt);
+			
+		}
 			
 		mav.addObject("qList",new Gson().toJson(qList));
 		mav.setViewName("client/testResult");

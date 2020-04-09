@@ -120,6 +120,25 @@ font-size:20px;
 								</button>
 
 							</div>
+							<div style="margin-left: 30px;"><br>
+										<table style=" font-size: 20px" >
+											<tr>
+												<td id="1" >이름:</td>
+												<td id="name"></td>
+											</tr>
+
+											<tr>
+												<td id="2">나이:</td>
+												<td id="age"></td>
+											</tr>
+											<tr>
+												<td id="3">성별:</td>
+												<td id="sex"></td>
+											</tr>
+										</table>
+										<hr>
+												<div id="special" style="font-size:20px"></div>
+									</div>
 							<div class="modal-body">
 								<div id="productCarousel" class="carousel slide"
 									data-ride="carousel">
@@ -139,26 +158,9 @@ font-size:20px;
 									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>
-								<div style="margin-left: 30px;"><br>
-										<table style=" font-size: 20px" >
-											<tr>
-												<td id="1" >이름:</td>
-												<td id="name"></td>
-											</tr>
-
-											<tr>
-												<td id="2">나이:</td>
-												<td id="age"></td>
-											</tr>
-											<tr>
-												<td id="3">성별:</td>
-												<td id="sex"></td>
-											</tr>
-										</table>
-										<hr>
-												<div id="special" style="font-size:20px"></div>
-									</div>
+								
 							</div>
+							
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary" id="adoptBtn"></button>
 								<button type="button" class="btn btn-default" id="closeModalBtn">뒤로가기</button>

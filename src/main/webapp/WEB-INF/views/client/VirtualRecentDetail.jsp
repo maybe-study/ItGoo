@@ -40,6 +40,12 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <style>
+  .content-panel img{
+  	width:300px;
+  }
+  
+  </style>
 </head>
 
 <body>
@@ -88,7 +94,7 @@
             <div class="content-panel">
             <h4 id="title"><i class="fa fa-angle-right"></i> </h4>
                 <hr>
-                <div class="content-panel" id="contents" style="width:1000px;margin:auto">
+                <div class="content-panel" id="contents" style="width:100%;text-align: center;">
               		
                 </div>
                 
