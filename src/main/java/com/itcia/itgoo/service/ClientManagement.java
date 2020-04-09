@@ -142,9 +142,11 @@ public class ClientManagement {
 		mav= new ModelAndView();
 		RedirectView redirectView = new RedirectView();
 		sm.setId((String) p.getName());
+		System.out.println("------------------------sm-------------------------");
+		System.out.println(sm);
 		cDao.regismallmeeting(sm);
 		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("myenrollsmallmeeting");
+		redirectView.setUrl("joinsmallmeeting?smallnumber="+sm.getSmallnumber()+"&smalldogcnt="+sm.getSmalldogcnt());
 		mav.setView(redirectView);
 		return mav;
 	}
@@ -389,6 +391,7 @@ public class ClientManagement {
 	@Transactional
 	public ModelAndView joinsmallmeeting(Principal p, SmallMeeting sm) {
 		sm.setId(p.getName());
+		System.out.println("joinsmallmeeting-sm:"+sm);
 		cDao.insertsmallmeeting(sm);
 		cDao.updatesmallmeeting(sm);
 		RedirectView redirectView = new RedirectView(); // redirect url 설정
