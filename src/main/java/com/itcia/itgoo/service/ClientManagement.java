@@ -151,6 +151,7 @@ public class ClientManagement {
 		return mav;
 	}
 	public ModelAndView updatedog(int dogid,String choice, Principal p, Reservation rs) {
+		RedirectView redirectView = new RedirectView();
 		System.out.println("마지막 선택 업데이트 중");
 		rs.setId(p.getName());
 		rs.setDogid(dogid);
@@ -162,7 +163,9 @@ public class ClientManagement {
 			cDao.updateDog(rs);
 			cDao.updateShelterdog(dogid);
 			cDao.virtualdogupdate(dogid);
-			mav.setViewName("./clientMyPage");
+			redirectView.setExposeModelAttributes(false);
+			redirectView.setUrl("myadoptphase");
+			mav.setView(redirectView); //myadoptphase
 		}else if(choice.equals("stop")){
 			System.out.println("강아지 입양해 좀!!!!!");
 			cDao.deleteadopt(rs);
