@@ -36,6 +36,9 @@ select * from caresheet where toggle=1
 	</select>
 
 	<insert id="regismallmeeting" parameterType="SmallMeeting">
+		<selectKey resultType="int" keyProperty="smallnumber" order="AFTER">
+			SELECT max(smallnumber) from smallmeeting
+		</selectKey>
 	insert into smallmeeting values(small_seq.nextval,#{id},#{smalllocation},#{maximumdog},#{meetingname},#{meetparticipatecnt},#{time},#{meetingdate},default )
 
 	</insert>
