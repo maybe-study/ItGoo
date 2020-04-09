@@ -208,10 +208,12 @@ font-size:20px;
 		 $phaselist.append($div1);
 
 	 }); */
+	 var $qList = $("#addogList");
+	 var flag=0;
 	 $.each(${aList},function(idx,data){
+		 flag++;
 		 console.log("피리스트 만드는중");
 		 console.log("data값은 ",data);
-		 var $qList = $("#addogList");
 		 var $img=$('<img id="openModalBtn" style="width:100%">').attr('src',data.thum);
 		  $img[0].dataset.dogid=data.dogid;
 		var $div1 = $('<div class="col-lg-4">')
@@ -231,6 +233,18 @@ font-size:20px;
 
 		});
 
+	 
+	 if(flag==0){
+			console.log("이게 지금 배열이 비어있다!!")
+			var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+	        var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+	                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+	                .append($('<h4 class="text-uppercase m-0">').text("현재 진행중인 입양이 없습니다."))
+	          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+	          $div2.append($div3);
+	          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').append($div2);
+	           $qList.append($div1);
+		};
 
 		/* if(data.phase==0){
         	var $p0=$('#adoptBtn').text("입양");

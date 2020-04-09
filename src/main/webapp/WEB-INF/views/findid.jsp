@@ -118,16 +118,22 @@ body, html {
 	opacity: 10%
 }
 
+#ui{
+color: white;
+background-color: rgba(0, 0, 0, 0.4);
+
+}
+
 </style>
 </head>
 <!--Coded with love by Mutiullah Samim-->
 <body>
     <ul id="ui" class="nav nav-tabs">
         <li class="menu-kind">
-            <a class="nav-link active"  href="#tab1" data-toggle="tab">이메일을 통한 아이디 찾기</a>
+            <a class="nav-link active" id="ui" href="#tab1" data-toggle="tab">이메일을 통한 아이디 찾기</a>
         </li>
         <li class="menu-kind">
-            <a class="nav-link" href="#tab2" data-toggle="tab">휴대폰을 통한 아이디 찾기</a>
+            <a class="nav-link" id="ui" href="#tab2" data-toggle="tab">휴대폰을 통한 아이디 찾기</a>
         </li>
 
     </ul>

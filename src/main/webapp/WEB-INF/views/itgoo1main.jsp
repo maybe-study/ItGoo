@@ -153,7 +153,7 @@
 	<!-- Services Section -->
 	<section class="page-section" id="services">
 		<div class="container">
-			<h2 class="text-center mt-0">ITGOO의 Service</h2>
+			<h2 class="text-center mt-0">ITGOO의 SERVICE</h2>
 			<hr class="divider my-4">
 			<div class="row">
 				<div class="col-lg-3 col-md-6 text-center">
@@ -167,7 +167,7 @@
 					<div class="mt-5">
 						<i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
 						<h3 class="h4 mb-2">소모임</h3>
-						<p class="text-muted mb-0">우리 강아지 사회성 기르기 & 친구 만들어주기</p>
+						<p class="text-muted mb-0">우리 강아지 사회성 기르기 & 친구 만들어주기</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
@@ -182,7 +182,7 @@
 					<div class="mt-5">
 						<i class="fas fa-4x fa-heart text-primary mb-4"></i>
 						<h3 class="h4 mb-2">입양</h3>
-						<p class="text-muted mb-0">유기견들에게 사랑과 행복을 전해주세요!</p>
+						<p class="text-muted mb-0">유기견들에게 사랑과 행복을 전해주세요.</p>
 					</div>
 				</div>
 			</div>
