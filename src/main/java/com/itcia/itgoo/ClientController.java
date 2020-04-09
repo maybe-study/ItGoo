@@ -182,8 +182,17 @@ public class ClientController {
 		return mav; 
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/recentvirtualdetail", method = RequestMethod.GET) 
+	public ModelAndView recentvirtualdetail(int recentid) {
+		System.out.println("가상입양 근황 디테일 보는곳 "+recentid);
+		System.out.println("가상입양 디테일로 가고 있는중 "); 
+		mav=cm.recentvirtualdetail(recentid);
+		return mav; 
+	}
+	
 	@RequestMapping(value = "/activityreservationbtn" )
-	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {	//null 값도 받으려고
+	public ModelAndView activityReservationBtn(Principal p ,Reservation rv,RedirectAttributes attr, int dogid) {
 		if(p!= null) {
 			p.getName();
 			System.out.println("p="+p.getName());

@@ -101,7 +101,7 @@ public interface IClientDao {
 	@Select("select * from smallmeeting where smallnumber=#{smallnumber}")
 	List<SmallMeeting> mysmallmeetingdetail(Principal p, SmallMeeting sm,@Param("smallnumber") int smallnumber);
 
-	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title FROM recent \r\n" +
+	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title,recent.recentid FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
 			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
 			"where recent.id=#{id} and recent.dogid=#{dogid}")
@@ -126,5 +126,8 @@ public interface IClientDao {
 	void updateShelterdog(int dogid);
 	@Delete("delete smallparticipate where smallnumber=#{smallnumber} and id=#{name}")
 	void deletesmallmeeting(@Param("name")String name, @Param("smallnumber")int smallnumber);
+
+	@Select("select * from recent where recentid=#{recentid}")
+	VirtualAdopt recentvirtualdetail(int recentid);
 
 }

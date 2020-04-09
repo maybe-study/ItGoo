@@ -349,7 +349,7 @@ hr {
                   //강아지 정보
                   $('#name').text(data.dogname);
                   $('#age').text(data.dogage+" 살");
-                  $('#dogjungsung').text(data.dogjungsung==0?"O":"X");
+                  $('#dogjungsung').text(data.dogjungsung==1?"O":"X");
                   $('#sex').text(data.sex==0?"남":"여");
                   $('#special').append(data.dogspecial);
                   

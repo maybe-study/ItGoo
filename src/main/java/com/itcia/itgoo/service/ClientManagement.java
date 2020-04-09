@@ -415,5 +415,14 @@ public class ClientManagement {
 		return mav;
 	}
 
+	public ModelAndView recentvirtualdetail(int recentid) {
+		VirtualAdopt va=new VirtualAdopt();
+		va=cDao.recentvirtualdetail(recentid);
+		System.out.println(va);
+		mav.addObject("va",new Gson().toJson(va));
+		mav.setViewName("./client/VirtualRecentDetail");
+		return mav;
+	}
+
 	
 }
