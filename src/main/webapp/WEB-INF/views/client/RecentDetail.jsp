@@ -98,20 +98,27 @@
 		<!--main content start-->
 		<section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 가상입양 근황 </h3>
+        <h3><i class="fa fa-angle-right" id="title"></i> 가상입양 근황 </h3>
         <div class="row">
-
+          
           <!-- /col-md-12 -->
-          <div class="col-md-11 mt">
+          <div class="col-md-12 mt">
             <div class="content-panel">
-            <h4 id="title"><i class="fa fa-angle-right"></i> </h4>
+            <h4><i class="fa fa-angle-right"></i> 가상입양 근황 리스트 </h4>
                 <hr>
-                <div class="content-panel" id="contents" style="width:1000px;margin:auto">
-
-                </div>
+              <table id="table2" class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>근황 번호</th>
+                    <th>근황 제목</th>
+                    <th>후원금</th>
+                  </tr>
+                </thead>
+                <tbody id="recentList">
+                </tbody>
+              </table>
+            </div>
           </div>
-
-            </div> 
         </div>
         <!-- row -->
         </section>
@@ -152,15 +159,45 @@
 	<!--script for this page-->
 	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
 
-
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
 		console.log(${cdList});
-		var r=${cdList};
-		$('#title').append(r[0].title);
-		$('#contents').append(r[0].message);
+		var cdList=${cdList};
+		var $contents=$("#contents");
+		var flag=0;
+		$.each(cdList,function(idx,data){
+			console.log
+			url="./recentvirtualdetail?recentid="+data.recentid;
+			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
+			$('<td>').append(data.recentid).appendTo($tr);
+			$('<td>').append(data.title).appendTo($tr);
+			$('<td>').append(data.donation+"원").appendTo($tr);
+			
+			$('#recentList').append($tr);
+		});
+	
+		
+        jQuery(function($){
+            $("#table1").DataTable({info: false});
+        });
+        jQuery(function($){
+            $("#table2").DataTable({info: false});
+        });
+		
+		 if(flag==0){
+				console.log("이게 지금 배열이 비어있다!!")
+				var $div4=$('<div class="card-body text-center"  style="height:15px;"></div>');
+		        var $div3 = $('<div style="margin-top:10%; text-align:center;"><div>')
+		                .append($('<i class="fas fa-mobile-alt text-primary mb-2">'))
+		                .append($('<h4 class="text-uppercase m-0">').text("현재 진행중인 입양이 없습니다."))
+		          var $div2 = $('<div class="card py-4 h-100">').append($div4);
+		          $div2.append($div3);
+		          var $div1 = $('<div class="col-md-4 mb-3 mb-md-0 ">').append($div2);
+		           $qList.append($div1);
+			};
 
+		
     </script>
 
 </body>

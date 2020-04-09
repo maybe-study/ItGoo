@@ -278,9 +278,9 @@
            $.each(data,function(idx, data){
         		var $body = $("#shelterlist");
         		var $form = $("#dogdeletebtn");
-        		var sex = data.sex
-        		var jungsung = data.dogjungsung
-        		console.log("sex="+sex);
+        		var sex = data.sex;
+        		var jungsung = data.dogjungsung;
+        		console.log("junsung="+jungsung);
         		var $tr = $("<tr>").appendTo($body);
         		$("<td>").append($("<a>").attr("href","#").attr("onclick",'articleView('+data.dogid+')').text("사진보기")).appendTo($tr);
         		$("<td>").text(data.dogid).appendTo($tr);
@@ -291,7 +291,7 @@
         		}else{
         			$("<td>").text("수컷").appendTo($tr);
         		}
-        		if(jungsung == 0 ){
+        		if(jungsung == 1 ){
         			$("<td>").text("중성화 안함").appendTo($tr);
         		}else{
         			$("<td>").text("중성화 했음").appendTo($tr);

@@ -252,7 +252,7 @@ public class ActivityManagement {
 		boolean r = aDao.activityReservationBtn(rv);
 		aDao.updateReservationPhase(rv);
 
-		mav.setViewName("redirect:mypage");
+		mav.setViewName("redirect:myadoptphase");
 		return mav;
 	}
 	public ModelAndView passDetail(Integer activitynum) {
