@@ -30,6 +30,7 @@ public class Adopt {
 	private String dogspecial;
 	private List<String> dogpics;
 	private int status;
+	private String phasename;
 	private String sex;
 	private String thum;
 }

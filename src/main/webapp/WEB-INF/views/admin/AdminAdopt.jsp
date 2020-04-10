@@ -227,11 +227,11 @@
                     { "width": "5%", "targets": 0 },
                     { "width": "5%", "targets": 1 },
                     { "width": "5%", "targets": 2 },
-                    { "width": "5%", "targets": 3 },
+                    { "width": "10%", "targets": 3 },
                     { "width": "5%", "targets": 4 },
-                    { "width": "25%", "targets": 5 },
-                    { "width": "15%", "targets": 6 },
-                    { "width": "20%", "targets": 7 },
+                    { "width": "20%", "targets": 5 },
+                    { "width": "20%", "targets": 6 },
+                    { "width": "15%", "targets": 7 },
                     { "width": "10%", "targets": 8 },
                     { "width": "5%", "targets": 9 },
                     
@@ -251,7 +251,7 @@
   	  		$("<td>").text(idx).appendTo($tr);
   	  		$("<td>").text(adopt.username).appendTo($tr);
   	  		$("<td>").text(adopt.phone).appendTo($tr);
-  	  		$phaseTd=$("<td>").text(adopt.phase).appendTo($tr);
+  	  		$phaseTd=$("<td>").text(adopt.phasename).appendTo($tr);
   	  		$("<td>").text(adopt.dogname).appendTo($tr);
   	  		$("<td>").text(adopt.why).appendTo($tr);
   	  		$("<td>").text(adopt.dogcareer).appendTo($tr);
@@ -291,8 +291,8 @@
 				dataType:"json"
 			}).done((data)=>{
 				console.log(data);
-				$phaseTd.text(data.status);
-				$btn.attr('disabled','true')
+				$phaseTd[0].innerHtml="탈락";
+				$btn.remove();
 			});
 		}
 		function PassAjax(id,dogid,$phaseTd,$btn){
@@ -308,8 +308,8 @@
 				dataType:"json"
 			}).done((data)=>{
 				console.log(data);
-				$phaseTd.text(data.status);
-				$btn.attr('disabled','true')
+				$phaseTd.text("서류 합격");
+				$btn.remove();
 			});
 		};
 		function careSheet(id,dogid){

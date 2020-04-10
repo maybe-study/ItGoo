@@ -133,6 +133,34 @@ public class AdminCompany {
 	}
 	public ModelAndView adminAdoptList() {
 		List<Adopt> adoptList=aDao.adminAdoptList();
+		for(Adopt a:adoptList) {
+			String phasename=null;
+			switch(a.getPhase()) {
+			case 1:
+				phasename="신청서 검토 단계"	;
+				break;
+			case 2:
+				phasename="서류 통과"	;
+				break;
+			case 3:
+				phasename="적격성 평가 통과"	;
+				break;
+			case 4:
+				phasename="액티비티 대기"	;
+				break;
+			case 5:
+				phasename="액티비티 완료"	;
+				break;
+			case 6:
+				phasename="입양 확정"	;
+				break;
+			case 7:
+				phasename="설문지 케어"	;
+				break;
+			}
+			
+			a.setPhasename(phasename);
+		}
 		mav.addObject("adoptList",new Gson().toJson(adoptList));
 		List<Question> questionList = aDao.adminQuestionList();
 		mav.addObject("questionList",new Gson().toJson(questionList));
