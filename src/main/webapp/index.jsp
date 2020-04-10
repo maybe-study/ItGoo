@@ -19,17 +19,19 @@
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <style>
+
 #logout {
    border: 0;
    outline: 0;
    color: #007bff;
-
+   background-color: #e9ecef;
 }
 
 #mypage {
    border: 0;
    outline: 0;
    color: #007bff;
+   background-color:#e9ecef;
 
 }
 #foot {
@@ -179,8 +181,4 @@ font-weight: bold;
    </div>
 
 </body>
-<script>
-
-</script>
-
 </html>

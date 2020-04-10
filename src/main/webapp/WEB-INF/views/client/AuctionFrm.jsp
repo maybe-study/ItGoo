@@ -11,7 +11,7 @@
 <meta name="author" content="Dashboard">
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<title>Dashio - Bootstrap Admin Template</title>
+<title>ITGOO-Enjoy ITGOO</title>
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
