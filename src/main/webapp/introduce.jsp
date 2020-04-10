@@ -102,18 +102,26 @@
 			<!-- left content -->
 			<div class="col-md-6">
 				<h2>About ITGOO</h2>
-				<p>ITGOO 프로젝트는 2020년 시작된 프로젝트</p>
+				<p>ITGOO 프로젝트는 2020년 시작된 유기견 입양 프로젝트</p>
 				<p>
-					ITGOO는 동물보호 200년 역사를 가진 독일의 선진사례 분석을 통해 기획된 시스템.
+					ITGOO는 동물보호 200년 역사를 가진 독일의 선진사례 분석을 통해 기획된 시스템으로 한국의 유기견 실태를 고치고, 입양을 받는 문화를 사회적으로 정착시키고자 기획되었습니다.
 				</p>
 				<p>
-					현재 itgoo는 사회적 프로젝트로 유기견 문제에 초점을 맞추고 있으며 <br> 100% 유기견 입양 시스템과
-					액티비티,가상입양<br> 유기견 근절에 힘쓰고 있다.
+					현재 ITGOO는 사회적 프로젝트로 유기견 문제에 초점을 맞추고 있으며 
+					<br> <strong>100% 유기견</strong> 입양 시스템과 <strong>액티비티,가상입양</strong>을 도입해 재파양,재유기등의 문제를 줄이는데 힘쓰고 있습니다.
+					<br> ITGOO는 사회적 프로젝트로서 100% 유기견 입양을 원칙으로 하고 있습니다.
 				</p>
 
 				<p>
-					ITGOO는 두개의 테마로 되어있으며,<br> itgoo는 경매,소모임,커뮤니티 기능이있다<br>
-					ITGOO는 입양을 지원하는 시스템입니다.
+					ITGOO는 두개의 테마로 되어있으며,
+					<br> 첫번째 테마는 경매,소모임등의 기능이 있는 테마이고,
+					<br> 두번째 테마는 입양을 지원하는 테마입니다.
+				</p>
+				
+				<p>
+					유기견의 문제를 외면하지 않고 직시해야할 시기입니다.
+					<br> Don't buy adopt!
+					<br> With ITGOO
 				</p>
 
 			</div>
@@ -131,36 +139,31 @@
 									<!-- 슬라이드 쇼 -->
 									<div class="carousel-item active">
 										<!--가로-->
-										<img class="recoimg" src="img/portfolio/balba.png"
+										<img style="height:600px; width: 500px;" class="recoimg" src="img/portfolio/itgooint.png"
 											alt="First slide">
-
 									</div>
+									
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/itgoo1.png"
+										<img  style="height:600px; width: 500px;" class="recoimg" src="img/portfolio/introduce1.jpg"
 											alt="Second slide">
-
 									</div>
+									
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/itgoo1004.png"
+										<img  style="height:600px; width: 500px;" class="recoimg" src="img/portfolio/introduce2.jpg"
 											alt="Third slide">
-
 									</div>
 
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/itgoo2.PNG"
+										<img style="height:600px; width: 500px;" class="recoimg" src="img/portfolio/itgoo1004.png"
 											alt="Forth slide">
-
 									</div>
 
 									<div class="carousel-item">
-										<img class="recoimg" src="img/portfolio/balba.png"
+										<img style="height:150px; width: 150px;" class="recoimg" src="img/portfolio/dontbuy.jpg"
 											alt="Fifth slide">
-
 									</div>
-
-
 									<!-- / 슬라이드 쇼 끝 -->
-
+									
 									<!-- 왼쪽 오른쪽 화살표 버튼 -->
 									<a class="carousel-control-prev" href="#demo" data-slide="prev">
 										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -171,7 +174,6 @@
 										<!-- <span>Next</span> -->
 									</a>
 									<!-- / 화살표 버튼 끝 -->
-
 									<!-- 인디케이터 -->
 									<ul class="carousel-indicators">
 										<li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -200,7 +202,5 @@
 		</p>
 	</div>
 </body>
-
-
 </html>
 
