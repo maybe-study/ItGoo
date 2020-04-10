@@ -53,7 +53,7 @@
 					data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="/ItGoo" class="logo"><b>IT<span>GOO</span></b></a>
+			<a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->
@@ -119,7 +119,7 @@
 							class="img-circle" width="80"></a>
 					</p>
 					<h5 class="centered">ACTIVITY MANAGER</h5>
-					<li class="mt"><a href="/ItGoo/"> <i
+					<li class="mt"><a href="index.jsp"> <i
 							class="fa fa-dashboard"></i> <span>메인 페이지로</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;">

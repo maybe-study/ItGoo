@@ -236,10 +236,7 @@
                     { "width": "5%", "targets": 9 },
                     
                    ]
-                 
               });
-
-            
             });
         
     </script>
@@ -251,7 +248,7 @@
   	  		$("<td>").text(idx).appendTo($tr);
   	  		$("<td>").text(adopt.username).appendTo($tr);
   	  		$("<td>").text(adopt.phone).appendTo($tr);
-  	  		$phaseTd=$("<td>").text(adopt.phasename).appendTo($tr);
+  	  		var $phaseTd=$("<td>").text(adopt.phasename).appendTo($tr);
   	  		$("<td>").text(adopt.dogname).appendTo($tr);
   	  		$("<td>").text(adopt.why).appendTo($tr);
   	  		$("<td>").text(adopt.dogcareer).appendTo($tr);
@@ -268,17 +265,17 @@
   	  			$("<td>").append($careBtn).appendTo($tr);
   	  		}else{
   	  			$("<td>").append('').appendTo($tr);
-  	  		}
+  	  		};
   	  		$("<td>").append($btn2).appendTo($tr);
   	  		$btn.on("click",function(){
   	  			PassAjax(adopt.id,adopt.dogid,$phaseTd,$btn);
   	  		});
   	  		$btn2.on("click",function(){
-  	  			nonPassAjax(adopt.id,adopt.dogid,$phaseTd,$btn2)
-  	  		})
+  	  			nonPassAjax(adopt.id,adopt.dogid,$phaseTd,$btn,$btn2)
+  	  		});
   	  		//btn 추가
 		});
-		function nonPassAjax(id,dogid,$phaseTd,$btn){
+		function nonPassAjax(id,dogid,$phaseTd,$btn,$btn2){
 			$.ajaxSetup({
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -291,8 +288,10 @@
 				dataType:"json"
 			}).done((data)=>{
 				console.log(data);
-				$phaseTd[0].innerHtml="탈락";
+				$phaseTd.empty();
+				$phaseTd.text('탈락');
 				$btn.remove();
+				$btn2.remove();
 			});
 		}
 		function PassAjax(id,dogid,$phaseTd,$btn){
@@ -308,6 +307,7 @@
 				dataType:"json"
 			}).done((data)=>{
 				console.log(data);
+				$phaseTd.empty();
 				$phaseTd.text("서류 합격");
 				$btn.remove();
 			});

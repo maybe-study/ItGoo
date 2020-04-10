@@ -168,7 +168,7 @@
 <!-- Portfolio Section -->
 	<section class="h-100">
 		<div class="container-fluid" id="bg">
-			<div class="container row" style="margin:auto">
+			<div class="container row" style="margin:auto; padding-top: 70px">
 				<div class="card col-lg-12">
 					<div class="card-body" id="auctionname">
 					
@@ -235,13 +235,13 @@
 				<div class="card col-lg-4">
 					<div class="card-body">
 					<h5 class="card-label" >경매장</h5>
-					<div id="auction" style="height: 580px;overflow:auto">
+					<div id="auction" style="height: 400px;overflow:auto">
 						
 						
 					</div>
 					<div class="col-lg-12 btn-div" id="button" style="text-align: center">
 						<form onsubmit="return sendBid()">
-						<input type="text" id="bid">
+						<input type="number" id="bid" required>
 						<button class="btn btn-primary" id="bid"><i class="fas fa-plus"></i> 참가</button>
 						</form>
 					</div>

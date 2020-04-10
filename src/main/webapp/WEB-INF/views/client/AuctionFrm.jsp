@@ -283,8 +283,8 @@ ClassicEditor
 	  var frm=document.auctionfrm
 	  
 	  frm.srcJson.value=JSON.stringify(imgList);
-	  frm.auctionstart.value=moment().add(5,'s').format('MM/DD/YYYY h:mm:ss A')
-	  frm.auctionend.value=moment().add(35,'s').format('MM/DD/YYYY h:mm:ss A')
+	  frm.auctionstart.value=moment().add(10,'s').format('MM/DD/YYYY h:mm:ss A')
+	  frm.auctionend.value=moment().add(70,'s').format('MM/DD/YYYY h:mm:ss A')
 	  
 	  console.log(frm.auctionstart.value);
 	  
