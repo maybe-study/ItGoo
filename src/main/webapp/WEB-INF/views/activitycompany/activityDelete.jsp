@@ -52,7 +52,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
+      <a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -125,7 +125,7 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/portfolio/itgoo2.PNG" class="img-circle" width="80"></a></p>
           <h5 class="centered" id="userid">ACTIVITY MANAGER</h5>
-          <li class="mt"><a href="/ItGoo/"> <i
+          <li class="mt"><a href="index.jsp"> <i
 							class="fa fa-dashboard"></i> <span>메인 페이지로</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;">
