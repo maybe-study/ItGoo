@@ -47,7 +47,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="/ItGoo/" class="logo"><b>IT<span>GOO</span></b></a>
+      <a href="index.jsp" class="logo"><b>IT<span>GOO</span></b></a>
       <!--logo end-->
 
       <div class="top-menu">

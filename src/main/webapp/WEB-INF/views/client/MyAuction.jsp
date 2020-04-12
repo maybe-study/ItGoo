@@ -92,6 +92,7 @@
                     <th>경매 이름</th>
                     <th>등록 금액</th>
                     <th>경매 시작 일시</th>
+                    <th>낙찰</th>
                   </tr>
                 </thead>
                 <tbody id="attendedList">
@@ -168,6 +169,7 @@
 		$('<td>').append(data.auctionname).appendTo($tr);
 		$('<td>').append(data.currentprice).appendTo($tr);
 		$('<td>').append(data.auctionstart).appendTo($tr);
+		$('<td>').append(data.buyer).appendTo($tr);
 		$('#attendedList').append($tr);
 	});
 	$.each(${myauctionList},function(idx,data){
