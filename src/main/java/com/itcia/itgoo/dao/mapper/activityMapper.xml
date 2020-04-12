@@ -64,11 +64,7 @@
 	
 	<select id="activityPass" parameterType="Activity"
 		resultType="Activity">
-		select distinct c.companyname,a.activitynum,a.activityname,
-		a.activitydate,
-		a.activitystart,a.activitytime, a.activitydogcnt ,ado.phase
-		from company c,activity a,activityreserve ar ,adopt ado
-		where c.companyid=a.companyid and a.activitynum = ar.activitynum and ado.phase=4 and c.companyid = #{companyid}
+		SELECT * FROM company join activity on company.companyid=activity.companyid join activityreserve on activity.activitynum=activityreserve.activitynum join adopt on activityreserve.id=adopt.id where adopt.phase=4 and company.companyid=#{companyid}
 	</select>
 	
 	<select id="passDetail" parameterType="int"
