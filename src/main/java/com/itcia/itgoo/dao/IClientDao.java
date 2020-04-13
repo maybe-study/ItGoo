@@ -104,7 +104,7 @@ public interface IClientDao {
 	@Select("SELECT dog.dogid,dog.dogname,dog.dogage,virtualadopt.donation,virtualadopt.payday,recent.message,recent.title,recent.recentid FROM recent \r\n" +
 			"join virtualadopt on recent.id=virtualadopt.id \r\n" +
 			"join dog on dog.dogid=virtualadopt.dogid \r\n" +
-			"where recent.id=#{id} and recent.dogid=#{dogid}")
+			"where recent.dogid=#{dogid}")
 	List<VirtualAdopt> clentrecentdetail(VirtualAdopt boyoung);
 
 	@Update("update dog set status = 1 where dogid=#{dogid}")
