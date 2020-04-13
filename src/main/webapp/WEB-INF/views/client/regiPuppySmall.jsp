@@ -220,7 +220,7 @@
 										id="sample4_extraAddress" placeholder="참고항목"> <br>
 									<div id="map" style="width: 100%; height: 350px;"></div>
 									<script type="text/javascript"
-										src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+										src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cae6b2651d78c792ab17bbe1d4dfb271&libraries=services"></script>
 					</div>
 					</div>
 				</div>

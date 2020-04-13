@@ -296,7 +296,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cae6b2651d78c792ab17bbe1d4dfb271&libraries=services"></script>
 		<!-- Custom scripts for this template -->
 	<script src="js/stomp.js"></script>
 	<script src="js/sockjs.js"></script>

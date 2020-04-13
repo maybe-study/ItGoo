@@ -94,8 +94,12 @@
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
 					<li>
-					<a class="logout" href="/index" onclick="document.getElementById('logout-form').submit();">Logout</a>
-		           <form id="logout-form" action='logout' method="POST">
+					<a class="logout" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+		           <form id="logout-form" action='logout' m
+		           
+		           
+		           
+		           ethod="POST">
 					   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 					</form>
 
@@ -196,7 +200,7 @@
 								<br>
 								<div id="map" style="width: 100%; height: 350px;"></div>
 								<script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cae6b2651d78c792ab17bbe1d4dfb271&libraries=services"></script>
 							</div>
 							<div class="button-div"><input type="submit" class="location-button" value="위치 등록"/></div>
 						</section>
