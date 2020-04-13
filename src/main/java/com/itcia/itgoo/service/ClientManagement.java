@@ -197,7 +197,7 @@ public class ClientManagement {
 		System.out.println("강아지아이디를 "+dogid);
 		System.out.println("사라진아이디를 찾아라"+p.getName());
 		System.out.println(cs.getDogid());
-		mav.setViewName("clientMyPage");
+		mav.setViewName("redirect:clientMyPage");
 		mav.addObject("dogid",dogid);
 		List<CareSheet> aList= new Gson().fromJson(aJson, new TypeToken<List<CareSheet>>() {}.getType());
 		for(CareSheet a: aList){
