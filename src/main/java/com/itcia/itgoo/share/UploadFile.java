@@ -44,6 +44,12 @@ public class UploadFile {
 		//저장될 파일 이름 생성 a.txt ==>112323242424.txt
 		String sysFileName = System.currentTimeMillis() + "."
 				+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);	//확장자 붙임
+		try {
+			Thread.sleep(1);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//메모리->실제 파일 업로드
 		try {
 			file.transferTo(new File(path, sysFileName)); // 서버에 파일 저장

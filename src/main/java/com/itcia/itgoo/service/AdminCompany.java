@@ -181,8 +181,8 @@ public class AdminCompany {
 		List<CareSheet> cList= new Gson().fromJson(careJson, new TypeToken<List<CareSheet>>() {}.getType());
 		
 		for(CareSheet c : cList) { //지우고 넣기
-			if(c.getQuestionnum()!=0) aDao.deleteCareSheet(c);
-			else aDao.adminInsertCareSheet(c);
+			if(c.getQuestionnum()!=0) {aDao.deleteCareSheet(c);}
+			aDao.adminInsertCareSheet(c);
 		}
 		RedirectView redirectView = new RedirectView(); // redirect url 설정
 		redirectView.setExposeModelAttributes(false);

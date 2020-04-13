@@ -146,7 +146,7 @@
 					</li>
 
 
-					<li class="sub-menu"><a href="javascript:;" class="active" > <i
+					<li class="sub-menu"><a href="javascript:;"  > <i
 							class="fa fa-th"></i> <span>입양 공고</span>
 					</a>
 						<ul class="sub">
@@ -155,7 +155,7 @@
 							<li><a href="aleadyadopt">입양 확정</a></li>
 						</ul></li>
 						
-					<li class="sub-menu"><a href="javascript:;"> <i	class="fa fa-th"></i> <span>가상입양 관리</span>
+					<li class="sub-menu"><a href="javascript:;" class="active"> <i	class="fa fa-th"></i> <span>가상입양 관리</span>
 					</a>
 						<ul class="sub">
 							<li><a href="virtualadoptlist?input=1">근황 입력</a></li>
