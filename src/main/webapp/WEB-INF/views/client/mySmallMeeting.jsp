@@ -165,7 +165,7 @@
         		
         		var $tr = $("<tr>").appendTo($body);
         		
-        		$("<td>").append($("<a>").attr("href","mysmallmeetingdetail?smallnumber="+data.smallnumber).text(data.meetingname)).appendTo($tr);
+        		$("<td>").append($("<a>").attr("href","smalldetail?smallnumber="+data.smallnumber).text(data.meetingname)).appendTo($tr);
         		$("<td>").text(data.id).appendTo($tr);
         		$("<td>").text(data.smalllocation).appendTo($tr);
         		$("<td>").text(data.smalldogcnt).appendTo($tr);
