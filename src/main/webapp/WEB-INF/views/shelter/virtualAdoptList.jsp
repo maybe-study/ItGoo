@@ -252,16 +252,24 @@
 		var url;
 		var vList=${virtualList};
 		var d= vList[0];
+		var input=${input};
 		if(${input}==0) {
 			$('#title').append("삭제");
-			url="./recentlist?dogid="+d.dogid+"&id="+d.id+"&input="+0;
 		}
 		if(${input}==1) {
 			$('#title').append("추가")
-			url="./recentfrm?dogid="+d.dogid+"&id="+d.id+"&input="+1;
 		}
 		$.each(vList,function(idx,data){
-			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
+			console.log(data.id);
+			
+			console.log(url);
+			var $tr=$('<tr>').click(function(){
+				if(input==0) {
+					location.href="./recentlist?dogid="+data.dogid+"&id="+data.id+"&input="+0;
+				}
+				if(input==1) {
+					location.href="./recentfrm?dogid="+data.dogid+"&id="+data.id+"&input="+1;
+				}}).css('cursor','pointer');
 			$('<td>').append(data.id).appendTo($tr);
 			$('<td>').append(data.dogname).appendTo($tr);
 			$('<td>').append(data.startdonaiton).appendTo($tr);

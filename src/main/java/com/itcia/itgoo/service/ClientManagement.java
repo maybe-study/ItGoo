@@ -197,8 +197,12 @@ public class ClientManagement {
 		System.out.println("강아지아이디를 "+dogid);
 		System.out.println("사라진아이디를 찾아라"+p.getName());
 		System.out.println(cs.getDogid());
-		mav.setViewName("redirect:myadoptphase");
-		mav.addObject("dogid",dogid);
+		
+		RedirectView redirectView = new RedirectView();
+		redirectView.setExposeModelAttributes(false);
+		redirectView.setUrl("myadoptphase");
+		mav.setView(redirectView); //myadoptphase
+		
 		List<CareSheet> aList= new Gson().fromJson(aJson, new TypeToken<List<CareSheet>>() {}.getType());
 		for(CareSheet a: aList){
 			cs.setQuestionnum(a.getQuestionnum());

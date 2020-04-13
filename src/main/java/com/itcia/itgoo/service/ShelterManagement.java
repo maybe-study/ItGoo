@@ -299,7 +299,7 @@ public class ShelterManagement {
 		sDao.recentDelete(recentid);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setExposeModelAttributes(false);
-		redirectView.setUrl("recentlist");
+		redirectView.setUrl("virtualadoptlist?input=0");
 		mav.setView(redirectView);
 		return mav;
 	}
