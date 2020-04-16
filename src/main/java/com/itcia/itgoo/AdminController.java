@@ -50,7 +50,8 @@ public class AdminController {
 		return mav;
 	}
 	@RequestMapping(value = "/adminactivity", method = RequestMethod.GET)
-	public ModelAndView adminActivity(Locale locale, Model model) {// 액티비티 업체 정보 읽기
+	public ModelAndView adminActivity(Locale locale, Model model) {
+		// 액티비티 업체 정보 읽기
 		ModelAndView mav=Ac.adminActivity();
 		return mav;
 	}

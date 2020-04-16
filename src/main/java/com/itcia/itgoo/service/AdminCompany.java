@@ -109,7 +109,6 @@ public class AdminCompany {
 	}
 	public ModelAndView adminTest() {
 		mav.addObject("testList",new Gson().toJson(aDao.getTest()));
-		//mav.addObject("correctList", new Gson().toJson(aDao.getCorrect()));
 		mav.setViewName("/admin/AdminTest");
 		return mav;
 	}
