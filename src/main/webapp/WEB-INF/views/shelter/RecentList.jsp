@@ -248,10 +248,9 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
 		console.log(${recentList});
-		var url;
 		
 		$.each(${recentList},function(idx,data){
-			url="./recentdetail?recentid="+data.recentid;
+			var url="./recentdetail?recentid="+data.recentid;
 			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
 			$('<td>').append(data.recentid).appendTo($tr);
 			$('<td>').append(data.title).appendTo($tr);

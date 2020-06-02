@@ -168,7 +168,7 @@
 		var flag=0;
 		$.each(cdList,function(idx,data){
 			console.log
-			url="./recentvirtualdetail?recentid="+data.recentid;
+			var url="./recentvirtualdetail?recentid="+data.recentid;
 			var $tr=$('<tr>').css('cursor','pointer').click(function(){location.href=url});
 			$('<td>').append(data.recentid).appendTo($tr);
 			$('<td>').append(data.title).appendTo($tr);
