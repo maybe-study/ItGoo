@@ -270,9 +270,7 @@
 	
 	function sendBid(){
 		var bid=$('#bid').val();
-		stompClient.send("/bid",{},JSON.stringify({auctionnum:a.auctionnum, currentprice:bid}));
-		$('#bid').val('');
-		
+		stompClient.send("/bid",{},JSON.stringify({auctionnum:a.auctionnum, currentprice:bid}))
 		return false;
 	}
 	
@@ -309,9 +307,7 @@
 	
 	$.each(bids, function(idx,bid){
 		var $label=$('<div class="label label-default">').append(bid.id+":"+bid.currentprice);
-		$("#auction").append($label);
-		var bidDiv=document.getElementById("auction");
-		bidDiv.scrollTop=bidDiv.scrollHeight;
+		$("#auction").append($label)
 	})
 	
 	
@@ -327,17 +323,13 @@
 			var bid=JSON.parse(msg.body);
 			console.log(bid)
 			var $label=$('<div class="label label-default">').append(bid.id+":"+bid.currentprice)
-			$("#auction").append($label);
-			var bidDiv=document.getElementById("auction");
-			bidDiv.scrollTop=bidDiv.scrollHeight;
+			$("#auction").append($label)
 		});
 		//경매 종료 카운트다운 구독
 		stompClient.subscribe('/topic/auctoinEndCountDown/'+a.auctionnum,function(msg){
 			console.dir(msg);
 			var $label=$('<div class="label label-default">').append("경매 종료 "+msg.body+"초 전");
-			$("#auction").append($label);
-			var bidDiv=document.getElementById("auction");
-			bidDiv.scrollTop=bidDiv.scrollHeight;
+			$("#auction").append($label)
 		})
 		//경매 종료 구독
 		stompClient.subscribe('/topic/auctoinEnd/'+a.auctionnum,function(msg){
@@ -346,8 +338,6 @@
 			var $label=$('<div class="label label-default">').append("경매가 종료되었습니다.<br>낙찰자:"+a.buyer+"</br>낙찰가:"+a.realprice)
 			$("#auction").append($label)
 			disconnect();
-			var bidDiv=document.getElementById("auction");
-			bidDiv.scrollTop=bidDiv.scrollHeight;
 		});
 		//입장 전송
 		stompClient.send("/enter",{},JSON.stringify({auctionnum: ""+a.auctionnum}));
